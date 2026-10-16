@@ -278,6 +278,71 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #coach .cskip{color:#5a4f40;border-color:#cbbd9f;background:transparent;font-size:13px;padding:8px 14px}
 #coach .cnext{font-size:17px;padding:10px 24px}
 #coach.waiting .cnext{display:none}
+.metaline{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--muted)}
+.metaline b{color:var(--gold);font-family:var(--num);font-size:16px;font-weight:400}
+.metaline .free{color:var(--green);font-weight:900}
+.ghost.gold{border-color:var(--gold);color:var(--gold);box-shadow:0 0 18px rgba(255,200,61,.25)}
+.ghost.on{border-color:var(--gold);background:rgba(255,200,61,.15)}
+.panel.wide{width:min(960px,100%)}
+.intent{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:22px;align-items:center}
+.intent .il{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:900}
+.ichip{font-size:12px;font-weight:900;padding:2px 9px;border-radius:99px;background:rgba(20,26,48,.9);border:1px solid var(--tc);color:var(--paper);animation:unitIn .4s both}
+.forecast{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;font-size:12px}
+.forecast .fl{color:var(--muted);letter-spacing:.15em;font-weight:900}
+.forecast b{font-family:var(--num);font-weight:400;font-size:16px}
+.forecast .fm{color:var(--gold)} .forecast .fo{color:var(--red)}
+.forecast .mod{width:100%;color:var(--cyan);font-size:12px}
+.climate{color:var(--cyan);font-size:14px}
+.climate b{color:#fff}
+.coinline{font-family:var(--num);color:var(--gold);font-size:18px;letter-spacing:.03em}
+#toast{position:absolute;left:0;right:0;top:calc(10px + env(safe-area-inset-top,0px));z-index:80;display:grid;justify-items:center;gap:6px;pointer-events:none}
+#toast .tst{background:linear-gradient(90deg,#3a2600,#6b4500);border:1px solid var(--gold);color:#fff3c4;font-weight:900;padding:8px 18px;border-radius:99px;box-shadow:0 0 24px rgba(255,200,61,.5);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:12px;width:100%;justify-items:center;perspective:900px}
+.grid.mini .card{--cw:84px;--ch:120px;margin:0}
+.grid.mini .card .ds{display:none}
+.grid.mini .card .in{grid-template-rows:64% auto auto 1fr}
+.grid.mini .card .nm{font-size:11px}
+.grid.mini .card .ty{font-size:8px;letter-spacing:.1em}
+.grid.mini .card .cost{width:24px;height:24px;font-size:14px;left:-5px;top:-5px}
+.card .rtag{position:absolute;right:-4px;top:-6px;z-index:3;font-size:9px;font-weight:900;padding:1px 6px;border-radius:99px;background:#0b0f20;border:1px solid currentColor}
+.rar-N .rtag{color:#b9c0d8} .rar-R .rtag{color:#3fe0ff} .rar-SR .rtag{color:#c08bff} .rar-SSR .rtag{color:#ffc83d}
+.card.rar-SSR{box-shadow:0 0 0 2px #ffc83d,0 0 22px rgba(255,200,61,.7),0 10px 24px rgba(0,0,0,.55)}
+.card.rar-SR{box-shadow:0 0 0 2px #c08bff,0 0 14px rgba(192,139,255,.5),0 10px 24px rgba(0,0,0,.55)}
+.card.locked{--frame:linear-gradient(160deg,#2a3150,#121628);cursor:default;filter:none}
+.card.locked .in{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:repeating-linear-gradient(135deg,#10142a 0 6px,#141a33 6px 12px)}
+.card.locked .lk{font-family:var(--display);font-size:34px;color:#3b4470}
+.card.locked .nm{color:#59628f}
+.card.locked .craft{font-size:9px;padding:3px 5px;margin-top:4px;border-radius:6px;background:var(--gold);color:#2a1a00;font-weight:900}
+.card.locked .craft:disabled{background:#2a3150;color:#59628f;cursor:default}
+.cbar{width:min(460px,100%);height:14px;border-radius:99px;background:#0b0f20;overflow:hidden;border:1px solid var(--line)}
+.cbar i{display:block;height:100%;background:linear-gradient(90deg,#b36b05,var(--gold),#fff3c4)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.deckbar{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;flex-wrap:wrap}
+.deckbar b{font-family:var(--num);font-size:28px;font-weight:400;color:var(--red)} .deckbar b.ok{color:var(--green)}
+.dlist{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:100%}
+.dchip{display:flex;align-items:center;gap:6px;font-size:13px;padding:5px 10px;border-radius:10px;background:rgba(20,26,48,.9);border:1px solid var(--tc)}
+.dchip span{font-family:var(--num);color:var(--gold)} .dchip i{font-style:normal;color:var(--muted)}
+.cta:disabled{filter:grayscale(1) brightness(.6);cursor:default;transform:none}
+.ghost:disabled{opacity:.4;cursor:default}
+.pack{position:relative;width:min(200px,45vw);aspect-ratio:3/4;border-radius:16px;overflow:hidden;box-shadow:0 20px 50px #000a;--pg:#ffc83d}
+.pack img{width:100%;height:100%;object-fit:cover}
+.pack .packglow{position:absolute;inset:-20%;background:radial-gradient(circle,var(--pg),transparent 60%);opacity:.35;animation:glowpack 1.6s infinite}
+@keyframes glowpack{50%{opacity:.7}}
+.pack.shake{animation:packshake .1s infinite}
+@keyframes packshake{25%{transform:translate(-4px,2px) rotate(-2deg)}75%{transform:translate(4px,-2px) rotate(2deg)}}
+.reveal{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;perspective:1000px}
+.reveal .slot{position:relative;display:grid;justify-items:center;gap:6px}
+.reveal .flip{position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,1.3,.4,1);transform:rotateY(180deg)}
+.reveal .slot.open .flip{transform:none}
+.reveal .flip .card{--cw:110px;--ch:156px;margin:0;backface-visibility:hidden}
+.reveal .flip .card .ds{font-size:9px}
+.reveal .cardback{position:absolute;inset:0;border-radius:14px;background:url(img/back.jpg?v=3) center/cover;transform:rotateY(180deg);backface-visibility:hidden;box-shadow:0 10px 24px #000a}
+.reveal .slot.rar-SSR.open .flip{animation:ssrpulse 1s infinite}
+@keyframes ssrpulse{50%{filter:drop-shadow(0 0 22px #ffc83d)}}
+.newtag,.duptag{font-size:11px;font-weight:900;padding:2px 8px;border-radius:99px;opacity:0;transition:opacity .3s}
+.slot.open .newtag,.slot.open .duptag{opacity:1}
+.newtag{background:var(--red);color:#fff;box-shadow:0 0 12px var(--red)}
+.duptag{background:#1c2442;color:var(--muted)}
 body.freeze *{animation-play-state:paused!important}
 
 @media (max-width:640px){
@@ -315,6 +380,11 @@ body.freeze *{animation-play-state:paused!important}
         <div class="row">
           <button class="cta" id="btnStart">開始操盤</button>
         </div>
+        <div class="metaline" id="metaline"></div>
+        <div class="row">
+          <button class="ghost gold" id="btnPack">抽卡・黑箱包</button>
+          <button class="ghost" id="btnBook">操盤圖鑑</button>
+        </div>
         <div class="row">
           <button class="ghost" id="btnHow">新手教學</button>
           <button class="ghost" id="btnLB">排行榜</button>
@@ -327,10 +397,12 @@ body.freeze *{animation-play-state:paused!important}
     <section class="screen" id="screen-game" hidden>
       <div class="side op" id="sideOp"></div>
       <div class="board" id="boardOp"></div>
+      <div class="intent" id="intent"></div>
       <div class="center">
         <div class="hud">
           <div class="week" id="week"></div>
           <div class="pollnext" id="pollnext"></div>
+          <div class="forecast" id="forecast"></div>
           <div class="ticker" id="ticker"></div>
         </div>
         <div id="combo"><div class="x">×1</div><div class="l">連擊</div></div>
@@ -353,6 +425,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="vignette"></div>
   <div id="edge"></div>
   <div id="turnban" hidden></div>
+  <div id="toast"></div>
   <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
   <div id="flash"></div>
   <div id="cutin" hidden></div>
@@ -444,7 +517,7 @@ const SFX = {
     else { AU.tone(98,2,'sine',.5,0,96); AU.tone(270,1.6,'sine',.18); AU.tone(392,1.2,'triangle',.07,.05); [392,494,587].forEach(f=>AU.tone(f,1.2,'sawtooth',.03,.1)); }
   }
 };
-const VOICE_SYS=['combo2','combo3','combo4','combo5','combo6','crit','fire','poll','win','lose','swap','lead','fight','myturn','opturn','shieldbreak','ansB','ansC','ansD','surge','backlash','count','vs','reward','zero','destroy','flip','danger'];
+const VOICE_SYS=['combo2','combo3','combo4','combo5','combo6','crit','fire','poll','win','lose','swap','lead','fight','myturn','opturn','shieldbreak','ansB','ansC','ansD','surge','backlash','count','vs','reward','zero','destroy','flip','danger','pack','ssr','sr','new','achieve'];
 const VOICE={buf:{},cur:null,curPri:0,curEnd:0,
   async load(k){ if(k in this.buf) return this.buf[k]; this.buf[k]=null;
     try{ const r=await fetch(`audio/v_${k}.mp3?v=2`); if(!r.ok) return null; this.buf[k]=await AU.ctx.decodeAudioData(await r.arrayBuffer()); }catch(e){ this.buf[k]=null; }
@@ -677,6 +750,48 @@ function buildStages(camp){
   STAGES=PHASES.map((p,i)=>Object.assign({},p,{name:opp.cand,party:opp.party,img:opp.img,g:opp.g,taunt:opp.taunts[i],
     deck:[...p.base,...opp.pool.slice(0,Math.min(8,2+i*2)),...(i===3?opp.pool.slice(0,2):[])]}));
 }
+/* =========================================================
+   META — collection, packs, deck, coins, achievements
+   ========================================================= */
+const RARITY={press:'N',trolls:'N',oldphoto:'N',street:'N',clarify:'N',apology:'N',pundit:'N',influencer:'N',bento:'N',temple:'N',
+  poll:'R',farm:'R',sidekick:'R',n_bot:'R',n_cash:'R',blame:'R',factcheck:'SR',talkshow:'SR',deepfake:'SR',lastnight:'SSR',
+  b_oldpost:'R',b_hen:'R',b_script:'SR',b_baoli:'SR',b_wei:'SR',b_harvard:'SR',b_qa:'SSR',b_fake:'SSR',
+  g_haircut:'R',g_airport:'R',g_english:'SR',g_anytime:'SR',g_wanted:'SR',g_bear:'SR',g_chair:'SSR',g_tide:'SSR'};
+const RAR={N:{n:'普通',c:'#b9c0d8',shard:10,craft:20},R:{n:'稀有',c:'#3fe0ff',shard:20,craft:40},SR:{n:'史詩',c:'#c08bff',shard:40,craft:90},SSR:{n:'傳說',c:'#ffc83d',shard:80,craft:200}};
+const ALL_CARDS=Object.keys(RARITY);
+const CAMP_STARTER={blue:['b_oldpost','b_hen'],green:['g_haircut','g_airport']};
+const PACK_COST=120, DECK_SIZE=15;
+const ACH={crit:{n:'第一次會心一擊',r:50},combo5:{n:'五連擊',r:60},clean:{n:'零反感勝選',r:80},landslide:{n:'壓倒性勝利',r:80},
+  champ:{n:'當選首都市長',r:150},champ2:{n:'兩黨都當選過',r:200},half:{n:'圖鑑收集一半',r:100},full:{n:'圖鑑全收集',r:300}};
+const MODS=[{n:'媒體寒蟬',d:'所有抹黑傷害 −1',dmg:-1},{n:'大選年',d:'民調換票 ×1.5',poll:1.5},{n:'炎上季',d:'反感到 8 就炎上',fire:8},
+  {n:'鐵票動員',d:'民調基本盤 +3 票',base:3},{n:'景氣低迷',d:'直接加票的卡多 +1 票',votes:1},{n:'風平浪靜',d:'沒有特殊規則'}];
+let SAVE={coins:0,owned:{},shards:0,packs:0,pity:0,ach:{},decks:{},cleared:{},freePacks:2,champs:{}};
+try{ SAVE=Object.assign(SAVE,JSON.parse(localStorage.getItem('spin_save')||'{}')); }catch(e){}
+ALL_CARDS.filter(id=>RARITY[id]==='N').forEach(id=>SAVE.owned[id]=true);
+function save(){ try{ localStorage.setItem('spin_save',JSON.stringify(SAVE)); }catch(e){} }
+const ownedCount=()=>ALL_CARDS.filter(id=>SAVE.owned[id]).length;
+const campOK=(id,camp)=>!CARDS[id].camp||CARDS[id].camp===camp;
+const capOf=id=>RARITY[id]==='SSR'?1:2;
+function toast(msg){ const t=document.getElementById('toast'); const d=document.createElement('div'); d.className='tst'; d.textContent=msg; t.appendChild(d);
+  d.animate([{transform:'translateY(-30px)',opacity:0},{transform:'none',opacity:1}],{duration:300,easing:'cubic-bezier(.2,1.4,.4,1)'}); setTimeout(()=>{ d.animate([{opacity:1},{opacity:0}],{duration:300,fill:'forwards'}); setTimeout(()=>d.remove(),320); },2600); }
+function achieve(k){ if(SAVE.ach[k]) return; SAVE.ach[k]=1; SAVE.coins+=ACH[k].r; save(); setTimeout(()=>VOICE.play('sys_achieve',2),200); SFX.fanfare(); toast(`成就達成：${ACH[k].n}　+${ACH[k].r} 政治獻金`); }
+function checkCollectionAch(){ const n=ownedCount(); if(n>=ALL_CARDS.length/2) achieve('half'); if(n>=ALL_CARDS.length) achieve('full'); }
+function defaultDeck(camp){
+  const order={SSR:0,SR:1,R:2,N:3}; const pool=ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,camp)).sort((a,b)=>order[RARITY[a]]-order[RARITY[b]]||(CARDS[b].camp?1:0)-(CARDS[a].camp?1:0));
+  const deck=[]; for(let pass=0;pass<2&&deck.length<DECK_SIZE;pass++) for(const id of pool){ if(deck.length>=DECK_SIZE) break; if(deck.filter(x=>x===id).length<capOf(id)) deck.push(id); }
+  return deck; }
+function validDeck(camp){ const d=(SAVE.decks[camp]||[]).filter(id=>CARDS[id]&&SAVE.owned[id]&&campOK(id,camp)); return d.length===DECK_SIZE?d:defaultDeck(camp); }
+function rollRarity(slot){ const w=slot===4?{N:0,R:50,SR:38,SSR:12}:{N:45,R:33,SR:17,SSR:5}; let r=Math.random()*100; for(const k of ['SSR','SR','R','N']){ if(r<w[k]) return k; r-=w[k]; } return 'N'; }
+function rollPack(){
+  SAVE.packs++; SAVE.pity++; const out=[];
+  for(let slot=0;slot<5;slot++){
+    let rar=(slot===4&&SAVE.pity>=6)?'SSR':rollRarity(slot);
+    const pool=ALL_CARDS.filter(id=>RARITY[id]===rar); const wts=pool.map(id=>SAVE.owned[id]?1:8);
+    let t=Math.random()*wts.reduce((a,b)=>a+b,0), id=pool[0]; for(let i=0;i<pool.length;i++){ if(t<wts[i]){ id=pool[i]; break; } t-=wts[i]; }
+    const isNew=!SAVE.owned[id]; if(isNew) SAVE.owned[id]=true; else SAVE.shards+=RAR[rar].shard;
+    if(rar==='SSR') SAVE.pity=0; out.push({id,rar,isNew});
+  }
+  save(); return out; }
 const GAIN_HEAD=['{m}陣營聲量暴衝 上熱搜第一','{m}影片破百萬觀看 網友：好真實','{m}現身夜市 阿姨們搶合照'];
 
 /* =========================================================
@@ -725,6 +840,7 @@ function renderSides(){
   me.innerHTML=sideHTML(B.me); me.querySelector('.nm').textContent=RUN.cand.cand; me.querySelector('.role').textContent=RUN.cand.party+'｜操盤：'+(RUN.name||'你');
   if(B.lockVotes){ if(opV) op.querySelector('.votes .n').textContent=opV; if(meV) me.querySelector('.votes .n').textContent=meV; }
   renderBoard('#boardOp',B.op); renderBoard('#boardMe',B.me);
+  const fc=$('#forecast'); if(fc){ fc.innerHTML=`<span class="fl">民調預估</span><b class="fm">你 +${pollGain(B.me)}</b><b class="fo">對手 +${pollGain(B.op)}</b>${B.mod&&B.mod.d!=='沒有特殊規則'?`<span class="mod">氣候：${B.mod.n}｜${B.mod.d}</span>`:''}`; }
 }
 function renderBoard(sel,s){
   const el=$(sel); const ids=s.units.map(u=>u.uid).join(',');
@@ -777,7 +893,7 @@ function comboShow(){
   const el=$('#combo'); if(B.combo<2){ el.style.opacity=0; document.getElementById('edge').classList.remove('onfire'); return; }
   el.style.opacity=1; el.querySelector('.x').textContent='×'+B.combo; const hue=Math.max(0,45-B.combo*8);
   el.querySelector('.x').style.color=`hsl(${hue},100%,${60+Math.min(B.combo,6)*3}%)`;
-  el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); SFX.combo(B.combo);
+  el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); SFX.combo(B.combo); if(B.combo>=5&&B.turnOwner==='me') setTimeout(()=>achieve('combo5'),1200);
   setTimeout(()=>VOICE.play('sys_combo'+Math.min(6,B.combo),B.combo>=3?2.5:1.5),1000);
   document.getElementById('edge').classList.toggle('onfire',B.combo>=3); edgeFlash('rgba(255,140,30,.6)');
   if(B.combo>=4){ shake(.25); burst(center(el).x,center(el).y,30,['#ffc83d','#ff2e4d','#fff'],7,{shape:'spark',g:.05}); }
@@ -828,8 +944,9 @@ function api(me,op){
         renderSides(); await sleep(small?140:300); return false; }
       let dmg=n + (me.atkBuff||0) + (B.curType==='smear'?me.units.filter(u=>CARDS[u.id].unit.passive==='sidekick').length:0);
       if(!noMult) dmg=Math.round(dmg*mult());
+      if(B.mod&&B.mod.dmg) dmg=Math.max(1,dmg+B.mod.dmg);
       const crit=!small && Math.random()<.15;
-      if(crit) dmg*=2;
+      if(crit){ dmg*=2; if(me.id==='me') setTimeout(()=>achieve('crit'),900); }
       let absorbed=0; if(op.shield>0){ absorbed=Math.min(op.shield,dmg); op.shield-=absorbed; dmg-=absorbed; }
       const before=op.buzz; op.buzz=Math.max(0,op.buzz-dmg);
       const el=opEl();
@@ -867,9 +984,9 @@ function api(me,op){
         if(s.id==='me' && before<7 && s.backlash>=7 && s.backlash<10){ setTimeout(()=>{ VOICE.play('sys_danger',2); SFX.heart(); },350); } }
       else { SFX.heal(); floatAt(el,'反感 '+d,'#47e6a0',''); burst(bc.x,bc.y,14,['#47e6a0','#d8ffe9'],4,{shape:'spark',g:-.03,dec:.03}); ring(bc.x,bc.y,'#47e6a0',7,4); }
       renderSides();
-      if(s.backlash>=10) B.pendingFire.push(s);
+      if(s.backlash>=FIRE()) B.pendingFire.push(s);
     },
-    async votes(n){ me.votes+=n; const from=center(meEl()), to=center(meEl().querySelector('.votes'));
+    async votes(n){ if(n>0&&B.mod&&B.mod.votes) n+=B.mod.votes; me.votes+=n; const from=center(meEl()), to=center(meEl().querySelector('.votes'));
       coinsTo({x:innerWidth/2,y:innerHeight/2},to,6+n*2); floatAt(meEl(),'+'+(n*STAGES[RUN.stage].scale).toLocaleString()+' 票','#ffc83d','txt');
       await sleep(500); renderSides(); meEl().querySelector('.votes .n').animate([{transform:'scale(1.5)',color:'#fff'},{transform:'none'}],{duration:350}); },
     async breakShield(){ if(!op.shield) return; op.shield=0; SFX.crit(); VOICE.play('sys_shieldbreak',3); flash(.5,'#3fe0ff'); shake(.4); const c=center(opEl()); burst(c.x,c.y,40,['#3fe0ff','#fff'],8); floatAt(opEl(),'護盾被戳破','#3fe0ff','txt'); renderSides(); await sleep(250); },
@@ -891,7 +1008,9 @@ function api(me,op){
 /* =========================================================
    FLOW
    ========================================================= */
-function newRun(camp){ RUN={camp,cand:CAMPS[camp],stage:0,deck:[...NEUTRAL_STARTER,...CAMPS[camp].starter],score:0,name:LOCAL.name||'',won:[],history:[]}; buildStages(camp); }
+const FIRE=()=>(B&&B.mod&&B.mod.fire)||10;
+const pollGain=s=>Math.round(Math.max(0,s.buzz-s.backlash)*((B.mod&&B.mod.poll)||1))+2+((B.mod&&B.mod.base)||0);
+function newRun(camp){ RUN={camp,cand:CAMPS[camp],stage:0,deck:validDeck(camp).slice(),score:0,name:LOCAL.name||'',won:[],history:[]}; buildStages(camp); RUN.mods=PHASES.map(()=>MODS[Math.random()*MODS.length|0]); }
 let uidc=0;
 async function startBattle(){
   const st=STAGES[RUN.stage];
@@ -899,6 +1018,7 @@ async function startBattle(){
      me:newSide('me',RUN.cand.cand,RUN.cand.img,RUN.cand.g,RUN.deck),
      op:newSide('op',st.name,st.img,st.g,st.deck)};
   B.op.buzz=st.startBuzz+5; B.me.buzz=4;
+  B.mod=RUN.stage===0?MODS[MODS.length-1]:RUN.mods[RUN.stage];
   show('game'); MUS.mood='game'; BGM.play('battle');
   draw(B.me,4); draw(B.op,4);
   renderAll();
@@ -914,7 +1034,7 @@ async function myPhase(first=false){
   [...document.querySelectorAll('#funds .coin')].forEach((c,i)=>{ c.animate([{transform:'scale(0) rotate(-180deg)'},{transform:'scale(1.4)'},{transform:'none'}],{duration:350,delay:i*60,fill:'backwards'}); setTimeout(()=>SFX.coin(i),i*60); });
   if(B.me.backlash>=7) setTimeout(()=>SFX.heart(),500);
   await unitTicks(B.me,B.op);
-  draw(B.me,first?1:2); renderAll(true); SFX.coin(4);
+  draw(B.me,first?1:2); renderAll(true); SFX.coin(4); planAI();
   await resolveFires();
   B.busy=false; $('#btnEnd').disabled=false; updateEndGlow();
 }
@@ -972,10 +1092,10 @@ async function playCard(side,other,idx,srcEl){
   await resolveFires();
 }
 async function resolveFires(){
-  while(B.pendingFire.length){ const s=B.pendingFire.shift(); if(s.backlash<10) continue;
+  while(B.pendingFire.length){ const s=B.pendingFire.shift(); if(s.backlash<FIRE()) continue;
     SFX.fire(); SFX.boo(3); VOICE.play('sys_fire',3); flash(.6,'#ff2e4d'); shake(.7); edgeFlash('rgba(255,60,0,.9)',900); zoomPunch(.05);
     await extra(`${s.id==='me'?(RUN.name||'你的候選人'):s.name} 全網炎上！`,'反感值爆表，聲量腰斬','炎上');
-    s.buzz=Math.floor(s.buzz/2); s.backlash=5; renderSides(); }
+    s.buzz=Math.floor(s.buzz/2); s.backlash=Math.min(5,FIRE()-3); renderSides(); }
 }
 async function playerPlay(idx,el){
   if(B.busy||B.turnOwner!=='me') return;
@@ -997,6 +1117,13 @@ async function endTurn(){
   B.week++; renderHud();
   await myPhase();
 }
+function planAI(){
+  const st=STAGES[RUN.stage], o=B.op; let f=Math.max(1,Math.min(10,B.week+1+st.bonus)-o.fundPenalty);
+  const hand=o.hand.slice(), plan=[];
+  for(let g=0;g<6;g++){ let best=-1,bs=0.9; hand.forEach((id,i)=>{ const c=CARDS[id]; if(c.c>f) return; const sc=c.ai(o,B.me)+c.c*.3+.6; if(sc>bs){ bs=sc; best=i; } }); if(best<0) break; f-=CARDS[hand[best]].c; plan.push(hand.splice(best,1)[0]); }
+  B.intent=plan; renderIntent(); }
+function renderIntent(){ const el=$('#intent'); if(!el) return; if(!B||!B.intent||!B.intent.length||B.turnOwner!=='me'){ el.innerHTML=''; return; }
+  el.innerHTML='<span class="il">對手意圖</span>'+B.intent.map(id=>`<span class="ichip t-${CARDS[id].t}">${TYPES[CARDS[id].t]}・${CARDS[id].n}</span>`).join(''); }
 async function opPhase(){
   const st=STAGES[RUN.stage]; const o=B.op;
   B.turnOwner='op'; B.combo=0; comboShow(); renderAll();
@@ -1006,6 +1133,8 @@ async function opPhase(){
   await sleep(450);
   await unitTicks(o,B.me);
   draw(o,2);
+  for(const pid of (B.intent||[])){ const i=o.hand.indexOf(pid); if(i<0||CARDS[pid].c>o.funds) continue; await playCard(o,B.me,i,null); await sleep(260); }
+  B.intent=[]; renderIntent();
   for(let guard=0;guard<6;guard++){
     let best=-1,bs=0.9;
     o.hand.forEach((id,i)=>{ const c=CARDS[id]; if(c.c>o.funds) return; const s=c.ai(o,B.me)+Math.random()*1.2+c.c*.3; if(s>bs){ bs=s; best=i; } });
@@ -1020,7 +1149,7 @@ async function settle(){
   await extra('最新民調出爐','聲量扣掉反感，換算成選票','民調');
   for(const s of [B.me,B.op]){
     const el=s.id==='me'?$('#sideMe'):$('#sideOp');
-    const g=Math.max(0,s.buzz-s.backlash)+2; // +2 基本盤
+    const g=pollGain(s); // 基本盤 +2（政治氣候可加成）
     const nEl=el.querySelector('.votes .n'); const from=dispVotes(s);
     s.votes+=g;
     if(g>0){ coinsTo(center(el.querySelector('.buzz .bar')),center(nEl),Math.min(30,6+g)); }
@@ -1062,25 +1191,31 @@ async function electionNight(){
   const res=$('#result');
   RUN.history.push({office:st.office,me:meV,op:opV,win});
   RUN.score+=meV;
+  let coins=win?60+RUN.stage*25+Math.round(Math.min(40,(meV-opV)/Math.max(1,opV)*100)):30+RUN.stage*10;
+  const ck=RUN.camp+RUN.stage; let firstClear=false; if(win&&!SAVE.cleared[ck]){ SAVE.cleared[ck]=1; coins+=100; firstClear=true; }
+  SAVE.coins+=coins; RUN.coins=(RUN.coins||0)+coins; save();
+  setTimeout(()=>{ if(win&&B.me.backlash===0) achieve('clean'); if(win&&meV>=opV*1.3) achieve('landslide');
+    if(win&&st.final){ achieve('champ'); SAVE.champs[RUN.camp]=1; save(); if(SAVE.champs.blue&&SAVE.champs.green) achieve('champ2'); } },1500);
+  const coinLine=`<div class="coinline">+${coins} 政治獻金${firstClear?'（含首次通關 +100）':''}｜持有 ${SAVE.coins}</div>`;
   if(win){
     RUN.won.push(st.office); VOICE.play(st.final?'sys_win':'sys_lead',3); SFX.cheer(4); if(st.final) BGM.play('victory');
     SFX.fanfare(); flash(.9,'#ffc83d'); shake(.8); confetti(220); buzzHaptic([60,40,120]);
     let fw=0; const fwT=setInterval(()=>{ firework(); if(++fw>7) clearInterval(fwT); },380);
-    res.innerHTML=`<div class="panel"><div class="seal">${st.final?'當選':'領先'}</div><p></p><button class="cta" id="btnNext">${RUN.stage<STAGES.length-1?'領取戰利品':'看最終成績'}</button></div>`;
+    res.innerHTML=`<div class="panel"><div class="seal">${st.final?'當選':'領先'}</div><p></p>${coinLine}<button class="cta" id="btnNext">${RUN.stage<STAGES.length-1?'領取戰利品':'看最終成績'}</button></div>`;
     res.querySelector('p').textContent=(note||'')+(st.final?` ${RUN.cand.cand}拿下 ${meV.toLocaleString()} 票，當選首都市長！`:` 民調推估 ${meV.toLocaleString()} 票，領先 ${(meV-opV).toLocaleString()} 票，聲勢大漲。`);
     $('#btnNext').onclick=()=>{ SFX.click(); RUN.stage<STAGES.length-1?rewardScreen():runEnd(true); };
   } else {
     SFX.lose(); SFX.boo(2); VOICE.play(st.final?'sys_lose':'sys_swap',3); flash(.4,'#555'); MUS.intensity=0; MUS.bpm=90;
-    res.innerHTML=`<div class="panel"><div class="seal lose">${st.final?'落選':'換將'}</div><p></p><button class="cta" id="btnNext">看最終成績</button></div>`;
+    res.innerHTML=`<div class="panel"><div class="seal lose">${st.final?'落選':'換將'}</div><p></p>${coinLine}<button class="cta" id="btnNext">看最終成績</button></div>`;
     res.querySelector('p').textContent=st.final?`差 ${(opV-meV).toLocaleString()} 票。金主說下次再找別人操盤。`:`民調落後 ${(opV-meV).toLocaleString()} 票，黨中央決定換掉操盤手。`;
     $('#btnNext').onclick=()=>{ SFX.click(); runEnd(false); };
   }
 }
 function rewardScreen(){
   MUS.intensity=1; MUS.bpm=108; setTimeout(()=>VOICE.play('sys_reward',2),300);
-  const pool=shuffle([...NEUTRAL_POOL,...RUN.cand.pool]); const pick=[...new Set(pool)].slice(0,3);
+  const pool=shuffle(ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,RUN.camp))); const pick=pool.slice(0,3);
   const ov=$('#overlay'); ov.hidden=false;
-  ov.innerHTML=`<div class="panel"><div class="office">金主追加預算</div><h3>選一張新牌加入牌組</h3><div class="choices">${pick.map(id=>cardHTML(id)).join('')}</div><p class="lbnote">目前牌組 ${RUN.deck.length} 張</p></div>`;
+  ov.innerHTML=`<div class="panel"><div class="office">金主追加預算</div><h3>從你的收藏選一張加入這局牌組</h3><div class="choices">${pick.map(id=>cardHTML(id)).join('')}</div><p class="lbnote">目前牌組 ${RUN.deck.length} 張</p></div>`;
   let picked=false;
   [...ov.querySelectorAll('.choices .card')].forEach((el,i)=>{
     bindTilt(el);
@@ -1097,7 +1232,7 @@ function vsScreen(){
   ov.innerHTML=`<div class="panel"><div class="office">第 ${RUN.stage+1} 關｜${st.office}</div>
     <div class="newsline"></div>
     <div class="vs"><div class="p"><div class="portrait" style="border-color:${RUN.cand.color}">${imgTag(RUN.cand.img,RUN.cand.g)}</div><b class="myn"></b></div><div class="bigvs">VS</div><div class="p"><div class="portrait" style="border-color:${CAMPS[RUN.camp==='blue'?'green':'blue'].color}">${imgTag(st.img,st.g)}</div><b class="opn"></b></div></div>
-    <div class="taunt"></div><p>${st.weeks} 週選戰｜對手起始聲量 ${st.startBuzz+5}${st.bonus?`｜對手每回合多 ${st.bonus} 資金`:''}</p>
+    <div class="taunt"></div>${RUN.stage>0?`<div class="climate">政治氣候：<b>${RUN.mods[RUN.stage].n}</b>｜${RUN.mods[RUN.stage].d}</div>`:''}<p>${st.weeks} 週選戰｜對手起始聲量 ${st.startBuzz+5}${st.bonus?`｜對手每回合多 ${st.bonus} 資金`:''}</p>
     <button class="cta" id="btnGo">開打</button></div>`;
   ov.querySelector('.opn').textContent=st.party+' '+st.name; ov.querySelector('.myn').textContent=RUN.cand.party+' '+RUN.cand.cand; ov.querySelector('.newsline').textContent='【快訊】'+st.intro; ov.querySelector('.taunt').textContent='「'+st.taunt+'」';
   ov.querySelector('.vs .p:first-child').animate([{transform:'translateX(-300px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.2,1.4,.4,1)'});
@@ -1114,7 +1249,9 @@ async function runEnd(champion){
     <div class="namebox"><input id="nameInput" maxlength="12" placeholder="操盤手代號" aria-label="操盤手代號"><button class="cta" id="btnSubmit" style="font-size:18px;padding:12px 26px">登上排行榜</button></div>
     <div class="lbnote" id="submitNote"></div>
     <div class="lb" id="lbList"></div>
-    <div class="row"><button class="ghost" id="btnAgain">再操盤一次</button><button class="ghost" id="btnHome">回標題</button></div></div>`;
+    <div class="coinline">這局賺到 ${RUN.coins||0} 政治獻金｜持有 ${SAVE.coins}｜圖鑑 ${ownedCount()}/${ALL_CARDS.length}</div>
+    <div class="row"><button class="cta" id="btnToPack" style="font-size:18px;padding:12px 26px">去抽卡</button><button class="ghost" id="btnAgain">再操盤一次</button><button class="ghost" id="btnHome">回標題</button></div></div>`;
+  $('#btnToPack').onclick=()=>{ SFX.click(); packScreen(); };
   $('#nameInput').value=LOCAL.name||'';
   await tweenNum($('#finalScore'),0,RUN.score,1600,t=>SFX.tally(t*50|0));
   SFX.fanfare(); confetti(champion?260:80); flash(.4,'#ffc83d');
@@ -1180,9 +1317,89 @@ function campScreen(){
     el.animate([{transform:`translateY(80px) rotate(${i?6:-6}deg)`,opacity:0},{transform:'none',opacity:1}],{duration:500,delay:i*120,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'});
     el.addEventListener('pointerenter',()=>SFX.hover());
     el.onclick=()=>{ const k=el.dataset.camp; SFX.vs(); flash(.6,k==='blue'?'#3f8cff':'#36d27a'); const c=center(el); burst(c.x,c.y,70,k==='blue'?['#3f8cff','#bcd6ff','#fff']:['#36d27a','#c8f5da','#fff'],9);
-      newRun(k); RUN.name=LOCAL.name; setTimeout(vsScreen,350); };
+      if(!SAVE.decks[k]){ CAMP_STARTER[k].forEach(id=>SAVE.owned[id]=true); save(); } setTimeout(()=>deckScreen(k),350); };
   });
   $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; TUT_FORCE=false; show('title'); };
+}
+function renderMeta(){ const m=$('#metaline'); if(!m) return; const free=SAVE.freePacks>0?`｜免費黑箱包 ${SAVE.freePacks}`:'';
+  m.innerHTML=`<span>政治獻金 <b>${SAVE.coins}</b></span><span>圖鑑 <b>${ownedCount()}/${ALL_CARDS.length}</b></span><span>碎片 <b>${SAVE.shards}</b></span>${free?`<span class="free">${free.slice(1)}</span>`:''}`; }
+function miniCard(id,extra=''){ return cardHTML(id,extra+' rar-'+RARITY[id]).replace('<div class="cost">',`<div class="rtag">${RAR[RARITY[id]].n}</div><div class="cost">`); }
+function deckScreen(camp){
+  const ov=$('#overlay'); ov.hidden=false; let deck=validDeck(camp).slice();
+  const draw_=()=>{
+    const pool=ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,camp));
+    const cnt=id=>deck.filter(x=>x===id).length;
+    ov.innerHTML=`<div class="panel wide"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>組你的操盤牌組</h3>
+      <p class="lbnote">從收藏挑 ${DECK_SIZE} 張｜同名最多 2 張（傳說 1 張）｜點下方收藏加入、點牌組移除</p>
+      <div class="deckbar"><b class="${deck.length===DECK_SIZE?'ok':''}">${deck.length} / ${DECK_SIZE}</b><div class="row"><button class="ghost" id="dkAuto">推薦牌組</button><button class="cta" id="dkGo" ${deck.length===DECK_SIZE?'':'disabled'}>開始選戰</button></div></div>
+      <div class="dlist">${[...new Set(deck)].map(id=>`<button class="dchip t-${CARDS[id].t} rar-${RARITY[id]}" data-rm="${id}"><span>${CARDS[id].c}</span>${CARDS[id].n}<i>×${cnt(id)}</i></button>`).join('')||'<span class="lbnote">牌組是空的</span>'}</div>
+      <div class="lbnote" style="margin-top:6px">你的收藏（${pool.length} 種）</div>
+      <div class="grid mini">${pool.map(id=>miniCard(id,cnt(id)>=capOf(id)?'cant':'')).join('')}</div>
+      <button class="ghost" id="dkBack">返回</button></div>`;
+    ov.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{ const i=deck.indexOf(b.dataset.rm); if(i>=0){ deck.splice(i,1); SFX.flip(); draw_(); } });
+    ov.querySelectorAll('.grid .card').forEach(el=>{ bindTilt(el); el.onclick=()=>{ const id=el.dataset.id; if(deck.length>=DECK_SIZE||cnt(id)>=capOf(id)){ SFX.bad(); return; } deck.push(id); SFX.deal(deck.length%5); draw_(); }; });
+    $('#dkAuto').onclick=()=>{ deck=defaultDeck(camp); SFX.gain(4); draw_(); };
+    $('#dkGo').onclick=()=>{ if(deck.length!==DECK_SIZE) return; SAVE.decks[camp]=deck.slice(); save(); SFX.click(); newRun(camp); RUN.name=LOCAL.name; vsScreen(); };
+    $('#dkBack').onclick=()=>{ SFX.click(); campScreen(); };
+  }; draw_();
+}
+function packScreen(){
+  const ov=$('#overlay'); ov.hidden=false;
+  const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST;
+  ov.innerHTML=`<div class="panel"><div class="office">黑箱包</div><h3>開包抽卡</h3>
+    <div class="pack" id="packArt"><div class="packglow"></div><img src="img/back.jpg?v=3" alt=""></div>
+    <p class="lbnote">一包 5 張｜第 5 張保底稀有以上｜連續 6 包沒出傳說必出（目前 ${SAVE.pity}/6）｜還沒收集的卡機率 ×8｜重複卡自動轉碎片</p>
+    <div class="metaline">${$('#metaline')?$('#metaline').innerHTML:''}</div>
+    <div class="row"><button class="cta" id="pkOpen" ${can?'':'disabled'}>${SAVE.freePacks>0?`免費開包（剩 ${SAVE.freePacks}）`:`開一包｜${PACK_COST} 獻金`}</button></div>
+    ${can?'':'<p class="lbnote">獻金不夠：打選戰賺獻金，勝選、首次通關、成就都會給。</p>'}
+    <div class="row"><button class="ghost" id="pkBook">看圖鑑</button><button class="ghost" id="pkBack">返回</button></div></div>`;
+  $('#pkBack').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
+  $('#pkBook').onclick=()=>{ SFX.click(); bookScreen(); };
+  $('#pkOpen').onclick=()=>openPack();
+}
+async function openPack(){
+  if(SAVE.freePacks>0) SAVE.freePacks--; else if(SAVE.coins>=PACK_COST) SAVE.coins-=PACK_COST; else return;
+  save(); renderMeta();
+  const res=rollPack(); const best=res.some(r=>r.rar==='SSR')?'SSR':res.some(r=>r.rar==='SR')?'SR':'R';
+  const ov=$('#overlay'); const pk=$('#packArt'); $('#pkOpen').disabled=true;
+  VOICE.play('sys_pack',3); pk.classList.add('shake'); pk.style.setProperty('--pg',RAR[best].c);
+  for(let i=0;i<10;i++){ setTimeout(()=>{ AU.tone(300+i*80,.08,'square',.06); shake(.06); },i*90); }
+  await sleep(950); flash(.9,RAR[best].c); SFX.slam(); zoomPunch(.05); const q=center(pk); burst(q.x,q.y,90,[RAR[best].c,'#fff'],12,{shape:'spark',g:.05}); ring(q.x,q.y,RAR[best].c,18,10);
+  ov.innerHTML=`<div class="panel wide"><div class="office">開包結果</div><div class="reveal">${res.map(r=>`<div class="slot rar-${r.rar}"><div class="flip">${miniCard(r.id,'')}<div class="cardback"></div></div>${r.isNew?'<div class="newtag">NEW</div>':`<div class="duptag">碎片 +${RAR[r.rar].shard}</div>`}</div>`).join('')}</div>
+    <div class="row"><button class="cta" id="pkAgain" disabled>再開一包</button><button class="ghost" id="pkBook2" disabled>看圖鑑</button><button class="ghost" id="pkBack2" disabled>返回</button></div></div>`;
+  const slots=[...ov.querySelectorAll('.slot')];
+  for(let i=0;i<slots.length;i++){ await sleep(i===4?650:380); const r=res[i], sl=slots[i]; sl.classList.add('open'); SFX.flip();
+    const c=center(sl);
+    if(r.rar==='SSR'){ VOICE.play('sys_ssr',4); flash(.9,'#ffc83d'); shake(.6); confetti(160); SFX.fanfare(); burst(c.x,c.y,80,['#ffc83d','#fff','#ff2e4d','#3fe0ff'],12,{shape:'spark'}); }
+    else if(r.rar==='SR'){ VOICE.play('sys_sr',3); flash(.5,'#c08bff'); shake(.3); burst(c.x,c.y,50,['#c08bff','#fff'],9,{shape:'spark'}); SFX.surge(); }
+    else if(r.isNew){ VOICE.play('sys_new',1); burst(c.x,c.y,26,[RAR[r.rar].c,'#fff'],6); SFX.gain(4); }
+    else { burst(c.x,c.y,12,['#9098bd'],4); SFX.coin(i); }
+    ring(c.x,c.y,RAR[r.rar].c,10,6);
+  }
+  checkCollectionAch(); renderMeta();
+  const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST;
+  $('#pkAgain').disabled=!can; $('#pkBook2').disabled=false; $('#pkBack2').disabled=false;
+  $('#pkAgain').textContent=SAVE.freePacks>0?`免費再開（剩 ${SAVE.freePacks}）`:`再開一包｜${PACK_COST} 獻金（持有 ${SAVE.coins}）`;
+  $('#pkAgain').onclick=()=>{ packScreen(); setTimeout(openPack,50); };
+  $('#pkBook2').onclick=()=>{ SFX.click(); bookScreen(); };
+  $('#pkBack2').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
+}
+function bookScreen(filter='all'){
+  const ov=$('#overlay'); ov.hidden=false; const n=ownedCount(), tot=ALL_CARDS.length;
+  const list=ALL_CARDS.filter(id=>filter==='all'||(filter==='neutral'?!CARDS[id].camp:CARDS[id].camp===filter));
+  ov.innerHTML=`<div class="panel wide"><div class="office">操盤圖鑑</div><h3>${n} / ${tot}</h3>
+    <div class="cbar"><i style="width:${n/tot*100}%"></i></div>
+    <div class="metaline">${$('#metaline')?$('#metaline').innerHTML:''}</div>
+    <div class="tabs">${[['all','全部'],['neutral','中立'],['blue','藍藍路黨'],['green','綠嘻嘻黨']].map(([k,t])=>`<button class="ghost ${k===filter?'on':''}" data-f="${k}">${t}</button>`).join('')}</div>
+    <div class="grid mini">${list.map(id=>SAVE.owned[id]?miniCard(id,''):`<div class="card locked rar-${RARITY[id]}" data-id="${id}"><div class="rtag">${RAR[RARITY[id]].n}</div><div class="in"><div class="lk">？</div><div class="nm">？？？</div><div class="ty">${CARDS[id].camp?(CARDS[id].camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</div>
+      <button class="craft" data-c="${id}" ${SAVE.shards>=RAR[RARITY[id]].craft?'':'disabled'}>兌換 ${RAR[RARITY[id]].craft} 碎片</button></div></div>`).join('')}</div>
+    <div class="row"><button class="cta" id="bkPack">去抽卡</button><button class="ghost" id="bkBack">返回</button></div></div>`;
+  ov.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ SFX.click(); bookScreen(b.dataset.f); });
+  ov.querySelectorAll('.grid .card:not(.locked)').forEach(el=>bindTilt(el));
+  ov.querySelectorAll('[data-c]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); const id=b.dataset.c, cost=RAR[RARITY[id]].craft; if(SAVE.shards<cost) return;
+    SAVE.shards-=cost; SAVE.owned[id]=true; save(); VOICE.play('sys_new',2); SFX.gain(8); flash(.4,RAR[RARITY[id]].c); const c=center(b); burst(c.x,c.y,50,[RAR[RARITY[id]].c,'#fff'],9); checkCollectionAch(); renderMeta(); setTimeout(()=>bookScreen(filter),400); });
+  $('#bkPack').onclick=()=>{ SFX.click(); packScreen(); };
+  $('#bkBack').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
 }
 function lbScreen(){
   const ov=$('#overlay'); ov.hidden=false;
@@ -1207,6 +1424,8 @@ function howScreen(){
    ========================================================= */
 const TUT=[
   {sel:'#sideOp',t:'這是你的對手',d:'另一黨的候選人。選戰結束時，你的得票要比他多。'},
+  {sel:'#intent',t:'對手意圖',d:'這裡會先告訴你對手下回合準備出什麼牌。看到抹黑就先上護盾、看到暗樁就準備檢舉查核。'},
+  {sel:'#forecast',t:'民調預估',d:'如果現在結算，你和對手各會拿到多少票。決定要衝聲量還是先壓反感，就看這裡。'},
   {sel:'#sideMe .buzz',t:'聲量',d:'造勢會漲聲量，被對手抹黑會掉聲量。聲量越高，民調換到的票越多。'},
   {sel:'#sideMe .back',t:'反感',d:'抹黑別人會累積反感，民調時會被扣票。反感到 10 會「全網炎上」，聲量直接腰斬。'},
   {sel:'#sideMe .votes',t:'得票',d:'每兩週民調結算一次：聲量扣掉反感，再加基本盤 2 票，換成選票。'},
@@ -1244,13 +1463,16 @@ addEventListener('resize',()=>{ if(tutActive()) tutShow(); });
 /* =========================================================
    BOOT
    ========================================================= */
-function show(name){ $('#screen-title').hidden=name!=='title'; $('#screen-game').hidden=name!=='game'; }
+function show(name){ $('#screen-title').hidden=name!=='title'; $('#screen-game').hidden=name!=='game'; if(name==='title') renderMeta(); }
 function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textContent='音效：'+(AU.muted?'關':'開'); $('#btnMute2').style.opacity=AU.muted?.4:1; }
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
 function bootAudio(){ AU.init(); BGM.play('title'); }
 $('#btnStart').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen(); };
 $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(); };
 $('#btnLB').onclick=()=>{ bootAudio(); SFX.click(); lbScreen(); };
+$('#btnPack').onclick=()=>{ bootAudio(); SFX.click(); packScreen(); };
+$('#btnBook').onclick=()=>{ bootAudio(); SFX.click(); bookScreen(); };
+renderMeta();
 $('#btnMute1').onclick=toggleMute; $('#btnMute2').onclick=toggleMute;
 $('#btnEnd').onclick=endTurn;
 document.addEventListener('pointerdown',()=>{ if(AU.ctx&&AU.ctx.state==='suspended') AU.ctx.resume(); });

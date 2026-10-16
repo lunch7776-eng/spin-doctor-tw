@@ -81,7 +81,12 @@ sys_reward|金主加碼！|hype
 sys_zero|聲量歸零！|crit
 sys_destroy|暗樁被抓包！|crit
 sys_flip|領歸領，票照投！|smug
-sys_danger|警告！反感快爆了！|panic""".strip().splitlines()]
+sys_danger|警告！反感快爆了！|panic
+sys_pack|黑箱包——開！|hype
+sys_ssr|傳說級！出貨啦！|crit
+sys_sr|史詩級！|win
+sys_new|新卡入手！|hype
+sys_achieve|成就達成！|win""".strip().splitlines()]
 
 def key():
     k = os.environ.get('OPENAI_API_KEY')
