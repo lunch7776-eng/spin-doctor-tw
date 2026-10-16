@@ -343,6 +343,61 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .slot.open .newtag,.slot.open .duptag{opacity:1}
 .newtag{background:var(--red);color:#fff;box-shadow:0 0 12px var(--red)}
 .duptag{background:#1c2442;color:var(--muted)}
+.gacha{position:relative;display:grid;justify-items:center;gap:18px;padding-block:20px;width:100%;--gc:#3fe0ff}
+.gacha .rays{position:fixed;left:50%;top:45%;width:180vmax;height:180vmax;margin:-90vmax 0 0 -90vmax;pointer-events:none;opacity:.55;
+  background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--gc) 55%,transparent) 0 6deg,transparent 6deg 18deg);animation:spin 9s linear infinite;
+  -webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%);transition:background .6s}
+.gacha .rays.dim{opacity:.25}
+.gacha.gold .rays{opacity:.85;animation-duration:3s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.gpack{position:relative;width:min(230px,52vw);aspect-ratio:3/4;cursor:pointer;animation:float 2.2s ease-in-out infinite;margin-top:6vh}
+.gpack .half{position:absolute;top:0;bottom:0;width:50%;background:url(img/back.jpg?v=3) no-repeat;background-size:200% 100%;box-shadow:0 20px 60px #000c}
+.gpack .half.l{left:0;background-position:left center;border-radius:16px 0 0 16px}
+.gpack .half.r{right:0;background-position:right center;border-radius:0 16px 16px 0}
+.gpack .gglow{position:absolute;inset:-25%;background:radial-gradient(circle,var(--gc),transparent 62%);opacity:.6;animation:glowpack 1.2s infinite;transition:background .6s}
+.gpack.thump{animation:float 2.2s ease-in-out infinite,thump .25s}
+@keyframes float{50%{transform:translateY(-14px) rotate(1.5deg)}}
+@keyframes thump{40%{scale:1.07}}
+.ghint{font-family:var(--display);font-size:24px;color:#fff;opacity:0;text-shadow:0 0 18px var(--gc);transition:opacity .4s}
+.ghint.ready{opacity:1;animation:blink 1s infinite}
+.reveal .slot{cursor:pointer}
+.reveal .slot .cardback .bglow{position:absolute;inset:-6px;border-radius:18px;pointer-events:none;box-shadow:0 0 24px 6px var(--sc,transparent);animation:glowpack 1s infinite}
+.reveal .slot.rar-R{--sc:rgba(63,224,255,.5)} .reveal .slot.rar-SR{--sc:rgba(192,139,255,.85)} .reveal .slot.rar-SSR{--sc:rgba(255,200,61,1)}
+.reveal .slot.quake .flip{animation:packshake .08s infinite}
+.reveal .slot.lift{z-index:65}
+.reveal .slot.lift .flip{animation:liftspin 1.6s cubic-bezier(.3,0,.3,1) forwards}
+@keyframes liftspin{0%{transform:rotateY(180deg)}60%{transform:rotateY(180deg) translateY(-8vh) scale(1.5)}80%{transform:rotateY(180deg) translateY(-8vh) scale(1.55) rotate(3deg)}100%{transform:rotateY(180deg) translateY(-8vh) scale(1.5) rotate(-3deg)}}
+.reveal .slot.lift.open .flip{animation:none;transform:translateY(-8vh) scale(1.5)}
+.ssrdim{position:fixed;inset:0;background:radial-gradient(circle,rgba(60,40,0,.4),rgba(0,0,0,.92) 60%);z-index:60;pointer-events:none;opacity:0}
+.ssrstamp{position:fixed;left:50%;top:22%;z-index:70;translate:-50% 0;font-family:var(--display);font-size:clamp(60px,14vw,120px);color:#ffc83d;border:8px solid #ffc83d;border-radius:20px;padding:0 24px;rotate:-10deg;text-shadow:0 0 30px #ffc83d;background:rgba(20,12,0,.6);animation:sealIn .5s cubic-bezier(.2,1.8,.4,1) both;pointer-events:none}
+.tagz{min-height:22px}
+.viewer{position:absolute;inset:0;z-index:75;display:grid;place-items:center;padding-inline:16px;overflow:auto;--vc:#ffc83d}
+.viewer .vbg{position:fixed;inset:0;background:radial-gradient(circle at 40% 45%,color-mix(in srgb,var(--vc) 30%,#05060e),#05060e 65%);backdrop-filter:blur(6px)}
+.viewer .vrays{position:fixed;left:30%;top:45%;width:160vmax;height:160vmax;margin:-80vmax 0 0 -80vmax;pointer-events:none;opacity:.25;background:repeating-conic-gradient(from 0deg,color-mix(in srgb,var(--vc) 60%,transparent) 0 5deg,transparent 5deg 20deg);animation:spin 18s linear infinite;-webkit-mask:radial-gradient(circle,#000 0,transparent 50%);mask:radial-gradient(circle,#000 0,transparent 50%)}
+.viewer.rar-SSR .vrays{opacity:.5;animation-duration:8s}
+.viewer .vbody{position:relative;display:flex;gap:clamp(20px,5vw,56px);align-items:center;justify-content:center;flex-wrap:wrap;padding-block:30px;max-width:900px}
+.viewer .vstage{perspective:1100px}
+.card.big{--cw:min(300px,72vw);--ch:calc(var(--cw) * 1.42);margin:0;cursor:grab}
+.card.big .in{grid-template-rows:68% auto auto 1fr}
+.card.big .nm{font-size:clamp(18px,4.5vw,26px);padding-top:6px}
+.card.big .ty{font-size:12px} .card.big .ds{font-size:clamp(11px,3vw,14px);padding:4px 12px}
+.card.big .cost{width:56px;height:56px;font-size:32px;left:-10px;top:-10px}
+.card.big .rtag{font-size:12px;padding:2px 10px;right:-8px;top:-10px}
+.card.big .holo{opacity:.35;animation:foil 3s linear infinite}
+.card.big.rar-SSR .holo{opacity:.6}
+.card.big:hover{--lift:0px;margin:0}
+.card.big.locked .lk{font-size:90px}
+.viewer .vinfo{display:grid;gap:10px;max-width:34ch;text-align:left}
+.viewer .vr{display:flex;gap:8px;flex-wrap:wrap;font-size:12px;font-weight:900}
+.viewer .vr span{padding:3px 10px;border-radius:99px;background:rgba(20,26,48,.85);border:1px solid var(--line)}
+.viewer .vr .vrar{color:var(--vc);border-color:var(--vc);box-shadow:0 0 12px color-mix(in srgb,var(--vc) 50%,transparent)}
+.viewer h3{font-family:var(--display);font-size:clamp(30px,7vw,48px);margin:0;line-height:1.1;text-wrap:balance;text-shadow:0 0 24px color-mix(in srgb,var(--vc) 60%,transparent)}
+.viewer .vd{font-size:16px;margin:0;color:#e4e6f2}
+.viewer .vf{font-family:var(--display);font-size:17px;margin:0;color:var(--paper);opacity:.85;border-left:3px solid var(--vc);padding-left:12px}
+.viewer .vcount{font-family:var(--num);color:var(--muted)}
+.viewer .vx{position:fixed;right:16px;top:calc(14px + env(safe-area-inset-top,0px));width:44px;height:44px;border-radius:50%;background:rgba(20,26,48,.9);border:1px solid var(--line);font-size:20px;z-index:2}
+.viewer .varrow{position:fixed;top:50%;translate:0 -50%;width:48px;height:72px;border-radius:14px;background:rgba(20,26,48,.75);border:1px solid var(--line);font-size:36px;z-index:2}
+.viewer .varrow.l{left:12px} .viewer .varrow.r{right:12px}
 body.freeze *{animation-play-state:paused!important}
 
 @media (max-width:640px){
@@ -426,6 +481,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="edge"></div>
   <div id="turnban" hidden></div>
   <div id="toast"></div>
+  <div id="viewer" class="viewer" hidden></div>
   <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
   <div id="flash"></div>
   <div id="cutin" hidden></div>
@@ -460,6 +516,13 @@ const AU = {
     VOICE.preload();
   },
   setMuted(m){ this.muted=m; if(this.master) this.master.gain.setTargetAtTime(m?0:.9,this.ctx.currentTime,.05); },
+  pad(f,dur,vol=.04,att=.6,type='sawtooth',when=0){
+    if(!this.ctx) return; const t=this.ctx.currentTime+when;
+    const o=this.ctx.createOscillator(), g=this.ctx.createGain(), lp=this.ctx.createBiquadFilter();
+    o.type=type; o.frequency.value=f; lp.type='lowpass'; lp.frequency.setValueAtTime(600,t); lp.frequency.linearRampToValueAtTime(2600,t+att+.2);
+    g.gain.setValueAtTime(0.0001,t); g.gain.linearRampToValueAtTime(vol,t+att); g.gain.setValueAtTime(vol,t+Math.max(att,dur-.5)); g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    o.connect(lp); lp.connect(g); g.connect(this.sfx); o.start(t); o.stop(t+dur+.05);
+  },
   tone(f,dur,type='sine',vol=.3,when=0,to=null,dest){
     if(!this.ctx) return; const t=this.ctx.currentTime+when;
     const o=this.ctx.createOscillator(), g=this.ctx.createGain();
@@ -509,6 +572,14 @@ const SFX = {
   surge(){ AU.tone(220,.45,'sawtooth',.1,0,1760); AU.noise(.45,.2,'highpass',1500,0,9000); for(let i=0;i<5;i++) AU.tone(note(5+i*2),.18,'triangle',.12,.25+i*.05); },
   rise(){ AU.tone(440,.18,'triangle',.08,0,1320); },
   slam(){ AU.tone(55,.35,'sine',1,0,30); AU.noise(.25,.45,'lowpass',2400,0,200); AU.tone(180,.1,'square',.12,0,60); },
+  riser(d=2.2){ AU.noise(d,.22,'highpass',300,0,9000); AU.tone(110,d,'sawtooth',.1,0,880); AU.tone(165,d,'sawtooth',.07,0,1320); AU.tone(55,d,'sine',.3,0,110); },
+  rip(){ AU.noise(.4,.6,'bandpass',3500,0,500,undefined,1.4); AU.noise(.12,.5,'highpass',6000); AU.tone(220,.2,'sawtooth',.12,0,60); },
+  boom(){ AU.tone(42,1.6,'sine',1,0,24); AU.noise(1.2,.45,'lowpass',1400,0,70); AU.tone(84,.5,'square',.14,0,36); AU.noise(1.4,.15,'highpass',7000,.05,1500); },
+  choir(chord=[262,330,392,523],dur=2.4,att=.5){ chord.forEach(f=>[-7,0,7].forEach(d=>AU.pad(f*Math.pow(2,d/1200),dur,.022,att))); },
+  gong(){ [98,235,382,529,700].forEach((f,i)=>AU.tone(f,3.2-i*.4,'sine',.35/(i+1))); AU.noise(.3,.3,'bandpass',600,0,300); },
+  zap(){ AU.noise(.22,.4,'bandpass',4200,0,700,undefined,5); AU.tone(1400,.18,'sawtooth',.08,0,180); AU.tone(90,.25,'square',.12,0,45); },
+  sparkle(n=6){ for(let i=0;i<n;i++) AU.tone(note(8+i*2,880),.25,'triangle',.07,i*.05); },
+  shard(i=0){ AU.tone(1600+i*60,.06,'sine',.08); AU.tone(2400+i*60,.05,'sine',.05,.03); },
   stinger(t){
     if(t==='smear'){ AU.noise(.09,.5,'highpass',2500); AU.tone(300,.18,'sawtooth',.14,0,60); AU.noise(.3,.25,'bandpass',5000,.05,1500,undefined,2); }
     else if(t==='boost'){ for(let i=0;i<4;i++) AU.tone(note(4+i*2,784),.16,'square',.08,i*.05); SFX.cheer(0); }
@@ -581,11 +652,11 @@ function burst(x,y,n,colors,spd=6,opt={}){
 function confetti(n=160){ const C=['#ff2e4d','#ffc83d','#3fe0ff','#47e6a0','#b07bff','#fff']; for(let i=0;i<n;i++){ P.push({x:Math.random()*innerWidth,y:-20-Math.random()*200,vx:(Math.random()-.5)*3,vy:2+Math.random()*3,g:.05,life:1,dec:.004,c:C[i%C.length],s:5+Math.random()*5,shape:'rect',rot:Math.random()*6,vr:(Math.random()-.5)*.3}); } }
 function firework(){ const x=innerWidth*(.2+Math.random()*.6), y=innerHeight*(.15+Math.random()*.35); const C=[['#ffc83d','#fff6c8'],['#ff2e4d','#ffb3c0'],['#3fe0ff','#e0fbff'],['#47e6a0','#d8ffe9']][Math.floor(Math.random()*4)];
   burst(x,y,70,C,7,{g:.07,dec:.012,size:3,shape:'spark'}); AU.noise(.6,.25,'lowpass',2000,0,200); AU.tone(90,.3,'sine',.4,0,40); }
-function coinsTo(from,to,n=8){ for(let i=0;i<n;i++){ P.push({x:from.x+(Math.random()-.5)*30,y:from.y+(Math.random()-.5)*30,tx:to.x,ty:to.y,t:-i*.06,life:1,home:true,c:'#ffc83d',s:7,shape:'coin',sx:from.x,sy:from.y,cpx:(from.x+to.x)/2+(Math.random()-.5)*200,cpy:Math.min(from.y,to.y)-80-Math.random()*80}); } }
+function coinsTo(from,to,n=8,col='#ffc83d',shape='coin'){ for(let i=0;i<n;i++){ P.push({x:from.x+(Math.random()-.5)*30,y:from.y+(Math.random()-.5)*30,tx:to.x,ty:to.y,t:-i*.06,life:1,home:true,c:col,s:shape==='coin'?7:4,shape,sx:from.x,sy:from.y,cpx:(from.x+to.x)/2+(Math.random()-.5)*200,cpy:Math.min(from.y,to.y)-80-Math.random()*80}); } }
 function loop(){
   cx.clearRect(0,0,innerWidth,innerHeight);
   for(let i=P.length-1;i>=0;i--){ const p=P[i];
-    if(p.home){ p.t+=.035; if(p.t<0) continue; if(p.t>=1){ P.splice(i,1); SFX.coin(Math.random()*10|0); continue; }
+    if(p.home){ p.t+=.035; if(p.t<0) continue; if(p.t>=1){ P.splice(i,1); p.shape==='coin'?SFX.coin(Math.random()*10|0):SFX.shard(Math.random()*8|0); continue; }
       const t=p.t, u=1-t; p.x=u*u*p.sx+2*u*t*p.cpx+t*t*p.tx; p.y=u*u*p.sy+2*u*t*p.cpy+t*t*p.ty; }
     else { p.vx*=.985; p.vy=p.vy*.985+p.g; p.x+=p.vx; p.y+=p.vy; p.life-=p.dec; p.rot+=p.vr; if(p.life<=0||p.y>innerHeight+40){ P.splice(i,1); continue; } }
     cx.globalAlpha=Math.max(0,Math.min(1,p.life*1.4)); cx.fillStyle=p.c;
@@ -1361,28 +1432,95 @@ async function openPack(){
   if(SAVE.freePacks>0) SAVE.freePacks--; else if(SAVE.coins>=PACK_COST) SAVE.coins-=PACK_COST; else return;
   save(); renderMeta();
   const res=rollPack(); const best=res.some(r=>r.rar==='SSR')?'SSR':res.some(r=>r.rar==='SR')?'SR':'R';
-  const ov=$('#overlay'); const pk=$('#packArt'); $('#pkOpen').disabled=true;
-  VOICE.play('sys_pack',3); pk.classList.add('shake'); pk.style.setProperty('--pg',RAR[best].c);
-  for(let i=0;i<10;i++){ setTimeout(()=>{ AU.tone(300+i*80,.08,'square',.06); shake(.06); },i*90); }
-  await sleep(950); flash(.9,RAR[best].c); SFX.slam(); zoomPunch(.05); const q=center(pk); burst(q.x,q.y,90,[RAR[best].c,'#fff'],12,{shape:'spark',g:.05}); ring(q.x,q.y,RAR[best].c,18,10);
-  ov.innerHTML=`<div class="panel wide"><div class="office">開包結果</div><div class="reveal">${res.map(r=>`<div class="slot rar-${r.rar}"><div class="flip">${miniCard(r.id,'')}<div class="cardback"></div></div>${r.isNew?'<div class="newtag">NEW</div>':`<div class="duptag">碎片 +${RAR[r.rar].shard}</div>`}</div>`).join('')}</div>
-    <div class="row"><button class="cta" id="pkAgain" disabled>再開一包</button><button class="ghost" id="pkBook2" disabled>看圖鑑</button><button class="ghost" id="pkBack2" disabled>返回</button></div></div>`;
+  const ov=$('#overlay'); ov.hidden=false;
+  ov.innerHTML=`<div class="gacha"><div class="rays" id="gRays"></div><div class="gpack" id="gPack"><div class="gglow"></div><div class="half l"></div><div class="half r"></div></div><div class="ghint" id="gHint">點擊撕開！</div></div>`;
+  const g=ov.querySelector('.gacha'), pk=$('#gPack'); const setCol=c=>g.style.setProperty('--gc',c);
+  setCol(RAR.R.c); SFX.riser(2.4); buzzHaptic(30);
+  let beat=0, beating=true; const hb=()=>{ if(!beating) return; SFX.heart(); pk.classList.remove('thump'); void pk.offsetWidth; pk.classList.add('thump'); beat++; setTimeout(hb,Math.max(260,820-beat*90)); }; hb();
+  for(let i=0;i<12;i++) setTimeout(()=>shake(.03+i*.006),i*180);
+  if(best!=='R') setTimeout(()=>{ setCol(RAR.SR.c); SFX.zap(); flash(.25,RAR.SR.c); },1300);
+  if(best==='SSR') setTimeout(()=>{ setCol(RAR.SSR.c); SFX.sparkle(8); flash(.4,RAR.SSR.c); g.classList.add('gold'); SFX.choir([196,247,294,392],3,1.2); },2200);
+  let opened=false; await new Promise(res2=>{ const go=()=>{ if(opened) return; opened=true; res2(); }; pk.onclick=go; $('#gHint').onclick=go; setTimeout(()=>{ $('#gHint').classList.add('ready'); },900); setTimeout(go,9000); });
+  beating=false; VOICE.play('sys_pack',3); SFX.rip(); buzzHaptic([40,30,80]);
+  pk.querySelector('.half.l').animate([{transform:'none'},{transform:'translate(-60vw,-20vh) rotate(-60deg)',opacity:0}],{duration:600,easing:'cubic-bezier(.3,0,.8,.4)',fill:'forwards'});
+  pk.querySelector('.half.r').animate([{transform:'none'},{transform:'translate(60vw,-20vh) rotate(60deg)',opacity:0}],{duration:600,easing:'cubic-bezier(.3,0,.8,.4)',fill:'forwards'});
+  await sleep(120); SFX.boom(); flash(1,RAR[best].c); shake(.9); zoomPunch(.07);
+  const q=center(pk); burst(q.x,q.y,140,[RAR[best].c,'#fff',RAR[best].c],14,{shape:'spark',g:.04}); ring(q.x,q.y,'#fff',22,12); ring(q.x,q.y,RAR[best].c,14,9);
+  await sleep(450);
+  // reveal stage
+  ov.innerHTML=`<div class="gacha"><div class="rays dim"></div><div class="reveal" id="gRow">${res.map((r,i)=>`<div class="slot rar-${r.rar}" data-i="${i}"><div class="flip">${miniCard(r.id,'')}<div class="cardback"><div class="bglow"></div></div></div><div class="tagz"></div></div>`).join('')}</div>
+    <div class="ghint ready" id="gHint2">點卡牌翻開</div>
+    <div class="row"><button class="ghost" id="gAll">全部翻開</button></div>
+    <div class="row gend" id="gEnd" hidden><button class="cta" id="pkAgain">再開一包</button><button class="ghost" id="pkBook2">看圖鑑</button><button class="ghost" id="pkBack2">返回</button></div></div>`;
+  ov.querySelector('.gacha').style.setProperty('--gc',RAR[best].c);
   const slots=[...ov.querySelectorAll('.slot')];
-  for(let i=0;i<slots.length;i++){ await sleep(i===4?650:380); const r=res[i], sl=slots[i]; sl.classList.add('open'); SFX.flip();
-    const c=center(sl);
-    if(r.rar==='SSR'){ VOICE.play('sys_ssr',4); flash(.9,'#ffc83d'); shake(.6); confetti(160); SFX.fanfare(); burst(c.x,c.y,80,['#ffc83d','#fff','#ff2e4d','#3fe0ff'],12,{shape:'spark'}); }
-    else if(r.rar==='SR'){ VOICE.play('sys_sr',3); flash(.5,'#c08bff'); shake(.3); burst(c.x,c.y,50,['#c08bff','#fff'],9,{shape:'spark'}); SFX.surge(); }
-    else if(r.isNew){ VOICE.play('sys_new',1); burst(c.x,c.y,26,[RAR[r.rar].c,'#fff'],6); SFX.gain(4); }
-    else { burst(c.x,c.y,12,['#9098bd'],4); SFX.coin(i); }
-    ring(c.x,c.y,RAR[r.rar].c,10,6);
-  }
-  checkCollectionAch(); renderMeta();
-  const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST;
-  $('#pkAgain').disabled=!can; $('#pkBook2').disabled=false; $('#pkBack2').disabled=false;
-  $('#pkAgain').textContent=SAVE.freePacks>0?`免費再開（剩 ${SAVE.freePacks}）`:`再開一包｜${PACK_COST} 獻金（持有 ${SAVE.coins}）`;
-  $('#pkAgain').onclick=()=>{ packScreen(); setTimeout(openPack,50); };
-  $('#pkBook2').onclick=()=>{ SFX.click(); bookScreen(); };
-  $('#pkBack2').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
+  slots.forEach((sl,i)=>{ sl.animate([{transform:`translateY(40vh) scale(.3) rotate(${(i-2)*25}deg)`,opacity:0},{transform:'none',opacity:1}],{duration:520,delay:i*90,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'}); setTimeout(()=>SFX.deal(i),i*90); });
+  let busy=false, done=0;
+  const flipOne=async sl=>{ if(sl.classList.contains('open')||busy) return; busy=true; const r=res[+sl.dataset.i]; const c=center(sl);
+    if(r.rar==='SSR'){
+      const dim=document.createElement('div'); dim.className='ssrdim'; ov.appendChild(dim); dim.animate([{opacity:0},{opacity:1}],{duration:300,fill:'forwards'});
+      sl.classList.add('lift'); SFX.choir([131,165,196,262],3.4,1.4); SFX.riser(1.6); buzzHaptic([20,40,20,40,20]);
+      for(let k=0;k<8;k++) setTimeout(()=>{ shake(.05+k*.02); burst(c.x,c.y,8,['#ffc83d','#fff'],4,{shape:'spark',g:0}); },k*190);
+      await sleep(1650);
+      sl.classList.add('open'); SFX.gong(); SFX.boom(); SFX.sparkle(10); VOICE.play('sys_ssr',4); flash(1,'#ffc83d'); shake(1); zoomPunch(.08);
+      SFX.choir([262,330,392,523,659],3,.08); confetti(220); let fw=0; const ft=setInterval(()=>{ firework(); if(++fw>5) clearInterval(ft); },320);
+      const c2=center(sl); burst(c2.x,c2.y,120,['#ffc83d','#fff','#ff2e4d','#3fe0ff','#47e6a0'],14,{shape:'spark'}); ring(c2.x,c2.y,'#ffc83d',20,12);
+      const st=document.createElement('div'); st.className='ssrstamp'; st.textContent='傳說'; ov.appendChild(st); setTimeout(()=>st.remove(),1800);
+      await sleep(1500); sl.classList.remove('lift'); dim.animate([{opacity:1},{opacity:0}],{duration:400,fill:'forwards'}); setTimeout(()=>dim.remove(),420);
+    } else if(r.rar==='SR'){
+      sl.classList.add('quake'); SFX.zap(); setTimeout(()=>SFX.zap(),250); for(let k=0;k<5;k++) setTimeout(()=>burst(c.x,c.y,10,['#c08bff','#fff'],6,{shape:'spark',g:0}),k*110);
+      await sleep(650); sl.classList.remove('quake'); sl.classList.add('open'); VOICE.play('sys_sr',3); SFX.boom(); SFX.choir([220,277,330,440],1.8,.06); flash(.6,'#c08bff'); shake(.45); zoomPunch(.04);
+      burst(c.x,c.y,70,['#c08bff','#fff','#3fe0ff'],10,{shape:'spark'}); ring(c.x,c.y,'#c08bff',14,9);
+    } else {
+      sl.classList.add('open'); SFX.flip(); SFX.slam(); shake(.12); ring(c.x,c.y,RAR[r.rar].c,9,5);
+      if(r.isNew){ VOICE.play('sys_new',1); SFX.sparkle(5); burst(c.x,c.y,30,[RAR[r.rar].c,'#fff'],7,{shape:'spark'}); }
+    }
+    const tg=sl.querySelector('.tagz');
+    if(r.isNew){ tg.innerHTML='<div class="newtag">NEW</div>'; tg.firstChild.animate([{transform:'scale(3) rotate(-15deg)',opacity:0},{transform:'none',opacity:1}],{duration:380,easing:'cubic-bezier(.2,1.8,.4,1)'}); }
+    else { tg.innerHTML=`<div class="duptag">碎片 +${RAR[r.rar].shard}</div>`; const m=$('#metaline')||sl; coinsTo(c,{x:innerWidth/2,y:40},10,'#c08bff','dot'); }
+    sl.onclick=()=>viewCard(r.id,res.map(x=>x.id));
+    done++; busy=false;
+    if(done===res.length){ checkCollectionAch(); renderMeta(); $('#gAll').hidden=true; $('#gHint2').textContent='點卡牌可以放大欣賞'; const ge=$('#gEnd'); ge.hidden=false; ge.animate([{transform:'translateY(20px)',opacity:0},{transform:'none',opacity:1}],{duration:300});
+      const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST; $('#pkAgain').disabled=!can;
+      $('#pkAgain').textContent=SAVE.freePacks>0?`免費再開（剩 ${SAVE.freePacks}）`:`再開一包｜${PACK_COST} 獻金（持有 ${SAVE.coins}）`;
+      $('#pkAgain').onclick=()=>{ SFX.click(); openPack(); };
+      $('#pkBook2').onclick=()=>{ SFX.click(); bookScreen(); };
+      $('#pkBack2').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); }; }
+  };
+  slots.forEach(sl=>sl.onclick=()=>flipOne(sl));
+  $('#gAll').onclick=async()=>{ $('#gAll').disabled=true; for(const sl of slots){ if(!sl.classList.contains('open')){ await flipOne(sl); await sleep(220); } } };
+}
+const FLAVOR={press:'消息來源：據知情人士透露。知情人士是誰？知情人士就是知情人士。',deepfake:'嘴型對不上不重要，轉傳速度對得上就好。',trolls:'一萬則留言，三個帳號。',oldphoto:'網路是有記憶的，尤其是你最不想被記得的那張。',
+  pundit:'什麼都不懂，但什麼都能講一小時。',farm:'每支手機都有一個名字，每個名字都很愛國。',sidekick:'官方不方便說的話，粉專幫你說。',talkshow:'今晚來賓四位，觀點只有兩種。',street:'鞠躬九十度、握手一千次，記得每個阿姨的名字。',
+  temple:'神明保佑，信眾也保佑選票。',bento:'吃人嘴軟，拿人手短，今天是排骨的。',influencer:'本影片由某陣營贊助，但我是真心推薦。',poll:'樣本數一百多人，誤差正負八個百分點，結論：我們大勝。',clarify:'我們不是否認，我們是澄清。',
+  factcheck:'查核結果：錯誤。網友：所以是真的？',apology:'我錯了。下次還敢。',blame:'這件事，要問上一任。',lastnight:'最後一夜：十萬人、一百萬支螢光棒、一句凍蒜。',n_cash:'錢領了，票照投。',n_bot:'對方留言多，是機器人；我方留言多，叫民意。',
+  b_qa:'記者問 A。答：B、C，還有 D。記者還在等 A。',b_script:'講稿已上膛，臨場反應請洽講稿。',b_baoli:'問這題，答那題。話題轉得夠快，問題就追不上。',b_wei:'所有批評，都是對手在互相掩護。',b_harvard:'全英文演講，台下聽懂的請舉手。',
+  b_oldpost:'十二年前寫的文章，今天一晚五十萬則留言。',b_hen:'母雞張開翅膀，小雞自己走進來。',b_fake:'人潮是真的？那一定是動員來的。',g_tide:'從夜市燒到網路，再從網路燒回街頭。這不是浪，是洋流。',g_chair:'國中拿椅子砸過人。補充：打輸了。',
+  g_english:'Debate? Anytime. 對手：可以說中文嗎？',g_anytime:'時間你挑、地點你挑，我隨時都可以。',g_wanted:'被對岸立案調查，履歷上最亮眼的一行。',g_bear:'黑熊不冬眠，民防不放假。',g_airport:'機場搬不搬？先問四年來談了幾次。',g_haircut:'剪了頭髮，民調也跟著飄起來。'};
+function viewCard(id,list){
+  list=list&&list.length?list:[id]; let idx=Math.max(0,list.indexOf(id));
+  const v=$('#viewer'); v.hidden=false;
+  const draw_=()=>{ const cid=list[idx], c=CARDS[cid], rr=RARITY[cid], own=SAVE.owned[cid];
+    v.className='viewer rar-'+rr; v.style.setProperty('--vc',RAR[rr].c);
+    v.innerHTML=`<div class="vbg"></div><div class="vrays"></div>
+      <button class="vx" id="vX" aria-label="關閉">✕</button>
+      ${list.length>1?'<button class="varrow l" id="vL" aria-label="上一張">‹</button><button class="varrow r" id="vR" aria-label="下一張">›</button>':''}
+      <div class="vbody"><div class="vstage">${own?miniCard(cid,'big'):`<div class="card big locked rar-${rr}"><div class="rtag">${RAR[rr].n}</div><div class="in"><div class="lk">？</div><div class="nm">？？？</div></div></div>`}</div>
+      <div class="vinfo"><div class="vr"><span class="vrar">${RAR[rr].n}</span>${own?`<span>${c.sk?'必殺・':''}${TYPES[c.t]}</span><span>費用 ${c.c}</span>`:''}<span>${c.camp?(c.camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</span></div>
+        <h3></h3><p class="vd"></p><p class="vf"></p>${list.length>1?`<div class="vcount">${idx+1} / ${list.length}</div>`:''}</div></div>`;
+    v.querySelector('h3').textContent=own?c.n:'尚未收集';
+    v.querySelector('.vd').textContent=own?c.d:`從黑箱包取得，或在圖鑑用 ${RAR[rr].craft} 碎片兌換。`;
+    v.querySelector('.vf').textContent=own?'「'+FLAVOR[cid]+'」':'';
+    const card=v.querySelector('.vstage .card'); if(own) bindTilt(card);
+    card.animate([{transform:'rotateY(-90deg) scale(.6)',opacity:0},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,1.4,.4,1)'});
+    if(own){ VOICE.play(cid,2); if(rr==='SSR'){ SFX.gong(); SFX.sparkle(8); } else if(rr==='SR'){ SFX.zap(); SFX.sparkle(5); } else SFX.flip(); } else SFX.bad();
+    $('#vX').onclick=close; if($('#vL')){ $('#vL').onclick=e=>{ e.stopPropagation(); idx=(idx-1+list.length)%list.length; draw_(); }; $('#vR').onclick=e=>{ e.stopPropagation(); idx=(idx+1)%list.length; draw_(); }; }
+  };
+  const close=()=>{ v.hidden=true; v.innerHTML=''; document.removeEventListener('keydown',key); };
+  const key=e=>{ if(e.key==='Escape') close(); else if(e.key==='ArrowLeft'&&list.length>1){ idx=(idx-1+list.length)%list.length; draw_(); } else if(e.key==='ArrowRight'&&list.length>1){ idx=(idx+1)%list.length; draw_(); } };
+  document.addEventListener('keydown',key);
+  let sx=null; v.onpointerdown=e=>{ sx=e.clientX; }; v.onpointerup=e=>{ if(sx!==null&&list.length>1&&Math.abs(e.clientX-sx)>60){ idx=(idx+(e.clientX<sx?1:-1)+list.length)%list.length; draw_(); } sx=null; };
+  v.querySelector&&0; draw_();
 }
 function bookScreen(filter='all'){
   const ov=$('#overlay'); ov.hidden=false; const n=ownedCount(), tot=ALL_CARDS.length;
@@ -1395,7 +1533,7 @@ function bookScreen(filter='all'){
       <button class="craft" data-c="${id}" ${SAVE.shards>=RAR[RARITY[id]].craft?'':'disabled'}>兌換 ${RAR[RARITY[id]].craft} 碎片</button></div></div>`).join('')}</div>
     <div class="row"><button class="cta" id="bkPack">去抽卡</button><button class="ghost" id="bkBack">返回</button></div></div>`;
   ov.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ SFX.click(); bookScreen(b.dataset.f); });
-  ov.querySelectorAll('.grid .card:not(.locked)').forEach(el=>bindTilt(el));
+  ov.querySelectorAll('.grid .card').forEach(el=>{ if(!el.classList.contains('locked')) bindTilt(el); el.onclick=()=>viewCard(el.dataset.id,list); });
   ov.querySelectorAll('[data-c]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); const id=b.dataset.c, cost=RAR[RARITY[id]].craft; if(SAVE.shards<cost) return;
     SAVE.shards-=cost; SAVE.owned[id]=true; save(); VOICE.play('sys_new',2); SFX.gain(8); flash(.4,RAR[RARITY[id]].c); const c=center(b); burst(c.x,c.y,50,[RAR[RARITY[id]].c,'#fff'],9); checkCollectionAch(); renderMeta(); setTimeout(()=>bookScreen(filter),400); });
   $('#bkPack').onclick=()=>{ SFX.click(); packScreen(); };
