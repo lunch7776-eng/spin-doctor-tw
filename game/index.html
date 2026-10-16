@@ -480,6 +480,17 @@ const MUS = {
   }
 };
 
+/* Suno BGM tracks (fallback: procedural MUS above) */
+const BGM={els:{},cur:null,
+  get(k){ if(!this.els[k]){ const a=new Audio(`audio/bgm_${k}.mp3?v=1`); a.loop=k!=='victory'; a.preload='auto';
+      a.addEventListener('error',()=>{ a.bad=true; if(this.cur===a){ this.cur=null; MUS.start(); } });
+      try{ AU.ctx.createMediaElementSource(a).connect(AU.mus); }catch(e){} this.els[k]=a; } return this.els[k]; },
+  play(k){ if(!AU.ctx) return; const a=this.get(k); if(a.bad){ MUS.start(); return; } MUS.stop();
+    if(this.cur===a) return; const old=this.cur; this.cur=a; a.playbackRate=1; a.volume=1; a.currentTime=0; a.play().catch(()=>{});
+    if(old){ let v=1; const t=setInterval(()=>{ v-=.1; if(v<=0){ clearInterval(t); old.pause(); old.volume=1; } else old.volume=v; },60); } },
+  rate(r){ if(this.cur && this.cur.playbackRate!==r) this.cur.playbackRate=r; }
+};
+
 /* =========================================================
    FX — particles, shake, flash, floats
    ========================================================= */
@@ -758,7 +769,7 @@ function renderHud(){
   const toPoll = B.week%2===0||B.week===st.weeks ? '本週結束：民調結算' : '下週結束：民調結算';
   $('#pollnext').textContent = B.week===st.weeks ? '本週結束：投票日開票' : toPoll;
   const last=B.week>=st.weeks-1; MUS.intensity = last?2:(B.turnOwner==='op'?1:1); MUS.bpm = last?128:(B.week>st.weeks/2?116:108);
-  $('#vignette').classList.toggle('hot', last);
+  $('#vignette').classList.toggle('hot', last); BGM.rate(last?1.06:1);
 }
 function renderAll(deal){ renderSides(); renderHand(deal); renderFunds(); renderHud(); }
 function ticker(t){ const el=$('#ticker'); el.textContent=t; el.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:250}); }
@@ -888,7 +899,7 @@ async function startBattle(){
      me:newSide('me',RUN.cand.cand,RUN.cand.img,RUN.cand.g,RUN.deck),
      op:newSide('op',st.name,st.img,st.g,st.deck)};
   B.op.buzz=st.startBuzz+5; B.me.buzz=4;
-  show('game'); MUS.mood='game';
+  show('game'); MUS.mood='game'; BGM.play('battle');
   draw(B.me,4); draw(B.op,4);
   renderAll();
   await myPhase(true);
@@ -1052,7 +1063,7 @@ async function electionNight(){
   RUN.history.push({office:st.office,me:meV,op:opV,win});
   RUN.score+=meV;
   if(win){
-    RUN.won.push(st.office); VOICE.play(st.final?'sys_win':'sys_lead',3); SFX.cheer(4);
+    RUN.won.push(st.office); VOICE.play(st.final?'sys_win':'sys_lead',3); SFX.cheer(4); if(st.final) BGM.play('victory');
     SFX.fanfare(); flash(.9,'#ffc83d'); shake(.8); confetti(220); buzzHaptic([60,40,120]);
     let fw=0; const fwT=setInterval(()=>{ firework(); if(++fw>7) clearInterval(fwT); },380);
     res.innerHTML=`<div class="panel"><div class="seal">${st.final?'當選':'領先'}</div><p></p><button class="cta" id="btnNext">${RUN.stage<STAGES.length-1?'領取戰利品':'看最終成績'}</button></div>`;
@@ -1116,7 +1127,7 @@ async function runEnd(champion){
     if(r==='ok'){ confetti(120); SFX.gain(10); }
     $('#btnSubmit').disabled=(r==='ok'||r==='kept'); };
   $('#btnAgain').onclick=()=>{ SFX.click(); campScreen(); };
-  $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); };
+  $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); BGM.play('title'); };
 }
 
 /* =========================================================
@@ -1236,7 +1247,7 @@ addEventListener('resize',()=>{ if(tutActive()) tutShow(); });
 function show(name){ $('#screen-title').hidden=name!=='title'; $('#screen-game').hidden=name!=='game'; }
 function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textContent='音效：'+(AU.muted?'關':'開'); $('#btnMute2').style.opacity=AU.muted?.4:1; }
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
-function bootAudio(){ AU.init(); if(!MUS.on){ MUS.mood='title'; MUS.intensity=0; MUS.bpm=100; MUS.start(); } }
+function bootAudio(){ AU.init(); BGM.play('title'); }
 $('#btnStart').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen(); };
 $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(); };
 $('#btnLB').onclick=()=>{ bootAudio(); SFX.click(); lbScreen(); };

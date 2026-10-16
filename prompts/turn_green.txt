@@ -1,0 +1,6 @@
+Create a CHARACTER TURNAROUND SHEET (model sheet) for animation reference, matching the attached reference image character EXACTLY (same face, hairstyle, glasses if any, suit, tie color, body proportions) and the same bold fighting-game / editorial caricature art style (heavy ink outlines, cel shading, adult proportions, NOT chibi).
+Layout: landscape 16:9 canvas, plain flat light-grey background, four full-body views of the SAME character standing in a neutral A-pose, evenly spaced left to right: 1) front view, 2) three-quarter view, 3) side profile view, 4) back view. Full body visible head to shoes in every view, same scale, same lighting, no shadows on the background.
+ABSOLUTELY NO text, labels, numbers, arrows, logos or watermarks anywhere. No extra characters, no props except what the character wears.
+HOW TO WORK: Generate with your built-in image generation tool only (no API, no python image libs). You MAY use normal shell/file commands to copy files. After the image is generated, copy the newest file from ~/.codex/generated_images/ (your own current session folder only) to the exact path given, then verify with ls -la.
+Character: GREEN CANDIDATE — man mid 40s, short neat black hair, thin rectangular glasses, slightly round face, determined expression, charcoal suit, white shirt, green tie, black leather shoes.
+Save to: ./video/refs/turn_green.png
