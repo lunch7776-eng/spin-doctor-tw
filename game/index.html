@@ -264,8 +264,9 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .side.danger .back .bar{box-shadow:0 0 14px var(--red)}
 @keyframes danger{50%{box-shadow:0 0 30px rgba(255,46,77,.55),inset 0 0 20px rgba(255,46,77,.25)}}
 .float.big{font-size:64px;-webkit-text-stroke:2px #000}
-#coach{position:absolute;inset:0;z-index:70}
-#coach .cblock{position:absolute;inset:0}
+#coach{position:absolute;inset:0;z-index:70;pointer-events:none}
+#coach .cblock{position:absolute;inset:0;pointer-events:auto}
+#coach .bubble{pointer-events:auto}
 #coach.waiting .cblock{pointer-events:none}
 #coach .hole{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(4,5,12,.78);border:3px solid var(--gold);pointer-events:none;transition:all .35s cubic-bezier(.2,1.2,.4,1);animation:holepulse 1.2s infinite}
 @keyframes holepulse{50%{border-color:#fff;box-shadow:0 0 0 9999px rgba(4,5,12,.78),0 0 30px var(--gold)}}
@@ -596,7 +597,7 @@ const CARDS={
     fx:async A=>{ A.me.dodge+=2; SFX.shield(); floatAt(A.el(),'答非所問 ×'+A.me.dodge,'#3fe0ff','txt'); renderSides(); }, ai:m=>m.dodge?1:5.5},
   b_script:{n:'講稿機啟動',t:'boost',sk:1,c:2,img:'b_script',g:'稿',camp:'blue',d:'本回合攻擊力 +2｜聲量 +2',
     fx:async A=>{ A.me.atkBuff+=2; SFX.unit(); floatAt(A.el(),'攻擊力 +2','#ff9a1f','big'); renderSides(); await A.gain(2); }, ai:()=>6},
-  b_baoli:{n:'寶立答B',t:'def',sk:1,c:2,img:'b_baoli',g:'B',camp:'blue',d:'轉移話題：反感全部清空，每點轉成 1 聲量',
+  b_baoli:{n:'寶立答B',t:'def',sk:1,c:2,img:'b_baoli',g:'B',camp:'blue',d:'轉移話題：反感全部清空，每點轉成 1 聲量（至少 +1）',
     fx:async A=>{ const n=A.me.backlash; A.back(-n); await A.gain(Math.max(1,n)); }, ai:m=>m.backlash*1.6},
   b_wei:{n:'圍講救賴',t:'smear',sk:1,c:3,img:'b_wei',g:'圍',camp:'blue',d:'對手 −4｜自己反感 −1',
     fx:async A=>{ await A.hit(4); A.back(-1); }, ai:(m,o)=>o.buzz>0?6:2,
@@ -652,11 +653,11 @@ const NEUTRAL_POOL=['deepfake','talkshow','lastnight','poll','blame','factcheck'
 const PHASES=[
   {office:'黨內徵召戰',weeks:5,scale:1873,bonus:0,startBuzz:0,intro:'黨中央拍板徵召，首都之戰正式開打',
     base:['street','street','street','street','oldphoto','clarify','apology','bento','bento']},
-  {office:'舊文攻防戰',weeks:6,scale:3911,bonus:0,startBuzz:3,intro:'一篇貼文湧入50萬則留言，網路戰全面升溫',
+  {office:'舊文攻防戰',weeks:6,scale:3911,bonus:0,startBuzz:2,intro:'一篇貼文湧入50萬則留言，網路戰全面升溫',
     base:['press','press','trolls','trolls','oldphoto','oldphoto','poll','apology','n_bot','influencer']},
-  {office:'電視辯論會',weeks:7,scale:6427,bonus:1,startBuzz:5,intro:'日期喬了半個月，辯論終於在10/31登場',
+  {office:'電視辯論會',weeks:7,scale:6427,bonus:0,startBuzz:3,intro:'日期喬了半個月，辯論終於在10/31登場',
     base:['press','press','deepfake','trolls','pundit','pundit','clarify','blame','influencer','n_bot']},
-  {office:'投票日 11/28',weeks:8,scale:11213,bonus:2,startBuzz:8,intro:'最後一週，首都市長花落誰家',final:true,
+  {office:'投票日 11/28',weeks:8,scale:11213,bonus:0,startBuzz:4,intro:'最後一週，首都市長花落誰家',final:true,
     base:['deepfake','deepfake','talkshow','farm','sidekick','factcheck','lastnight','poll','press','blame','n_cash','apology']},
 ];
 let STAGES=[];
@@ -729,8 +730,8 @@ function cardHTML(id,extra=''){
 function renderHand(deal=false){
   const h=$('#hand'); const n=B.me.hand.length;
   h.innerHTML=B.me.hand.map((id,i)=>cardHTML(id,CARDS[id].c>B.me.funds||B.turnOwner!=='me'?'cant':'')).join('');
-  const cw=h.firstElementChild?h.firstElementChild.offsetWidth:100, avail=h.clientWidth-28;
-  const gap=n>1?Math.max(-cw*.62,Math.min(-6,(avail-n*cw)/(n-1))):0;
+  const cw=h.firstElementChild?h.firstElementChild.offsetWidth:100, avail=h.clientWidth-44;
+  const gap=n>1?Math.max(-cw*.72,Math.min(-6,(avail-n*cw)/(n-1))):0;
   [...h.children].forEach((el,i)=>{
     const mid=(n-1)/2, off=i-mid;
     el.style.margin='0'; if(i>0) el.style.marginLeft=gap+'px';
@@ -814,7 +815,7 @@ function api(me,op){
         floatAt(el,['答B！','答C！','答D！','我們來談別的'][Math.random()*4|0],'#3fe0ff','big');
         el.animate([{transform:'translateX(0)'},{transform:'translateX(40px) skewX(-12deg)'},{transform:'none'}],{duration:260});
         renderSides(); await sleep(small?140:300); return false; }
-      let dmg=n + (me.atkBuff||0) + me.units.filter(u=>CARDS[u.id].unit.passive==='sidekick').length;
+      let dmg=n + (me.atkBuff||0) + (B.curType==='smear'?me.units.filter(u=>CARDS[u.id].unit.passive==='sidekick').length:0);
       if(!noMult) dmg=Math.round(dmg*mult());
       const crit=!small && Math.random()<.15;
       if(crit) dmg*=2;
@@ -908,7 +909,7 @@ async function myPhase(first=false){
 }
 function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds); $('#btnEnd').classList.toggle('glow',!any); }
 async function unitTicks(s,o){
-  const A=api(s,o);
+  const A=api(s,o); B.curType='unit';
   for(const u of s.units.slice()){
     const def=CARDS[u.id].unit; const el=document.querySelector(`[data-uid="${u.uid}"]`);
     if(el){ el.classList.remove('pulse'); void el.offsetWidth; el.classList.add('pulse'); }
@@ -944,7 +945,7 @@ async function playCard(side,other,idx,srcEl){
   setTimeout(()=>fc.remove(),240);
   if(side.id==='me') renderHand();
 
-  const A=api(side,other);
+  const A=api(side,other); B.curType=c.t;
   if(c.sk) await cutin(side,c);
   if(c.unit){
     if(c.onPlay) await c.onPlay(A);
@@ -1069,11 +1070,12 @@ function rewardScreen(){
   const pool=shuffle([...NEUTRAL_POOL,...RUN.cand.pool]); const pick=[...new Set(pool)].slice(0,3);
   const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">金主追加預算</div><h3>選一張新牌加入牌組</h3><div class="choices">${pick.map(id=>cardHTML(id)).join('')}</div><p class="lbnote">目前牌組 ${RUN.deck.length} 張</p></div>`;
+  let picked=false;
   [...ov.querySelectorAll('.choices .card')].forEach((el,i)=>{
     bindTilt(el);
     el.animate([{transform:'rotateY(180deg) scale(.3)',opacity:0},{transform:'none',opacity:1}],{duration:500,delay:i*140,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'});
     setTimeout(()=>SFX.flip(),i*140);
-    el.onclick=()=>{ RUN.deck.push(el.dataset.id); SFX.gain(8); VOICE.play(el.dataset.id,2); const c=center(el); burst(c.x,c.y,60,['#ffc83d','#fff','#ff2e4d'],9); flash(.4,'#ffc83d');
+    el.onclick=()=>{ if(picked) return; picked=true; RUN.deck.push(el.dataset.id); SFX.gain(8); VOICE.play(el.dataset.id,2); const c=center(el); burst(c.x,c.y,60,['#ffc83d','#fff','#ff2e4d'],9); flash(.4,'#ffc83d');
       el.animate([{transform:'scale(1)'},{transform:'scale(1.4) translateY(-40px)',opacity:0}],{duration:400,fill:'forwards'});
       setTimeout(()=>{ RUN.stage++; vsScreen(); },450); };
   });
@@ -1169,7 +1171,7 @@ function campScreen(){
     el.onclick=()=>{ const k=el.dataset.camp; SFX.vs(); flash(.6,k==='blue'?'#3f8cff':'#36d27a'); const c=center(el); burst(c.x,c.y,70,k==='blue'?['#3f8cff','#bcd6ff','#fff']:['#36d27a','#c8f5da','#fff'],9);
       newRun(k); RUN.name=LOCAL.name; setTimeout(vsScreen,350); };
   });
-  $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; };
+  $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; TUT_FORCE=false; show('title'); };
 }
 function lbScreen(){
   const ov=$('#overlay'); ov.hidden=false;

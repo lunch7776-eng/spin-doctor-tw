@@ -1,0 +1,762 @@
+{
+  "source": "game/index.html",
+  "sha256": "511691b711d0975f3e705d83c501a92ab1a4955589b8c8142c0eb8645aff7842",
+  "method": "Original numerical functions in Node VM; DOM/animation/audio/sleep stubbed. Both sides use shipped ai()+U[0,1.2)+0.3*cost. Player plays until no acceptable affordable card; opponent retains its shipped six-card cap. Starting buzz, asymmetrical budgets, decks, crit, combo, units, fire and polls unchanged. Seed is reset per battle; cosmetic RNG is omitted. Ties count as player wins, as electionNight specifies.",
+  "sampling": "200 trajectories per player camp; each trajectory tests all four stages, adds one greedy-picked reward from the actual random offer pool after each nonfinal stage, including after losses to retain n=200/stage. Stage percentages are controlled per-stage samples, NOT conditional survival win rates. NaturalCampaign and campaigns track only still-alive prefixes. Mean raw votes and displayed votes are both reported.",
+  "limitations": "No human/lookahead/optimized exploit policy. No browser, network or real-time concurrency test. Finite samples do not prove absence of dominant strategies.",
+  "seedBase": 20261016,
+  "matches": 1600,
+  "cardActions": 51772,
+  "finiteNonnegativeChecks": 1306296,
+  "violations": 0,
+  "campaigns": {
+    "blue": {
+      "started": 200,
+      "clears": 1,
+      "clearPct": 0.5
+    },
+    "green": {
+      "started": 200,
+      "clears": 3,
+      "clearPct": 1.5
+    }
+  },
+  "rows": [
+    {
+      "camp": "blue",
+      "stage": 1,
+      "office": "黨內徵召戰",
+      "matches": 200,
+      "wins": 180,
+      "winPct": 90,
+      "ties": 4,
+      "meanRawVotes": {
+        "me": 39.375,
+        "op": 29.61
+      },
+      "meanDisplayedVotes": {
+        "me": 74604.56,
+        "op": 56378.02
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 483
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 431
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 243
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 242
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 241
+          }
+        ],
+        "op": [
+          {
+            "id": "bento",
+            "name": "便當發放",
+            "plays": 703
+          },
+          {
+            "id": "g_english",
+            "name": "全英文開講",
+            "plays": 349
+          },
+          {
+            "id": "g_haircut",
+            "name": "立院男神",
+            "plays": 348
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 348
+          },
+          {
+            "id": "oldphoto",
+            "name": "舊照出土",
+            "plays": 271
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 200,
+        "won": 180
+      },
+      "rewardPicks": {
+        "b_script": 12,
+        "talkshow": 23,
+        "b_oldpost": 22,
+        "temple": 24,
+        "b_hen": 28,
+        "n_cash": 20,
+        "lastnight": 18,
+        "farm": 5,
+        "b_harvard": 10,
+        "pundit": 9,
+        "sidekick": 2,
+        "influencer": 10,
+        "deepfake": 7,
+        "poll": 1,
+        "b_wei": 7,
+        "b_fake": 2
+      }
+    },
+    {
+      "camp": "blue",
+      "stage": 2,
+      "office": "舊文攻防戰",
+      "matches": 200,
+      "wins": 91,
+      "winPct": 45.5,
+      "ties": 12,
+      "meanRawVotes": {
+        "me": 19.195,
+        "op": 21.015
+      },
+      "meanDisplayedVotes": {
+        "me": 76933.62,
+        "op": 84208.565
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 501
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 459
+          },
+          {
+            "id": "b_script",
+            "name": "講稿機啟動",
+            "plays": 285
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 272
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 266
+          }
+        ],
+        "op": [
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 486
+          },
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 464
+          },
+          {
+            "id": "g_airport",
+            "name": "松機遷移",
+            "plays": 255
+          },
+          {
+            "id": "g_chair",
+            "name": "國中椅子技",
+            "plays": 250
+          },
+          {
+            "id": "oldphoto",
+            "name": "舊照出土",
+            "plays": 244
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 180,
+        "won": 86
+      },
+      "rewardPicks": {
+        "influencer": 18,
+        "talkshow": 21,
+        "farm": 4,
+        "n_cash": 23,
+        "pundit": 11,
+        "b_oldpost": 17,
+        "deepfake": 14,
+        "b_hen": 21,
+        "b_harvard": 14,
+        "b_qa": 8,
+        "temple": 14,
+        "b_wei": 7,
+        "b_script": 5,
+        "lastnight": 7,
+        "blame": 4,
+        "sidekick": 5,
+        "b_fake": 4,
+        "b_baoli": 3
+      }
+    },
+    {
+      "camp": "blue",
+      "stage": 3,
+      "office": "電視辯論會",
+      "matches": 200,
+      "wins": 23,
+      "winPct": 11.5,
+      "ties": 4,
+      "meanRawVotes": {
+        "me": 21.58,
+        "op": 36.415
+      },
+      "meanDisplayedVotes": {
+        "me": 142034.81,
+        "op": 237243.6
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 523
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 502
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 305
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 290
+          },
+          {
+            "id": "b_qa",
+            "name": "問A答BCD",
+            "plays": 286
+          }
+        ],
+        "op": [
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 465
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 450
+          },
+          {
+            "id": "g_chair",
+            "name": "國中椅子技",
+            "plays": 232
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 230
+          },
+          {
+            "id": "g_wanted",
+            "name": "被對岸立案調查",
+            "plays": 228
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 86,
+        "won": 14
+      },
+      "rewardPicks": {
+        "b_hen": 14,
+        "talkshow": 25,
+        "b_fake": 10,
+        "deepfake": 28,
+        "b_baoli": 12,
+        "b_oldpost": 25,
+        "factcheck": 15,
+        "b_qa": 5,
+        "b_wei": 7,
+        "n_cash": 14,
+        "pundit": 4,
+        "b_harvard": 10,
+        "influencer": 11,
+        "temple": 9,
+        "blame": 2,
+        "farm": 1,
+        "b_script": 7,
+        "sidekick": 1
+      }
+    },
+    {
+      "camp": "blue",
+      "stage": 4,
+      "office": "投票日 11/28",
+      "matches": 200,
+      "wins": 3,
+      "winPct": 1.5,
+      "ties": 0,
+      "meanRawVotes": {
+        "me": 29.24,
+        "op": 66.46
+      },
+      "meanDisplayedVotes": {
+        "me": 333253.47,
+        "op": 750556.74
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 551
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 492
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 348
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 311
+          },
+          {
+            "id": "b_qa",
+            "name": "問A答BCD",
+            "plays": 304
+          }
+        ],
+        "op": [
+          {
+            "id": "g_english",
+            "name": "全英文開講",
+            "plays": 366
+          },
+          {
+            "id": "deepfake",
+            "name": "深偽影片",
+            "plays": 361
+          },
+          {
+            "id": "g_haircut",
+            "name": "立院男神",
+            "plays": 347
+          },
+          {
+            "id": "g_airport",
+            "name": "松機遷移",
+            "plays": 185
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 184
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 14,
+        "won": 1
+      },
+      "rewardPicks": {}
+    },
+    {
+      "camp": "green",
+      "stage": 1,
+      "office": "黨內徵召戰",
+      "matches": 200,
+      "wins": 199,
+      "winPct": 99.5,
+      "ties": 1,
+      "meanRawVotes": {
+        "me": 38.335,
+        "op": 21.24
+      },
+      "meanDisplayedVotes": {
+        "me": 72868.095,
+        "op": 40582.705
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 467
+          },
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 450
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 248
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 248
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 237
+          }
+        ],
+        "op": [
+          {
+            "id": "bento",
+            "name": "便當發放",
+            "plays": 644
+          },
+          {
+            "id": "b_script",
+            "name": "講稿機啟動",
+            "plays": 354
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 349
+          },
+          {
+            "id": "b_qa",
+            "name": "問A答BCD",
+            "plays": 334
+          },
+          {
+            "id": "oldphoto",
+            "name": "舊照出土",
+            "plays": 259
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 200,
+        "won": 199
+      },
+      "rewardPicks": {
+        "g_anytime": 15,
+        "talkshow": 22,
+        "n_cash": 18,
+        "g_chair": 20,
+        "influencer": 7,
+        "temple": 16,
+        "lastnight": 25,
+        "g_wanted": 16,
+        "g_bear": 12,
+        "g_airport": 14,
+        "g_tide": 16,
+        "farm": 2,
+        "g_english": 6,
+        "pundit": 8,
+        "g_haircut": 1,
+        "n_bot": 1,
+        "blame": 1
+      }
+    },
+    {
+      "camp": "green",
+      "stage": 2,
+      "office": "舊文攻防戰",
+      "matches": 200,
+      "wins": 78,
+      "winPct": 39,
+      "ties": 9,
+      "meanRawVotes": {
+        "me": 15.305,
+        "op": 17.805
+      },
+      "meanDisplayedVotes": {
+        "me": 61342.485,
+        "op": 71362.44
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 499
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 464
+          },
+          {
+            "id": "g_chair",
+            "name": "國中椅子技",
+            "plays": 288
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 283
+          },
+          {
+            "id": "g_english",
+            "name": "全英文開講",
+            "plays": 270
+          }
+        ],
+        "op": [
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 520
+          },
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 465
+          },
+          {
+            "id": "oldphoto",
+            "name": "舊照出土",
+            "plays": 358
+          },
+          {
+            "id": "b_oldpost",
+            "name": "挖出12年前舊文",
+            "plays": 278
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 270
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 199,
+        "won": 78
+      },
+      "rewardPicks": {
+        "g_airport": 10,
+        "talkshow": 23,
+        "pundit": 13,
+        "g_tide": 22,
+        "deepfake": 14,
+        "g_chair": 20,
+        "g_wanted": 17,
+        "temple": 10,
+        "influencer": 9,
+        "g_bear": 13,
+        "g_haircut": 4,
+        "g_anytime": 12,
+        "n_cash": 16,
+        "sidekick": 2,
+        "farm": 2,
+        "lastnight": 5,
+        "g_english": 7,
+        "blame": 1
+      }
+    },
+    {
+      "camp": "green",
+      "stage": 3,
+      "office": "電視辯論會",
+      "matches": 200,
+      "wins": 37,
+      "winPct": 18.5,
+      "ties": 7,
+      "meanRawVotes": {
+        "me": 25.77,
+        "op": 37.355
+      },
+      "meanDisplayedVotes": {
+        "me": 168820.57,
+        "op": 243498.465
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 524
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 498
+          },
+          {
+            "id": "g_chair",
+            "name": "國中椅子技",
+            "plays": 327
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 297
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 293
+          }
+        ],
+        "op": [
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 454
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 426
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 241
+          },
+          {
+            "id": "b_hen",
+            "name": "母雞帶小雞",
+            "plays": 236
+          },
+          {
+            "id": "b_script",
+            "name": "講稿機啟動",
+            "plays": 235
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 78,
+        "won": 15
+      },
+      "rewardPicks": {
+        "n_cash": 10,
+        "g_anytime": 15,
+        "influencer": 9,
+        "g_tide": 28,
+        "g_wanted": 17,
+        "blame": 6,
+        "factcheck": 20,
+        "deepfake": 17,
+        "lastnight": 6,
+        "g_airport": 11,
+        "temple": 10,
+        "talkshow": 18,
+        "g_bear": 3,
+        "g_chair": 18,
+        "pundit": 6,
+        "g_haircut": 1,
+        "n_bot": 1,
+        "g_english": 3,
+        "farm": 1
+      }
+    },
+    {
+      "camp": "green",
+      "stage": 4,
+      "office": "投票日 11/28",
+      "matches": 200,
+      "wins": 32,
+      "winPct": 16,
+      "ties": 5,
+      "meanRawVotes": {
+        "me": 29.05,
+        "op": 44.515
+      },
+      "meanDisplayedVotes": {
+        "me": 331524.625,
+        "op": 504674.695
+      },
+      "mostPlayed": {
+        "me": [
+          {
+            "id": "trolls",
+            "name": "網軍洗版",
+            "plays": 543
+          },
+          {
+            "id": "street",
+            "name": "掃街拜票",
+            "plays": 505
+          },
+          {
+            "id": "g_chair",
+            "name": "國中椅子技",
+            "plays": 372
+          },
+          {
+            "id": "pundit",
+            "name": "名嘴通告",
+            "plays": 318
+          },
+          {
+            "id": "influencer",
+            "name": "網紅業配",
+            "plays": 313
+          }
+        ],
+        "op": [
+          {
+            "id": "b_script",
+            "name": "講稿機啟動",
+            "plays": 373
+          },
+          {
+            "id": "b_qa",
+            "name": "問A答BCD",
+            "plays": 360
+          },
+          {
+            "id": "deepfake",
+            "name": "深偽影片",
+            "plays": 358
+          },
+          {
+            "id": "press",
+            "name": "爆料記者會",
+            "plays": 188
+          },
+          {
+            "id": "b_oldpost",
+            "name": "挖出12年前舊文",
+            "plays": 186
+          }
+        ]
+      },
+      "naturalCampaign": {
+        "reached": 15,
+        "won": 3
+      },
+      "rewardPicks": {}
+    }
+  ]
+}
