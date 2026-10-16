@@ -404,6 +404,24 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .pconfirm{display:grid;gap:10px;justify-items:center;padding:14px;border:1px solid var(--red);border-radius:14px;background:rgba(255,46,77,.08);width:min(360px,100%)}
 .pconfirm p{margin:0}
 .cta.danger{background:linear-gradient(180deg,#ff8a9a,var(--red) 55%,#a3102a);color:#fff;box-shadow:0 5px 0 #5c0616}
+.advbtn{font-weight:900;font-size:13px;padding:0 12px;height:38px;border-radius:12px;border:1px solid var(--line);background:rgba(20,26,48,.8);color:var(--muted)}
+.advbtn.on{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(255,200,61,.35)}
+.advisor{display:flex;gap:10px;align-items:flex-start;text-align:left;max-width:min(560px,100%);background:rgba(10,13,28,.88);border:1px solid rgba(255,200,61,.45);border-radius:14px;padding:10px 12px;box-shadow:0 0 24px rgba(255,200,61,.12);animation:unitIn .35s both}
+.advface{width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none;border:2px solid var(--gold);position:relative;display:grid;place-items:center;font-family:var(--display);background:var(--panel-2)}
+.advface img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.advbody{display:grid;gap:4px;min-width:0}
+.advtitle{font-size:11px;font-weight:900;letter-spacing:.25em;color:var(--gold)}
+.advl{font-size:13px;line-height:1.45;color:#e4e6f2;padding-left:10px;border-left:3px solid var(--line)}
+.advl.k-intel{border-color:var(--red)} .advl.k-def{border-color:var(--cyan)} .advl.k-go{border-color:var(--green)}
+.advl.k-warn{border-color:#ff8a1f;color:#ffd7b0} .advl.k-plan{border-color:var(--violet)} .advl.k-combo{border-color:var(--gold)}
+.advorder{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:2px;font-size:12px}
+.advorder span{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border-radius:99px;background:rgba(255,200,61,.12);border:1px solid rgba(255,200,61,.4)}
+.advorder b{font-family:var(--num);font-weight:400;color:var(--gold)} .advorder i{font-style:normal;color:var(--muted)}
+#hand .card.adv{box-shadow:0 0 0 3px var(--gold),0 0 22px rgba(255,200,61,.6),0 10px 24px rgba(0,0,0,.55)}
+#hand .card.adv1{animation:advpulse 1s infinite}
+@keyframes advpulse{50%{box-shadow:0 0 0 4px #fff3c4,0 0 34px rgba(255,200,61,.9),0 10px 24px rgba(0,0,0,.55)}}
+#hand .card.adv::after{content:attr(data-step);position:absolute;right:-6px;top:-8px;z-index:4;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:16px;background:var(--gold);color:#2a1a00;box-shadow:0 2px 8px #000a}
+@media (max-width:640px){ .advisor{padding:7px 9px} .advl{font-size:11.5px} .advface{width:30px;height:30px} }
 body.freeze *{animation-play-state:paused!important}
 
 @media (max-width:640px){
@@ -465,6 +483,7 @@ body.freeze *{animation-play-state:paused!important}
           <div class="pollnext" id="pollnext"></div>
           <div class="forecast" id="forecast"></div>
           <div class="ticker" id="ticker"></div>
+          <div class="advisor" id="advisor" hidden></div>
         </div>
         <div id="combo"><div class="x">×1</div><div class="l">連擊</div></div>
       </div>
@@ -474,6 +493,7 @@ body.freeze *{animation-play-state:paused!important}
         <div class="mebar" style="margin-top:6px">
           <div class="funds" id="funds"></div>
           <div class="row" style="flex-wrap:nowrap;gap:8px">
+            <button class="advbtn" id="btnAdv" aria-pressed="true">軍師</button>
             <button class="iconbtn" id="btnPause" aria-label="暫停選單">Ⅱ</button>
             <button class="iconbtn" id="btnMute2" aria-label="切換音效">♪</button>
             <button class="endturn" id="btnEnd">結束回合</button>
@@ -1098,7 +1118,7 @@ async function startBattle(){
      op:newSide('op',st.name,st.img,st.g,st.deck)};
   B.op.buzz=st.startBuzz+5; B.me.buzz=4;
   B.mod=RUN.stage===0?MODS[MODS.length-1]:RUN.mods[RUN.stage];
-  show('game'); MUS.mood='game'; BGM.play('battle');
+  P.length=0; show('game'); MUS.mood='game'; BGM.play('battle');
   draw(B.me,4); draw(B.op,4);
   renderAll();
   await myPhase(true);
@@ -1117,7 +1137,7 @@ async function myPhase(first=false){
   await resolveFires();
   B.busy=false; $('#btnEnd').disabled=false; updateEndGlow();
 }
-function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds); $('#btnEnd').classList.toggle('glow',!any); }
+function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds); $('#btnEnd').classList.toggle('glow',!any); updateAdvice(); }
 async function unitTicks(s,o){
   const A=api(s,o); B.curType='unit';
   for(const u of s.units.slice()){
@@ -1181,7 +1201,7 @@ async function playerPlay(idx,el){
   if(!B||B.dead||B.busy||B.turnOwner!=='me') return;
   const id=B.me.hand[idx]; if(!id) return;
   if(CARDS[id].c>B.me.funds){ SFX.bad(); el.animate([{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'none'}],{duration:200}); ticker('資金不夠，下週再出這張。'); return; }
-  B.busy=true; $('#btnEnd').disabled=true;
+  B.busy=true; $('#btnEnd').disabled=true; updateAdvice();
   if(tutActive() && TUT[TUT_I].wait){ $('#coach').hidden=true; }
   await playCard(B.me,B.op,idx,el);
   B.busy=false; $('#btnEnd').disabled=false; updateEndGlow();
@@ -1189,7 +1209,7 @@ async function playerPlay(idx,el){
 }
 async function endTurn(){
   if(!B||B.dead||B.busy||B.turnOwner!=='me') return; if(tutActive()) tutEnd(); SFX.click();
-  B.busy=true; $('#btnEnd').disabled=true; $('#btnEnd').classList.remove('glow');
+  B.busy=true; $('#btnEnd').disabled=true; $('#btnEnd').classList.remove('glow'); updateAdvice();
   const myB=B; const alive=()=>B===myB&&!myB.dead;
   await opPhase(); if(!alive()) return;
   const st=STAGES[RUN.stage];
@@ -1569,6 +1589,107 @@ function pauseMenu(){
   $('#pzRe').onclick=()=>ask('這一關的進度會清掉，用同一副牌重新開打。',()=>{ SFX.click(); pb.hidden=true; killBattle(); startBattle(); });
   $('#pzQuit').onclick=()=>ask('放棄這次選戰？這局不會計分，已經拿到的政治獻金會保留。',()=>{ SFX.click(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); });
 }
+/* =========================================================
+   ADVISOR — explains opponent intent and recommends a play order
+   ========================================================= */
+const ADV={press:{dmg:4,gain:1,back:1},deepfake:{dmg:6,back:2.5},trolls:{dmg:3,back:1,multi:3},oldphoto:{dmg:2,draw:1},
+  pundit:{unit:{gain:2}},farm:{unit:{dmg:1}},sidekick:{unit:{side:1}},talkshow:{unit:{gain:2,dmg:1}},
+  street:{gain:2,back:-1},temple:{gain:3,votes:2},bento:{votes:3,back:2},influencer:{gain:5},poll:{pollx:1,back:1},
+  clarify:{shield:4,back:-1},factcheck:{destroy:1,opBack:2},apology:{back:-3},blame:{blame:1},lastnight:{last:1},n_cash:{votes:4},n_bot:{opBack:3},
+  b_qa:{dodge:2},b_script:{atk:2,gain:2},b_baoli:{baoli:1},b_wei:{dmg:4,back:-1},b_harvard:{gain:5,back:.8},b_oldpost:{dmg:5,back:1},
+  b_hen:{unit:{gain:2,votes:1}},b_fake:{fake:1},g_tide:{unit:{gain:3,tide:1}},g_chair:{dmg:6,gain:-.8},g_english:{gain:3,funds:1},
+  g_anytime:{dmg:3,pierce:1},g_wanted:{gain:5,back:-2},g_bear:{unit:{gain:1,shield:2}},g_airport:{dmg:4,opBack:1},g_haircut:{gain:4}};
+const BIG_HIT=id=>(ADV[id]&&ADV[id].dmg>=4&&!ADV[id].multi)||id==='b_fake';
+let ADV_ON=LOCAL.adv!==false;
+function settleSoon(){ const st=STAGES[RUN.stage]; return B.week%2===0||B.week===st.weeks; }
+function incoming(){
+  let hits=[], dmgSum=0, units=[], votes=0, myBackUp=0;
+  (B.intent||[]).forEach(id=>{ const a=ADV[id]||{}; const c=CARDS[id];
+    if(a.dmg){ const n=a.multi||1, per=a.multi?1:a.dmg; for(let k=0;k<n;k++) hits.push(per); dmgSum+=a.dmg; }
+    if(a.fake){ const d=Math.max(3,Math.round(B.me.buzz*.4)); hits.push(d); dmgSum+=d; }
+    if(c.unit) units.push(id); if(a.votes) votes+=a.votes; if(a.last) votes+=Math.max(0,B.op.buzz-B.op.backlash)*2;
+    if(a.blame) myBackUp+=Math.min(3,B.op.backlash); if(a.opBack) myBackUp+=a.opBack; });
+  return {hits:hits.sort((x,y)=>y-x),dmgSum,units,votes,myBackUp}; }
+function cardValue(id,st){
+  const a=ADV[id]||{}, me=st.me, op=st.op, inc=st.inc, fire=FIRE(), soon=settleSoon(); let v=0;
+  const mult=1+.2*st.combo*(st.tide?2:1);
+  if(a.gain) v+=a.gain*mult*(soon?1:.85);
+  if(a.votes) v+=a.votes+((B.mod&&B.mod.votes)||0);
+  if(a.dmg||a.fake){ let d=a.fake?Math.max(3,Math.round(op.buzz*.4)):(a.dmg+st.atk*(a.multi||1))*mult;
+    if(op.dodge>0&&!a.pierce){ const blocked=Math.min(op.dodge,a.multi||1); d=a.multi?d*(1-blocked/a.multi):0; }
+    const shield=a.pierce?0:op.shield; d=Math.max(0,d-shield); v+=Math.min(d,op.buzz+(soon?0:2)); if(a.pierce&&(op.shield||op.dodge)) v+=op.shield+op.dodge*3; }
+  if(a.back>0){ v-=a.back; if(me.backlash+a.back>=fire) v-=me.buzz/2+5; }
+  if(a.back<0) v+=Math.min(-a.back,me.backlash)*(soon?1:.7);
+  if(a.opBack){ v+=a.opBack; if(op.backlash<fire&&op.backlash+a.opBack>=fire) v+=op.buzz/2+6; }
+  if(a.shield) v+=Math.min(a.shield, inc.dmgSum+1);
+  if(a.dodge&&me.dodge===0) v+=inc.hits.slice(0,2).reduce((x,y)=>x+y,0)*1.1+.5;
+  if(a.unit){ const u=a.unit; v+=((u.gain||0)+(u.votes||0)+(u.dmg||0)*.8+(u.shield||0)*.6+(u.side?1.2:0))*3*(soon?.75:1); if(u.tide) v+=3; if(me.units.length>=4) v-=3; }
+  if(a.destroy){ if(op.units.length){ const best=op.units.reduce((m,u)=>CARDS[u.id].c>CARDS[m.id].c?u:m); v+=CARDS[best.id].c*1.6+(best.life||2); } v+=2; }
+  if(a.blame) v+=Math.min(3,me.backlash)*2;
+  if(a.baoli) v+=me.backlash*2*(soon?1:.8)+.5;
+  if(a.pollx) v+=Math.max(1,me.buzz*.5)*mult;
+  if(a.last) v+=Math.max(0,me.buzz-me.backlash)*2-1;
+  if(a.atk) v+=st.smearsLeft*2;
+  if(a.funds) v+=1.5;
+  if(a.draw) v+=1;
+  return v; }
+function applySim(id,st){ const a=ADV[id]||{}, c=CARDS[id]; st.funds-=c.c; st.combo++;
+  const mult=1+.2*(st.combo-1);
+  if(a.gain) st.me.buzz=Math.max(0,st.me.buzz+a.gain*mult); if(a.back) st.me.backlash=Math.max(0,st.me.backlash+a.back);
+  if(a.dmg){ let d=(a.dmg+st.atk)*mult; if(st.op.dodge>0){ st.op.dodge--; d=0; } d=Math.max(0,d-st.op.shield); st.op.shield=0; st.op.buzz=Math.max(0,st.op.buzz-d); }
+  if(a.opBack) st.op.backlash+=a.opBack; if(a.shield) st.me.shield+=a.shield; if(a.dodge) st.me.dodge+=a.dodge; if(a.atk) st.atk+=a.atk;
+  if(a.baoli){ st.me.buzz+=st.me.backlash; st.me.backlash=0; } if(a.blame){ const n=Math.min(3,st.me.backlash); st.me.backlash-=n; st.op.backlash+=n; }
+  if(a.pierce){ st.op.shield=0; st.op.dodge=0; } if(a.destroy&&st.op.units.length) st.op.units=st.op.units.slice(1);
+  if(c.unit) st.me.units=[...st.me.units,{id}]; if(id==='g_tide') st.tide=true; if(a.dmg) st.smearsLeft=Math.max(0,st.smearsLeft-1); }
+function planAdvice(){
+  const hand=B.me.hand.slice(); const inc=incoming();
+  const st={funds:B.me.funds,combo:B.combo,atk:B.me.atkBuff||0,tide:B.me.units.some(u=>u.id==='g_tide'),inc,
+    me:{buzz:B.me.buzz,backlash:B.me.backlash,shield:B.me.shield,dodge:B.me.dodge,units:B.me.units.slice()},
+    op:{buzz:B.op.buzz,backlash:B.op.backlash,shield:B.op.shield,dodge:B.op.dodge,units:B.op.units.slice()},
+    smearsLeft:hand.filter(id=>ADV[id]&&ADV[id].dmg).length};
+  const picks=[]; const left=hand.slice();
+  for(let g=0;g<8;g++){ let best=-1,bv=.4;
+    left.forEach((id,i)=>{ if(CARDS[id].c>st.funds) return; const eff=cardValue(id,st)/Math.max(1,CARDS[id].c*.55+.45); if(eff>bv){ bv=eff; best=i; } });
+    if(best<0) break; const id=left.splice(best,1)[0]; picks.push(id); applySim(id,st); }
+  const boosted=id=>{ const a=ADV[id]||{}; return !!(a.gain||a.dmg||a.fake||a.pollx); };
+  const base=id=>{ const a=ADV[id]||{}; return (a.gain||0)+(a.dmg||0)*(a.multi||1)+(a.fake?4:0); };
+  const order=[...picks.filter(id=>id==='b_script'||!boosted(id)), ...picks.filter(id=>id!=='b_script'&&boosted(id)).sort((x,y)=>base(x)-base(y))];
+  return {order,inc}; }
+function adviceLines(order,inc){
+  const L=[], fire=FIRE(), me=B.me, op=B.op, has=id=>order.includes(id), name=id=>CARDS[id].n;
+  if(!(B.intent||[]).length) L.push({k:'intel',t:'看不到對手明確的計畫，他可能牌不夠，或在囤大招。'});
+  else { const parts=[]; if(inc.dmgSum) parts.push(`抹黑約 −${Math.round(inc.dmgSum)} 聲量`); if(inc.units.length) parts.push('放暗樁'); if(inc.votes) parts.push(`直接拉 ${Math.round(inc.votes)} 票`); if(inc.myBackUp) parts.push(`讓你反感 +${inc.myBackUp}`);
+    L.push({k:'intel',t:`對手準備：${(B.intent||[]).map(name).join('、')}${parts.length?'。預計 '+parts.join('、'):''}。`}); }
+  if(me.backlash>=fire-2&&me.backlash<fire) L.push({k:'warn',t:`你的反感 ${me.backlash}，離炎上只差 ${fire-me.backlash}！先洗反感${has('b_baoli')?'（寶立答B 最划算）':has('apology')?'（道歉影片）':has('blame')?'（甩鍋）':''}，抹黑先停手。`});
+  if(op.backlash>=fire-3&&op.backlash<fire&&(has('n_bot')||has('factcheck')||has('g_airport'))) L.push({k:'go',t:`對手反感 ${op.backlash}，再推 ${fire-op.backlash} 點就炎上、聲量腰斬。用${has('n_bot')?'指控機器人洗版':has('factcheck')?'檢舉查核':'松機遷移'}推他一把！`});
+  if(inc.hits.length){ const big=(B.intent||[]).filter(BIG_HIT);
+    if(has('b_qa')&&big.length) L.push({k:'def',t:`對手要出「${name(big[0])}」這種重擊，先打問A答BCD，整發閃掉（連會心一擊都擋）。`});
+    else if(has('clarify')) L.push({k:'def',t:`對手會抹黑約 ${Math.round(inc.dmgSum)} 點，先開澄清記者會（護盾 +4）。${(B.intent||[]).includes('trolls')?'網軍是連打，護盾比閃避划算。':''}`});
+    else if(me.dodge||me.shield) L.push({k:'def',t:`你已經有${me.dodge?'答非所問':'護盾'}，這回合可以放心進攻。`}); }
+  const opDef=(B.intent||[]).filter(id=>['b_qa','clarify','g_bear'].includes(id));
+  if(opDef.length) L.push({k:'go',t:`對手準備開「${name(opDef[0])}」防守，但要到他的回合才生效。趁現在先抹黑，下回合再打就會被擋。`});
+  if(inc.units.length&&!has('factcheck')) L.push({k:'plan',t:`對手要放「${name(inc.units[0])}」，有檢舉查核的話留到下回合抓掉它。`});
+  if(op.units.length&&has('factcheck')) L.push({k:'go',t:'對手場上有暗樁，檢舉查核會抓掉費用最高的那個，還讓他反感 +2。'});
+  if((op.shield||op.dodge)&&has('g_anytime')) L.push({k:'go',t:'對手有護盾或答非所問，隨時可辯可以一次全部戳破再進攻。'});
+  if((B.intent||[]).includes('lastnight')) L.push({k:'warn',t:'對手要開「選前一夜」，會把（聲量−反感）×2 直接變票！現在壓他的聲量、拉高他的反感最有效。'});
+  if(settleSoon()) L.push({k:'plan',t:`這週結束就民調結算。${me.backlash>=2?`你的反感 ${me.backlash} 會直接扣票，${has('b_baoli')?'寶立答B 能把它全部變成聲量。':has('blame')?'甩鍋能一進一出差 6 票。':has('apology')?'道歉影片先洗掉。':'能洗就先洗。'}`:'聲量會直接換成票，盡量衝高、守住。'}`});
+  else if(order.some(id=>CARDS[id].unit)) L.push({k:'plan',t:'下週才結算，這週適合先放暗樁累積，之後每回合自動加分。'});
+  if(order.length>=3) L.push({k:'combo',t:`照順序出能疊連擊：便宜和不吃加成的先出，最大的「${name(order[order.length-1])}」留到最後（×${(1+.2*(order.length-1)).toFixed(1)}）。`});
+  if(order.includes('b_script')) L.push({k:'combo',t:'講稿機的攻擊 +2 是每一下都加，先打它再接抹黑。'});
+  if(!order.length) L.push({k:'plan',t:'這回合沒有划算的牌，直接結束回合把資金留給下週。'});
+  return L.slice(0,4); }
+function updateAdvice(){
+  const box=$('#advisor'); if(!box) return; document.querySelectorAll('#hand .card').forEach(c=>{ c.classList.remove('adv','adv1'); delete c.dataset.step; });
+  if(!ADV_ON||!B||B.dead||B.turnOwner!=='me'||B.busy){ box.hidden=true; return; }
+  const {order,inc}=planAdvice(); const lines=adviceLines(order,inc);
+  box.hidden=false;
+  box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advtitle">軍師建議</div>${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}
+    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span><b>${i+1}</b>${CARDS[id].n}</span>`).join('<i>→</i>')}</div>`:''}</div>`;
+  box.querySelectorAll('.advl').forEach((el,i)=>el.textContent=lines[i].t);
+  const cards=[...document.querySelectorAll('#hand .card')], used=new Set();
+  order.forEach((id,i)=>{ const idx=B.me.hand.findIndex((h,j)=>h===id&&!used.has(j)); if(idx>=0){ used.add(idx); const el=cards[idx]; if(el){ el.classList.add('adv'); el.dataset.step=i+1; if(i===0) el.classList.add('adv1'); } } });
+}
+function setAdv(on){ ADV_ON=on; LOCAL.adv=on; saveLocal(); const b=$('#btnAdv'); b.setAttribute('aria-pressed',on?'true':'false'); b.classList.toggle('on',on); updateAdvice(); }
 function lbScreen(){
   const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">全台操盤手</div><h3>排行榜</h3><div class="lb" id="lbList"></div><button class="ghost" id="btnClose">關閉</button></div>`;
@@ -1600,6 +1721,7 @@ const TUT=[
   {sel:'#funds',t:'資金',d:'每回合的出牌預算，一週比一週多。卡牌左上角的金色數字就是費用。'},
   {sel:'#hand',t:'你的手牌',d:'紅框抹黑、金框造勢、藍框防禦、紫框暗樁。有「必殺」標籤的是陣營招式，打出來有必殺技演出。'},
   {sel:'#hand',t:'連擊',d:'同一回合連續出牌會觸發連擊，效果越疊越強。現在點一張亮著的牌，打出去試試！',wait:true},
+  {sel:'#btnAdv',t:'軍師模式',d:'不知道該出什麼？打開軍師，它會分析對手意圖、告訴你該怎麼應對，還會在手牌標出建議的出牌順序。'},
   {sel:'#btnEnd',t:'結束回合',d:'錢花完就按這裡，換對手出招。撐到 11/28 投票日，得票多的人勝選。祝你操盤順利！'},
 ];
 let TUT_I=-1, TUT_FORCE=false;
@@ -1644,6 +1766,8 @@ renderMeta();
 $('#btnMute1').onclick=toggleMute; $('#btnMute2').onclick=toggleMute;
 $('#btnEnd').onclick=endTurn;
 $('#btnPause').onclick=pauseMenu;
+$('#btnAdv').onclick=()=>{ SFX.click(); setAdv(!ADV_ON); toast(ADV_ON?'軍師模式：開啟':'軍師模式：關閉'); };
+setAdv(ADV_ON);
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&!$('#screen-game').hidden&&$('#viewer').hidden){ const pb=$('#pausebox'); if(pb.hidden) pauseMenu(); else pb.hidden=true; } });
 document.addEventListener('pointerdown',()=>{ if(AU.ctx&&AU.ctx.state==='suspended') AU.ctx.resume(); });
 </script>
