@@ -1,0 +1,6 @@
+.DS_Store
+assets/raw/
+assets/raw_chibi/
+*.bak.html
+prompts/log_*.txt
+qa/codex_log.txt

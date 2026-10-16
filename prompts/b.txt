@@ -1,0 +1,10 @@
+You are generating card art for a satirical card game about behind-the-scenes political spin doctors.
+STYLE (apply to every image): high-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags or party symbols anywhere in the image. All characters are fictional and generic — do not resemble any real politician.
+HOW TO WORK: Generate images ONLY with your built-in image generation tool (no API, no python image libs). You MAY use normal shell/file commands to copy files. After EACH image is generated, immediately copy that newest file from ~/.codex/generated_images/ (your own current session folder only) into ./assets/raw/ with the exact filename given, then verify it exists with ls -la before generating the next one. Never copy files from other session folders. Finish by listing ./assets/raw/.
+Images:
+1. c05_pundit.png — a smug TV pundit chibi figure in a talk-show chair pointing aggressively, studio lights, multiple TV cameras.
+2. c06_farm.png — a server rack farm of hundreds of identical smartphones on shelves, all screens glowing with faceless avatar silhouettes, cables everywhere.
+3. c07_sidekick.png — a cute but sinister masked sidekick character holding a giant megaphone, standing in front of a wall of social media post cards (no text).
+4. c08_talkshow.png — a chaotic political TV talk show set, four chibi guests shouting at each other, desk slamming, dramatic red lighting.
+5. c09_street.png — an over-enthusiastic chibi candidate in a sash bowing deeply to shake hands with a grandma at a night market, lanterns.
+6. c10_temple.png — a festive Taiwanese temple procession with firecrackers and smoke, a chibi candidate carrying incense, colorful deity palanquin (no characters writing).

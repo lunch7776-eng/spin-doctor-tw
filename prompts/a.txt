@@ -1,0 +1,10 @@
+You are generating card art for a satirical card game about behind-the-scenes political spin doctors.
+STYLE (apply to every image): high-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags or party symbols anywhere in the image. All characters are fictional and generic — do not resemble any real politician.
+HOW TO WORK: Generate images ONLY with your built-in image generation tool (no API, no python image libs). You MAY use normal shell/file commands to copy files. After EACH image is generated, immediately copy that newest file from ~/.codex/generated_images/ (your own current session folder only) into ./assets/raw/ with the exact filename given, then verify it exists with ls -la before generating the next one. Never copy files from other session folders. Finish by listing ./assets/raw/.
+Images:
+1. back.png — card back design: ornate gold-and-crimson emblem of a puppet-master hand holding marionette strings over a tiny ballot box, symmetrical, luxurious 3D embossed metal and enamel.
+2. table.png — wide game table background (still square ok): a dark smoky war-room desk seen from above, scattered newspapers without readable text, glowing monitors, red string conspiracy board, moody teal and orange light.
+3. c01_press.png — a sly spin-doctor in a suit slamming a thick secret dossier folder onto a podium crowded with microphones, camera flashes exploding.
+4. c02_deepfake.png — a glowing hologram face being digitally swapped on a laptop screen, glitch effects, a hooded hacker figure grinning in front.
+5. c03_trolls.png — an army of identical tiny chibi keyboard warriors each typing furiously on phones, angry comment-bubble shapes (no text) flying out.
+6. c04_oldphoto.png — a dusty old photo album pulled from a cardboard box, an embarrassing blurry old photo glowing with a spotlight, magnifying glass.

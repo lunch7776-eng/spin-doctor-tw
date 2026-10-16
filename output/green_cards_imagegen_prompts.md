@@ -1,0 +1,59 @@
+# Green card illustrations — generation prompts
+
+Generated with the built-in image generation tool only. Session: 01a14384-0135-7be1-a56c-4b009be1527a.
+
+Each generated image was immediately copied from this session into assets/raw/ and verified with ls -la before the next generation.
+
+## g_wanted.png
+
+Use case: stylized-concept. Generate exactly ONE standalone square image for a satirical card game set around a fictional Taipei mayoral race. No card border or graphic overlay.
+STYLE: High-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems or symbols anywhere. Fictional cartoon caricatures, never photorealistic portraits of any real person.
+CHARACTER: GREEN CANDIDATE: a fictional chibi scholar-legislator with short neat black hair, thin rectangular glasses, calm determined expression, charcoal suit, green tie, green color theme. Consistent cute round face, thick neat black eyebrows, small nose, clean-shaven, oversized head, tiny body.
+SCENE: The GREEN CANDIDATE proudly holding up an old-west style wanted poster with his OWN matching cartoon face painted on it, wearing the poster from a plain cord around his neck like a medal of honor. Both small hands proudly display the poster's sides in front of his torso, chin raised with understated comic pride. Preserve his thin rectangular glasses and visible green tie above the poster.
+POSTER: aged warm tan parchment, softly curled weathered edges, an old-fashioned sepia portrait illustration of exactly the same bespectacled chibi face in its center. Only this face illustration on the paper. The spaces above and below the portrait are completely blank, no title, no reward, no fake writing, no line-like text, no stamps, no stars or insignia, no numbers. The parchment itself and sepia portrait communicate the western wanted-poster idea without any typography.
+LIGHTING: dramatic red light from one side with polished rim highlights; green color accents on the character; dark charcoal gradient with subtle bokeh.
+COMPOSITION: full chibi character centered, feet visible, poster entirely visible and readable as a visual prop, clear silhouette, premium collectible toy product art. All surfaces of clothing and props unmarked. No symbols anywhere.
+
+## g_haircut.png
+
+Use case: stylized-concept, identity-preserving scene variation.
+Create ONE square card illustration by transforming the attached character into a new scene. Use the attached image solely as a precise character and material reference. Preserve exactly the fictional bespectacled green candidate's face, facial proportions, neat thick brows, small nose, big brown eyes, thin rectangular dark glasses, charcoal suit, green tie and chibi body. Replace the entire pose, props, lighting and setting.
+STYLE: High-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems or symbols anywhere. Fictional cartoon caricatures, never photorealistic portraits of any real person.
+CHARACTER: GREEN CANDIDATE: a fictional chibi scholar-legislator with short neat black hair, thin rectangular glasses, calm determined expression, charcoal suit, green tie, green color theme. Consistent cute round face, thick neat black eyebrows, small nose, clean-shaven, oversized head, tiny body.
+NEW SCENE: The GREEN CANDIDATE with a freshly cut trendy SHORT Korean hairstyle: clean tapered sides, short neatly sculpted black top and a subtle fashionable part. He poses like a K-drama heartthrob, one hand lightly smoothing the fresh hair and the other resting naturally at his lapel, with calm confident charm and a gently tilted head. A clearly recognizable classic barber chair sits immediately behind him: glossy dark upholstery, chrome armrests and round pedestal foot. Pink flower petals drift around the figure, with small shimmering points of light and natural lens glints. Sparkles must be optical light reflections, NOT drawn star symbols.
+COMPOSITION: centered full-body character with the barber chair readable behind, generous clean silhouette, square 1:1. Simple dark plum-to-charcoal gradient background with subtle soft pink and green bokeh. Dramatic cinematic pink and green rim lighting, saturated yet premium collectible toy finish.
+CRITICAL: Completely remove the poster, parchment, rope and red lighting from reference. No additional people. Absolutely NO text, letters, numbers, logos, flags, party emblems or symbols anywhere; chair and clothing completely unmarked. Fictional cartoon caricature, not a real person's portrait.
+
+## g_bear.png
+
+Use case: stylized-concept. Generate exactly ONE standalone square illustration for the same satirical fictional Taipei mayoral race card game. No card border.
+STYLE: High-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems or symbols anywhere. Fictional cartoon caricatures, never photorealistic portraits of any real person.
+SCENE: A compact group of four adorable chibi adult civilian volunteers wearing plain saturated GREEN training T-shirts and charcoal pants, learning first aid and civilian defense drills under a big friendly BLACK BEAR mascot coach. The bear is the clear central leading figure, larger and taller than the humans, made of glossy black vinyl with soft clay facial shapes, rounded ears, little warm brown muzzle, expressive friendly eyes, a cheerful encouraging smile. A simple plain metal coach whistle hangs visibly at its chest from a green lanyard. Bear has completely plain black chest, no white chest marking, emblem, pattern, badge or uniform insignia.
+A clearly readable pair of civilians in the foreground practice wrapping a simple white bandage around a partner's forearm, beside an open plain green kit containing rolled white bandages. No medical cross or markings on the kit. The other pair on the opposite side practice a light, nonviolent defensive stance with raised open palms, guided by the coach's outstretched paw. No injury, no blood. Warm humorous community practice energy.
+COMPOSITION: centered compact tabletop collectible-toy diorama, friendly bear in middle slightly behind the shorter volunteers, all heads and bodies readable, no clutter. The first-aid pair and defensive-stance pair are visually distinct activities. High-end Pixar-like chibi render with oversized heads and tiny bodies, tactile soft-clay and shiny vinyl, polished cinematic green and amber rim lighting, saturated emerald clothing. Simple dark charcoal-to-deep-green gradient background with subtle bokeh.
+ABSOLUTELY NO text, letters, digits, logos, flags, political emblems, symbols, medical crosses, stars, badges, labels or watermark anywhere, including whistle, kit, shirts and bear chest. Only plain unmarked surfaces. Fictional cartoon humans and an invented generic bear mascot.
+
+## g_airport.png
+
+Use case: stylized-concept, identity-preserving scene variation.
+Create ONE square card illustration by transforming the attached character into a completely new scene. Use the attached image ONLY as precise character and material reference. Preserve exactly the same fictional green candidate's face, head proportions, neat short black hair, thick brows, big brown eyes, small nose, thin rectangular dark glasses, charcoal suit, white shirt, green tie and chibi body. Replace the entire pose, props, lighting and setting.
+STYLE: High-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems or symbols anywhere. Fictional cartoon caricatures, never photorealistic portraits of any real person.
+CHARACTER: GREEN CANDIDATE: a fictional chibi scholar-legislator with short neat black hair, thin rectangular glasses, calm determined expression, charcoal suit, green tie, green color theme. Consistent cute round face, thick neat black eyebrows, small nose, clean-shaven, oversized head, tiny body.
+NEW SCENE: The GREEN CANDIDATE confidently points at a miniature SMALL AIRPORT while a comically GIANT CRANE lifts a small passenger jet completely off the airport and carries it away. His index finger points clearly toward this airport relocation spectacle; his other arm is relaxed. Satirical political comedy through charming absurd scale. Candidate remains visually central in the foreground, with the compact airport diorama visible beside him and behind his pointing arm.
+AIRPORT: small low terminal building, simple toy control tower, plain dark tarmac, compact runway without ANY numbers or painted symbols. The white toy passenger jet is fully in the air, held securely by two plain lifting straps that connect to a clearly visible hook and vertical cable from the crane boom above. Crane base and long boom visible, obviously lifting the plane rather than aircraft flying on its own. Warm yellow-orange construction crane has completely blank surfaces: no branding, stripes, labels or signs.
+BACKGROUND: small stylized Taipei-like city skyline behind the airport, simplified building forms fading into a simple dark gradient with subtle bokeh. No building signs or flags. No additional people. Keep the skyline secondary and uncluttered, not a detailed city panorama.
+COMPOSITION: square 1:1, the candidate and airport-crane scene together form a centered premium collectible toy diorama with margins. Entire jet, hook and suspension straps clearly readable. Glossy plastic and soft-clay materials, cinematic green and warm amber rim lighting, saturated color, gentle depth of field.
+CRITICAL: REMOVE poster, parchment, rope necklace and red lighting from reference. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems, medical crosses, star symbols, arrows, signage, insignia or watermark anywhere. Aircraft tail, fuselage, runway, crane and buildings must be completely unmarked. Fictional cartoon caricature, not a real person's portrait.
+
+## g_airport.png — final targeted correction
+
+Edit this illustration with exactly ONE targeted correction: remove the black diagonal hazard stripes on the small yellow hanging crane pulley block near the top center-right (immediately above the hook and below the crane's vertical cables). Make that entire pulley block a plain solid unmarked golden-yellow painted surface, with realistic shading and its existing mechanical shape. There must be no stripes, icons, markings, letters, logos or symbols on it. Preserve absolutely everything else exactly: same green candidate face and glasses, pose and charcoal suit and green tie, same plane, suspension straps, crane, small airport, city skyline, lighting, framing, 1:1 dimensions, glossy chibi collectible 3D style. Do not add anything. No text, numbers, logos, flags, emblems or symbols anywhere.
+
+## Final saved files
+
+- assets/raw/g_wanted.png — 1887949 bytes
+- assets/raw/g_haircut.png — 2050552 bytes
+- assets/raw/g_bear.png — 2430118 bytes
+- assets/raw/g_airport.png — 2066567 bytes
+
+All four files: PNG, 1254 × 1254 pixels.

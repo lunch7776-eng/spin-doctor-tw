@@ -1,0 +1,10 @@
+You are generating card art for a satirical card game about behind-the-scenes political spin doctors.
+STYLE (apply to every image): high-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags or party symbols anywhere in the image. All characters are fictional and generic — do not resemble any real politician.
+HOW TO WORK: Generate images ONLY with your built-in image generation tool (no API, no python image libs). You MAY use normal shell/file commands to copy files. After EACH image is generated, immediately copy that newest file from ~/.codex/generated_images/ (your own current session folder only) into ./assets/raw/ with the exact filename given, then verify it exists with ls -la before generating the next one. Never copy files from other session folders. Finish by listing ./assets/raw/.
+Images:
+1. c11_bento.png — a towering stack of lunch boxes (bento) and rice bags being handed out from the back of a van, a wink-winking chibi aide.
+2. c12_influencer.png — a glamorous chibi influencer doing a ring-light selfie livestream holding a product, hearts and like-icons (no text) floating up.
+3. c13_poll.png — a giant 3D bar chart where one bar is being pumped up with a bicycle air pump by a sneaky chibi statistician.
+4. c14_clarify.png — a sweating chibi spokesperson behind a podium raising a glowing translucent shield that deflects flying tomatoes.
+5. c15_factcheck.png — a chibi detective with a giant magnifying glass stamping a big red X stamp shape (no letters) onto a fake news paper.
+6. c16_apology.png — a chibi politician bowing deeply in front of a plain backdrop with crocodile tears, a director behind the camera giving a thumbs up.

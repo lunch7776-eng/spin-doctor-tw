@@ -1,0 +1,35 @@
+你是獨立 QA 審查員。你只看實物（檔案、實跑結果），不看任何人對實物的描述。
+
+【背景】
+這是一個單機網頁卡牌遊戲「幕後操盤手」（台灣選舉政治諷刺）。整個遊戲是單一檔案 game/index.html（HTML+CSS+原生 JS，無框架），圖片在 game/img/*.jpg，語音在 game/audio/v_*.mp3。
+流程：標題 → 選陣營（blue 藍藍路黨 講卍安 / green 綠嘻嘻黨 審伯羊）→ VS 畫面 → 對戰（玩家回合出牌 → 對手 AI 回合 → 每兩週民調結算）→ 開票 → 戰利品選卡 → 下一關，共 4 關（PHASES）。第一場會跑新手教學（TUT 陣列，聚光燈導覽）。
+核心資料：CARDS（每張卡 fx/ai/unit）、CAMPS、PHASES、buildStages()、api(me,op) 動作介面（hit/gain/back/votes/shield/breakShield/destroy/settleNow）、playCard、myPhase/opPhase/settle/electionNight/rewardScreen/runEnd。排行榜用 window.claude.use('db')，在本機沒有 window.claude 時要退回本機紀錄。
+
+【審查對象】game/index.html（必要時看 game/img、game/audio 檔名是否與程式引用一致）
+
+【審查基準】逐條核對：
+1. 遊戲流程會不會卡死（softlock）：B.busy 沒解除、await 永遠不 resolve、overlay 擋住無法操作、教學步驟卡住、對手 AI 無限迴圈
+2. 數值/規則錯誤：卡牌描述（d 欄位）與 fx 實際效果不一致、負數、NaN、聲量/反感/票數邊界、資金懲罰 fundPenalty、閃避 dodge、攻擊加成 atkBuff、洋流 g_tide 加成、炎上（反感≥10）處理
+3. 平衡漏洞：某張卡或組合可以無腦必勝 / 某關幾乎不可能贏（請實際用 node 模擬 AI 對打驗證，見下方）
+4. 資源引用：CARDS 的 img 與 game/img 檔案是否都存在；VOICE 會載入的 audio/v_{key}.mp3 是否都存在
+5. 安全：使用者輸入（操盤手代號、排行榜名字）有沒有被當 HTML 插入（XSS）
+6. 版面：手機寬度 375px 會不會爆版、文字被裁切（以 CSS 判讀為主）
+
+【審查動作】
+1. 親自讀 game/index.html 全文。
+2. 用 node 寫模擬器驗證規則與平衡：把 CARDS / PHASES / buildStages / api 的「數值邏輯」抽出來（可以 stub 掉所有 DOM、動畫、音效、sleep），讓兩個 AI（都用卡片的 ai() 評分貪婪出牌）各打 200 場，每關統計勝率、平均票數、最常出的卡。測試腳本只准寫在 qa/ 資料夾。
+3. 對每個發現，先嘗試自我反駁一次（「這真的是問題嗎？」），站得住才列入。
+4. 禁止修改 game/ 底下任何檔案，只回報。
+
+【驗收條件】
+- AC1：上面 6 條基準逐條有結論（✓ 通過 / ✗ 有問題 / ？無法判定）
+- AC2：每個 ✗ 附證據：game/index.html:行號 + 該行內容 ≤2 行引用 + 重現方式
+- AC3：平衡結論要附模擬數字（每關勝率），模擬腳本路徑寫出來
+
+【回報格式】（≤ 700 字，繁體中文）
+1. 總判定：PASS / FAIL
+2. 發現清單（按嚴重度排序，每條：severity + 位置 + 一句話 + 建議修法）
+3. 逐條核對表
+4. 模擬數據
+嚴重度：Critical=會卡死或資料錯亂；High=規則錯誤或明顯平衡崩壞；Low=小瑕疵。
+最後把完整回報也寫進 qa/codex_report.md。

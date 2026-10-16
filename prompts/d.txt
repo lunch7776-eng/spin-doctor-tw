@@ -1,0 +1,11 @@
+You are generating character and card art for a satirical card game about behind-the-scenes political spin doctors.
+STYLE (apply to every image): high-end 3D render, collectible vinyl-toy / Pixar-like chibi figures, glossy plastic and soft clay materials, dramatic cinematic rim lighting, saturated colors, satirical political-comedy mood, centered subject, square 1:1 composition, simple dark gradient background with subtle bokeh. ABSOLUTELY NO text, letters, numbers, logos, flags or party symbols anywhere in the image. All characters are fictional and generic — do not resemble any real politician.
+HOW TO WORK: Generate images ONLY with your built-in image generation tool (no API, no python image libs). You MAY use normal shell/file commands to copy files. After EACH image is generated, immediately copy that newest file from ~/.codex/generated_images/ (your own current session folder only) into ./assets/raw/ with the exact filename given, then verify it exists with ls -la before generating the next one. Never copy files from other session folders. Finish by listing ./assets/raw/.
+Images:
+1. c17_blame.png — a chibi politician tossing a flaming hot potato to another surprised chibi rival, motion lines.
+2. c18_lastnight.png — election eve night rally: huge crowd of glowing light sticks, fireworks, a giant stage with blazing spotlights, epic scale.
+3. p_player.png — portrait of the PLAYER: a mysterious hooded puppet-master spin doctor in a dark suit with headset, face half in shadow with glowing eyes, holding marionette strings, surrounded by monitors.
+4. p_opp1.png — portrait of a friendly old neighborhood chief uncle in a white tank top and slippers, holding a fan and a thermos, cheeky grin.
+5. p_opp2.png — portrait of a glossy young influencer-turned-city-councillor woman holding a smartphone, perfect hair, peace sign.
+6. p_opp3.png — portrait of a loud tough-guy mayoral candidate with a big cannon-shaped megaphone, square jaw, rolled-up sleeves.
+7. p_opp4.png — portrait of a mysterious presidential candidate "the grand advisor": an enigmatic figure in a long robe with a crystal ball and a golden fan, smoke swirling.

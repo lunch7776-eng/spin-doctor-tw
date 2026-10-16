@@ -1,0 +1,10 @@
+You are generating art for a satirical fighting-style card game about a Taipei mayoral election.
+ART STYLE (apply to every image, very important): bold fighting-game splash art meets political editorial caricature. Adult proportions — NOT chibi, NOT cute, NOT 3D toy. Exaggerated caricature with EXTREME, intense facial expressions (screaming, smirking, sweating, furious, smug). Heavy black ink outlines, cel shading with dramatic hatching, speed lines, impact bursts, dynamic low camera angles, high contrast lighting, gritty halftone texture, color palette of deep black, crimson and gold plus the scene accent color. Square 1:1 composition, subject fills the frame. ABSOLUTELY NO text, letters, numbers, logos, flags, party emblems or symbols. All characters are fictional caricatures, not portraits of real people.
+HOW TO WORK: Generate images ONLY with your built-in image generation tool (no API, no python image libs). You MAY use normal shell/file commands to copy files. After EACH image is generated, immediately copy that newest file from ~/.codex/generated_images/ (your own current session folder only) into ./assets/raw/ with the exact filename given (overwrite if it exists), then verify with ls -la before generating the next one. Never copy files from other session folders. Finish by listing ./assets/raw/.
+Images:
+1. c13_poll.png — a crazed statistician pumping a giant bar chart with a bicycle pump until it is about to explode, sweat flying.
+2. c14_clarify.png — a desperate spokesperson raising a glowing energy shield at a podium, deflecting a storm of flying tomatoes and eggs.
+3. c15_factcheck.png — a hard-boiled detective slamming a huge red X stamp (no letters) onto a fake newspaper, impact shockwave.
+4. c16_apology.png — a politician bowing in fake tearful apology with crocodile tears spraying, a director behind the camera giving a sly thumbs up.
+5. c17_blame.png — a politician hurling a flaming hot potato at a shocked rival, motion blur and fire trails.
+6. c18_lastnight.png — election eve mega rally: an ocean of light sticks, fireworks exploding, a candidate on stage roaring with arms spread, epic scale.
