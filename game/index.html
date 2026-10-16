@@ -447,7 +447,7 @@ const SFX = {
 const VOICE_SYS=['combo2','combo3','combo4','combo5','combo6','crit','fire','poll','win','lose','swap','lead','fight','myturn','opturn','shieldbreak','ansB','ansC','ansD','surge','backlash','count','vs','reward','zero','destroy','flip','danger'];
 const VOICE={buf:{},cur:null,curPri:0,curEnd:0,
   async load(k){ if(k in this.buf) return this.buf[k]; this.buf[k]=null;
-    try{ const r=await fetch(`audio/v_${k}.mp3`); if(!r.ok) return null; this.buf[k]=await AU.ctx.decodeAudioData(await r.arrayBuffer()); }catch(e){ this.buf[k]=null; }
+    try{ const r=await fetch(`audio/v_${k}.mp3?v=2`); if(!r.ok) return null; this.buf[k]=await AU.ctx.decodeAudioData(await r.arrayBuffer()); }catch(e){ this.buf[k]=null; }
     return this.buf[k]; },
   preload(){ [...Object.keys(CARDS),...VOICE_SYS.map(k=>'sys_'+k)].forEach(k=>this.load(k)); },
   play(k,pri=1){ if(!AU.ctx||AU.muted) return; const b=this.buf[k]; if(!b) return;
