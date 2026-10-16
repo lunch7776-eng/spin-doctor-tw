@@ -54,7 +54,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
 /* ---------- game ---------- */
-#screen-game{display:grid;grid-template-rows:auto auto 1fr auto auto;gap:6px;padding-block:8px}
+#screen-game{display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto auto;gap:6px;padding-block:8px}
 .side{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:16px;background:rgba(20,26,48,.82);border:1px solid var(--line);position:relative}
 .side.me{border-color:rgba(255,200,61,.35)}
 .portrait{width:58px;height:58px;border-radius:50%;flex:none;overflow:hidden;position:relative;background:var(--panel-2);border:3px solid var(--line);display:grid;place-items:center;font-family:var(--display);font-size:24px}
@@ -406,10 +406,16 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .cta.danger{background:linear-gradient(180deg,#ff8a9a,var(--red) 55%,#a3102a);color:#fff;box-shadow:0 5px 0 #5c0616}
 .advbtn{font-weight:900;font-size:13px;padding:0 12px;height:38px;border-radius:12px;border:1px solid var(--line);background:rgba(20,26,48,.8);color:var(--muted)}
 .advbtn.on{border-color:var(--gold);color:var(--gold);box-shadow:0 0 14px rgba(255,200,61,.35)}
-.advisor{display:flex;gap:10px;align-items:flex-start;text-align:left;max-width:min(560px,100%);background:rgba(10,13,28,.88);border:1px solid rgba(255,200,61,.45);border-radius:14px;padding:10px 12px;box-shadow:0 0 24px rgba(255,200,61,.12);animation:unitIn .35s both}
+.advisor{position:absolute;z-index:30;overflow:auto;display:flex;gap:10px;align-items:flex-start;text-align:left;background:rgba(10,13,28,.94);border:1px solid rgba(255,200,61,.45);border-radius:14px;padding:10px 12px;box-shadow:0 0 24px rgba(255,200,61,.12);animation:unitIn .35s both}
 .advface{width:40px;height:40px;border-radius:50%;overflow:hidden;flex:none;border:2px solid var(--gold);position:relative;display:grid;place-items:center;font-family:var(--display);background:var(--panel-2)}
 .advface img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.advbody{display:grid;gap:4px;min-width:0}
+.advbody{display:grid;gap:4px;min-width:0;flex:1}
+.advhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.advmin{font-size:11px;font-weight:900;padding:2px 9px;border-radius:99px;border:1px solid var(--line);background:rgba(28,36,66,.9);color:var(--muted)}
+.advlines{display:grid;gap:4px}
+.advisor.collapsed{max-height:none}
+.advisor.collapsed .advlines{display:none}
+.advisor.collapsed .advface{width:28px;height:28px}
 .advtitle{font-size:11px;font-weight:900;letter-spacing:.25em;color:var(--gold)}
 .advl{font-size:13px;line-height:1.45;color:#e4e6f2;padding-left:10px;border-left:3px solid var(--line)}
 .advl.k-intel{border-color:var(--red)} .advl.k-def{border-color:var(--cyan)} .advl.k-go{border-color:var(--green)}
@@ -421,7 +427,11 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #hand .card.adv1{animation:advpulse 1s infinite}
 @keyframes advpulse{50%{box-shadow:0 0 0 4px #fff3c4,0 0 34px rgba(255,200,61,.9),0 10px 24px rgba(0,0,0,.55)}}
 #hand .card.adv::after{content:attr(data-step);position:absolute;right:-6px;top:-8px;z-index:4;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:16px;background:var(--gold);color:#2a1a00;box-shadow:0 2px 8px #000a}
+@media (max-width:1100px){ .center{place-items:start center;padding-top:4px} }
 @media (max-width:640px){ .advisor{padding:7px 9px} .advl{font-size:11.5px} .advface{width:30px;height:30px} }
+.newsticker{display:flex;gap:10px;align-items:center;max-width:min(560px,100%);font-size:13px;padding:6px 12px;border-radius:8px;background:rgba(255,46,77,.12);border:1px solid rgba(255,46,77,.45);text-align:left}
+.newsticker b{flex:none;background:var(--red);color:#fff;font-size:11px;letter-spacing:.15em;padding:2px 8px;border-radius:4px}
+.newsticker span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 body.freeze *{animation-play-state:paused!important}
 
 @media (max-width:640px){
@@ -459,6 +469,7 @@ body.freeze *{animation-play-state:paused!important}
         <div class="row">
           <button class="cta" id="btnStart">開始操盤</button>
         </div>
+        <div class="newsticker" id="newsTicker" hidden></div>
         <div class="metaline" id="metaline"></div>
         <div class="row">
           <button class="ghost gold" id="btnPack">抽卡・黑箱包</button>
@@ -483,11 +494,11 @@ body.freeze *{animation-play-state:paused!important}
           <div class="pollnext" id="pollnext"></div>
           <div class="forecast" id="forecast"></div>
           <div class="ticker" id="ticker"></div>
-          <div class="advisor" id="advisor" hidden></div>
         </div>
         <div id="combo"><div class="x">×1</div><div class="l">連擊</div></div>
       </div>
       <div class="board" id="boardMe"></div>
+      <div class="advisor" id="advisor" hidden></div>
       <div>
         <div class="side me" id="sideMe"></div>
         <div class="mebar" style="margin-top:6px">
@@ -1133,6 +1144,7 @@ async function myPhase(first=false){
   [...document.querySelectorAll('#funds .coin')].forEach((c,i)=>{ c.animate([{transform:'scale(0) rotate(-180deg)'},{transform:'scale(1.4)'},{transform:'none'}],{duration:350,delay:i*60,fill:'backwards'}); setTimeout(()=>SFX.coin(i),i*60); });
   if(B.me.backlash>=7) setTimeout(()=>SFX.heart(),500);
   const myB=B; await unitTicks(B.me,B.op); if(B!==myB||myB.dead) return;
+  if(B.week===3){ await newsEvent(); if(B!==myB||myB.dead) return; }
   draw(B.me,first?1:2); renderAll(true); SFX.coin(4); planAI();
   await resolveFires();
   B.busy=false; $('#btnEnd').disabled=false; updateEndGlow();
@@ -1683,13 +1695,57 @@ function updateAdvice(){
   if(!ADV_ON||!B||B.dead||B.turnOwner!=='me'||B.busy){ box.hidden=true; return; }
   const {order,inc}=planAdvice(); const lines=adviceLines(order,inc);
   box.hidden=false;
-  box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advtitle">軍師建議</div>${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}
-    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span><b>${i+1}</b>${CARDS[id].n}</span>`).join('<i>→</i>')}</div>`:''}</div>`;
+  box.classList.toggle('collapsed',!!LOCAL.advMin);
+  box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advhead"><span class="advtitle">軍師建議</span><button class="advmin" id="advMin" aria-label="${LOCAL.advMin?'展開軍師建議':'收合軍師建議'}">${LOCAL.advMin?'展開':'收合'}</button></div>
+    <div class="advlines">${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}</div>
+    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span><b>${i+1}</b>${CARDS[id].n}</span>`).join('<i>→</i>')}</div>`:'<div class="advorder"><span>建議直接結束回合</span></div>'}</div>`;
+  $('#advMin').onclick=e=>{ e.stopPropagation(); LOCAL.advMin=!LOCAL.advMin; saveLocal(); SFX.click(); updateAdvice(); };
+  placeAdvisor();
   box.querySelectorAll('.advl').forEach((el,i)=>el.textContent=lines[i].t);
   const cards=[...document.querySelectorAll('#hand .card')], used=new Set();
   order.forEach((id,i)=>{ const idx=B.me.hand.findIndex((h,j)=>h===id&&!used.has(j)); if(idx>=0){ used.add(idx); const el=cards[idx]; if(el){ el.classList.add('adv'); el.dataset.step=i+1; if(i===0) el.classList.add('adv1'); } } });
 }
+function placeAdvisor(){
+  const box=$('#advisor'); if(!box||box.hidden) return;
+  const g=$('#screen-game').getBoundingClientRect(), c=$('.center').getBoundingClientRect(), h=$('.hud').getBoundingClientRect();
+  const sideW=Math.min(360,c.right-h.right-24);
+  box.style.transform='none'; box.style.bottom='auto';
+  if(sideW>=260){ // room beside the HUD
+    box.style.left='auto'; box.style.right=(g.right-c.right+8)+'px'; box.style.width=sideW+'px';
+    box.style.top=(c.top-g.top+4)+'px'; box.style.maxHeight=Math.max(60,c.height-8)+'px';
+  } else { // below the HUD, or over the whole centre row when it is tight
+    let top=h.bottom+6, room=c.bottom-top-4; if(room<90){ top=c.top+4; room=c.height-8; }
+    box.style.left=(c.left-g.left+8)+'px'; box.style.right=(g.right-c.right+8)+'px'; box.style.width='auto';
+    box.style.top=(top-g.top)+'px'; box.style.maxHeight=Math.max(48,room)+'px';
+  } }
+addEventListener('resize',()=>{ if(B&&!B.dead) placeAdvisor(); });
 function setAdv(on){ ADV_ON=on; LOCAL.adv=on; saveLocal(); const b=$('#btnAdv'); b.setAttribute('aria-pressed',on?'true':'false'); b.classList.toggle('on',on); updateAdvice(); }
+/* =========================================================
+   DAILY NEWS EVENTS — news.json is refreshed every morning
+   ========================================================= */
+let NEWS=[];
+const NEWS_TYPES=['buzz','backlash','votes','shield'], NEWS_TARGETS=['blue','green','both','leader','trailer'];
+function validNews(e){ return e&&typeof e.headline==='string'&&e.headline.length<=28&&(!e.sub||(typeof e.sub==='string'&&e.sub.length<=36))&&e.effect
+  &&NEWS_TYPES.includes(e.effect.type)&&NEWS_TARGETS.includes(e.effect.target)&&Number.isInteger(e.effect.value)&&e.effect.value!==0&&Math.abs(e.effect.value)<=5; }
+(async()=>{ try{ const r=await fetch('news.json?d='+new Date().toISOString().slice(0,10)); if(!r.ok) return; const j=await r.json();
+  NEWS=(Array.isArray(j.events)?j.events:[]).filter(validNews).slice(-30); renderNewsTicker(); }catch(e){} })();
+function renderNewsTicker(){ const t=$('#newsTicker'); if(!t||!NEWS.length) return; const e=NEWS[NEWS.length-1]; t.hidden=false; t.innerHTML='<b>今日時事</b><span></span>'; t.querySelector('span').textContent=e.headline+(e.sub?'｜'+e.sub:''); }
+function newsTargets(tg){ const campSide=c=>RUN.camp===c?B.me:B.op;
+  if(tg==='blue'||tg==='green') return [campSide(tg)]; if(tg==='both') return [B.me,B.op];
+  const lead=B.me.votes===B.op.votes?null:(B.me.votes>B.op.votes?B.me:B.op); if(!lead) return [B.me,B.op];
+  return [tg==='leader'?lead:(lead===B.me?B.op:B.me)]; }
+async function newsEvent(){
+  if(!NEWS.length||B.newsDone) return; B.newsDone=true;
+  const k=Math.min(10,NEWS.length), e=NEWS[NEWS.length-1-Math.floor(Math.random()*Math.random()*k)];
+  const ef=e.effect, label={buzz:'聲量',backlash:'反感',votes:'票數',shield:'護盾'}[ef.type];
+  const who=newsTargets(ef.target).map(s=>s===B.me?RUN.cand.cand:s.name).join('、');
+  await extra(e.headline,`${e.sub?e.sub+'｜':''}時事事件：${who} ${label} ${ef.value>0?'+':''}${ef.value}`,'時事');
+  for(const side of newsTargets(ef.target)){ const A=api(side,side===B.me?B.op:B.me), v=ef.value;
+    if(ef.type==='buzz') await A.gain(v,true);
+    else if(ef.type==='backlash') A.back(v);
+    else if(ef.type==='votes'){ if(v>0) await A.votes(v); else { side.votes=Math.max(0,side.votes+v); renderSides(); } }
+    else if(ef.type==='shield'&&v>0) A.shield(v); }
+  await resolveFires(); renderSides(); }
 function lbScreen(){
   const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">全台操盤手</div><h3>排行榜</h3><div class="lb" id="lbList"></div><button class="ghost" id="btnClose">關閉</button></div>`;
