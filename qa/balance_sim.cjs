@@ -56,6 +56,7 @@ const ctx = {
   P: [], BGM: {play: noop, rate: noop}, preloadFx: noop, playSkillVideo: async () => false,
   updateAdvice: noop, newsEvent: async () => {}, $: () => element, NEWS: [],
   applyCounterTags: noop, intentCounter: () => '', counterFor: () => ({match: () => false}),
+  icon: () => '', fxHTML: () => '', imgTag: () => '',
 };
 for (const name of ['renderAll', 'renderSides', 'renderHand', 'renderHud', 'renderFunds',
   'comboShow', 'ticker', 'banner', 'show', 'floatAt', 'burst', 'shake', 'zoomPunch',

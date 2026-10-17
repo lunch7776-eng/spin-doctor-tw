@@ -124,13 +124,13 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .card{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:manipulation}
 @media (hover:none){ .card:hover{--lift:0px;filter:none} .card.press{--lift:-14px;filter:brightness(1.15)} }
 #hand .card.ctr{box-shadow:0 0 0 3px #16e0a0,0 0 18px rgba(22,224,160,.55),0 10px 24px rgba(0,0,0,.55)}
-#hand .card .ctag{position:absolute;left:-5px;top:40px;writing-mode:vertical-rl;letter-spacing:.08em;z-index:4;font-size:12px;font-weight:900;padding:7px 2px;border-radius:99px;background:#16e0a0;color:#03140d;white-space:nowrap;box-shadow:0 2px 8px #000a;pointer-events:none}
+#hand .card .ctag{position:absolute;left:-7px;top:38px;z-index:4;width:28px;height:28px;display:grid;place-items:center;font-size:17px;border-radius:50%;border:2px solid #03140d;background:#16e0a0;color:#03140d;white-space:nowrap;box-shadow:0 2px 8px #000a;pointer-events:none}
 .ichip em{font-style:normal;color:#16e0a0;margin-left:6px}
 .ichip em.no{color:var(--muted)}
 #peek{position:absolute;inset:0;z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:safe center;gap:14px;padding:16px;overflow-y:auto;background:rgba(5,6,14,.82);backdrop-filter:blur(4px)}
 #peek .card.big{cursor:default;--cw:min(260px,66vw,34vh)}
 #peek .pkctr{max-width:34ch;font-size:14px;line-height:1.5;padding:8px 12px;border-radius:10px;background:rgba(22,224,160,.12);border:1px solid #16e0a0}
-#peek .pkctr b{color:#16e0a0;margin-right:8px}
+#peek .pkctr b{color:#16e0a0;margin-right:8px;display:inline-flex;gap:4px;align-items:center}
 #peek .pkbtns{display:flex;gap:10px;align-items:center}
 #peek .pkno{color:var(--muted);font-size:14px}
 .card.cant:hover{filter:grayscale(.6) brightness(.75)}
@@ -299,7 +299,28 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .ghost.on{border-color:var(--gold);background:rgba(255,200,61,.15)}
 .panel.wide{width:min(960px,100%)}
 .intent{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:22px;align-items:center}
-.intent .il{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:900}
+.intent .il{font-size:11px;letter-spacing:.1em;line-height:1.2;color:var(--muted);font-weight:900;text-align:right}
+.ic{width:1em;height:1em;fill:currentColor;flex:none;display:block}
+.fxc{display:inline-flex;align-items:center;gap:1px;font-family:var(--num);font-weight:400;line-height:1;color:var(--kc,#fff);white-space:nowrap}
+.fxc .ic{width:1.15em;height:1.15em;filter:drop-shadow(0 1px 1px #000)}
+.fxc b{font-weight:400;text-shadow:0 1px 2px #000}
+.k-atk,.k-pierce,.k-up{--kc:#ff5a6e} .k-buzz,.k-poll,.k-coin{--kc:#ffc83d} .k-vote{--kc:#47e6a0} .k-shield,.k-dodge{--kc:#3fe0ff}
+.k-back{--kc:#ff8a3d} .k-turn{--kc:#c49bff} .k-wash{--kc:#8fdcff} .k-unit{--kc:#c49bff} .k-grab,.k-draw{--kc:#f3f4ff}
+.fxc.self{opacity:.75} .fxc.self b::before{content:'自'}
+.card .fx{display:none}
+#hand .card .ds,.card.flying .ds{display:none}
+#hand .card .fx,.card.flying .fx{display:flex;flex-wrap:wrap;gap:2px 6px;justify-content:center;align-content:center;padding:2px 4px;font-size:13px}
+#hand .card .fx{justify-content:flex-start;padding-left:7px}
+.threat{display:inline-flex;align-items:center;gap:5px;padding:3px 8px 3px 3px;border-radius:12px;background:rgba(14,18,36,.92);border:1.5px solid var(--tc);color:var(--paper);font:inherit;cursor:pointer;animation:unitIn .4s both}
+.threat .th-art{position:relative;width:30px;height:30px;border-radius:8px;overflow:hidden;background:#0d1124;flex:none}
+.threat .th-art img{width:100%;height:100%;object-fit:cover}
+.threat .th-art .g{display:none}
+.threat .th-fx{display:flex;gap:5px;font-size:14px}
+.threat .th-to{color:var(--muted);font-size:14px}
+.threat .th-need{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:17px;border:2px solid currentColor}
+.threat .th-need.ok{color:#16e0a0;background:rgba(22,224,160,.16);box-shadow:0 0 12px rgba(22,224,160,.5);animation:advpulse 1.2s infinite}
+.threat .th-need.no{color:#7a7f99;border-style:dashed}
+.threat .th-need.done{color:#3fe0ff}
 .ichip{font-size:12px;font-weight:900;padding:2px 9px;border-radius:99px;background:rgba(20,26,48,.9);border:1px solid var(--tc);color:var(--paper);animation:unitIn .4s both}
 .forecast{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;font-size:12px}
 .forecast .fl{color:var(--muted);letter-spacing:.15em;font-weight:900}
@@ -437,6 +458,11 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .advorder{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:2px;font-size:12px}
 .advorder span{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border-radius:99px;background:rgba(255,200,61,.12);border:1px solid rgba(255,200,61,.4)}
 .advorder b{font-family:var(--num);font-weight:400;color:var(--gold)} .advorder i{font-style:normal;color:var(--muted)}
+.advorder span{font-size:12px;padding:2px 4px 2px 7px} .advorder i{font-size:11px}
+.advorder .ot{width:30px!important;height:30px!important}
+.advorder .ot{position:relative;width:24px;height:24px;border-radius:6px;overflow:hidden;background:#0d1124;flex:none}
+.advorder .ot img{width:100%;height:100%;object-fit:cover} .advorder .ot .g{display:none}
+.advorder .oend{color:#ff8fa0;border-color:rgba(255,46,77,.5);background:rgba(255,46,77,.12)}
 #hand .card.adv{box-shadow:0 0 0 3px var(--gold),0 0 22px rgba(255,200,61,.6),0 10px 24px rgba(0,0,0,.55)}
 #hand .card.adv1{animation:advpulse 1s infinite}
 @keyframes advpulse{50%{box-shadow:0 0 0 4px #fff3c4,0 0 34px rgba(255,200,61,.9),0 10px 24px rgba(0,0,0,.55)}}
@@ -975,6 +1001,55 @@ function saveLocal(){ try{ localStorage.setItem('spin_local',JSON.stringify(LOCA
 const $=s=>document.querySelector(s);
 const shuffle=a=>{ for(let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const IMGV=3;
+/* 戰鬥圖示：同一個圖示在卡面、對手威脅、反制記號上意思都一樣 */
+const ICP={atk:'<path d="M13 2 4 14h6l-1 8 9-12h-6z"/>',
+  buzz:'<path d="M3 9v6h4l6 4V5L7 9zM16 8.5v7a4 4 0 0 0 0-7z"/>',
+  back:'<path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 2-5 0 2 1 3 2 3 0-4 1-7 2-10z"/>',
+  wash:'<path d="M12 2s7 8 7 13a7 7 0 0 1-14 0c0-5 7-13 7-13z"/>',
+  shield:'<path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5z"/>',
+  dodge:'<path d="M4 5l7 7-7 7-1.4-1.4L8.2 12 2.6 6.4zM12 5l7 7-7 7-1.4-1.4 5.6-5.6-5.6-5.6z"/>',
+  vote:'<path d="M4 11h16v10H4zM8 3h8v7H8z"/>',
+  unit:'<path d="M12 5C6.5 5 2 12 2 12s4.5 7 10 7 10-7 10-7-4.5-7-10-7zm0 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>',
+  grab:'<path d="M10 3a7 7 0 1 0 4.2 12.6l5.4 5.4 1.4-1.4-5.4-5.4A7 7 0 0 0 10 3zm0 2.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/>',
+  pierce:'<path d="M11 2 4 5v6c0 5 3 9 7 11l1-6-2-3 2-4zM13 2l7 3v6c0 5-3 9-7 11l-1-5 2-4-2-3z"/>',
+  coin:'<path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z"/>',
+  draw:'<path d="M7 3h10v18H7z"/>',
+  poll:'<path d="M4 20V10h4v10zm6 0V4h4v16zm6 0v-7h4v7z"/>',
+  up:'<path d="M12 3l7 8h-4v9H9v-9H5z"/>',
+  to:'<path d="M4 11h12l-4-4 1.4-1.4L20 12l-6.6 6.4L12 17l4-4H4z"/>',
+  turn:'<path d="M12 4V1L7.5 5.5 12 10V7a5 5 0 1 1-5 5H4a8 8 0 1 0 8-8z"/>'};
+const icon=k=>`<svg class="ic ic-${k}" viewBox="0 0 24 24" fill-rule="evenodd" aria-hidden="true">${ICP[k]||''}</svg>`;
+const ICN={turn:'回合',atk:'抹黑',buzz:'聲量',back:'反感',wash:'洗反感',shield:'護盾',dodge:'閃避',vote:'票',unit:'暗樁',grab:'抓暗樁',pierce:'破防',coin:'資金',draw:'抽牌',poll:'民調',up:'攻擊加成'};
+/* 卡面圖示以卡牌文字為準；ADV 是軍師用的期望值，數字不一定等於卡面 */
+const FX_OVR={deepfake:[['atk','8','foe'],['back','+2','self']],poll:[['buzz','+50%',''],['back','+1','self']],
+  g_english:[['buzz','+3',''],['coin','敵−1','foe']],b_harvard:[['buzz','+5',''],['back','?','self']],g_chair:[['atk','6','foe'],['atk','?','self']],
+  sidekick:[['unit','',''],['turn','3',''],['up','+1','']],g_tide:[['unit','',''],['turn','3',''],['buzz','+2',''],['up','連擊×2','']]};
+function fxList(id){
+  if(FX_OVR[id]) return FX_OVR[id];
+  const a=(typeof ADV!=='undefined'&&ADV[id])||{}, L=[], n=Math.round;
+  if(a.dmg) L.push(['atk',a.multi?`${n(a.dmg/a.multi)}×${a.multi}`:n(a.dmg),'foe']);
+  if(a.fake) L.push(['atk','40%','foe']);
+  if(a.pierce) L.push(['pierce','','foe']);
+  if(a.destroy) L.push(['grab','','foe']);
+  if(a.opBack) L.push(['back','敵+'+a.opBack,'foe']);
+  if(a.blame) L.push(['back','→敵','foe']);
+  if(a.baoli) L.push(['back','→聲量','']);
+  if(a.atk) L.push(['up','+'+a.atk,'']);
+  if(a.gain>=1) L.push(['buzz','+'+n(a.gain),'']);
+  if(a.pollx) L.push(['poll','↑','']);
+  if(a.votes) L.push(['vote','+'+a.votes,'']);
+  if(a.last) L.push(['vote','×2','']);
+  if(a.shield) L.push(['shield',a.shield,'']);
+  if(a.dodge) L.push(['dodge','×'+a.dodge,'']);
+  if(a.unit){ const u=a.unit; L.push(['unit','',''],['turn','3','']);
+    if(u.gain) L.push(['buzz','+'+u.gain,'']); if(u.votes) L.push(['vote','+'+u.votes,'']); if(u.dmg) L.push(['atk',u.dmg,'foe']);
+    if(u.shield) L.push(['shield',u.shield,'']); if(u.side) L.push(['up','','']); }
+  if(a.back<0) L.push(['wash',n(a.back),'']);
+  if(a.back>=1) L.push(['back','+'+n(a.back),'self']);
+  if(a.funds) L.push(['coin','+'+a.funds,'']);
+  if(a.draw) L.push(['draw','+'+a.draw,'']);
+  return L; }
+const fxHTML=(id,max=9)=>fxList(id).slice(0,max).map(([k,t,c])=>`<span class="fxc k-${k} ${c}">${icon(k)}${t!==''?`<b>${t}</b>`:''}</span>`).join('');
 const imgTag=(name,g)=>`<img src="img/${name}.jpg?v=${IMGV}" alt="" onerror="this.remove()"><span class="g">${g}</span>`;
 
 function newSide(id,name,img,g,deck){
@@ -1023,7 +1098,7 @@ function renderBoard(sel,s){
 function cardHTML(id,extra=''){
   const c=CARDS[id];
   return `<div class="card t-${c.t} ${c.sk?'skill':''} ${extra}" data-id="${id}"><div class="cost">${c.c}</div>
-    <div class="in"><div class="art">${imgTag(c.img,c.g)}</div><div class="nm">${c.n}</div><div class="ty">${c.sk?'必殺・':''}${TYPES[c.t]}</div><div class="ds">${c.d}</div></div>
+    <div class="in"><div class="art">${imgTag(c.img,c.g)}</div><div class="nm">${c.n}</div><div class="ty">${c.sk?'必殺・':''}${TYPES[c.t]}</div><div class="ds">${c.d}</div><div class="fx">${fxHTML(id)}</div></div>
     <div class="holo"></div><div class="glare"></div></div>`;
 }
 function renderHand(deal=false){
@@ -1057,7 +1132,7 @@ function peekCard(i){
   SFX.hover(); const ct=counterTag(id); const can=!B.busy&&B.turnOwner==='me'&&c.c<=B.me.funds;
   let pk=$('#peek'); if(!pk){ pk=document.createElement('div'); pk.id='peek'; $('#screen-game').appendChild(pk); }
   pk.innerHTML=`<div class="pkcard">${cardHTML(id,'big')}</div>
-    ${ct?`<div class="pkctr"><b>${ct.tag}</b>${ct.why}</div>`:''}
+    ${ct?`<div class="pkctr"><b>${icon(ct.ic)}${ct.tag}</b>${ct.why}</div>`:''}
     <div class="pkbtns">${can?'<button class="cta" id="pkPlay">出這張</button>':`<span class="pkno">${c.c>B.me.funds?'資金不夠':'現在不能出牌'}</span>`}<button class="ghost" id="pkClose">關閉</button></div>`;
   pk.hidden=false;
   const close=()=>{ pk.hidden=true; pk.innerHTML=''; };
@@ -1072,25 +1147,25 @@ const isSmear=id=>{ const a=ADV[id]||{}; return !!(a.dmg||a.fake); };
 /* 對手每張意圖牌：要用哪類牌反制（match 判斷手牌是否符合） */
 function counterFor(id){
   const a=ADV[id]||{}, c=CARDS[id], me=B.me;
-  if(a.dmg||a.fake) return (me.shield||me.dodge)?{verb:'已經有防禦',match:()=>false,none:'你已經有防禦，放心進攻'}:{verb:'擋',tag:'擋抹黑',match:x=>DEF_IDS.includes(x),none:'手上沒防禦牌，先衝聲量'};
-  if(c.unit) return {verb:'下回合抓',tag:'留著抓',match:x=>x==='factcheck',none:'沒查核牌，暗樁會一直加分'};
-  if(DEF_IDS.includes(id)) return {verb:'趁現在打',tag:'趁現在打',match:isSmear,none:'沒抹黑牌，這回合先造勢'};
-  if(id==='lastnight'||a.gain||a.pollx) return {verb:'壓他聲量',tag:'壓聲量',match:isSmear,none:'沒抹黑牌，自己衝更高'};
-  if(a.opBack||a.blame) return {verb:'先洗反感',tag:'洗反感',match:x=>WASH_IDS.includes(x),none:'沒洗白牌，抹黑先停手'};
-  return {verb:'',match:()=>false,none:'直接拉票擋不了，衝自己的分'}; }
+  if(a.dmg||a.fake) return (me.shield||me.dodge)?{verb:'已經有防禦',ic:'shield',done:1,match:()=>false,none:'你已經有防禦，放心進攻'}:{verb:'擋',ic:'shield',tag:'擋抹黑',match:x=>DEF_IDS.includes(x),none:'手上沒防禦牌，先衝聲量'};
+  if(c.unit) return {verb:'下回合抓',ic:'grab',tag:'留著抓',match:x=>x==='factcheck',none:'沒查核牌，暗樁會一直加分'};
+  if(DEF_IDS.includes(id)) return {verb:'趁現在打',ic:'atk',tag:'趁現在打',match:isSmear,none:'沒抹黑牌，這回合先造勢'};
+  if(id==='lastnight'||a.gain||a.pollx) return {verb:'壓他聲量',ic:'atk',tag:'壓聲量',match:isSmear,none:'沒抹黑牌，自己衝更高'};
+  if(a.opBack||a.blame) return {verb:'先洗反感',ic:'wash',tag:'洗反感',match:x=>WASH_IDS.includes(x),none:'沒洗白牌，抹黑先停手'};
+  return {verb:'',ic:'buzz',match:()=>false,none:'直接拉票擋不了，衝自己的分'}; }
 function counterTag(id){
   if(!B||B.turnOwner!=='me') return null;
   const inc=incoming(), me=B.me, op=B.op, fire=FIRE(), it=B.intent||[];
   // 先看場面上的機會（不用等對手意圖）
-  if(id==='factcheck'&&op.units.length) return {tag:'抓暗樁',why:'對手場上有暗樁，這張能把它抓掉，還讓他反感 +2。'};
-  if(id==='g_anytime'&&(op.shield||op.dodge)) return {tag:'破防',why:'對手開了防禦，這張能一次戳破再打。'};
-  if(WASH_IDS.includes(id)&&me.backlash>=fire-3) return {tag:'洗反感',why:`你的反感 ${me.backlash}，炎上門檻 ${fire}。先洗掉，免得聲量腰斬。`};
-  if(PUSH_IDS.includes(id)&&op.backlash>=fire-3) return {tag:'推炎上',why:`對手反感 ${op.backlash}，再推 ${fire-op.backlash} 點他就炎上、聲量腰斬。`};
+  if(id==='factcheck'&&op.units.length) return {tag:'抓暗樁',ic:'grab',why:'對手場上有暗樁，這張能把它抓掉，還讓他反感 +2。'};
+  if(id==='g_anytime'&&(op.shield||op.dodge)) return {tag:'破防',ic:'pierce',why:'對手開了防禦，這張能一次戳破再打。'};
+  if(WASH_IDS.includes(id)&&me.backlash>=fire-3) return {tag:'洗反感',ic:'wash',why:`你的反感 ${me.backlash}，炎上門檻 ${fire}。先洗掉，免得聲量腰斬。`};
+  if(PUSH_IDS.includes(id)&&op.backlash>=fire-3) return {tag:'推炎上',ic:'back',why:`對手反感 ${op.backlash}，再推 ${fire-op.backlash} 點他就炎上、聲量腰斬。`};
   // 再看能不能反制對手準備出的牌
   for(const x of it){ const k=counterFor(x); if(k.tag&&k.match(id)){
     const why={擋抹黑:`對手準備出「${CARDS[x].n}」抹黑你約 ${Math.round(inc.dmgSum)} 點，先出這張擋下來。`,留著抓:`對手要放暗樁「${CARDS[x].n}」，這張留到下回合把它抓掉。`,
       趁現在打:`對手下回合要開「${CARDS[x].n}」防守，現在抹黑不會被擋。`,壓聲量:`對手準備用「${CARDS[x].n}」衝聲量，先把他打下來。`,洗反感:`對手要出「${CARDS[x].n}」讓你反感上升，先洗掉。`}[k.tag];
-    return {tag:k.tag,why}; } }
+    return {tag:k.tag,ic:k.ic,why}; } }
   return null; }
 function intentCounter(id){
   const k=counterFor(id); const hits=B.me.hand.filter(k.match);
@@ -1099,7 +1174,7 @@ function intentCounter(id){
 function applyCounterTags(){
   const cards=[...document.querySelectorAll('#hand .card')];
   cards.forEach((el,i)=>{ el.querySelector('.ctag')?.remove(); el.classList.remove('ctr'); const ct=counterTag(B.me.hand[i]); if(!ct) return;
-    el.classList.add('ctr'); const t=document.createElement('span'); t.className='ctag'; t.textContent=ct.tag; el.appendChild(t); }); }
+    el.classList.add('ctr'); const t=document.createElement('span'); t.className='ctag'; t.title=ct.tag; t.innerHTML=icon(ct.ic); el.appendChild(t); }); }
 function bindTilt(el){
   el.addEventListener('pointerenter',()=>SFX.hover());
   el.addEventListener('pointermove',e=>{ const r=el.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
@@ -1286,7 +1361,7 @@ async function myPhase(first=false){
   B.turnOwner='me'; B.combo=0; comboShow();
   B.me.maxFunds=Math.min(10,B.week+2); B.me.funds=Math.max(1,B.me.maxFunds-B.me.fundPenalty); B.me.fundPenalty=0; B.me.atkBuff=0;
   renderAll();
-  ticker(B.week===1&&first?'輪到你操盤。點卡牌出手，結束回合後換對手。':'輪到你操盤。');
+  ticker(B.week===1&&first?'你的回合：點牌出招，長按看說明':'你的回合');
   banner('你的回合',RUN.cand.color); VOICE.play(first&&B.week===1?'sys_fight':'sys_myturn',2);
   [...document.querySelectorAll('#funds .coin')].forEach((c,i)=>{ c.animate([{transform:'scale(0) rotate(-180deg)'},{transform:'scale(1.4)'},{transform:'none'}],{duration:350,delay:i*60,fill:'backwards'}); setTimeout(()=>SFX.coin(i),i*60); });
   if(B.me.backlash>=7) setTimeout(()=>SFX.heart(),500);
@@ -1383,7 +1458,9 @@ function planAI(){
   for(let g=0;g<6;g++){ let best=-1,bs=0.9; hand.forEach((id,i)=>{ const c=CARDS[id]; if(c.c>f) return; const sc=c.ai(o,B.me)+c.c*.3+.6; if(sc>bs){ bs=sc; best=i; } }); if(best<0) break; f-=CARDS[hand[best]].c; plan.push(hand.splice(best,1)[0]); }
   B.intent=plan; renderIntent(); }
 function renderIntent(){ const el=$('#intent'); if(!el) return; if(!B||!B.intent||!B.intent.length||B.turnOwner!=='me'){ el.innerHTML=''; return; }
-  el.innerHTML='<span class="il">對手意圖</span>'+B.intent.map(id=>{ const k=intentCounter(id), ok=counterFor(id).match&&B.me.hand.some(counterFor(id).match); return `<span class="ichip t-${CARDS[id].t}">${TYPES[CARDS[id].t]}・${CARDS[id].n}<em class="${ok?'':'no'}">→ ${k}</em></span>`; }).join('');
+  el.innerHTML='<span class="il">對手<br>下一步</span>'+B.intent.map((id,i)=>{ const k=counterFor(id), ok=B.me.hand.some(k.match), c=CARDS[id];
+    return `<button class="threat t-${c.t}" data-i="${i}"><span class="th-art">${imgTag(c.img,c.g)}</span><span class="th-fx">${fxHTML(id,2)}</span><span class="th-to">${icon('to')}</span><span class="th-need ${k.done?'done':ok?'ok':'no'}">${icon(k.ic)}</span></button>`; }).join('');
+  el.querySelectorAll('.threat').forEach(t=>t.onclick=()=>{ const id=B.intent[+t.dataset.i]; SFX.click(); ticker(`對手「${CARDS[id].n}」→ ${intentCounter(id)}`); });
   applyCounterTags(); }
 async function opPhase(){
   const st=STAGES[RUN.stage]; const o=B.op;
@@ -1845,11 +1922,12 @@ function updateAdvice(){
   if(!ADV_ON||!B||B.dead||B.turnOwner!=='me'||B.busy){ box.hidden=true; return; }
   const {order,inc}=planAdvice(); const lines=adviceLines(order,inc);
   box.hidden=false;
-  box.classList.toggle('collapsed',!!LOCAL.advMin);
-  box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advhead"><span class="advtitle">軍師建議</span><button class="advmin" id="advMin" aria-label="${LOCAL.advMin?'展開軍師建議':'收合軍師建議'}">${LOCAL.advMin?'展開':'收合'}</button></div>
+  box.classList.toggle('collapsed',!LOCAL.advWhy);
+  box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advhead"><span class="advtitle">軍師：照順序出</span><button class="advmin" id="advMin" aria-label="${LOCAL.advWhy?'收起理由':'看軍師的理由'}">${LOCAL.advWhy?'收起':'為什麼？'}</button></div>
     <div class="advlines">${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}</div>
-    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span><b>${i+1}</b>${CARDS[id].n}</span>`).join('<i>→</i>')}</div>`:'<div class="advorder"><span>建議直接結束回合</span></div>'}</div>`;
-  $('#advMin').onclick=e=>{ e.stopPropagation(); LOCAL.advMin=!LOCAL.advMin; saveLocal(); SFX.click(); updateAdvice(); };
+    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span title="${CARDS[id].n}"><b>${i+1}</b><em class="ot">${imgTag(CARDS[id].img,CARDS[id].g)}</em></span>`).join('<i>→</i>')}<i>→</i><span class="oend">結束回合</span></div>`:'<div class="advorder"><span class="oend">直接結束回合</span></div>'}</div>`;
+  $('#advMin').onclick=e=>{ e.stopPropagation(); LOCAL.advWhy=!LOCAL.advWhy; saveLocal(); SFX.click(); updateAdvice(); };
+  if(!order.length) $('#btnEnd').classList.add('glow');
   placeAdvisor();
   box.querySelectorAll('.advl').forEach((el,i)=>el.textContent=lines[i].t);
   const cards=[...document.querySelectorAll('#hand .card')], used=new Set();
@@ -1919,7 +1997,7 @@ function howScreen(){
    ========================================================= */
 const TUT=[
   {sel:'#sideOp',t:'這是你的對手',d:'另一黨的候選人。選戰結束時，你的得票要比他多。'},
-  {sel:'#intent',t:'對手意圖',d:'這裡會先告訴你對手下回合準備出什麼牌，箭頭後面直接寫你該用哪張牌反制。手牌左邊亮綠色標籤的，就是現在能反制的牌。長按卡牌可以放大看說明。'},
+  {sel:'#intent',t:'對手意圖',d:'對手下一步會出的牌。箭頭右邊的圖示＝你該用什麼反制（盾＝防禦、放大鏡＝抓暗樁、閃電＝抹黑）。手牌左邊亮出同樣圖示的，就是能反制的那張。長按卡牌看完整說明。'},
   {sel:'#forecast',t:'民調預估',d:'如果現在結算，你和對手各會拿到多少票。決定要衝聲量還是先壓反感，就看這裡。'},
   {sel:'#sideMe .buzz',t:'聲量',d:'造勢會漲聲量，被對手抹黑會掉聲量。聲量越高，民調換到的票越多。'},
   {sel:'#sideMe .back',t:'反感',d:'抹黑別人會累積反感，民調時會被扣票。反感到 10 會「全網炎上」，聲量直接腰斬。'},
