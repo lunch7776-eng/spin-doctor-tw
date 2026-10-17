@@ -1,0 +1,82 @@
+Blue candidate cinematic keyframes
+Tool: built-in image_gen only
+Identity reference: video/refs/turn_blue.png
+Image source session: /Users/lunch/.codex/generated_images/01a14739-ec1c-7c71-8048-2b2e677a7b58
+All generated image files copied without postprocessing.
+
+b_qa_key_raw.png
+================
+
+Initial generation prompt
+
+Use case: stylized-concept. Create ONE finished ultra-wide cinematic fighting-game special-move keyframe, a Super Robot Wars-style dramatic attack cut-in, target aspect ratio 21:9, preferably 2520 x 1080. Recompose the supplied character reference into this scene. The reference image is the authoritative identity and drawing-style guide, NOT a multi-view layout to reproduce.
+
+CHARACTER LOCK: exactly the blue candidate in the reference: tan adult man with a broad angular square jaw, deeply angled heavy eyebrows, narrow eyes, strong nose and cheek folds, asymmetric dazzling toothy smug grin; thick glossy black slicked side-parted swept hair with lifted loose tips; very broad shoulders and muscular adult proportions; fitted navy two-button suit and trousers, light-blue dress shirt, vivid royal-blue tie, black dress shoes. NO glasses, beard or redesign. Bold editorial caricature / fighting-game ink drawing matching the supplied image, thick clean black outlines, rich cel shading, crosshatching and subtle halftone; NOT chibi, NOT photorealistic.
+
+SCENE: At a plain dark press podium with unbranded microphones, an intense glowing arrow-shaped energy projectile symbolizes an incoming question WITHOUT any text or punctuation. It slices horizontally toward him. The solid original candidate is the dominant foreground figure, bending dramatically backward in a Matrix-style dodge, spine arched and head tilted back beneath the passing arrow. Make the near-miss gap obvious. Behind him are EXACTLY THREE separate translucent electric-blue glowing afterimages of this SAME candidate, each clearly readable with its own head and torso and a dazzling smug toothy grin: one points left, one points right, one points diagonally forward. Their gesture silhouettes must separate clearly and stay inside the safe band. Total: ONE solid dodging original plus THREE ghost afterimages, no other candidate copies. Blue lightning links the motion echoes; horizontal speed lines and a bright impact flare imply absurd speed.
+
+CROP-SAFE ULTRAWIDE COMPOSITION: every face, head, pointing hand, the incoming arrow, the original's backward-arched upper body, and the identifying top of the podium must lie entirely between 20% and 80% of canvas height. Arrange the action laterally across the very wide canvas. Leave top 20% and bottom 20% as nonessential blue-black atmosphere and expendable speed lines so both can be cropped. Keep the main face large enough to recognize. Dynamic low three-quarter camera, dramatic royal-blue rim lighting, high-contrast navy/cyan/white palette. Full-bleed artwork, no panels or letterboxing.
+
+ABSOLUTE NO-TEXT REQUIREMENT: no letters, numbers, typography, question marks, punctuation glyphs, speech bubbles, logos, emblems, flags, signs, posters, writing, newspapers, watermarks, captions or UI. The projectile is a simple angular luminous arrow shape, NEVER a question mark. Podium and microphones completely unmarked.
+
+Crop-safe reframing revision
+
+Edit image 1, the existing blue candidate arrow-dodge keyframe. Image 2 is the original authoritative character identity reference. Preserve the same scene, exact character identities, one solid backward-bending original, EXACTLY three translucent pointing afterimages, arrow, plain podium, fine heavy-ink cel-shaded artwork, blue lightning, zero text, and ultra-wide 21:9 canvas.
+
+Make ONE critical framing correction: PULL THE CAMERA BACK so the ENTIRE current scene's important figures and props shrink uniformly to about 58% of their current size, centered vertically, while expanding the surrounding blue-black speed-line environment to fill the unchanged 21:9 canvas. All four complete heads including their hair, all three pointing hands, the original's dodging face and arched upper torso, the luminous arrowhead and podium microphones MUST now sit entirely within the CENTRAL horizontal strip from y=22% to y=78%. In particular, move the three afterimage heads DOWN far enough that their topmost hair begins BELOW y=24%, and keep all pointing fingertips BELOW y=26%. Their faces must be around y=35–45%. The main original's face sits around y=50%. Top 20% must contain ONLY empty blue-black atmosphere and horizontal speed streaks, NO head, hand, character silhouette or essential prop. Bottom 20% can have only nonessential podium base, dark floor and speed streaks. Expand left and right with fast energy streaks. This is a zoomed-out reframe of the same shot, NOT a new pose, not a border or letterbox. Full bleed, no panels.
+
+Maintain matching angular face and slicked side-parted black hair, navy suit, light-blue shirt, royal-blue tie, no glasses. No text, letters, numbers, logos, flags, signs, writing, watermarks, punctuation or question-mark glyphs.
+
+b_script_key_raw.png
+====================
+
+Initial generation prompt
+
+Use case: stylized-concept. Create ONE finished ultra-wide cinematic fighting-game special-move POWER-UP keyframe, Super Robot Wars-style dramatic attack cut-in, target aspect ratio 21:9, preferably 2520 x 1080. Recompose the supplied reference character into this scene. This is a single action image, NOT a turnaround or a collage.
+
+CHARACTER IDENTITY AND STYLE LOCK: match the attached reference exactly: tan adult man, broad angular square jaw, heavy angled brows, narrow eyes, strong nose and pronounced cheek folds; glossy thick black slicked side-parted swept hair with loose lifted tips; muscular adult proportions and broad shoulders; fitted NAVY suit, LIGHT-BLUE shirt, ROYAL-BLUE tie. No glasses or beard. Maintain the very same character and facial geometry even when his mouth is open roaring. Heavy black ink contours, crisp rich cel shading, crosshatching and halftone, bold fighting-game / editorial caricature, adult NOT chibi. Blue lightning accent and dramatic royal-blue rim lighting.
+
+SCENE: he powers up with a ferocious open-mouthed roar, eyes blazing electric blue. HUNDREDS of utterly BLANK WHITE speech-script sheets burst from inside his suit and spiral around him in a broad horizontal vortex. Nearest sheets fold and overlap into visibly angular PAPER ARMOUR over his shoulders, chest and forearms; farther sheets orbit in depth in dense repeated layers. His head, face, light-blue collar, royal-blue tie, and enough navy lapel remain exposed to establish the exact identity and clothing. Both fists clenched near his waist in an explosive power-up stance. Bright blue lightning arcs connect individual sheets and trace the paper armour. Emphasize paper material: thin white rectangular flexible pages, curled corners, crisp folded plate-like layers, directional silhouettes. Every sheet has absolutely blank surfaces, with only physical fold shadows and no pen marks, lines of text, symbols, or printing. Dark navy background with a brilliant radial blue energy burst, hard speed lines, halftone shadows.
+
+CRITICAL CROP-SAFE LAYOUT: wide, pulled-back waist-up composition. Main hair begins at y=26%, eyes near y=39%, roaring mouth around y=46%, shoulders y=49%, fists y=67%, waist y=75%. Entire head, both fists, defining paper armour and central lightning arcs fit WITHIN y=22%–78%. Spread the main paper vortex sideways across the width inside this safe strip. Top 20% and bottom 20% are spacious expendable energy atmosphere with only scattered nonessential pages, NO face or essential gesture. This is visually a wide horizontal belt of action surrounded by atmosphere, NOT a tall portrait filling the frame. Full bleed, no panels, no border, no letterboxing.
+
+ABSOLUTELY NO text, letters, digits, numbers, punctuation, symbols, logos, emblems, flags, signage, newspapers, written posters, watermarks, captions or UI. No writing anywhere, every paper blank.
+
+Crop-safe reframing revision
+
+Edit the provided paper-armour power-up image. Preserve the exact artwork's character identity, roaring expression, electric-blue glowing eyes, black slicked side-parted hair, navy suit, light-blue shirt, royal-blue tie, clenched fists, hundreds of blank white pages, folded paper armour and blue lightning.
+
+ONE REQUIRED CHANGE: ZOOM OUT STRONGLY. Uniformly reduce the whole current character-and-armour silhouette to 58% of its present size and keep it centered vertically in the same ultra-wide 21:9 canvas. Expand the blue-black storm environment around it. The character's entire hair must start around 25% of canvas height, eyes around 36%, fists around 60–68%, and both complete fists plus the paper breastplate must end above 76%. His face and all essential action must fit in the middle 60% of canvas height. There must be a conspicuous LARGE EMPTY HEADROOM AREA above his head, occupying the top QUARTER of the image, made of blue-black energy atmosphere and nonessential blank flying pages ONLY. The core body now occupies only the middle half of the canvas, a clearly smaller figure seen from farther away. Do not leave the head near the upper edge. Do not merely expand sideways. Extend the paper vortex widely to the left and right. Expendable pages can fly across outer top/bottom margins, but no essential body part or face there. Same muscular ADULT proportions, not chibi. Full-bleed unframed image, NO borders or letterbox bars.
+
+All paper sheets must remain completely blank with only fold shading. No text, letters, numbers, punctuation, logos, flags, signs, posters, watermarks or UI.
+
+b_fake_key_raw.png
+==================
+
+Initial generation prompt
+
+Create ONE finished ultra-wide cinematic fighting-game special-move cut-in, Super Robot Wars-style, target aspect ratio 21:9, preferably 2520 x 1080. Use the provided character turnaround as the authoritative reference for identity and heavy-ink drawing style. NOT a collage or multi-view sheet.
+
+MOST IMPORTANT COMPOSITION: PULLED-BACK, ULTRA-WIDE SHOT with a LARGE EMPTY HEADROOM AREA covering the TOP QUARTER of the canvas. Keep the protagonist SMALL ENOUGH in the scene that his entire head, torso and flashlight gesture fit in the MIDDLE horizontal band. His topmost hair at y=28%, face centered at y=42%, flashlight around y=55%, waist around y=75%. Top 20% has only dark atmosphere and blue speed lines, bottom 20% only expendable floor/shadows. All essential action is within y=22–78%. Lay the story sideways across the broad canvas. No letterbox bars, no border.
+
+CHARACTER: match the exact man in the reference: tan face, broad angular square jaw, heavy angled eyebrows, narrow eyes, strong nose, pronounced cheek folds, a sharp smug sneer; black slicked side-parted swept glossy hair with the same loose lifted tips; broad muscular shoulders, mature ADULT proportions; fitted NAVY suit, LIGHT-BLUE shirt, ROYAL-BLUE tie. No glasses, beard or costume redesign. Heavy black ink outlines, crisply cel-shaded colour, hatchwork and subtle halftone, bold editorial fighting-game caricature, NOT chibi or photorealistic.
+
+ACTION: the candidate occupies the left third and twists his torso as he sweeps a powerful HANDHELD FLASHLIGHT toward the right. His sneering face stays clearly visible in three-quarter view. One hand grips a clearly recognizable cylindrical dark flashlight, producing one brilliant broad blue-white cone of light with an obvious source at its lens. This beam sweeps through a HUGE CROWD arranged in dozens of receding rows across the center and right. The unlit crowd looks like dark human silhouettes; where illuminated, it is revealed as FLAT CARDBOARD HUMAN CUT-OUTS collapsing in a clear DOMINO CHAIN. Show several nearer cardboard figures in profile with thin brown corrugated edges, printed pictorial human fronts with NO writing, raw kraft-paper backs, and simple folded cardboard kickstands. Foreground cutouts successively lean 15, 35, 60 and 85 degrees into each other, each a rigid flat board, clearly not a live person. Most of the crowd is human-size flat rigid cutouts, not statues, no gore. Entire critical sequence of leading cutouts, recognizable silhouettes, domino topple and beam lies in the safe middle band. The candidate smirks at his reveal; bright blue lightning curls around his sleeve and flashlight, dramatic cobalt rim light, motion streaks following the sweep, electric impact sparks where flat boards collide. Vast dark navy stage-like setting, no recognizable real campaign or real person.
+
+NO text, letters, digits, numbers, punctuation, logos, insignia, flags, signs, banners, written newspapers, written posters, watermarks, subtitles or interface. Clothes, flashlight, cardboard faces and background must all be completely unmarked.
+
+b_baoli_key_raw.png
+===================
+
+Initial generation prompt
+
+Create ONE finished ultra-wide cinematic fighting-game special-move cut-in in a Super Robot Wars-style, target aspect ratio 21:9, preferably 2520 x 1080. The attached character turnaround is the authoritative identity and drawing-style reference. This is a single dynamic scene, not a multi-view sheet.
+
+CROP-SAFE COMPOSITION IS ESSENTIAL: PULLED-BACK wide shot with a conspicuous large area of empty dark atmosphere ABOVE THE ENTIRE ACTION, at least the TOP QUARTER. Keep the candidate's hair beginning at y=28%, his smirking face around y=42%, pointing hand near y=49%. The whole important fireball, its curved trajectory, the face, finger and distant spotlight destination must all fit inside the CENTRAL horizontal strip y=22–78%. Bottom 20% is expendable dark floor and shadows. Tell the story laterally across the wide frame; do not place his head high near the top edge. Full-bleed scene, no black bars, borders or panels.
+
+IDENTITY LOCK: exactly the reference's tan adult man with a broad angular square jaw, heavy slanted eyebrows, narrow confident eyes, strong nose, pronounced cheek folds and cool asymmetric smug smirk; glossy black slicked side-parted swept hair with loose lifted tips. Same muscular adult shoulders and proportions. Fitted NAVY two-button suit, LIGHT-BLUE shirt, vivid ROYAL-BLUE tie. No glasses, beard, headgear or redesign. Heavy black ink contours, detailed crosshatching, sharp cel shading and subtle halftone. Bold fighting-game/editorial caricature like the reference, NOT chibi, NOT photorealistic.
+
+ACTION / STORY: A GIANT incandescent orange-red flaming fireball, a purely visual metaphor for a scandal with NO symbols or words, has flown in from the LEFT toward the candidate near the CENTER. He remains relaxed and untouched, with a cool sly smirk. He confidently extends one arm and points his index finger toward a DISTANT bright SPOTLIGHT on the FAR RIGHT. His blue lightning power diverts the incoming fireball away from him and toward that distant spotlight. Show ONE connected sweeping curved flame trail, with a readable incoming segment from the left, a dramatic BEND immediately before it would hit his body, then an outgoing fiery arc curling past him toward the light on the right. The fireball must visibly miss him; clear separation between his face/body and the flames. Orange sparks and the blue electric deflection burst show the precise turning point. Make the fiery trajectory a broad lateral curve within the middle band, not an arch near the top of the canvas. The far-right destination is an unmarked distant stage spotlight fixture casting a brilliant cone onto an EMPTY circular pool of light, clearly visible at y=55–70%, no person in the pool. Strong perspective makes the spotlight feel distant, while the flame trajectory recedes toward it. Keep the pointing fingertip, the target spotlight and the arc direction clearly aligned. Blue lightning crackles around his pointing arm, with vivid royal-blue rim light on the suit. Navy-black environment, dynamic speed lines, high-energy impact burst, warm fire versus cool cobalt contrast.
+
+ABSOLUTELY NO text, letters, numbers, punctuation glyphs, logos, flags, insignia, signs, banners, newspapers, written posters, watermarks, captions or UI. No literal scandal documents, no marks on fireball or spotlight.
+

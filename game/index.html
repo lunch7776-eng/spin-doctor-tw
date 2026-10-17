@@ -1038,7 +1038,7 @@ function extra(title,sub,stampTxt='獨家'){
   });
 }
 /* Super-Robot-Wars style 21:9 skill clips; falls back to the banner cut-in */
-const SKILL_FX={g_tide:{v:'fx/g_tide.mp4',p:'fx/g_tide.jpg'}};
+const SKILL_FX=Object.fromEntries(['b_qa','b_script','b_baoli','b_wei','b_harvard','b_oldpost','b_hen','b_fake','g_tide','g_chair','g_english','g_anytime','g_wanted','g_bear','g_airport','g_haircut'].map(id=>[id,{v:`fx/${id}.mp4`,p:`fx/${id}.jpg`}]));
 const FXV=1, FX_CACHE={};
 function fxMode(){ return LOCAL.fxMode||'full'; }
 function preloadFx(ids){ if(fxMode()==='off') return; [...new Set(ids)].forEach(id=>{ const f=SKILL_FX[id]; if(!f||FX_CACHE[id]) return;

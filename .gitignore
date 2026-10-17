@@ -4,3 +4,7 @@ assets/raw_chibi/
 *.bak.html
 prompts/log_*.txt
 qa/codex_log.txt
+video/skills/*_raw.mp4
+video/skills/*_raw.png
+video/skills/*.prompt.txt
+video/skills/batch.log
