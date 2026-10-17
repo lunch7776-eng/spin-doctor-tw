@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><title>endcard</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+TC:wght@900&family=Noto+Serif+TC:wght@900&display=swap">
+<style>
+html,body{margin:0;height:100%;background:#0a0c17;overflow:hidden}
+.wrap{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:34px;
+  background:radial-gradient(70% 45% at 50% 45%,rgba(255,200,61,.22),transparent 70%),radial-gradient(120% 60% at 50% 110%,rgba(255,46,77,.35),transparent 60%),#0a0c17}
+.rays{position:absolute;left:50%;top:44%;width:260vmax;height:260vmax;margin:-130vmax 0 0 -130vmax;opacity:.35;
+  background:repeating-conic-gradient(from 0deg,rgba(255,200,61,.5) 0 5deg,transparent 5deg 18deg);animation:spin 6s linear infinite;
+  -webkit-mask:radial-gradient(circle,#000 0,transparent 50%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.emblem{width:46vw;aspect-ratio:3/4;background:url(back.jpg) center/cover;border-radius:18px;box-shadow:0 0 80px rgba(255,200,61,.6);animation:emb .5s cubic-bezier(.2,1.6,.4,1) both}
+@keyframes emb{from{transform:scale(3) rotate(-20deg);opacity:0}}
+.logo{font-family:"Noto Serif TC",serif;font-size:31vw;line-height:.95;text-align:center;letter-spacing:.04em;
+  background:linear-gradient(180deg,#fff7df 0%,#ffc83d 55%,#c47a10 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 10px 0 #6b1020) drop-shadow(0 26px 40px rgba(255,46,77,.5));animation:logo .55s .35s cubic-bezier(.2,1.7,.4,1) both}
+@keyframes logo{from{transform:scale(2.6) rotate(-8deg);opacity:0}}
+.tag{font-family:"Noto Sans TC",sans-serif;font-weight:900;font-size:9vw;color:#fff;letter-spacing:.12em;text-shadow:0 0 24px rgba(255,46,77,.8);animation:tag .4s .9s both}
+.tag b{color:#ffc83d}
+@keyframes tag{from{transform:translateY(40px);opacity:0}}
+.url{font-family:"Anton",sans-serif;font-size:4.6vw;color:#9098bd;letter-spacing:.05em;animation:tag .4s 1.2s both}
+</style>
+<div class="wrap"><div class="rays"></div><div class="emblem"></div><div class="logo">幕後<br>操盤手</div><div class="tag">選邊。操盤。<b>凍蒜。</b></div><div class="url">lunch7776-eng.github.io/spin-doctor-tw</div></div>

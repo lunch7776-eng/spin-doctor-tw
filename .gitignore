@@ -13,3 +13,8 @@ qa/balance_lab/*.json
 qa/balance_lab/*.cjs
 qa/balance_lab/*_experiment/
 qa/balance_lab/codex_log*.txt
+video/trailer/cap/
+video/trailer/seg/
+video/trailer/video_only.mp4
+video/trailer/audio.m4a
+video/trailer/*.wav
