@@ -130,7 +130,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #peek{position:absolute;inset:0;z-index:80;display:flex;flex-direction:column;align-items:center;justify-content:safe center;gap:14px;padding:16px;overflow-y:auto;background:rgba(5,6,14,.82);backdrop-filter:blur(4px)}
 #peek .card.big{cursor:default;--cw:min(260px,66vw,34vh)}
 #peek .pkctr{max-width:34ch;font-size:14px;line-height:1.5;padding:8px 12px;border-radius:10px;background:rgba(22,224,160,.12);border:1px solid #16e0a0}
-#peek .pkctr b{color:#16e0a0;margin-right:8px;display:inline-flex;gap:4px;align-items:center}
+#peek .pkctr .pktag{color:#16e0a0;margin-right:8px;display:inline-flex;gap:4px;align-items:center}
 #peek .pkbtns{display:flex;gap:10px;align-items:center}
 #peek .pkno{color:var(--muted);font-size:14px}
 .card.cant:hover{filter:grayscale(.6) brightness(.75)}
@@ -306,6 +306,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .fxc b{font-weight:400;text-shadow:0 1px 2px #000}
 .k-atk,.k-pierce,.k-up{--kc:#ff5a6e} .k-buzz,.k-poll,.k-coin{--kc:#ffc83d} .k-vote{--kc:#47e6a0} .k-shield,.k-dodge{--kc:#3fe0ff}
 .k-back{--kc:#ff8a3d} .k-turn{--kc:#c49bff} .k-wash{--kc:#8fdcff} .k-unit{--kc:#c49bff} .k-grab,.k-draw{--kc:#f3f4ff}
+.kw{color:var(--kc);font-weight:900} .kwn{color:#fff;font-weight:900}
 .fxc.self{opacity:.75} .fxc.self b::before{content:'自'}
 .card .fx{display:none}
 #hand .card .ds,.card.flying .ds{display:none}
@@ -1050,6 +1051,11 @@ function fxList(id){
   if(a.draw) L.push(['draw','+'+a.draw,'']);
   return L; }
 const fxHTML=(id,max=9)=>fxList(id).slice(0,max).map(([k,t,c])=>`<span class="fxc k-${k} ${c}">${icon(k)}${t!==''?`<b>${t}</b>`:''}</span>`).join('');
+/* 句子裡的關鍵名詞變色粗體，顏色跟圖示一致 */
+const escH=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const KW_RE=/([+\-−]?\d+\s*(?:點\s*)?(?:聲量|反感)|(?:對手|自己|你的|他的)?(?:聲量|得票|票數|反感|護盾|答非所問|閃避|暗樁|抹黑|炎上|資金|連擊|攻擊力?|聲量腰斬)(?:\s*[+\-−×]\s*\d+%?)?|[+\-−]?\d+\s*(?:點\s*)?(?:聲量|反感)|[+\-−]?\d+\s*票)/g;
+const KW_CLS=[['聲量','buzz'],['票','vote'],['反感','back'],['炎上','back'],['護盾','shield'],['答非所問','dodge'],['閃避','dodge'],['暗樁','unit'],['抹黑','atk'],['資金','coin'],['連擊','up'],['攻擊','up']];
+const kw=t=>escH(t).replace(KW_RE,m=>{ const k=(KW_CLS.find(([w])=>m.includes(w))||[,'buzz'])[1]; return `<b class="kw k-${k}">${m}</b>`; }).replace(/「([^」<]+)」/g,'「<b class="kwn">$1</b>」');
 const imgTag=(name,g)=>`<img src="img/${name}.jpg?v=${IMGV}" alt="" onerror="this.remove()"><span class="g">${g}</span>`;
 
 function newSide(id,name,img,g,deck){
@@ -1098,7 +1104,7 @@ function renderBoard(sel,s){
 function cardHTML(id,extra=''){
   const c=CARDS[id];
   return `<div class="card t-${c.t} ${c.sk?'skill':''} ${extra}" data-id="${id}"><div class="cost">${c.c}</div>
-    <div class="in"><div class="art">${imgTag(c.img,c.g)}</div><div class="nm">${c.n}</div><div class="ty">${c.sk?'必殺・':''}${TYPES[c.t]}</div><div class="ds">${c.d}</div><div class="fx">${fxHTML(id)}</div></div>
+    <div class="in"><div class="art">${imgTag(c.img,c.g)}</div><div class="nm">${c.n}</div><div class="ty">${c.sk?'必殺・':''}${TYPES[c.t]}</div><div class="ds">${kw(c.d)}</div><div class="fx">${fxHTML(id)}</div></div>
     <div class="holo"></div><div class="glare"></div></div>`;
 }
 function renderHand(deal=false){
@@ -1132,7 +1138,7 @@ function peekCard(i){
   SFX.hover(); const ct=counterTag(id); const can=!B.busy&&B.turnOwner==='me'&&c.c<=B.me.funds;
   let pk=$('#peek'); if(!pk){ pk=document.createElement('div'); pk.id='peek'; $('#screen-game').appendChild(pk); }
   pk.innerHTML=`<div class="pkcard">${cardHTML(id,'big')}</div>
-    ${ct?`<div class="pkctr"><b>${icon(ct.ic)}${ct.tag}</b>${ct.why}</div>`:''}
+    ${ct?`<div class="pkctr"><b class="pktag">${icon(ct.ic)}${ct.tag}</b>${kw(ct.why)}</div>`:''}
     <div class="pkbtns">${can?'<button class="cta" id="pkPlay">出這張</button>':`<span class="pkno">${c.c>B.me.funds?'資金不夠':'現在不能出牌'}</span>`}<button class="ghost" id="pkClose">關閉</button></div>`;
   pk.hidden=false;
   const close=()=>{ pk.hidden=true; pk.innerHTML=''; };
@@ -1195,7 +1201,7 @@ function renderHud(){
   $('#vignette').classList.toggle('hot', last); BGM.rate(last?1.06:1);
 }
 function renderAll(deal){ renderSides(); renderHand(deal); renderFunds(); renderHud(); }
-function ticker(t){ const el=$('#ticker'); el.textContent=t; el.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:250}); }
+function ticker(t){ const el=$('#ticker'); el.innerHTML=kw(t); el.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:250}); }
 function comboShow(){
   const el=$('#combo'); if(B.combo<2){ el.style.opacity=0; document.getElementById('edge').classList.remove('onfire'); return; }
   el.style.opacity=1; el.querySelector('.x').textContent='×'+B.combo; const hue=Math.max(0,45-B.combo*8);
@@ -1778,7 +1784,7 @@ function viewCard(id,list){
       <div class="vinfo"><div class="vr"><span class="vrar">${RAR[rr].n}</span>${own?`<span>${c.sk?'必殺・':''}${TYPES[c.t]}</span><span>費用 ${c.c}</span>`:''}<span>${c.camp?(c.camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</span></div>
         <h3></h3><p class="vd"></p><p class="vf"></p>${list.length>1?`<div class="vcount">${idx+1} / ${list.length}</div>`:''}</div></div>`;
     v.querySelector('h3').textContent=own?c.n:'尚未收集';
-    v.querySelector('.vd').textContent=own?c.d:`從黑箱包取得，或在圖鑑用 ${RAR[rr].craft} 碎片兌換。`;
+    v.querySelector('.vd').innerHTML=own?kw(c.d):`從黑箱包取得，或在圖鑑用 ${RAR[rr].craft} 碎片兌換。`;
     v.querySelector('.vf').textContent=own?'「'+FLAVOR[cid]+'」':'';
     const card=v.querySelector('.vstage .card'); if(own) bindTilt(card);
     card.animate([{transform:'rotateY(-90deg) scale(.6)',opacity:0},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,1.4,.4,1)'});
@@ -1929,7 +1935,7 @@ function updateAdvice(){
   $('#advMin').onclick=e=>{ e.stopPropagation(); LOCAL.advWhy=!LOCAL.advWhy; saveLocal(); SFX.click(); updateAdvice(); };
   if(!order.length) $('#btnEnd').classList.add('glow');
   placeAdvisor();
-  box.querySelectorAll('.advl').forEach((el,i)=>el.textContent=lines[i].t);
+  box.querySelectorAll('.advl').forEach((el,i)=>el.innerHTML=kw(lines[i].t));
   const cards=[...document.querySelectorAll('#hand .card')], used=new Set();
   order.forEach((id,i)=>{ const idx=B.me.hand.findIndex((h,j)=>h===id&&!used.has(j)); if(idx>=0){ used.add(idx); const el=cards[idx]; if(el){ el.classList.add('adv'); el.dataset.step=i+1; if(i===0) el.classList.add('adv1'); } } });
 }
@@ -2018,7 +2024,7 @@ function tutShow(){
   const hole=co.querySelector('.hole');
   hole.style.left=(r.left-app.left-pad)+'px'; hole.style.top=(r.top-app.top-pad)+'px'; hole.style.width=(r.width+pad*2)+'px'; hole.style.height=(r.height+pad*2)+'px';
   co.querySelector('.cstep').textContent=`新手教學 ${TUT_I+1} / ${TUT.length}`;
-  co.querySelector('h4').textContent=st.t; co.querySelector('p').textContent=st.d;
+  co.querySelector('h4').textContent=st.t; co.querySelector('p').innerHTML=kw(st.d);
   co.classList.toggle('waiting',!!st.wait);
   $('#tutNext').textContent=TUT_I===TUT.length-1?'開始操盤':'下一步';
   const b=co.querySelector('.bubble'); const bh=b.offsetHeight||170, bw=b.offsetWidth||340;
