@@ -823,22 +823,22 @@ const CARDS={
     fx:async A=>{ await A.hit(Math.max(3,Math.round(A.op.buzz*.4)),false,true); }, ai:(m,o)=>o.buzz>=8?8.5:3,
     h:['藍營酸：{o}的洋流是動員出來的','「人工洋流」？{o}陣營：支持者都是自己來的']},
   /* ---- 綠嘻嘻黨 招式 ---- */
-  g_tide:{n:'洋流來襲',t:'unit',sk:1,c:5,img:'g_tide',g:'洋',camp:'green',d:'大招｜3 回合：每回合聲量 +3，連擊加成翻倍',
+  g_tide:{n:'洋流來襲',t:'unit',sk:1,c:5,img:'g_tide',g:'洋',camp:'green',d:'大招｜3 回合：每回合聲量 +2，連擊加成翻倍',
     onPlay:async A=>{ const c=center(A.el()); for(let i=0;i<3;i++) setTimeout(()=>burst(i*innerWidth/2,innerHeight*.6,60,['#36d27a','#3fe0ff','#e0fff0'],11,{g:-.02,dec:.012}),i*120);
       if(!A.vid) await A.extra('洋流來襲！從夜市一路燒到網路','人潮湧現，對手酸是「人工洋流」','洋流'); },
-    unit:{life:3,passive:'tide',tick:async A=>{ await A.gain(3,true); }}, ai:m=>m.units.length<4?8:0},
+    unit:{life:3,passive:'tide',tick:async A=>{ await A.gain(2,true); }}, ai:m=>m.units.length<4?7:0},
   g_chair:{n:'國中椅子技',t:'smear',sk:1,c:3,img:'g_chair',g:'椅',camp:'green',d:'對手 −6｜40%「我是打輸的那一方」：自己也 −2',
-    fx:async A=>{ await A.hit(6); if(Math.random()<.4){ await A.extra('本人自爆：國中拿椅子砸過人','但他補充：「我是打輸的那一方」','自爆'); await A.gain(-2); } }, ai:(m,o)=>o.buzz>0?7:2},
+    fx:async A=>{ await A.hit(6); if(Math.random()<.4){ await A.extra('本人自爆：國中拿椅子砸過人','但他補充：「我是打輸的那一方」','自爆'); await A.gain(-2); } }, ai:(m,o)=>Math.min(6,o.buzz)+1},
   g_english:{n:'全英文開講',t:'boost',sk:1,c:2,img:'g_english',g:'英',camp:'green',d:'聲量 +3｜對手聽不懂：下回合資金 −1',
     fx:async A=>{ await A.gain(3); A.op.fundPenalty=1; SFX.bad(); floatAt(A.oel(),'聽不懂 資金 −1','#9098bd','txt'); renderSides(); }, ai:()=>5.5},
   g_anytime:{n:'隨時可辯',t:'smear',sk:1,c:2,img:'g_anytime',g:'辯',camp:'green',d:'戳破護盾和答非所問｜對手 −3',
     fx:async A=>{ A.op.dodge=0; await A.breakShield(); await A.hit(3); }, ai:(m,o)=>(o.shield||o.dodge)?7.5:4},
-  g_wanted:{n:'被對岸立案調查',t:'boost',sk:1,c:3,img:'g_wanted',g:'緝',camp:'green',d:'聲量 +5｜反感 −2',
-    fx:async A=>{ await A.extra(`境外通緝變勳章！${A.me.name}聲勢不跌反漲`,'對岸立案調查，支持者：這是最強背書','加持'); await A.gain(5); A.back(-2); }, ai:()=>7},
+  g_wanted:{n:'被對岸立案調查',t:'boost',sk:1,c:3,img:'g_wanted',g:'緝',camp:'green',d:'聲量 +4｜反感 −2',
+    fx:async A=>{ await A.extra(`境外通緝變勳章！${A.me.name}聲勢不跌反漲`,'對岸立案調查，支持者：這是最強背書','加持'); await A.gain(4); A.back(-2); }, ai:()=>6},
   g_bear:{n:'黑熊特訓',t:'unit',sk:1,c:3,img:'g_bear',g:'熊',camp:'green',d:'暗樁｜每回合護盾 +2、聲量 +1（3 回合）',
     unit:{life:3,tick:async A=>{ A.shield(2); await A.gain(1,true); }}, ai:m=>m.units.length<4?6.5:0},
-  g_airport:{n:'松機遷移',t:'smear',sk:1,c:3,img:'g_airport',g:'機',camp:'green',d:'對手 −4｜對手反感 +1',
-    fx:async A=>{ await A.hit(4); A.back(1,true); }, ai:(m,o)=>o.buzz>0?6.5:2,
+  g_airport:{n:'松機遷移',t:'smear',sk:1,c:3,img:'g_airport',g:'機',camp:'green',d:'對手 −5｜對手反感 +1',
+    fx:async A=>{ await A.hit(5); A.back(1,true); }, ai:(m,o)=>o.buzz>0?7:2,
     h:['{o}被問松機：任內四年跟中央談過嗎？','松山機場搬不搬？{o}被追問到語塞']},
   g_haircut:{n:'立院男神',t:'boost',sk:1,c:2,img:'g_haircut',g:'髮',camp:'green',d:'聲量 +4（新髮型被讚像日韓男星）',
     fx:async A=>{ await A.gain(4); }, ai:()=>5},
@@ -850,7 +850,7 @@ const CARDS={
 };
 const CAMPS={
   blue:{key:'blue',party:'藍藍路黨',cand:'講卍安',img:'p_blue',g:'藍',color:'var(--blue)',
-    starter:['b_script','b_qa'], pool:['b_script','b_qa','b_oldpost','b_baoli','b_hen','b_wei','b_fake','b_harvard'],
+    starter:['b_script','b_qa'], pool:["b_hen","b_oldpost","b_script","b_qa","b_baoli","b_wei","b_fake","b_harvard"],
     pitch:'現任市長拚連任。必殺技：問A答BCD、講稿機啟動、人工佯流。',
     taunts:['台北需要的是穩定，不是實驗。','你問A？我的答案是B、C、D。','你的洋流，是人工的吧？','台北，我們繼續一起走下去。']},
   green:{key:'green',party:'綠嘻嘻黨',cand:'審伯羊',img:'p_green',g:'綠',color:'var(--dpp)',
@@ -903,9 +903,22 @@ function toast(msg){ const t=document.getElementById('toast'); const d=document.
 function achieve(k){ if(SAVE.ach[k]) return; SAVE.ach[k]=1; SAVE.coins+=ACH[k].r; save(); setTimeout(()=>VOICE.play('sys_achieve',2),200); SFX.fanfare(); toast(`成就達成：${ACH[k].n}　+${ACH[k].r} 政治獻金`); }
 function checkCollectionAch(){ const n=ownedCount(); if(n>=ALL_CARDS.length/2) achieve('half'); if(n>=ALL_CARDS.length) achieve('full'); }
 function defaultDeck(camp){
-  const order={SSR:0,SR:1,R:2,N:3}; const pool=ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,camp)).sort((a,b)=>order[RARITY[a]]-order[RARITY[b]]||(CARDS[b].camp?1:0)-(CARDS[a].camp?1:0));
-  const deck=[]; for(let pass=0;pass<2&&deck.length<DECK_SIZE;pass++) for(const id of pool){ if(deck.length>=DECK_SIZE) break; if(deck.filter(x=>x===id).length<capOf(id)) deck.push(id); }
-  return deck; }
+  const order={SSR:0,SR:1,R:2,N:3};
+  const pool=ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,camp)).sort((a,b)=>order[RARITY[a]]-order[RARITY[b]]||(CARDS[b].camp?1:0)-(CARDS[a].camp?1:0));
+  const add=(deck,id)=>{ if(SAVE.owned[id]&&campOK(id,camp)&&deck.length<DECK_SIZE&&deck.filter(x=>x===id).length<capOf(id)) deck.push(id); };
+  const fill=deck=>{ for(let pass=0;pass<2;pass++) for(const id of pool) add(deck,id); return deck; };
+  const initial=fill([]);
+  // Blue needs recurring cleanup before its retaliation engines are collected.
+  if(camp==='blue'&&SAVE.owned.street&&initial.filter(id=>id==='b_oldpost').length>1&&initial.filter(id=>id==='street').length<capOf('street')) initial[initial.lastIndexOf('b_oldpost')]='street';
+  // Extra protection offsets backlash until blue collects its cleanup engines.
+  if(camp==='blue'&&SAVE.owned.clarify&&initial.includes('bento')&&initial.filter(id=>id==='clarify').length<capOf('clarify')) initial[initial.indexOf('bento')]='clarify';
+  if(initial.filter(id=>CARDS[id].c===1).length>=4) return initial;
+  // Blue chains cheap attacks with script; green keeps a heavier pressure curve.
+  const preferred={
+    blue:['street','street','oldphoto','oldphoto','trolls','trolls','b_script','b_script','b_baoli','b_hen','b_qa','b_oldpost','press','temple','lastnight'],
+    green:['g_chair','g_tide','lastnight','g_english','g_anytime','g_wanted','g_bear','street','talkshow','oldphoto','g_haircut','g_airport','poll','press','g_anytime']};
+  const deck=[]; preferred[camp].forEach(id=>add(deck,id));
+  return fill(deck); }
 function validDeck(camp){ const d=(SAVE.decks[camp]||[]).filter(id=>CARDS[id]&&SAVE.owned[id]&&campOK(id,camp)); return d.length===DECK_SIZE?d:defaultDeck(camp); }
 function rollRarity(slot){ const w=slot===4?{N:0,R:50,SR:38,SSR:12}:{N:45,R:33,SR:17,SSR:5}; let r=Math.random()*100; for(const k of ['SSR','SR','R','N']){ if(r<w[k]) return k; r-=w[k]; } return 'N'; }
 function rollPack(){
@@ -1652,8 +1665,8 @@ const ADV={press:{dmg:4,gain:1,back:1},deepfake:{dmg:6,back:2.5},trolls:{dmg:3,b
   street:{gain:2,back:-1},temple:{gain:3,votes:2},bento:{votes:3,back:2},influencer:{gain:5},poll:{pollx:1,back:1},
   clarify:{shield:4,back:-1},factcheck:{destroy:1,opBack:2},apology:{back:-3},blame:{blame:1},lastnight:{last:1},n_cash:{votes:4},n_bot:{opBack:3},
   b_qa:{dodge:2},b_script:{atk:2,gain:2},b_baoli:{baoli:1},b_wei:{dmg:4,back:-1},b_harvard:{gain:5,back:.8},b_oldpost:{dmg:5,back:1},
-  b_hen:{unit:{gain:2,votes:1}},b_fake:{fake:1},g_tide:{unit:{gain:3,tide:1}},g_chair:{dmg:6,gain:-.8},g_english:{gain:3,funds:1},
-  g_anytime:{dmg:3,pierce:1},g_wanted:{gain:5,back:-2},g_bear:{unit:{gain:1,shield:2}},g_airport:{dmg:4,opBack:1},g_haircut:{gain:4}};
+  b_hen:{unit:{gain:2,votes:1}},b_fake:{fake:1},g_tide:{unit:{gain:2,tide:1}},g_chair:{dmg:6,gain:-.8},g_english:{gain:3,funds:1},
+  g_anytime:{dmg:3,pierce:1},g_wanted:{gain:4,back:-2},g_bear:{unit:{gain:1,shield:2}},g_airport:{dmg:5,opBack:1},g_haircut:{gain:4}};
 const BIG_HIT=id=>(ADV[id]&&ADV[id].dmg>=4&&!ADV[id].multi)||id==='b_fake';
 let ADV_ON=LOCAL.adv!==false;
 function settleSoon(){ const st=STAGES[RUN.stage]; return B.week%2===0||B.week===st.weeks; }

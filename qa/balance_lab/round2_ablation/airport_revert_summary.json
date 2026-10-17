@@ -1,0 +1,147 @@
+{
+  "source": "qa/balance_lab/round2_ablation/airport_revert.html",
+  "sourceBytes": 167551,
+  "sha256": "ad57d6f6bb21a6dccf90e499609e4e6910f0e901bbea57c0dd3b28a438565089",
+  "changes": [
+    "松機 card d/fx/ADV damage 5→4",
+    "松機 greedy ai 7→6.5"
+  ],
+  "simN": 150,
+  "seeds": [
+    20261100,
+    77770001,
+    31415926
+  ],
+  "results": [
+    {
+      "scenario": "starter+greedy",
+      "camp": "blue",
+      "clearPctBySeed": {
+        "20261100": 33.3,
+        "77770001": 24.7,
+        "31415926": 30
+      },
+      "baselineMean": 26.0,
+      "ablationMean": 29.3333,
+      "deltaPoints": 3.3333,
+      "stages": [
+        {
+          "stage": 1,
+          "baselineMean": 77.1,
+          "ablationMean": 77.1,
+          "deltaPoints": 0.0
+        },
+        {
+          "stage": 2,
+          "baselineMean": 70.2,
+          "ablationMean": 74.4333,
+          "deltaPoints": 4.2333
+        },
+        {
+          "stage": 3,
+          "baselineMean": 67.5667,
+          "ablationMean": 71.1,
+          "deltaPoints": 3.5333
+        },
+        {
+          "stage": 4,
+          "baselineMean": 68.4667,
+          "ablationMean": 71.3333,
+          "deltaPoints": 2.8667
+        }
+      ]
+    },
+    {
+      "scenario": "starter+greedy",
+      "camp": "green",
+      "clearPctBySeed": {
+        "20261100": 22.7,
+        "77770001": 22,
+        "31415926": 20
+      },
+      "baselineMean": 28.8667,
+      "ablationMean": 21.5667,
+      "deltaPoints": -7.3,
+      "stages": [
+        {
+          "stage": 1,
+          "baselineMean": 80.0,
+          "ablationMean": 73.7667,
+          "deltaPoints": -6.2333
+        },
+        {
+          "stage": 2,
+          "baselineMean": 80.6667,
+          "ablationMean": 80.2,
+          "deltaPoints": -0.4667
+        },
+        {
+          "stage": 3,
+          "baselineMean": 74.0,
+          "ablationMean": 69.7667,
+          "deltaPoints": -4.2333
+        },
+        {
+          "stage": 4,
+          "baselineMean": 64.0,
+          "ablationMean": 60.4667,
+          "deltaPoints": -3.5333
+        }
+      ]
+    },
+    {
+      "scenario": "full+greedy",
+      "camp": "blue",
+      "clearPctBySeed": {
+        "20261100": 46.7,
+        "77770001": 48.7,
+        "31415926": 52.7
+      },
+      "baselineMean": 48.9,
+      "ablationMean": 49.3667,
+      "deltaPoints": 0.4667
+    },
+    {
+      "scenario": "full+greedy",
+      "camp": "green",
+      "clearPctBySeed": {
+        "20261100": 47.3,
+        "77770001": 45.3,
+        "31415926": 42.7
+      },
+      "baselineMean": 46.4333,
+      "ablationMean": 45.1,
+      "deltaPoints": -1.3333
+    },
+    {
+      "scenario": "full+adv",
+      "camp": "blue",
+      "clearPctBySeed": {
+        "20261100": 68,
+        "77770001": 64.7,
+        "31415926": 68.7
+      },
+      "baselineMean": 64.0,
+      "ablationMean": 67.1333,
+      "deltaPoints": 3.1333
+    },
+    {
+      "scenario": "full+adv",
+      "camp": "green",
+      "clearPctBySeed": {
+        "20261100": 62,
+        "77770001": 55.3,
+        "31415926": 58.7
+      },
+      "baselineMean": 59.1,
+      "ablationMean": 58.6667,
+      "deltaPoints": -0.4333
+    }
+  ],
+  "limitations": [
+    "Damage and greedy AI reverted together; this isolates the prior airport package, not damage alone.",
+    "Stage win rates are unconditional, not conditional survival rates.",
+    "Campaign weather RNG is not paired across configurations; shared battle seeds do not guarantee paired trajectories.",
+    "Finite samples and shared stage structure do not establish independent causal contributions."
+  ]
+}

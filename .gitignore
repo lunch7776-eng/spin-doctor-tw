@@ -8,3 +8,8 @@ video/skills/*_raw.mp4
 video/skills/*_raw.png
 video/skills/*.prompt.txt
 video/skills/batch.log
+qa/balance_lab/*.html
+qa/balance_lab/*.json
+qa/balance_lab/*.cjs
+qa/balance_lab/*_experiment/
+qa/balance_lab/codex_log*.txt

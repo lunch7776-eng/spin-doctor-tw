@@ -1,0 +1,17 @@
+第二輪平衡討論。你上一輪的方案在 qa/balance_lab/index.html（備份在 qa/balance_lab/round1_codex.html），結論寫在 qa/balance_lab/PROPOSAL.md。
+
+【Claude 的獨立驗證】用你沒看過的種子 SIM_SEED=77770001、SIM_N=200 跑你的方案：
+- starter+greedy：藍 23.0% vs 綠 32.5%（差 9.5，你的種子上只差 0.7）→ 判定新手情境有過度擬合，綠營入門仍偏強。
+- full+greedy：藍 49.0% vs 綠 44.0%（差 5.0，壓線）
+- full+adv：藍 64.5% vs 綠 60.5%（差 4.0，通過）
+Claude 推測主因：入門卡不對等（綠：立院男神＋被你加強的松機遷移；藍：挖舊文＋母雞），以及 S2 藍 71% vs 綠 80%。
+
+【你的任務】
+1. 先驗證或推翻 Claude 的推測（可用統計或拆解實驗）。
+2. 只用「最小改動」修新手情境，優先動入門卡組合（CAMP_STARTER、defaultDeck 對入門收藏的挑法）或 1–2 張卡的數值；不要推翻你上一輪已經通過的全收集結果。
+3. 評估一律用三組種子平均，避免過度擬合：
+   SIM_N=150 SIM_SEED=20261100、SIM_SEED=77770001、SIM_SEED=31415926，指令：SIM_N=150 SIM_SEED=<種子> node qa/balance_sim.cjs qa/balance_lab/index.html
+4. 驗收（三組種子平均）：三情境藍綠完整通關率差距都 ≤ 5 個百分點；starter 20–35%、full+adv 45–65%、full+greedy ≥ starter；卡面 d 與 fx 同步；只改 qa/balance_lab/。
+5. 不准修改 game/。
+
+【回報】把第二輪結論 append 到 qa/balance_lab/PROPOSAL.md 最後（標題「## 第二輪」，≤ 500 字）：對 Claude 推測的判定、你的最小改動清單（舊值→新值）、三組種子各自與平均的三情境×兩陣營完整通關率、驗收是否通過。最後也輸出同樣內容。

@@ -1,0 +1,168 @@
+{
+ "source": "game/index.html",
+ "sha256": "b139c021ccb972ce72fc5d70f3ff25528574ec1eb7661602a3f53451623bc626",
+ "results": [
+  {
+   "scenario": "starter+greedy",
+   "camp": "blue",
+   "clearPct": 38,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 84,
+     "votes": "42.6 : 35.8"
+    },
+    {
+     "stage": 2,
+     "win": 71.3,
+     "votes": "22.1 : 19.1"
+    },
+    {
+     "stage": 3,
+     "win": 82,
+     "votes": "41.5 : 30.7"
+    },
+    {
+     "stage": 4,
+     "win": 78,
+     "votes": "57.4 : 44.8"
+    }
+   ]
+  },
+  {
+   "scenario": "starter+greedy",
+   "camp": "green",
+   "clearPct": 27.3,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 84.7,
+     "votes": "33 : 26.9"
+    },
+    {
+     "stage": 2,
+     "win": 77.3,
+     "votes": "21.1 : 16.5"
+    },
+    {
+     "stage": 3,
+     "win": 74.7,
+     "votes": "37.6 : 30.3"
+    },
+    {
+     "stage": 4,
+     "win": 62.7,
+     "votes": "39.1 : 37.1"
+    }
+   ]
+  },
+  {
+   "scenario": "full+greedy",
+   "camp": "blue",
+   "clearPct": 48,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 73.3,
+     "votes": "39.6 : 35.2"
+    },
+    {
+     "stage": 2,
+     "win": 86.7,
+     "votes": "28.3 : 18.3"
+    },
+    {
+     "stage": 3,
+     "win": 88,
+     "votes": "43.9 : 29.2"
+    },
+    {
+     "stage": 4,
+     "win": 86.7,
+     "votes": "54.6 : 39.6"
+    }
+   ]
+  },
+  {
+   "scenario": "full+greedy",
+   "camp": "green",
+   "clearPct": 51.3,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 73.3,
+     "votes": "33.5 : 28.3"
+    },
+    {
+     "stage": 2,
+     "win": 88,
+     "votes": "29 : 19.1"
+    },
+    {
+     "stage": 3,
+     "win": 85.3,
+     "votes": "47.2 : 30.6"
+    },
+    {
+     "stage": 4,
+     "win": 93.3,
+     "votes": "59.8 : 34.4"
+    }
+   ]
+  },
+  {
+   "scenario": "full+adv",
+   "camp": "blue",
+   "clearPct": 60.7,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 90,
+     "votes": "45.2 : 35.2"
+    },
+    {
+     "stage": 2,
+     "win": 86.7,
+     "votes": "28.1 : 17.0"
+    },
+    {
+     "stage": 3,
+     "win": 88,
+     "votes": "44.6 : 27.6"
+    },
+    {
+     "stage": 4,
+     "win": 85.3,
+     "votes": "58.7 : 38.8"
+    }
+   ]
+  },
+  {
+   "scenario": "full+adv",
+   "camp": "green",
+   "clearPct": 56.7,
+   "stages": [
+    {
+     "stage": 1,
+     "win": 87.3,
+     "votes": "36.9 : 26.9"
+    },
+    {
+     "stage": 2,
+     "win": 84.7,
+     "votes": "28.3 : 18.5"
+    },
+    {
+     "stage": 3,
+     "win": 89.3,
+     "votes": "47.5 : 30.4"
+    },
+    {
+     "stage": 4,
+     "win": 90.7,
+     "votes": "54.8 : 33.0"
+    }
+   ]
+  }
+ ]
+}

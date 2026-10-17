@@ -1,0 +1,102 @@
+{
+  "originalSha256": "ee8c1131acf64e27985c598811c392dfa6345de89277faa0b6028e1bfcee60a0",
+  "candidateSha256": "81d95ddb409989f3698a0c817f78c033b044dcbc12afea4a5e93aaa1adde3503",
+  "parsedScripts": 1,
+  "legalDeckChecks": 2052,
+  "cardEffectChecks": 4,
+  "scope": "Only CARDS/CAMPS/defaultDeck/ADV may differ; PHASES/UI/audio identical",
+  "decks": [
+    {
+      "camp": "blue",
+      "collection": "starter",
+      "cost": 30,
+      "oneCost": 5,
+      "deck": [
+        "b_oldpost",
+        "b_hen",
+        "press",
+        "trolls",
+        "oldphoto",
+        "street",
+        "clarify",
+        "apology",
+        "pundit",
+        "influencer",
+        "clarify",
+        "temple",
+        "street",
+        "b_hen",
+        "press"
+      ]
+    },
+    {
+      "camp": "blue",
+      "collection": "full",
+      "cost": 29,
+      "oneCost": 6,
+      "deck": [
+        "street",
+        "street",
+        "oldphoto",
+        "oldphoto",
+        "trolls",
+        "trolls",
+        "b_script",
+        "b_script",
+        "b_baoli",
+        "b_hen",
+        "b_qa",
+        "b_oldpost",
+        "press",
+        "temple",
+        "lastnight"
+      ]
+    },
+    {
+      "camp": "green",
+      "collection": "starter",
+      "cost": 31,
+      "oneCost": 4,
+      "deck": [
+        "g_haircut",
+        "g_airport",
+        "press",
+        "trolls",
+        "oldphoto",
+        "street",
+        "clarify",
+        "apology",
+        "pundit",
+        "influencer",
+        "bento",
+        "temple",
+        "g_haircut",
+        "g_airport",
+        "press"
+      ]
+    },
+    {
+      "camp": "green",
+      "collection": "full",
+      "cost": 40,
+      "oneCost": 2,
+      "deck": [
+        "g_chair",
+        "g_tide",
+        "lastnight",
+        "g_english",
+        "g_anytime",
+        "g_wanted",
+        "g_bear",
+        "street",
+        "talkshow",
+        "oldphoto",
+        "g_haircut",
+        "g_airport",
+        "poll",
+        "press",
+        "g_anytime"
+      ]
+    }
+  ]
+}
