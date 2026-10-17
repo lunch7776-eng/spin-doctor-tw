@@ -651,6 +651,8 @@ body.freeze *{animation-play-state:paused!important}
 </div>
 
 <script>
+/* 網址加 ?reset 就清空這台裝置的存檔（收藏、獻金、教學紀錄、選戰存檔），變回全新玩家 */
+try{ if(/[?&]reset\b/.test(location.search)){ ['spin_save','spin_local','spin_run'].forEach(k=>localStorage.removeItem(k)); history.replaceState(null,'',location.pathname+location.hash); } }catch(e){}
 /* =========================================================
    AUDIO — everything synthesized, no files
    ========================================================= */
