@@ -741,7 +741,8 @@ function banner(text,color){ const b=document.getElementById('turnban'); b.textC
   setTimeout(()=>{ b.hidden=true; },1000); }
 function flash(o=.6,color='#fff'){ const f=document.getElementById('flash'); f.style.background=color; f.animate([{opacity:o},{opacity:0}],{duration:280,easing:'ease-out'}); }
 function buzzHaptic(ms){ try{ navigator.vibrate&&navigator.vibrate(ms); }catch(e){} }
-const sleep=ms=>{ const b0=(typeof B!=='undefined')?B:null; return new Promise(r=>setTimeout(()=>{ if(b0&&b0.dead) return; r(); },ms)); };
+// only waits that belong to a live, on-screen battle are tied to it; packs/menus after quitting must still resolve
+const sleep=ms=>{ const sg=document.getElementById('screen-game'); const b0=(typeof B!=='undefined'&&B&&!B.dead&&sg&&!sg.hidden)?B:null; return new Promise(r=>setTimeout(()=>{ if(b0&&b0.dead) return; r(); },ms)); };
 // never let a frozen animation timeline (hidden tab) stall the game
 const fin=(anim,ms)=>Promise.race([anim.finished.catch(()=>{}),sleep(ms+120)]);
 async function hitstop(ms=70){ document.body.classList.add('freeze'); await sleep(ms); document.body.classList.remove('freeze'); }
