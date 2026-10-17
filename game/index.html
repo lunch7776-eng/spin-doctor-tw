@@ -435,6 +435,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .newsticker b{flex:none;background:var(--red);color:#fff;font-size:11px;letter-spacing:.15em;padding:2px 8px;border-radius:4px}
 .newsticker span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mebtns{display:flex;gap:8px;flex-wrap:nowrap;align-items:center;justify-content:flex-end;margin-left:auto}
+#cinema{position:absolute;inset:0;z-index:56;display:grid;place-items:center;background:rgba(0,0,0,.72);cursor:pointer;--cc:#36d27a}
+#cinema .cband{position:relative;width:100%;height:min(calc(100vw * 9 / 21),46vh);background:#000;overflow:hidden;box-shadow:0 0 0 2px #fff,0 0 60px var(--cc),0 0 140px color-mix(in srgb,var(--cc) 50%,transparent)}
+#cinema video{width:100%;height:100%;object-fit:cover;display:block}
+#cinema .cscan{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 4px);mix-blend-mode:overlay}
+#cinema .cedge{position:absolute;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--cc),#fff,var(--cc),transparent)}
+#cinema .cedge.t{top:0} #cinema .cedge.b{bottom:0}
 body.freeze *{animation-play-state:paused!important}
 
 @media (max-width:640px){
@@ -533,6 +539,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
   <div id="flash"></div>
   <div id="cutin" hidden></div>
+  <div id="cinema" hidden><div class="cband"><video id="cvid" muted playsinline preload="auto"></video><div class="cscan"></div><div class="cedge t"></div><div class="cedge b"></div></div></div>
   <div id="extra"></div>
   <div id="overlay" class="overlay" hidden></div>
   <canvas id="fx"></canvas>
@@ -818,7 +825,7 @@ const CARDS={
   /* ---- 綠嘻嘻黨 招式 ---- */
   g_tide:{n:'洋流來襲',t:'unit',sk:1,c:5,img:'g_tide',g:'洋',camp:'green',d:'大招｜3 回合：每回合聲量 +3，連擊加成翻倍',
     onPlay:async A=>{ const c=center(A.el()); for(let i=0;i<3;i++) setTimeout(()=>burst(i*innerWidth/2,innerHeight*.6,60,['#36d27a','#3fe0ff','#e0fff0'],11,{g:-.02,dec:.012}),i*120);
-      await A.extra('洋流來襲！從夜市一路燒到網路','人潮湧現，對手酸是「人工洋流」','洋流'); },
+      if(!A.vid) await A.extra('洋流來襲！從夜市一路燒到網路','人潮湧現，對手酸是「人工洋流」','洋流'); },
     unit:{life:3,passive:'tide',tick:async A=>{ await A.gain(3,true); }}, ai:m=>m.units.length<4?8:0},
   g_chair:{n:'國中椅子技',t:'smear',sk:1,c:3,img:'g_chair',g:'椅',camp:'green',d:'對手 −6｜40%「我是打輸的那一方」：自己也 −2',
     fx:async A=>{ await A.hit(6); if(Math.random()<.4){ await A.extra('本人自爆：國中拿椅子砸過人','但他補充：「我是打輸的那一方」','自爆'); await A.gain(-2); } }, ai:(m,o)=>o.buzz>0?7:2},
@@ -1030,6 +1037,31 @@ function extra(title,sub,stampTxt='獨家'){
     ex.querySelector('.paper').addEventListener('click',close); setTimeout(close,1700);
   });
 }
+/* Super-Robot-Wars style 21:9 skill clips; falls back to the banner cut-in */
+const SKILL_FX={g_tide:{v:'fx/g_tide.mp4',p:'fx/g_tide.jpg'}};
+const FXV=1, FX_CACHE={};
+function fxMode(){ return LOCAL.fxMode||'full'; }
+function preloadFx(ids){ if(fxMode()==='off') return; [...new Set(ids)].forEach(id=>{ const f=SKILL_FX[id]; if(!f||FX_CACHE[id]) return;
+  const v=document.createElement('video'); v.muted=true; v.playsInline=true; v.preload='auto'; v.src=f.v+'?v='+FXV; v.load(); FX_CACHE[id]=v; }); }
+async function playSkillVideo(side,id){
+  const f=SKILL_FX[id]; if(!f||fxMode()==='off') return false;
+  const src=FX_CACHE[id]||(preloadFx([id]),FX_CACHE[id]);
+  for(let i=0;i<6&&src.readyState<3;i++) await sleep(60); // ~360ms grace
+  if(src.readyState<2) return false;
+  B.fxSeen=B.fxSeen||{}; const short=fxMode()==='short'||B.fxSeen[id]; B.fxSeen[id]=1;
+  const camp=side.id==='me'?RUN.camp:(RUN.camp==='blue'?'green':'blue'), col=camp==='blue'?'#3f8cff':'#36d27a';
+  const cin=$('#cinema'), vid=$('#cvid'); cin.style.setProperty('--cc',col); cin.hidden=false;
+  vid.src=src.currentSrc||src.src; vid.poster=f.p+'?v='+FXV; vid.currentTime=short?1.2:0;
+  const band=cin.querySelector('.cband');
+  band.animate([{transform:'scaleY(0)'},{transform:'scaleY(1.06)',offset:.7},{transform:'scaleY(1)'}],{duration:260,easing:'cubic-bezier(.2,1.2,.4,1)'});
+  AU.tone(70,.5,'sawtooth',.25,0,500); AU.noise(.35,.3,'highpass',900,0,9000); flash(.6,col); shake(.4); buzzHaptic([20,30,60]);
+  try{ await vid.play(); }catch(e){ cin.hidden=true; return false; }
+  setTimeout(()=>{ SFX.boom(); shake(.5); },short?150:900);
+  await new Promise(res=>{ let done=false; const fin_=()=>{ if(done) return; done=true; vid.onended=null; cin.onclick=null; res(); };
+    vid.onended=fin_; cin.onclick=fin_; setTimeout(fin_,short?1600:4200); });
+  vid.pause(); flash(.7,'#fff'); SFX.slam();
+  await fin(band.animate([{transform:'scaleY(1)',opacity:1},{transform:'scaleY(0)',opacity:.6}],{duration:200,easing:'ease-in',fill:'forwards'}),200);
+  cin.hidden=true; band.getAnimations().forEach(a=>a.cancel()); return true; }
 function cutin(side,c){
   return new Promise(res=>{
     const camp = side.id==='me' ? RUN.camp : (RUN.camp==='blue'?'green':'blue');
@@ -1138,7 +1170,7 @@ async function startBattle(){
      op:newSide('op',st.name,st.img,st.g,st.deck)};
   B.op.buzz=st.startBuzz+5; B.me.buzz=4;
   B.mod=RUN.stage===0?MODS[MODS.length-1]:RUN.mods[RUN.stage];
-  P.length=0; show('game'); MUS.mood='game'; BGM.play('battle');
+  P.length=0; show('game'); MUS.mood='game'; BGM.play('battle'); preloadFx([...RUN.deck,...st.deck]);
   draw(B.me,4); draw(B.op,4);
   renderAll();
   await myPhase(true);
@@ -1198,7 +1230,7 @@ async function playCard(side,other,idx,srcEl){
 
   if(B.dead||(side!==B.me&&side!==B.op)){ fc.remove(); return; }
   const A=api(side,other); B.curType=c.t;
-  if(c.sk){ await cutin(side,c); if(B.dead||(side!==B.me&&side!==B.op)) return; }
+  if(c.sk){ A.vid=await playSkillVideo(side,id); if(!A.vid) await cutin(side,c); if(B.dead||(side!==B.me&&side!==B.op)) return; }
   if(c.unit){
     if(c.onPlay) await c.onPlay(A);
     if(side.units.length>=4){ const old=side.units.shift(); floatAt(side.id==='me'?$('#sideMe'):$('#sideOp'),CARDS[old.id].n+' 解約','#9098bd','txt'); }
@@ -1602,11 +1634,13 @@ function pauseMenu(){
     <div class="pmenu"><button class="cta" id="pzGo">繼續操盤</button>
     <button class="ghost" id="pzRe">重打這一關</button>
     <button class="ghost" id="pzQuit">放棄選戰，回標題</button>
-    <button class="ghost" id="pzMute">音效：${AU.muted?'關':'開'}</button></div>
+    <button class="ghost" id="pzMute">音效：${AU.muted?'關':'開'}</button>
+    <button class="ghost" id="pzFx">必殺動畫：${{full:'完整',short:'精簡',off:'關閉'}[fxMode()]}</button></div>
     <div class="pconfirm" id="pzConfirm" hidden><p></p><div class="row"><button class="cta danger" id="pzYes">確定</button><button class="ghost" id="pzNo">取消</button></div></div></div>`;
   const ask=(msg,fn)=>{ const c=$('#pzConfirm'); c.hidden=false; c.querySelector('p').textContent=msg; $('#pzYes').onclick=fn; $('#pzNo').onclick=()=>{ SFX.click(); c.hidden=true; }; };
   $('#pzGo').onclick=()=>{ SFX.click(); pb.hidden=true; };
   $('#pzMute').onclick=()=>{ toggleMute(); $('#pzMute').textContent='音效：'+(AU.muted?'關':'開'); };
+  $('#pzFx').onclick=()=>{ const order=['full','short','off']; LOCAL.fxMode=order[(order.indexOf(fxMode())+1)%3]; saveLocal(); SFX.click(); $('#pzFx').textContent='必殺動畫：'+{full:'完整',short:'精簡',off:'關閉'}[fxMode()]; };
   $('#pzRe').onclick=()=>ask('這一關的進度會清掉，用同一副牌重新開打。',()=>{ SFX.click(); pb.hidden=true; killBattle(); startBattle(); });
   $('#pzQuit').onclick=()=>ask('放棄這次選戰？這局不會計分，已經拿到的政治獻金會保留。',()=>{ SFX.click(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); });
 }
