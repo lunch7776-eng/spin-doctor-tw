@@ -18,3 +18,5 @@ video/trailer/seg/
 video/trailer/video_only.mp4
 video/trailer/audio.m4a
 video/trailer/*.wav
+video/trailer/sfx/n/
+video/trailer/vo/*_trim.wav
