@@ -35,8 +35,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #vignette.hot{box-shadow:inset 0 0 120px 30px rgba(255,46,77,.45)}
 
 /* ---------- title ---------- */
-#screen-title{display:grid;place-items:center;text-align:center}
-.title-wrap{display:grid;gap:22px;justify-items:center;max-width:560px}
+#screen-title{display:flex;flex-direction:column;align-items:center;justify-content:safe center;text-align:center;overflow-y:auto;padding-block:16px;box-sizing:border-box}
+.title-wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;justify-items:center;width:100%;max-width:560px;min-width:0}
 .kicker{font-size:13px;letter-spacing:.35em;color:var(--cyan);font-weight:700}
 .logo{font-family:var(--display);font-size:clamp(56px,13vw,112px);line-height:.95;letter-spacing:.04em;text-wrap:balance;
   background:linear-gradient(180deg,#fff7df 0%,var(--gold) 55%,#c47a10 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
@@ -471,6 +471,26 @@ body.freeze *{animation-play-state:paused!important}
 }
 @media (max-height:700px){ :root{--cw:96px;--ch:136px} .board{min-height:46px} .unit{width:42px;height:46px} }
 @media (prefers-reduced-motion:reduce){ *{animation-duration:.01ms!important;transition-duration:.01ms!important} }
+/* 短螢幕手機：開頭畫面縮排版（放最後以覆蓋基礎樣式） */
+@media (max-height:740px){
+  .title-wrap{gap:14px}
+  .logo{font-size:min(13vw,9.5vh);white-space:nowrap}
+  .tag{font-size:15px}
+  .cta{font-size:20px;padding:12px 36px}
+  .title-wrap .ghost{font-size:14px;padding:8px 16px}
+  .disclaimer{font-size:11px}
+  .newsticker{font-size:12px;padding:5px 10px}
+}
+@media (max-height:600px){
+  .title-wrap{gap:9px}
+  .kicker{font-size:11px}
+  .logo{font-size:min(12vw,8.5vh)}
+  .tag{font-size:13px}
+  .cta{font-size:18px;padding:10px 30px}
+  .title-wrap .row{gap:8px}
+  .title-wrap .ghost{font-size:13px;padding:7px 13px}
+  .metaline{font-size:12px;gap:10px}
+}
 </style>
 
 <div id="app">
