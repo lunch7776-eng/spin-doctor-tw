@@ -55,6 +55,7 @@ const ctx = {
   seed: n => {rng = n >>> 0;},
   P: [], BGM: {play: noop, rate: noop}, preloadFx: noop, playSkillVideo: async () => false,
   updateAdvice: noop, newsEvent: async () => {}, $: () => element, NEWS: [],
+  applyCounterTags: noop, intentCounter: () => '', counterFor: () => ({match: () => false}),
 };
 for (const name of ['renderAll', 'renderSides', 'renderHand', 'renderHud', 'renderFunds',
   'comboShow', 'ticker', 'banner', 'show', 'floatAt', 'burst', 'shake', 'zoomPunch',
