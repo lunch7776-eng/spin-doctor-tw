@@ -52,8 +52,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .ghost:hover{border-color:var(--cyan)}
 #btnCont.cont{font-size:18px;padding:11px 26px;white-space:nowrap;background:linear-gradient(180deg,#7ef0c2,#16b884 60%,#0b7a57);color:#03140d;box-shadow:0 5px 0 #064d37,0 10px 24px rgba(22,224,160,.3)}
 .intro{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:#05060e;overflow:hidden}
-.intro .ibg{position:absolute;inset:-40px;background:url(fx/hook.jpg?v=3) center/cover;filter:blur(24px) brightness(.35)}
-.intro.playing .ibg{background-image:url(fx/hook.jpg?v=3)}
+.intro .ibg{position:absolute;inset:-40px;background:url(fx/hook.jpg?v=4) center/cover;filter:blur(24px) brightness(.35)}
+.intro.playing .ibg{background-image:url(fx/hook.jpg?v=4)}
 .intro video{position:relative;width:100%;max-height:100%;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 0 60px #000}
 .dossier{position:relative;display:grid;gap:10px;justify-items:center;width:min(300px,78vw);aspect-ratio:3/4;padding:28px 18px;border:0;border-radius:6px;cursor:pointer;color:#3a2410;font:inherit;
   background:linear-gradient(160deg,#e9c98d,#c9a25f 60%,#a87f3e);box-shadow:0 30px 80px #000c,inset 0 0 0 2px rgba(0,0,0,.15);animation:dossIn .7s cubic-bezier(.2,1.4,.4,1) both, dossBob 2.4s ease-in-out .7s infinite}
@@ -2148,7 +2148,7 @@ function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textCon
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
 function bootAudio(){ AU.init(); BGM.play('title'); }
 /* 開場：拆封委託書 → 10 秒 Hook 影片（點擊後才播，手機才有聲音）→ 接下委託 */
-const HOOK_CAPS=[[0.3,1.5,'<b>委託來了！</b>'],[1.6,4.0,'選舉不是比誰比較好'],[8.0,10.3,'是比誰<b>比較會操作！</b>'],[12.4,14.4,'今晚，你就是<b>那隻手！</b>']];
+const HOOK_CAPS=[[0.15,2.6,'選舉不是比誰比較好'],[2.75,5.0,'是比誰<b>比較會操作！</b>'],[6.75,8.8,'今晚，你就是<b>那隻手！</b>']];
 function introScreen(){
   const el=$('#intro'); el.hidden=false; el.className='intro';
   el.innerHTML=`<div class="ibg"></div>
@@ -2158,7 +2158,7 @@ function introScreen(){
 }
 function playHook(){
   AU.init(); BGM.stop(); SFX.flip(); const el=$('#intro'); el.className='intro playing';
-  el.innerHTML=`<div class="ibg"></div><video id="hookV" playsinline preload="auto" poster="fx/hook.jpg?v=3" src="fx/hook.mp4?v=3"></video>
+  el.innerHTML=`<div class="ibg"></div><video id="hookV" playsinline preload="auto" poster="fx/hook.jpg?v=4" src="fx/hook.mp4?v=4"></video>
     <div class="icap" id="iCap"></div>
     <div class="iend" id="iEnd" hidden><div class="ilogo">幕後操盤手</div><div class="imis">你的任務：讓你的客戶<b>當選首都市長</b></div><button class="cta" id="iGo">接下委託</button></div>
     <button class="iskip" id="iSkip">跳過</button>`;
@@ -2166,7 +2166,7 @@ function playHook(){
   const fin=()=>{ $('#iEnd').hidden=false; cap.innerHTML=''; };
   v.ontimeupdate=()=>{ const t=v.currentTime, i=HOOK_CAPS.findIndex(([a,b])=>t>=a&&t<b);
     if(i!==shown){ shown=i; cap.innerHTML=i<0?'':`<span>${HOOK_CAPS[i][2]}</span>`; }
-    if(t>=14.4&&$('#iEnd').hidden) fin(); };
+    if(t>=8.8&&$('#iEnd').hidden) fin(); };
   v.onended=fin; v.onerror=fin;
   v.play().catch(()=>{ v.muted=true; v.play().catch(fin); });
   $('#iSkip').onclick=()=>endIntro(false);
