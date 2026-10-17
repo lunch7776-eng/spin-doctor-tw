@@ -17,17 +17,18 @@ SEGS = [('A_raw.mp4', 0.7, 2.3, False),   # 委託書：雙手攤開機密檔案
         (OPEN, 6.6, 0.8, True),           # 綠：洋流
         (OPEN, 9.0, 1.0, True),           # 雙眼發光對撞
         (OPEN, 12.4, 2.4, True),          # 巨手提線：你就是那隻手
-        (OPEN, 14.2, 0.6, True)]          # 金拳煙火（網頁疊標題）
+        (OPEN, 13.85, 1.2, True)]         # 金拳煙火（網頁疊標題＋「快！接下委託！」）
 TOTAL = round(sum(s[2] for s in SEGS), 3)
 
-# 旁白（去頭尾靜音後 ×1.1），開始秒數；三句不重疊
-VO = [('vo/hook1_trim.wav', 1.3), ('vo/hook2_trim.wav', 4.5), ('vo/hook3_trim.wav', 7.48)]
+# 旁白（急促版，去頭尾靜音後 ×1.25），開始秒數；四句不重疊
+TEMPO = 1.25
+VO = [('vo/r2_trim.wav', 0.4), ('vo/r3_trim.wav', 2.85), ('vo/r4_trim.wav', 6.9), ('vo/r5_trim.wav', 9.0)]
 # 音效：(檔名, 秒, 音量)
 CUES = [('rip', 0.05, .8), ('whoosh', 0.1, .6), ('deal', 0.9, .5), ('flip', 1.6, .5),
         ('whoosh', 2.3, .5), ('slam', 2.98, 1.0), ('zap', 3.0, .7), ('surge', 3.08, .7), ('sparkle', 3.5, .5), ('coins', 3.9, .45),
         ('zap', 4.4, .9), ('hit', 4.45, .7), ('surge', 5.2, .8), ('whoosh', 5.2, .6),
-        ('crit', 6.0, 1.0), ('boom', 6.02, .9), ('riser', 7.0, .55), ('heart', 8.2, .5),
-        ('gong', 9.4, 1.0), ('firework', 9.45, .8)]
+        ('crit', 6.0, 1.0), ('boom', 6.02, .9), ('riser', 6.9, .5), ('heart', 8.0, .5),
+        ('gong', 9.0, 1.0), ('firework', 9.05, .8), ('slam', 9.6, .7)]
 
 def run(cmd): subprocess.run(cmd, check=True)
 
@@ -50,7 +51,7 @@ af, k = [], 1
 vox = []
 for f, t in VO:
     ainp += ['-i', f]; d = int(t * 1000)
-    af.append(f'[{k}:a]atempo=1.1,adelay={d}|{d},apad=whole_dur={TOTAL}[vo{k}]'); vox.append(f'[vo{k}]'); k += 1
+    af.append(f'[{k}:a]atempo={TEMPO},adelay={d}|{d},apad=whole_dur={TOTAL}[vo{k}]'); vox.append(f'[vo{k}]'); k += 1
 sfx = []
 for name, t, vol in CUES:
     ainp += ['-i', f'{SFX}/{name}.wav']; d = int(t * 1000)
@@ -58,7 +59,7 @@ for name, t, vol in CUES:
 af.append(''.join(vox) + f'amix=inputs={len(vox)}:normalize=0,volume=1.6[voxa]')
 af.append('[voxa]asplit=2[voxm][voxsc]')
 af.append(''.join(sfx) + f'amix=inputs={len(sfx)}:normalize=0,volume=0.8[sfxa]')
-af.append(f'[0:a]volume=0.5,afade=t=in:st=0:d=0.4,afade=t=out:st={TOTAL-0.6}:d=0.6[bgm]')
+af.append(f'[0:a]volume=0.7,afade=t=in:st=0:d=0.4,afade=t=out:st={TOTAL-0.6}:d=0.6[bgm]')
 af.append('[bgm][voxsc]sidechaincompress=threshold=0.03:ratio=10:attack=5:release=250[bgmd]')
 af.append(f'[bgmd][voxm][sfxa]amix=inputs=3:normalize=0,alimiter=limit=0.95,loudnorm=I=-14:TP=-1.5:LRA=9,atrim=duration={TOTAL}[aout]')
 run(['ffmpeg', '-y', '-loglevel', 'error', *ainp, '-filter_complex', ';'.join(af), '-map', '[aout]', '-ar', '44100', 'audio.wav'])

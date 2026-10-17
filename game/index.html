@@ -2148,7 +2148,7 @@ function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textCon
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
 function bootAudio(){ AU.init(); BGM.play('title'); }
 /* 開場：拆封委託書 → 10 秒 Hook 影片（點擊後才播，手機才有聲音）→ 接下委託 */
-const HOOK_CAPS=[[1.3,4.4,'選舉，不是比誰比較好'],[4.5,7.3,'是比誰<b>比較會操作</b>'],[7.4,9.4,'今晚，你就是<b>那隻手</b>']];
+const HOOK_CAPS=[[0.4,2.8,'選舉不是比誰比較好'],[2.85,5.3,'是比誰<b>比較會操作！</b>'],[6.9,9.0,'今晚，你就是<b>那隻手！</b>']];
 function introScreen(){
   const el=$('#intro'); el.hidden=false; el.className='intro';
   el.innerHTML=`<div class="ibg"></div>
@@ -2158,7 +2158,7 @@ function introScreen(){
 }
 function playHook(){
   AU.init(); BGM.stop(); SFX.flip(); const el=$('#intro'); el.className='intro playing';
-  el.innerHTML=`<div class="ibg"></div><video id="hookV" playsinline preload="auto" poster="fx/hook.jpg?v=1" src="fx/hook.mp4?v=1"></video>
+  el.innerHTML=`<div class="ibg"></div><video id="hookV" playsinline preload="auto" poster="fx/hook.jpg?v=2" src="fx/hook.mp4?v=2"></video>
     <div class="icap" id="iCap"></div>
     <div class="iend" id="iEnd" hidden><div class="ilogo">幕後操盤手</div><div class="imis">你的任務：讓你的客戶<b>當選首都市長</b></div><button class="cta" id="iGo">接下委託</button></div>
     <button class="iskip" id="iSkip">跳過</button>`;
@@ -2166,7 +2166,7 @@ function playHook(){
   const fin=()=>{ $('#iEnd').hidden=false; cap.innerHTML=''; };
   v.ontimeupdate=()=>{ const t=v.currentTime, i=HOOK_CAPS.findIndex(([a,b])=>t>=a&&t<b);
     if(i!==shown){ shown=i; cap.innerHTML=i<0?'':`<span>${HOOK_CAPS[i][2]}</span>`; }
-    if(t>=9.4&&$('#iEnd').hidden) fin(); };
+    if(t>=9.0&&$('#iEnd').hidden) fin(); };
   v.onended=fin; v.onerror=fin;
   v.play().catch(()=>{ v.muted=true; v.play().catch(fin); });
   $('#iSkip').onclick=()=>endIntro(false);
