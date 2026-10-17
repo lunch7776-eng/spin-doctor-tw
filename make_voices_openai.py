@@ -17,6 +17,7 @@ STYLE = {
   'win':   BASE + "情緒：狂喜歡呼、熱淚盈眶的勝利宣告，聲音高亢。",
   'lose':  BASE + "情緒：悲壯、沉重、帶點戲劇化的失落宣告。",
   'hype':  BASE + "情緒：熱情激昂的大聲宣告，鼓動現場氣氛。",
+  'narr':  "口音：台灣國語腔調（不要大陸腔、不要兒化音）。角色：電影預告片的低沉旁白。情緒：壓低嗓音、慢而有力、帶著陰謀感與自信的冷笑，像在對你交付一個祕密任務；句尾下沉、停頓明確。",
 }
 LINES = [l.split('|') for l in """press|爆料記者會！|card
 deepfake|深偽影片！|card
@@ -86,7 +87,10 @@ sys_pack|黑箱包——開！|hype
 sys_ssr|傳說級！出貨啦！|crit
 sys_sr|史詩級！|win
 sys_new|新卡入手！|hype
-sys_achieve|成就達成！|win""".strip().splitlines()]
+sys_achieve|成就達成！|win
+hook1|選舉，不是比誰比較好——|narr
+hook2|是比誰，比較會操作。|narr
+hook3|今晚，你就是那隻手。|narr""".strip().splitlines()]
 
 def key():
     k = os.environ.get('OPENAI_API_KEY')

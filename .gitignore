@@ -21,3 +21,9 @@ video/trailer/*.wav
 video/trailer/sfx/n/
 video/trailer/vo/*_trim.wav
 qa/playtest/*.png
+video/hook/*_raw.mp4
+video/hook/*_key_raw.png
+video/hook/video_only.mp4
+video/hook/audio.wav
+video/hook/vo/*_trim.wav
+video/hook/codex_keys_log.txt

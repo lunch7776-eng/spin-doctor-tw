@@ -51,6 +51,28 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .ghost{font-size:15px;padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:rgba(20,26,48,.7)}
 .ghost:hover{border-color:var(--cyan)}
 #btnCont.cont{font-size:18px;padding:11px 26px;white-space:nowrap;background:linear-gradient(180deg,#7ef0c2,#16b884 60%,#0b7a57);color:#03140d;box-shadow:0 5px 0 #064d37,0 10px 24px rgba(22,224,160,.3)}
+.intro{position:fixed;inset:0;z-index:120;display:grid;place-items:center;background:#05060e;overflow:hidden}
+.intro .ibg{position:absolute;inset:-40px;background:url(fx/hook.jpg?v=1) center/cover;filter:blur(24px) brightness(.35)}
+.intro.playing .ibg{background-image:url(fx/hook.jpg?v=1)}
+.intro video{position:relative;width:100%;max-height:100%;aspect-ratio:16/9;object-fit:contain;background:#000;box-shadow:0 0 60px #000}
+.dossier{position:relative;display:grid;gap:10px;justify-items:center;width:min(300px,78vw);aspect-ratio:3/4;padding:28px 18px;border:0;border-radius:6px;cursor:pointer;color:#3a2410;font:inherit;
+  background:linear-gradient(160deg,#e9c98d,#c9a25f 60%,#a87f3e);box-shadow:0 30px 80px #000c,inset 0 0 0 2px rgba(0,0,0,.15);animation:dossIn .7s cubic-bezier(.2,1.4,.4,1) both, dossBob 2.4s ease-in-out .7s infinite}
+.dossier::before{content:'';position:absolute;top:-14px;left:18px;width:90px;height:22px;border-radius:6px 6px 0 0;background:#d9b574}
+.dossier .stamp{margin-top:18px;font-family:var(--display);font-size:46px;color:#c8102e;border:5px solid #c8102e;border-radius:10px;padding:2px 16px;transform:rotate(-12deg);opacity:.9}
+.dossier .dtitle{font-family:var(--display);font-size:34px;margin-top:14px}
+.dossier .dsub{font-size:14px;font-weight:900;opacity:.75}
+.dossier .dtap{margin-top:auto;font-size:15px;font-weight:900;color:#fff;background:#c8102e;padding:8px 18px;border-radius:99px;animation:advpulse 1.1s infinite}
+@keyframes dossIn{from{transform:translateY(60vh) rotate(-14deg) scale(.6);opacity:0}}
+@keyframes dossBob{50%{transform:translateY(-6px) rotate(.6deg)}}
+.iskip{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;z-index:3;font:inherit;font-size:13px;font-weight:900;color:#fff;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:6px 14px;cursor:pointer}
+.icap{position:absolute;left:0;right:0;bottom:calc(50% - min(28vw,28vh) - 70px);z-index:2;display:grid;place-items:center;pointer-events:none;padding-inline:16px}
+.icap span{font-family:var(--display);font-size:clamp(24px,7vw,44px);color:#fff;text-align:center;text-shadow:0 3px 0 #000,0 0 24px #000;animation:capIn .25s cubic-bezier(.2,1.6,.4,1) both}
+.icap b{color:var(--gold)}
+@keyframes capIn{from{transform:scale(1.6);opacity:0;filter:blur(4px)}}
+.iend{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;gap:14px;padding:16px;background:radial-gradient(circle,rgba(5,6,14,.55),rgba(5,6,14,.9));animation:capIn .35s both}
+.iend .ilogo{font-family:var(--display);font-size:clamp(52px,15vw,104px);line-height:1;color:var(--gold);text-shadow:0 4px 0 #6b3d02,0 0 40px rgba(255,200,61,.5)}
+.iend .imis{font-size:clamp(16px,4.6vw,22px);font-weight:900;text-align:center} .iend .imis b{color:var(--gold)}
+.brief{font-size:13px;padding:8px 12px;border-radius:10px;background:rgba(255,200,61,.1);border:1px dashed rgba(255,200,61,.6);line-height:1.6} .brief b{color:var(--gold)}
 .disclaimer{font-size:12px;color:var(--muted);max-width:40ch}
 .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
@@ -187,6 +209,22 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .panel p{margin:0;color:#d4d7ea}
 .choices{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;perspective:900px}
 .choices .card{margin:0}
+.rpick{position:relative;display:grid;gap:6px;justify-items:center;align-content:start;padding:6px;border-radius:16px;border:2px solid transparent}
+.rpick.rec{border-color:#16e0a0;background:rgba(22,224,160,.08);box-shadow:0 0 24px rgba(22,224,160,.25)}
+.rbadge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);z-index:6;font-size:12px;font-weight:900;padding:3px 10px;border-radius:99px;background:#16e0a0;color:#03140d;white-space:nowrap}
+.role{display:flex;flex-wrap:wrap;gap:2px 4px;align-items:center;justify-content:center;font-size:11px;line-height:1.3;color:var(--muted);width:var(--cw);text-align:center}
+.role b{white-space:nowrap}
+@media (max-width:520px){ .choices{gap:6px} .choices .card{--cw:min(96px,23vw);--ch:calc(var(--cw) * 1.42)} .rpick{--cw:min(106px,26vw);padding:3px} }
+.role b{color:var(--tc);font-size:14px} .role .ic{color:var(--tc);width:15px;height:15px}
+.recwhy{display:flex;gap:8px;align-items:center;font-size:14px;padding:8px 12px;border-radius:10px;background:rgba(22,224,160,.1);border:1px solid rgba(22,224,160,.5)}
+.recwhy .ic{color:#16e0a0;width:18px;height:18px}
+.comp{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.cpi{display:inline-flex;gap:4px;align-items:center;padding:4px 10px;border-radius:99px;background:rgba(20,26,48,.85);border:1px solid var(--tc);font-size:13px}
+.cpi .ic{color:var(--tc);width:15px;height:15px} .cpi i{font-style:normal;font-family:var(--num);font-size:16px} .cpi small{color:var(--muted);font-size:11px}
+.cpi.low{background:rgba(255,46,77,.15);border-color:var(--red)} .cpi.low small{color:#ff8fa0}
+.dthumbs{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;max-width:420px}
+.dthumbs .dt{position:relative;width:40px;height:40px;border-radius:8px;overflow:hidden;border:2px solid var(--tc);background:#0d1124}
+.dthumbs .dt img{width:100%;height:100%;object-fit:cover} .dthumbs .dt .g{display:none}
 .vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;width:100%}
 .vs .p{display:grid;justify-items:center;gap:8px}
 .vs .portrait{width:min(150px,30vw);height:min(150px,30vw);border-width:4px}
@@ -556,6 +594,7 @@ body.freeze *{animation-play-state:paused!important}
           <button class="ghost" id="btnBook">操盤圖鑑</button>
         </div>
         <div class="row">
+          <button class="ghost" id="btnIntro">看開場</button>
           <button class="ghost" id="btnHow">新手教學</button>
           <button class="ghost" id="btnLB">排行榜</button>
           <button class="ghost" id="btnMute1">音效：開</button>
@@ -607,6 +646,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="cinema" hidden><div class="cband"><video id="cvid" muted playsinline preload="auto"></video><div class="cscan"></div><div class="cedge t"></div><div class="cedge b"></div></div></div>
   <div id="extra"></div>
   <div id="overlay" class="overlay" hidden></div>
+  <div id="intro" class="intro" hidden></div>
   <canvas id="fx"></canvas>
 </div>
 
@@ -752,7 +792,8 @@ const BGM={els:{},cur:null,
   play(k){ if(!AU.ctx) return; const a=this.get(k); if(a.bad){ MUS.start(); return; } MUS.stop();
     if(this.cur===a) return; const old=this.cur; this.cur=a; a.playbackRate=1; a.volume=1; a.currentTime=0; a.play().catch(()=>{});
     if(old){ let v=1; const t=setInterval(()=>{ v-=.1; if(v<=0){ clearInterval(t); old.pause(); old.volume=1; } else old.volume=v; },60); } },
-  rate(r){ if(this.cur && this.cur.playbackRate!==r) this.cur.playbackRate=r; }
+  rate(r){ if(this.cur && this.cur.playbackRate!==r) this.cur.playbackRate=r; },
+  stop(){ if(this.cur){ this.cur.pause(); this.cur=null; } MUS.stop(); }
 };
 
 /* =========================================================
@@ -985,6 +1026,24 @@ function defaultDeck(camp){
     green:['g_chair','g_tide','lastnight','g_english','g_anytime','g_wanted','g_bear','street','talkshow','oldphoto','g_haircut','g_airport','poll','press','g_anytime']};
   const deck=[]; preferred[camp].forEach(id=>add(deck,id));
   return fill(deck); }
+/* 白話用途：新手不用懂牌型，只看「這張拿來幹嘛」 */
+const ROLE={smear:{n:'攻擊',d:'打掉對手聲量',ic:'atk'},boost:{n:'造勢',d:'衝自己的聲量',ic:'buzz'},def:{n:'防守',d:'擋對手抹黑',ic:'shield'},unit:{n:'暗樁',d:'每回合自動加分',ic:'unit'},event:{n:'奇招',d:'特殊效果',ic:'up'}};
+const ROLE_TARGET={smear:5,boost:5,def:3,unit:2,event:0}; // 15 張的建議配比
+function deckComp(deck){ const c={smear:0,boost:0,def:0,unit:0,event:0}; deck.forEach(id=>{ if(CARDS[id]) c[CARDS[id].t]++; }); return c; }
+function compBar(deck){ const c=deckComp(deck), n=Math.max(deck.length,1), sc=n/15;
+  return `<div class="comp">${['smear','boost','def','unit'].map(t=>{ const want=Math.round(ROLE_TARGET[t]*sc), low=c[t]<want-1;
+    return `<span class="cpi t-${t} ${low?'low':''}">${icon(ROLE[t].ic)}<b>${ROLE[t].n}</b><i>${c[t]}</i><small>建議 ${want}</small></span>`; }).join('')}${c.event?`<span class="cpi t-event">${icon('up')}<b>奇招</b><i>${c.event}</i></span>`:''}</div>`; }
+/* 軍師推薦：補牌組最缺的那一類 */
+function recommendPick(pick,deck){ const c=deckComp(deck), sc=(deck.length+1)/15;
+  const gap=id=>{ const t=CARDS[id].t; return (ROLE_TARGET[t]||0)*sc-c[t]; };
+  const best=pick.slice().sort((a,b)=>gap(b)-gap(a)||(RAR_ORDER(b)-RAR_ORDER(a))||CARDS[b].c-CARDS[a].c)[0];
+  const t=CARDS[best].t, have=c[t];
+  const lack=['def','smear','boost','unit'].filter(k=>c[k]<ROLE_TARGET[k]*sc-1).map(k=>ROLE[k].n);
+  const why=gap(best)>0.5?`你的牌組${ROLE[t].n}牌只有 ${have} 張，補這張最平衡。`
+    :lack.length?`你最缺${lack.join('、')}牌，但這三張都不是；先拿這張${ROLE[t].n}牌，缺的之後抽卡補。`
+    :`你的牌組已經很平衡，這張${ROLE[t].n}牌最實用。`;
+  return {id:best,why}; }
+const RAR_ORDER=id=>({N:0,R:1,SR:2,SSR:3}[RARITY[id]]??0);
 function validDeck(camp){ const d=(SAVE.decks[camp]||[]).filter(id=>CARDS[id]&&SAVE.owned[id]&&campOK(id,camp)); return d.length===DECK_SIZE?d:defaultDeck(camp); }
 function rollRarity(slot){ const w=slot===4?{N:0,R:50,SR:38,SSR:12}:{N:45,R:33,SR:17,SSR:5}; let r=Math.random()*100; for(const k of ['SSR','SR','R','N']){ if(r<w[k]) return k; r-=w[k]; } return 'N'; }
 function rollPack(){
@@ -1580,7 +1639,14 @@ function rewardScreen(){
   MUS.intensity=1; MUS.bpm=108; setTimeout(()=>VOICE.play('sys_reward',2),300);
   const pool=shuffle(ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,RUN.camp))); const pick=pool.slice(0,3);
   const ov=$('#overlay'); ov.hidden=false;
-  ov.innerHTML=`<div class="panel"><div class="office">金主追加預算</div><h3>從你的收藏選一張加入這局牌組</h3><div class="choices">${pick.map(id=>cardHTML(id)).join('')}</div><p class="lbnote">目前牌組 ${RUN.deck.length} 張</p></div>`;
+  const rec=recommendPick(pick,RUN.deck);
+  ov.innerHTML=`<div class="panel"><div class="office">金主追加預算</div><h3>金主加碼！挑一張加進牌組</h3>
+    <p class="lbnote">選中的牌會洗進你的牌組，下一關開始就抽得到。不知道選哪張？選有「軍師推薦」的就對了。</p>
+    <div class="choices">${pick.map(id=>`<div class="rpick ${id===rec.id?'rec':''}">${id===rec.id?'<span class="rbadge">軍師推薦</span>':''}${cardHTML(id)}<div class="role t-${CARDS[id].t}">${icon(ROLE[CARDS[id].t].ic)}<b>${ROLE[CARDS[id].t].n}</b>${ROLE[CARDS[id].t].d}</div></div>`).join('')}</div>
+    <div class="recwhy">${icon('shield').replace('ic-shield','ic-why')}<span></span></div>
+    ${compBar(RUN.deck)}
+    <button class="ghost" id="btnAutoPick">軍師幫我選</button></div>`;
+  ov.querySelector('.recwhy span').innerHTML=kw('軍師：'+rec.why);
   let picked=false;
   [...ov.querySelectorAll('.choices .card')].forEach((el,i)=>{
     bindTilt(el);
@@ -1590,11 +1656,12 @@ function rewardScreen(){
       el.animate([{transform:'scale(1)'},{transform:'scale(1.4) translateY(-40px)',opacity:0}],{duration:400,fill:'forwards'});
       setTimeout(()=>{ RUN.stage++; vsScreen(); },450); };
   });
+  $('#btnAutoPick').onclick=()=>{ const el=[...ov.querySelectorAll('.choices .card')].find(e=>e.dataset.id===rec.id); if(el) el.click(); };
 }
 function vsScreen(){
   const st=STAGES[RUN.stage]; const ov=$('#overlay'); ov.hidden=false; SFX.vs(); VOICE.play('sys_vs',3); shake(.5); flash(.5,'#ff2e4d');
   MUS.mood='game'; MUS.intensity=1;
-  ov.innerHTML=`<div class="panel"><div class="office">第 ${RUN.stage+1} 關｜${st.office}</div>
+  ov.innerHTML=`<div class="panel"><div class="office">第 ${RUN.stage+1} 關｜${st.office}</div>${RUN.stage===0?`<div class="brief">委託人：<b>${RUN.cand.party} ${RUN.cand.cand}</b>｜目標：<b>11/28 當選首都市長</b>｜你的身份：<b>幕後操盤手</b></div>`:''}
     <div class="newsline"></div>
     <div class="vs"><div class="p"><div class="portrait" style="border-color:${RUN.cand.color}">${imgTag(RUN.cand.img,RUN.cand.g)}</div><b class="myn"></b></div><div class="bigvs">VS</div><div class="p"><div class="portrait" style="border-color:${CAMPS[RUN.camp==='blue'?'green':'blue'].color}">${imgTag(st.img,st.g)}</div><b class="opn"></b></div></div>
     <div class="taunt"></div>${RUN.stage>0?`<div class="climate">政治氣候：<b>${RUN.mods[RUN.stage].n}</b>｜${RUN.mods[RUN.stage].d}</div>`:''}<p>${st.weeks} 週選戰｜對手起始聲量 ${st.startBuzz+5}${st.bonus?`｜對手每回合多 ${st.bonus} 資金`:''}</p>
@@ -1676,7 +1743,7 @@ function renderLB(){
 }
 function campScreen(){
   const ov=$('#overlay'); ov.hidden=false; MUS.mood='title';
-  ov.innerHTML=`<div class="panel"><div class="office">2026 首都市長之戰</div><h3>你要幫哪一黨操盤？</h3>
+  ov.innerHTML=`<div class="panel"><div class="office">2026 首都市長之戰</div><h3>兩黨都找上門了，你要接誰的案子？</h3>
     <div class="camps">${['blue','green'].map(k=>{ const c=CAMPS[k]; return `<button class="camp c-${k}" data-camp="${k}"><div class="portrait">${imgTag(c.img,c.g)}</div><div class="cp">${c.party}</div><div class="cn">${c.cand}</div><div class="cpitch">${c.pitch}</div><div class="cexcl">必殺招式 ${c.pool.length} 張</div></button>`; }).join('')}</div>
     <button class="ghost" id="btnBack">返回</button></div>`;
   ov.querySelectorAll('.camp').forEach((el,i)=>{
@@ -1685,20 +1752,33 @@ function campScreen(){
     el.onclick=()=>{ const k=el.dataset.camp; SFX.vs(); flash(.6,k==='blue'?'#3f8cff':'#36d27a'); const c=center(el); burst(c.x,c.y,70,k==='blue'?['#3f8cff','#bcd6ff','#fff']:['#36d27a','#c8f5da','#fff'],9);
       const firstRun=!SAVE.decks[k]&&!LOCAL.tutDone; if(!SAVE.decks[k]){ CAMP_STARTER[k].forEach(id=>SAVE.owned[id]=true); save(); }
       // 第一次玩：先用預選牌組直接開打，組牌等打過一場再說
-      setTimeout(()=>{ if(firstRun){ SAVE.decks[k]=validDeck(k).slice(); save(); newRun(k); RUN.name=LOCAL.name; vsScreen(); } else deckScreen(k); },350); };
+      setTimeout(()=>{ if(firstRun){ SAVE.decks[k]=validDeck(k).slice(); save(); newRun(k); RUN.name=LOCAL.name; vsScreen(); } else deckReady(k); },350); };
   });
   $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; TUT_FORCE=false; show('title'); };
 }
 function renderMeta(){ const m=$('#metaline'); if(!m) return; const free=SAVE.freePacks>0?`｜免費黑箱包 ${SAVE.freePacks}`:'';
   m.innerHTML=`<span>政治獻金 <b>${SAVE.coins}</b></span><span>圖鑑 <b>${ownedCount()}/${ALL_CARDS.length}</b></span><span>碎片 <b>${SAVE.shards}</b></span>${free?`<span class="free">${free.slice(1)}</span>`:''}`; }
 function miniCard(id,extra=''){ return cardHTML(id,extra+' rar-'+RARITY[id]).replace('<div class="cost">',`<div class="rtag">${RAR[RARITY[id]].n}</div><div class="cost">`); }
+function deckReady(camp){
+  const ov=$('#overlay'); ov.hidden=false; const deck=validDeck(camp);
+  ov.innerHTML=`<div class="panel"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>牌組已經幫你配好了</h3>
+    <p class="lbnote">直接開打就好。想換新抽到的卡，再按「調整牌組」。</p>
+    ${compBar(deck)}
+    <div class="dthumbs">${deck.map(id=>`<span class="dt t-${CARDS[id].t}" title="${escH(CARDS[id].n)}">${imgTag(CARDS[id].img,CARDS[id].g)}</span>`).join('')}</div>
+    <button class="cta" id="drGo">開始選戰</button>
+    <div class="row"><button class="ghost" id="drEdit">調整牌組</button><button class="ghost" id="drBack">返回</button></div></div>`;
+  $('#drGo').onclick=()=>{ SAVE.decks[camp]=deck.slice(); save(); SFX.click(); newRun(camp); RUN.name=LOCAL.name; vsScreen(); };
+  $('#drEdit').onclick=()=>{ SFX.click(); deckScreen(camp); };
+  $('#drBack').onclick=()=>{ SFX.click(); campScreen(); };
+}
 function deckScreen(camp){
   const ov=$('#overlay'); ov.hidden=false; let deck=validDeck(camp).slice();
   const draw_=()=>{
     const pool=ALL_CARDS.filter(id=>SAVE.owned[id]&&campOK(id,camp));
     const cnt=id=>deck.filter(x=>x===id).length;
     ov.innerHTML=`<div class="panel wide"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>組你的操盤牌組</h3>
-      <p class="lbnote">從收藏挑 ${DECK_SIZE} 張｜同名最多 2 張（傳說 1 張）｜點下方收藏加入、點牌組移除</p>
+      <p class="lbnote">從收藏挑 ${DECK_SIZE} 張｜同名最多 2 張（傳說 1 張）｜點下方收藏加入、點牌組移除｜不知道怎麼配？按「推薦牌組」</p>
+      ${compBar(deck)}
       <div class="deckbar"><b class="${deck.length===DECK_SIZE?'ok':''}">${deck.length} / ${DECK_SIZE}</b><div class="row"><button class="ghost" id="dkAuto">推薦牌組</button><button class="cta" id="dkGo" ${deck.length===DECK_SIZE?'':'disabled'}>開始選戰</button></div></div>
       <div class="dlist">${[...new Set(deck)].map(id=>`<button class="dchip t-${CARDS[id].t} rar-${RARITY[id]}" data-rm="${id}"><span>${CARDS[id].c}</span>${CARDS[id].n}<i>×${cnt(id)}</i></button>`).join('')||'<span class="lbnote">牌組是空的</span>'}</div>
       <div class="lbnote" style="margin-top:6px">你的收藏（${pool.length} 種）</div>
@@ -1708,7 +1788,7 @@ function deckScreen(camp){
     ov.querySelectorAll('.grid .card').forEach(el=>{ bindTilt(el); el.onclick=()=>{ const id=el.dataset.id; if(deck.length>=DECK_SIZE||cnt(id)>=capOf(id)){ SFX.bad(); return; } deck.push(id); SFX.deal(deck.length%5); draw_(); }; });
     $('#dkAuto').onclick=()=>{ deck=defaultDeck(camp); SFX.gain(4); draw_(); };
     $('#dkGo').onclick=()=>{ if(deck.length!==DECK_SIZE) return; SAVE.decks[camp]=deck.slice(); save(); SFX.click(); newRun(camp); RUN.name=LOCAL.name; vsScreen(); };
-    $('#dkBack').onclick=()=>{ SFX.click(); campScreen(); };
+    $('#dkBack').onclick=()=>{ SFX.click(); deckReady(camp); };
   }; draw_();
 }
 function packScreen(){
@@ -2067,10 +2147,38 @@ function show(name){ $('#screen-title').hidden=name!=='title'; $('#screen-game')
 function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textContent='音效：'+(AU.muted?'關':'開'); $('#btnMute2').style.opacity=AU.muted?.4:1; }
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
 function bootAudio(){ AU.init(); BGM.play('title'); }
+/* 開場：拆封委託書 → 10 秒 Hook 影片（點擊後才播，手機才有聲音）→ 接下委託 */
+const HOOK_CAPS=[[1.3,4.4,'選舉，不是比誰比較好'],[4.5,7.3,'是比誰<b>比較會操作</b>'],[7.4,9.4,'今晚，你就是<b>那隻手</b>']];
+function introScreen(){
+  const el=$('#intro'); el.hidden=false; el.className='intro';
+  el.innerHTML=`<div class="ibg"></div>
+    <button class="dossier" id="dossier" aria-label="拆封委託書"><span class="stamp">機密</span><span class="dtitle">委託書</span><span class="dsub">收件人：幕後操盤手</span><span class="dtap">點擊拆封</span></button>
+    <button class="iskip" id="iSkip">跳過</button>`;
+  $('#dossier').onclick=playHook; $('#iSkip').onclick=()=>endIntro(false);
+}
+function playHook(){
+  AU.init(); BGM.stop(); SFX.flip(); const el=$('#intro'); el.className='intro playing';
+  el.innerHTML=`<div class="ibg"></div><video id="hookV" playsinline preload="auto" poster="fx/hook.jpg?v=1" src="fx/hook.mp4?v=1"></video>
+    <div class="icap" id="iCap"></div>
+    <div class="iend" id="iEnd" hidden><div class="ilogo">幕後操盤手</div><div class="imis">你的任務：讓你的客戶<b>當選首都市長</b></div><button class="cta" id="iGo">接下委託</button></div>
+    <button class="iskip" id="iSkip">跳過</button>`;
+  const v=$('#hookV'), cap=$('#iCap'); let shown=-1;
+  const fin=()=>{ $('#iEnd').hidden=false; cap.innerHTML=''; };
+  v.ontimeupdate=()=>{ const t=v.currentTime, i=HOOK_CAPS.findIndex(([a,b])=>t>=a&&t<b);
+    if(i!==shown){ shown=i; cap.innerHTML=i<0?'':`<span>${HOOK_CAPS[i][2]}</span>`; }
+    if(t>=9.4&&$('#iEnd').hidden) fin(); };
+  v.onended=fin; v.onerror=fin;
+  v.play().catch(()=>{ v.muted=true; v.play().catch(fin); });
+  $('#iSkip').onclick=()=>endIntro(false);
+  $('#iGo').onclick=()=>{ SFX.click(); endIntro(true); };
+}
+function endIntro(go){ const el=$('#intro'); const v=$('#hookV'); if(v) v.pause(); el.hidden=true; el.innerHTML=''; LOCAL.introSeen=1; saveLocal(); bootAudio(); if(go){ flash(.5,'#ffc83d'); campScreen(); } }
 $('#btnCont').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); resumeRun(); };
 renderContinue();
 $('#btnStart').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen(); };
 $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(); };
+$('#btnIntro').onclick=()=>{ SFX.click(); introScreen(); };
+if(!LOCAL.introSeen) introScreen();
 $('#btnLB').onclick=()=>{ bootAudio(); SFX.click(); lbScreen(); };
 $('#btnPack').onclick=()=>{ bootAudio(); SFX.click(); packScreen(); };
 $('#btnBook').onclick=()=>{ bootAudio(); SFX.click(); bookScreen(); };
