@@ -1142,10 +1142,12 @@ function peekCard(i){
     <div class="pkbtns">${can?'<button class="cta" id="pkPlay">出這張</button>':`<span class="pkno">${c.c>B.me.funds?'資金不夠':'現在不能出牌'}</span>`}<button class="ghost" id="pkClose">關閉</button></div>`;
   pk.hidden=false;
   const close=()=>{ pk.hidden=true; pk.innerHTML=''; };
-  // 長按放開的那一下不算關閉：等手指離開後才開始接受點擊
-  pk.style.pointerEvents='none'; setTimeout(()=>{ pk.style.pointerEvents=''; },300);
-  pk.onclick=e=>{ if(e.target===pk||e.target.id==='pkClose') close(); };
-  const pb=$('#pkPlay'); if(pb) pb.onclick=()=>{ close(); const el=$('#hand').children[i]; if(el) playerPlay(i,el); };
+  // 長按放開的那一下（手指離開時瀏覽器補發的 click）不算關閉：要等手指真的放開後的下一次點擊
+  let armed=false; const arm=()=>setTimeout(()=>{ armed=true; },120);
+  document.addEventListener('pointerup',arm,{once:true}); document.addEventListener('touchend',arm,{once:true});
+  setTimeout(()=>{ armed=true; },2500);
+  pk.onclick=e=>{ if(!armed) return; if(e.target===pk||e.target.id==='pkClose') close(); };
+  const pb=$('#pkPlay'); if(pb) pb.onclick=e=>{ if(!armed){ e.stopPropagation(); return; } close(); const el=$('#hand').children[i]; if(el) playerPlay(i,el); };
 }
 /* 反制提示：看對手意圖＋場面，替手牌標出「這張現在能反制什麼」 */
 const DEF_IDS=['clarify','b_qa','g_bear'], WASH_IDS=['apology','b_baoli','blame','g_wanted'], PUSH_IDS=['n_bot','factcheck','g_airport'];

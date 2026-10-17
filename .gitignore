@@ -20,3 +20,4 @@ video/trailer/audio.m4a
 video/trailer/*.wav
 video/trailer/sfx/n/
 video/trailer/vo/*_trim.wav
+qa/playtest/*.png
