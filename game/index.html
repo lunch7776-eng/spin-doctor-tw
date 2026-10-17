@@ -50,6 +50,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .cta:active{transform:translateY(4px);box-shadow:0 2px 0 #8a4b05}
 .ghost{font-size:15px;padding:10px 22px;border-radius:999px;border:1px solid var(--line);background:rgba(20,26,48,.7)}
 .ghost:hover{border-color:var(--cyan)}
+#btnCont.cont{font-size:18px;padding:11px 26px;white-space:nowrap;background:linear-gradient(180deg,#7ef0c2,#16b884 60%,#0b7a57);color:#03140d;box-shadow:0 5px 0 #064d37,0 10px 24px rgba(22,224,160,.3)}
 .disclaimer{font-size:12px;color:var(--muted);max-width:40ch}
 .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 
@@ -284,7 +285,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #coach.waiting .cblock{pointer-events:none}
 #coach .hole{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(4,5,12,.78);border:3px solid var(--gold);pointer-events:none;transition:all .35s cubic-bezier(.2,1.2,.4,1);animation:holepulse 1.2s infinite}
 @keyframes holepulse{50%{border-color:#fff;box-shadow:0 0 0 9999px rgba(4,5,12,.78),0 0 30px var(--gold)}}
-#coach .bubble{position:absolute;width:min(360px,calc(100% - 32px));background:var(--paper);color:#17110a;border-radius:14px;padding:14px 16px;box-shadow:0 20px 60px #000c;transition:top .35s,left .35s}
+#coach .bubble{position:absolute;box-sizing:border-box;width:min(360px,calc(100% - 32px));background:var(--paper);color:#17110a;border-radius:14px;padding:14px 16px;box-shadow:0 20px 60px #000c;transition:top .35s,left .35s}
 #coach .cstep{font-size:11px;font-weight:900;letter-spacing:.25em;color:#c4101f}
 #coach h4{font-family:var(--display);font-size:24px;margin:2px 0 4px}
 #coach p{margin:0;font-size:14.5px;line-height:1.55;color:#3a3024}
@@ -306,7 +307,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .fxc b{font-weight:400;text-shadow:0 1px 2px #000}
 .k-atk,.k-pierce,.k-up{--kc:#ff5a6e} .k-buzz,.k-poll,.k-coin{--kc:#ffc83d} .k-vote{--kc:#47e6a0} .k-shield,.k-dodge{--kc:#3fe0ff}
 .k-back{--kc:#ff8a3d} .k-turn{--kc:#c49bff} .k-wash{--kc:#8fdcff} .k-unit{--kc:#c49bff} .k-grab,.k-draw{--kc:#f3f4ff}
-.kw{color:var(--kc);font-weight:900} .kwn{color:#fff;font-weight:900}
+.kw{color:var(--kc);font-weight:900}
+#coach .bubble .kw{text-shadow:none} #coach .k-buzz{--kc:#a86a00} #coach .k-vote{--kc:#0b8a55} #coach .k-back{--kc:#c24a00} #coach .k-shield,#coach .k-dodge{--kc:#0a7fa0} #coach .k-atk{--kc:#c8102e} #coach .k-unit{--kc:#6a2fc0} .kwn{color:#fff;font-weight:900}
 .fxc.self{opacity:.75} .fxc.self b::before{content:'自'}
 .card .fx{display:none}
 #hand .card .ds,.card.flying .ds{display:none}
@@ -347,7 +349,10 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .card.locked{--frame:linear-gradient(160deg,#2a3150,#121628);cursor:default;filter:none}
 .card.locked .in{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:repeating-linear-gradient(135deg,#10142a 0 6px,#141a33 6px 12px)}
 .card.locked .lk{font-family:var(--display);font-size:34px;color:#3b4470}
-.card.locked .nm{color:#59628f}
+.card.locked .nm{color:#9aa2c8}
+.card.locked .lk.sil{position:relative;width:78%;aspect-ratio:1;border-radius:8px;overflow:hidden;display:grid;place-items:center}
+.card.locked .lk.sil img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(5px) brightness(.4) saturate(.5);transform:scale(1.15)}
+.card.locked .lk.sil .g{position:relative;z-index:1;color:#59628f}
 .card.locked .craft{font-size:9px;padding:3px 5px;margin-top:4px;border-radius:6px;background:var(--gold);color:#2a1a00;font-weight:900}
 .card.locked .craft:disabled{background:#2a3150;color:#59628f;cursor:default}
 .cbar{width:min(460px,100%);height:14px;border-radius:99px;background:#0b0f20;overflow:hidden;border:1px solid var(--line)}
@@ -541,6 +546,7 @@ body.freeze *{animation-play-state:paused!important}
         <div class="logo">幕後<br>操盤手</div>
         <div class="tag">選舉不是比誰比較好，是比<b>誰比較會操作</b>。</div>
         <div class="row">
+          <button class="cta cont" id="btnCont" hidden></button>
           <button class="cta" id="btnStart">開始操盤</button>
         </div>
         <div class="newsticker" id="newsTicker" hidden></div>
@@ -1093,7 +1099,7 @@ function renderSides(){
   me.innerHTML=sideHTML(B.me); me.querySelector('.nm').textContent=RUN.cand.cand; me.querySelector('.role').textContent=RUN.cand.party+'｜操盤：'+(RUN.name||'你');
   if(B.lockVotes){ if(opV) op.querySelector('.votes .n').textContent=opV; if(meV) me.querySelector('.votes .n').textContent=meV; }
   renderBoard('#boardOp',B.op); renderBoard('#boardMe',B.me);
-  const fc=$('#forecast'); if(fc){ fc.innerHTML=`<span class="fl">民調預估</span><b class="fm">你 +${pollGain(B.me)}</b><b class="fo">對手 +${pollGain(B.op)}</b>${B.mod&&B.mod.d!=='沒有特殊規則'?`<span class="mod">氣候：${B.mod.n}｜${B.mod.d}</span>`:''}`; }
+  const fc=$('#forecast'); if(fc){ fc.innerHTML=`<span class="fl">${settleSoon()?'這週':'下週'}民調</span><b class="fm">你 +${fmtV(pollGain(B.me)*STAGES[RUN.stage].scale)} 票</b><b class="fo">對手 +${fmtV(pollGain(B.op)*STAGES[RUN.stage].scale)} 票</b>${B.mod&&B.mod.d!=='沒有特殊規則'?`<span class="mod">氣候：${B.mod.n}｜${B.mod.d}</span>`:''}`; }
 }
 function renderBoard(sel,s){
   const el=$(sel); const ids=s.units.map(u=>u.uid).join(',');
@@ -1349,10 +1355,20 @@ function api(me,op){
    FLOW
    ========================================================= */
 const FIRE=()=>(B&&B.mod&&B.mod.fire)||10;
+const fmtV=n=>n>=10000?(Math.round(n/1000)/10)+' 萬':Math.round(n).toLocaleString();
 const pollGain=s=>Math.round(Math.max(0,s.buzz-s.backlash)*((B.mod&&B.mod.poll)||1))+2+((B.mod&&B.mod.base)||0);
+/* 存檔接關：每關開打時存一次，下次從這一關開頭繼續 */
+const RUN_KEY='spin_run';
+function saveRun(){ try{ if(!RUN) return; const o={...RUN}; delete o.cand; o.modIdx=(RUN.mods||[]).map(m=>MODS.indexOf(m)); delete o.mods; localStorage.setItem(RUN_KEY,JSON.stringify(o)); }catch(e){} }
+function loadRun(){ try{ const o=JSON.parse(localStorage.getItem(RUN_KEY)||'null'); if(!o||!CAMPS[o.camp]||!Array.isArray(o.deck)) return null; return o; }catch(e){ return null; } }
+function clearRun(){ try{ localStorage.removeItem(RUN_KEY); }catch(e){} renderContinue(); }
+function resumeRun(){ const o=loadRun(); if(!o){ renderContinue(); return; }
+  RUN={...o,cand:CAMPS[o.camp]}; RUN.mods=(o.modIdx||[]).map(i=>MODS[i]||MODS[MODS.length-1]); delete RUN.modIdx; buildStages(o.camp);
+  if(!STAGES[RUN.stage]){ clearRun(); return; } vsScreen(); }
+function renderContinue(){ const b=$('#btnCont'); if(!b) return; const o=loadRun(); b.hidden=!o; if(o){ b.textContent=`▶ 繼續第 ${o.stage+1} 關・${CAMPS[o.camp].cand}`; } }
 function newRun(camp){ RUN={camp,cand:CAMPS[camp],stage:0,deck:validDeck(camp).slice(),score:0,name:LOCAL.name||'',won:[],history:[]}; buildStages(camp); RUN.mods=PHASES.map(()=>MODS[Math.random()*MODS.length|0]); }
 let uidc=0;
-async function startBattle(){ { const pk=$('#peek'); if(pk) pk.hidden=true; }
+async function startBattle(){ { const pk=$('#peek'); if(pk) pk.hidden=true; } saveRun();
   const st=STAGES[RUN.stage];
   B={week:1,turnOwner:'me',combo:0,busy:false,pendingFire:[],
      me:newSide('me',RUN.cand.cand,RUN.cand.img,RUN.cand.g,RUN.deck),
@@ -1492,6 +1508,7 @@ async function opPhase(){
   await resolveFires();
 }
 async function settle(){
+  if(!LOCAL.tipPoll){ LOCAL.tipPoll=1; saveLocal(); setTimeout(()=>ticker('民調結算：聲量扣掉反感，換成票數'),200); }
   ticker('民調結算中…'); B.lockVotes=false; VOICE.play('sys_poll',3);
   await extra('最新民調出爐','聲量扣掉反感，換算成選票','民調');
   const myB=B;
@@ -1588,6 +1605,7 @@ function vsScreen(){
   $('#btnGo').onclick=()=>{ SFX.click(); ov.hidden=true; startBattle(); };
 }
 async function runEnd(champion){
+  clearRun();
   MUS.intensity=champion?2:0; MUS.bpm=champion?120:92;
   const office=champion?'首都市長':(RUN.won.length?RUN.won[RUN.won.length-1]:'首關淘汰');
   const ov=$('#overlay'); ov.hidden=false;
@@ -1665,7 +1683,9 @@ function campScreen(){
     el.animate([{transform:`translateY(80px) rotate(${i?6:-6}deg)`,opacity:0},{transform:'none',opacity:1}],{duration:500,delay:i*120,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'});
     el.addEventListener('pointerenter',()=>SFX.hover());
     el.onclick=()=>{ const k=el.dataset.camp; SFX.vs(); flash(.6,k==='blue'?'#3f8cff':'#36d27a'); const c=center(el); burst(c.x,c.y,70,k==='blue'?['#3f8cff','#bcd6ff','#fff']:['#36d27a','#c8f5da','#fff'],9);
-      if(!SAVE.decks[k]){ CAMP_STARTER[k].forEach(id=>SAVE.owned[id]=true); save(); } setTimeout(()=>deckScreen(k),350); };
+      const firstRun=!SAVE.decks[k]&&!LOCAL.tutDone; if(!SAVE.decks[k]){ CAMP_STARTER[k].forEach(id=>SAVE.owned[id]=true); save(); }
+      // 第一次玩：先用預選牌組直接開打，組牌等打過一場再說
+      setTimeout(()=>{ if(firstRun){ SAVE.decks[k]=validDeck(k).slice(); save(); newRun(k); RUN.name=LOCAL.name; vsScreen(); } else deckScreen(k); },350); };
   });
   $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; TUT_FORCE=false; show('title'); };
 }
@@ -1782,11 +1802,11 @@ function viewCard(id,list){
     v.innerHTML=`<div class="vbg"></div><div class="vrays"></div>
       <button class="vx" id="vX" aria-label="關閉">✕</button>
       ${list.length>1?'<button class="varrow l" id="vL" aria-label="上一張">‹</button><button class="varrow r" id="vR" aria-label="下一張">›</button>':''}
-      <div class="vbody"><div class="vstage">${own?miniCard(cid,'big'):`<div class="card big locked rar-${rr}"><div class="rtag">${RAR[rr].n}</div><div class="in"><div class="lk">？</div><div class="nm">？？？</div></div></div>`}</div>
+      <div class="vbody"><div class="vstage">${own?miniCard(cid,'big'):`<div class="card big locked rar-${rr}"><div class="rtag">${RAR[rr].n}</div><div class="in"><div class="lk sil">${imgTag(c.img,'？')}</div><div class="nm">${escH(c.n)}</div></div></div>`}</div>
       <div class="vinfo"><div class="vr"><span class="vrar">${RAR[rr].n}</span>${own?`<span>${c.sk?'必殺・':''}${TYPES[c.t]}</span><span>費用 ${c.c}</span>`:''}<span>${c.camp?(c.camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</span></div>
         <h3></h3><p class="vd"></p><p class="vf"></p>${list.length>1?`<div class="vcount">${idx+1} / ${list.length}</div>`:''}</div></div>`;
-    v.querySelector('h3').textContent=own?c.n:'尚未收集';
-    v.querySelector('.vd').innerHTML=own?kw(c.d):`從黑箱包取得，或在圖鑑用 ${RAR[rr].craft} 碎片兌換。`;
+    v.querySelector('h3').textContent=c.n+(own?'':'（未收集）');
+    v.querySelector('.vd').innerHTML=own?kw(c.d):`效果收集後揭曉。從黑箱包取得，或在圖鑑用 ${RAR[rr].craft} 碎片兌換。`;
     v.querySelector('.vf').textContent=own?'「'+FLAVOR[cid]+'」':'';
     const card=v.querySelector('.vstage .card'); if(own) bindTilt(card);
     card.animate([{transform:'rotateY(-90deg) scale(.6)',opacity:0},{transform:'none',opacity:1}],{duration:480,easing:'cubic-bezier(.2,1.4,.4,1)'});
@@ -1806,7 +1826,7 @@ function bookScreen(filter='all'){
     <div class="cbar"><i style="width:${n/tot*100}%"></i></div>
     <div class="metaline">${$('#metaline')?$('#metaline').innerHTML:''}</div>
     <div class="tabs">${[['all','全部'],['neutral','中立'],['blue','藍藍路黨'],['green','綠嘻嘻黨']].map(([k,t])=>`<button class="ghost ${k===filter?'on':''}" data-f="${k}">${t}</button>`).join('')}</div>
-    <div class="grid mini">${list.map(id=>SAVE.owned[id]?miniCard(id,''):`<div class="card locked rar-${RARITY[id]}" data-id="${id}"><div class="rtag">${RAR[RARITY[id]].n}</div><div class="in"><div class="lk">？</div><div class="nm">？？？</div><div class="ty">${CARDS[id].camp?(CARDS[id].camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</div>
+    <div class="grid mini">${list.map(id=>SAVE.owned[id]?miniCard(id,''):`<div class="card locked rar-${RARITY[id]}" data-id="${id}"><div class="rtag">${RAR[RARITY[id]].n}</div><div class="in"><div class="lk sil">${imgTag(CARDS[id].img,'？')}</div><div class="nm">${escH(CARDS[id].n)}</div><div class="ty">${CARDS[id].camp?(CARDS[id].camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</div>
       <button class="craft" data-c="${id}" ${SAVE.shards>=RAR[RARITY[id]].craft?'':'disabled'}>兌換 ${RAR[RARITY[id]].craft} 碎片</button></div></div>`).join('')}</div>
     <div class="row"><button class="cta" id="bkPack">去抽卡</button><button class="ghost" id="bkBack">返回</button></div></div>`;
   ov.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ SFX.click(); bookScreen(b.dataset.f); });
@@ -1825,7 +1845,8 @@ function pauseMenu(){
     <p class="lbnote">${RUN.cand.party} ${RUN.cand.cand} vs ${st.party} ${st.name}｜目前得票 ${dispVotes(B.me).toLocaleString()} : ${dispVotes(B.op).toLocaleString()}</p>
     <div class="pmenu"><button class="cta" id="pzGo">繼續操盤</button>
     <button class="ghost" id="pzRe">重打這一關</button>
-    <button class="ghost" id="pzQuit">放棄選戰，回標題</button>
+    <button class="ghost" id="pzSave">存檔離開（下次從這一關重新開打）</button>
+    <button class="ghost" id="pzQuit">放棄整局選戰</button>
     <button class="ghost" id="pzMute">音效：${AU.muted?'關':'開'}</button>
     <button class="ghost" id="pzFx">必殺動畫：${{full:'完整',short:'精簡',off:'關閉'}[fxMode()]}</button></div>
     <div class="pconfirm" id="pzConfirm" hidden><p></p><div class="row"><button class="cta danger" id="pzYes">確定</button><button class="ghost" id="pzNo">取消</button></div></div></div>`;
@@ -1834,7 +1855,8 @@ function pauseMenu(){
   $('#pzMute').onclick=()=>{ toggleMute(); $('#pzMute').textContent='音效：'+(AU.muted?'關':'開'); };
   $('#pzFx').onclick=()=>{ const order=['full','short','off']; LOCAL.fxMode=order[(order.indexOf(fxMode())+1)%3]; saveLocal(); SFX.click(); $('#pzFx').textContent='必殺動畫：'+{full:'完整',short:'精簡',off:'關閉'}[fxMode()]; };
   $('#pzRe').onclick=()=>ask('這一關的進度會清掉，用同一副牌重新開打。',()=>{ SFX.click(); pb.hidden=true; killBattle(); startBattle(); });
-  $('#pzQuit').onclick=()=>ask('放棄這次選戰？這局不會計分，已經拿到的政治獻金會保留。',()=>{ SFX.click(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); });
+  $('#pzSave').onclick=()=>{ SFX.click(); saveRun(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); renderContinue(); };
+  $('#pzQuit').onclick=()=>ask('放棄整局選戰？這局不會計分，存檔也會刪掉；已經拿到的政治獻金會保留。',()=>{ SFX.click(); pb.hidden=true; killBattle(); clearRun(); show('title'); BGM.play('title'); });
 }
 /* =========================================================
    ADVISOR — explains opponent intent and recommends a play order
@@ -1928,12 +1950,12 @@ function adviceLines(order,inc){
 function updateAdvice(){
   const box=$('#advisor'); if(!box) return; document.querySelectorAll('#hand .card').forEach(c=>{ c.classList.remove('adv','adv1'); delete c.dataset.step; });
   if(!ADV_ON||!B||B.dead||B.turnOwner!=='me'||B.busy){ box.hidden=true; return; }
-  const {order,inc}=planAdvice(); const lines=adviceLines(order,inc);
+  const {order,inc}=planAdvice(); const lines=adviceLines(order,inc).slice(0,innerWidth<600?3:4);
   box.hidden=false;
   box.classList.toggle('collapsed',!LOCAL.advWhy);
   box.innerHTML=`<div class="advface">${imgTag('p_player','軍')}</div><div class="advbody"><div class="advhead"><span class="advtitle">軍師：照順序出</span><button class="advmin" id="advMin" aria-label="${LOCAL.advWhy?'收起理由':'看軍師的理由'}">${LOCAL.advWhy?'收起':'為什麼？'}</button></div>
-    <div class="advlines">${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}</div>
-    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span title="${CARDS[id].n}"><b>${i+1}</b><em class="ot">${imgTag(CARDS[id].img,CARDS[id].g)}</em></span>`).join('<i>→</i>')}<i>→</i><span class="oend">結束回合</span></div>`:'<div class="advorder"><span class="oend">直接結束回合</span></div>'}</div>`;
+    ${order.length?`<div class="advorder">${order.map((id,i)=>`<span title="${CARDS[id].n}"><b>${i+1}</b><em class="ot">${imgTag(CARDS[id].img,CARDS[id].g)}</em></span>`).join('<i>→</i>')}<i>→</i><span class="oend">結束回合</span></div>`:'<div class="advorder"><span class="oend">直接結束回合</span></div>'}
+    <div class="advlines">${lines.map(l=>`<div class="advl k-${l.k}"></div>`).join('')}</div></div>`;
   $('#advMin').onclick=e=>{ e.stopPropagation(); LOCAL.advWhy=!LOCAL.advWhy; saveLocal(); SFX.click(); updateAdvice(); };
   if(!order.length) $('#btnEnd').classList.add('glow');
   placeAdvisor();
@@ -2004,28 +2026,24 @@ function howScreen(){
    TUTORIAL — spotlight coach marks on the first battle
    ========================================================= */
 const TUT=[
-  {sel:'#sideOp',t:'這是你的對手',d:'另一黨的候選人。選戰結束時，你的得票要比他多。'},
-  {sel:'#intent',t:'對手意圖',d:'對手下一步會出的牌。箭頭右邊的圖示＝你該用什麼反制（盾＝防禦、放大鏡＝抓暗樁、閃電＝抹黑）。手牌左邊亮出同樣圖示的，就是能反制的那張。長按卡牌看完整說明。'},
-  {sel:'#forecast',t:'民調預估',d:'如果現在結算，你和對手各會拿到多少票。決定要衝聲量還是先壓反感，就看這裡。'},
-  {sel:'#sideMe .buzz',t:'聲量',d:'造勢會漲聲量，被對手抹黑會掉聲量。聲量越高，民調換到的票越多。'},
-  {sel:'#sideMe .back',t:'反感',d:'抹黑別人會累積反感，民調時會被扣票。反感到 10 會「全網炎上」，聲量直接腰斬。'},
-  {sel:'#sideMe .votes',t:'得票',d:'每兩週民調結算一次：聲量扣掉反感，再加基本盤 2 票，換成選票。'},
-  {sel:'#funds',t:'資金',d:'每回合的出牌預算，一週比一週多。卡牌左上角的金色數字就是費用。'},
-  {sel:'#hand',t:'你的手牌',d:'紅框抹黑、金框造勢、藍框防禦、紫框暗樁。有「必殺」標籤的是陣營招式，打出來有必殺技演出。'},
-  {sel:'#hand',t:'連擊',d:'同一回合連續出牌會觸發連擊，效果越疊越強。現在點一張亮著的牌，打出去試試！',wait:true},
-  {sel:'#btnAdv',t:'軍師模式',d:'不知道該出什麼？打開軍師，它會分析對手意圖、告訴你該怎麼應對，還會在手牌標出建議的出牌順序。'},
-  {sel:'#btnEnd',t:'結束回合',d:'錢花完就按這裡，換對手出招。撐到 11/28 投票日，得票多的人勝選。祝你操盤順利！'},
+  {sel:'#intent',t:'對手下一步',d:'對手下回合要出的牌。箭頭右邊＝你該怎麼應對：盾＝用防禦擋、放大鏡＝抓暗樁、閃電＝趁機抹黑他、喇叭＝擋不了，自己衝聲量。亮綠色＝你手上有這種牌；灰色虛線＝沒有。'},
+  {sel:'#hand',t:'出第一張牌',d:'直接點一張亮著的牌出招！不知道選哪張，就點右上角有金色「1」的那張（軍師建議）。想先看清楚效果，長按卡牌。',wait:true},
+  {sel:'#sideMe',t:'聲量和反感',d:'聲量＝人氣，越高越好。抹黑別人會讓自己反感上升，反感會扣票，到 10 會炎上、聲量腰斬。'},
+  {sel:'#forecast',t:'會換成多少票',d:'每兩週民調結算一次，你的聲量扣掉反感，換成這裡顯示的票數。投票日得票多的人贏。'},
+  {sel:'#hand',t:'連擊',d:'錢還夠就再出一張，同一回合連續出牌會連擊，效果越疊越強。',wait:true},
+  {sel:'#btnEnd',t:'結束回合',d:'錢花完就按結束回合，換對手出招。之後照手牌上的金色編號 1→2→3 出，就不會亂。'},
 ];
 let TUT_I=-1, TUT_FORCE=false;
 function tutActive(){ return TUT_I>=0; }
 function tutStart(){ TUT_I=0; $('#coach').hidden=false; tutShow(); }
 function tutEnd(){ TUT_I=-1; $('#coach').hidden=true; $('#coach').classList.remove('waiting'); LOCAL.tutDone=1; saveLocal(); }
 function tutShow(){
-  const st=TUT[TUT_I]; const co=$('#coach'); const el=document.querySelector(st.sel); if(!el){ tutEnd(); return; }
+  let st=TUT[TUT_I]; if(st.wait&&B&&!B.me.hand.some(id=>CARDS[id].c<=B.me.funds)){ TUT_I++; if(TUT_I>=TUT.length){ tutEnd(); return; } return tutShow(); }
+  const co=$('#coach'); const el=document.querySelector(st.sel); if(!el){ tutEnd(); return; }
   const r=el.getBoundingClientRect(), app=$('#app').getBoundingClientRect(), pad=8;
   const hole=co.querySelector('.hole');
   hole.style.left=(r.left-app.left-pad)+'px'; hole.style.top=(r.top-app.top-pad)+'px'; hole.style.width=(r.width+pad*2)+'px'; hole.style.height=(r.height+pad*2)+'px';
-  co.querySelector('.cstep').textContent=`新手教學 ${TUT_I+1} / ${TUT.length}`;
+  co.querySelector('.cstep').textContent=`邊玩邊學 ${TUT_I+1} / ${TUT.length}`;
   co.querySelector('h4').textContent=st.t; co.querySelector('p').innerHTML=kw(st.d);
   co.classList.toggle('waiting',!!st.wait);
   $('#tutNext').textContent=TUT_I===TUT.length-1?'開始操盤':'下一步';
@@ -2049,6 +2067,8 @@ function show(name){ $('#screen-title').hidden=name!=='title'; $('#screen-game')
 function toggleMute(){ AU.init(); AU.setMuted(!AU.muted); $('#btnMute1').textContent='音效：'+(AU.muted?'關':'開'); $('#btnMute2').style.opacity=AU.muted?.4:1; }
 const bg=new Image(); bg.onload=()=>{ $('#bgimg').style.backgroundImage='url(img/table.jpg)'; }; bg.src='img/table.jpg';
 function bootAudio(){ AU.init(); BGM.play('title'); }
+$('#btnCont').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); resumeRun(); };
+renderContinue();
 $('#btnStart').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen(); };
 $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(); };
 $('#btnLB').onclick=()=>{ bootAudio(); SFX.click(); lbScreen(); };
