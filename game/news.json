@@ -1,11 +1,13 @@
 {
-  "updated": "2026-10-17",
+  "updated": "2026-10-18",
   "events": [
     {"date": "2026-10-04", "headline": "一篇貼文一晚湧入50萬則留言", "sub": "留言區藍綠大戰，有人喊機器人", "source": "中央社 2026-10-04", "effect": {"type": "backlash", "target": "leader", "value": 2}},
     {"date": "2026-10-04", "headline": "洋流外溢！人潮從夜市燒到網路", "sub": "對手酸：這是人工洋流", "source": "鏡週刊 2026-10-04", "effect": {"type": "buzz", "target": "green", "value": 3}},
     {"date": "2026-10-08", "headline": "講卍安：這是選戰最激烈的一次", "sub": "松機、輝達、預算議題輪番上陣", "source": "中央社 2026-10-08", "effect": {"type": "shield", "target": "blue", "value": 3}},
     {"date": "2026-10-15", "headline": "首場電視辯論敲定10/31登場", "sub": "喬了半個月，網友：像渣男約會", "source": "中時 2026-10-15", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-16", "headline": "講卍安放寬都更門檻 75%砍到50%", "sub": "審伯羊酸：要急診的卻叫更多人來掛號", "source": "新頭殼 2026-10-16", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-10-16", "headline": "審伯羊率十小隊長喊「獻出心臟」", "sub": "巨人手勢都比出來了，網友：選舉還是動漫祭", "source": "NOWnews 2026-10-16", "effect": {"type": "buzz", "target": "green", "value": 2}}
+    {"date": "2026-10-16", "headline": "審伯羊率十小隊長喊「獻出心臟」", "sub": "巨人手勢都比出來了，網友：選舉還是動漫祭", "source": "NOWnews 2026-10-16", "effect": {"type": "buzz", "target": "green", "value": 2}},
+    {"date": "2026-10-18", "headline": "網傳當選停發敬老金？審伯羊：會發得更有趣", "sub": "長輩領錢還要錄一段話進圖書館，網友：敬老還是期末口試", "source": "聯合報 2026-10-18", "effect": {"type": "shield", "target": "green", "value": 2}},
+    {"date": "2026-10-18", "headline": "被酸連任才開園長會議 講卍安：下次就去", "sub": "對手狂嗆設條件，市長急澄清沒綁連任，網友：先補簽到", "source": "中央社 2026-10-18", "effect": {"type": "shield", "target": "blue", "value": 2}}
   ]
 }
