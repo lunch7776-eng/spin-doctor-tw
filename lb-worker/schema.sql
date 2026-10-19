@@ -22,3 +22,14 @@ CREATE TABLE IF NOT EXISTS tickets (     -- 開局號碼牌：一張只能交一
   ip TEXT NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS tickets_ip ON tickets(ip, ts);
+CREATE TABLE IF NOT EXISTS feedback (      -- 玩家回報：bug／建議
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  kind TEXT NOT NULL,           -- bug / idea / other
+  msg TEXT NOT NULL,
+  contact TEXT NOT NULL DEFAULT '',
+  ctx TEXT NOT NULL DEFAULT '', -- 自動附上的遊戲狀態（關卡、裝置、畫面尺寸）
+  ip TEXT NOT NULL,
+  ts INTEGER NOT NULL,
+  done INTEGER NOT NULL DEFAULT 0
+);
+CREATE INDEX IF NOT EXISTS feedback_ts ON feedback(ts);

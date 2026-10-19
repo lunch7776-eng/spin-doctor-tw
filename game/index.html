@@ -252,6 +252,13 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .namebox{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .namebox input{font:inherit;font-size:16px;padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#0b1022;color:var(--paper);width:min(220px,60vw)}
 .lb{width:min(460px,100%);display:grid;gap:4px;text-align:left}
+.fbbox{z-index:110}
+.fbkinds{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.fbkinds button{font:inherit;font-size:14px;font-weight:900;padding:7px 16px;border-radius:99px;border:1px solid var(--line);background:rgba(20,26,48,.85);color:var(--paper);cursor:pointer}
+.fbkinds button.on{background:var(--gold);color:#2a1a00;border-color:var(--gold)}
+#fbMsg,#fbContact{width:min(460px,100%);box-sizing:border-box;font:inherit;font-size:16px;color:var(--paper);background:rgba(10,13,28,.9);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+#fbMsg{resize:vertical;min-height:110px}
+.fbcount{width:min(460px,100%);text-align:right;font-size:12px;color:var(--muted);margin-top:-10px}
 .lbtabs{display:flex;gap:6px;align-items:center;margin-bottom:4px}
 .lbtabs button{font:inherit;font-size:13px;font-weight:900;padding:5px 14px;border-radius:99px;border:1px solid var(--line);background:rgba(20,26,48,.85);color:var(--paper);cursor:pointer}
 .lbtabs button.on{background:var(--gold);color:#2a1a00;border-color:var(--gold)}
@@ -602,6 +609,7 @@ body.freeze *{animation-play-state:paused!important}
           <button class="ghost" id="btnIntro">看開場</button>
           <button class="ghost" id="btnHow">新手教學</button>
           <button class="ghost" id="btnLB">排行榜</button>
+          <button class="ghost" id="btnFb">回報問題／建議</button>
           <button class="ghost" id="btnMute1">音效：開</button>
         </div>
         <div class="disclaimer">本遊戲為政治諷刺作品。政黨與人物名稱皆為諧音虛構，卡牌改編自新聞事件並經誇張處理，不代表事實。兩邊一起酸，公平。</div>
@@ -644,6 +652,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="turnban" hidden></div>
   <div id="toast"></div>
   <div id="pausebox" class="overlay" hidden></div>
+  <div id="fbbox" class="overlay fbbox" hidden></div>
   <div id="viewer" class="viewer" hidden></div>
   <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
   <div id="flash"></div>
@@ -1699,7 +1708,7 @@ async function runEnd(champion){
     <button class="ghost" id="btnShare">分享戰報</button>
     <div class="lb" id="lbList"></div>
     <div class="coinline">這局賺到 ${RUN.coins||0} 政治獻金｜持有 ${SAVE.coins}｜圖鑑 ${ownedCount()}/${ALL_CARDS.length}</div>
-    <div class="row"><button class="cta" id="btnToPack" style="font-size:18px;padding:12px 26px">去抽卡</button><button class="ghost" id="btnAgain">再操盤一次</button><button class="ghost" id="btnHome">回標題</button></div></div>`;
+    <div class="row"><button class="cta" id="btnToPack" style="font-size:18px;padding:12px 26px">去抽卡</button><button class="ghost" id="btnAgain">再操盤一次</button><button class="ghost" id="btnFb2">給建議</button><button class="ghost" id="btnHome">回標題</button></div></div>`;
   $('#btnToPack').onclick=()=>{ SFX.click(); packScreen(); };
   $('#nameInput').value=LOCAL.name||'';
   await tweenNum($('#finalScore'),0,RUN.score,1600,t=>SFX.tally(t*50|0));
@@ -1717,6 +1726,7 @@ async function runEnd(champion){
     $('#btnSubmit').disabled=(r==='ok'||r==='kept'||r==='rej'); };
   $('#btnShare').onclick=()=>{ SFX.click(); shareCard(champion,office); };
   $('#btnAgain').onclick=()=>{ SFX.click(); campScreen(); };
+  $('#btnFb2').onclick=()=>{ SFX.click(); feedbackScreen('idea'); };
   $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); BGM.play('title'); };
 }
 
@@ -1997,10 +2007,12 @@ function pauseMenu(){
     <button class="ghost" id="pzSave">存檔離開（下次從這一關重新開打）</button>
     <button class="ghost" id="pzQuit">放棄整局選戰</button>
     <button class="ghost" id="pzMute">音效：${AU.muted?'關':'開'}</button>
-    <button class="ghost" id="pzFx">必殺動畫：${{full:'完整',short:'精簡',off:'關閉'}[fxMode()]}</button></div>
+    <button class="ghost" id="pzFx">必殺動畫：${{full:'完整',short:'精簡',off:'關閉'}[fxMode()]}</button>
+    <button class="ghost" id="pzFb">回報問題／建議</button></div>
     <div class="pconfirm" id="pzConfirm" hidden><p></p><div class="row"><button class="cta danger" id="pzYes">確定</button><button class="ghost" id="pzNo">取消</button></div></div></div>`;
   const ask=(msg,fn)=>{ const c=$('#pzConfirm'); c.hidden=false; c.querySelector('p').textContent=msg; $('#pzYes').onclick=fn; $('#pzNo').onclick=()=>{ SFX.click(); c.hidden=true; }; };
   $('#pzGo').onclick=()=>{ SFX.click(); pb.hidden=true; };
+  $('#pzFb').onclick=()=>{ SFX.click(); feedbackScreen('bug'); };
   $('#pzMute').onclick=()=>{ toggleMute(); $('#pzMute').textContent='音效：'+(AU.muted?'關':'開'); };
   $('#pzFx').onclick=()=>{ const order=['full','short','off']; LOCAL.fxMode=order[(order.indexOf(fxMode())+1)%3]; saveLocal(); SFX.click(); $('#pzFx').textContent='必殺動畫：'+{full:'完整',short:'精簡',off:'關閉'}[fxMode()]; };
   $('#pzRe').onclick=()=>ask('這一關的進度會清掉，用同一副牌重新開打。',()=>{ SFX.click(); pb.hidden=true; killBattle(); startBattle(); });
@@ -2153,6 +2165,37 @@ async function newsEvent(){
     else if(ef.type==='votes'){ if(v>0) await A.votes(v); else { side.votes=Math.max(0,side.votes+v); renderSides(); } }
     else if(ef.type==='shield'&&v>0) A.shield(v); }
   await resolveFires(); renderSides(); }
+/* 回報問題／建議：送到 Cloudflare 後台，自動附上目前的遊戲狀態方便重現 */
+const GAME_VER='2026-10-19';
+function fbContext(){
+  const scr=!$('#screen-game').hidden?'對戰中':!$('#overlay').hidden?'選單／結算':'標題';
+  const st=RUN&&STAGES[RUN.stage];
+  return {ver:GAME_VER,screen:scr,camp:RUN?RUN.camp:'',stage:RUN?RUN.stage+1:0,office:st?st.office:'',week:(B&&!B.dead)?B.week:0,
+    vw:innerWidth+'x'+innerHeight,dpr:devicePixelRatio,ua:navigator.userAgent.slice(0,180),url:location.host};
+}
+function feedbackScreen(kind='bug'){
+  const ov=$('#fbbox'); ov.hidden=false;
+  ov.innerHTML=`<div class="panel"><div class="office">直接傳給開發者</div><h3>回報問題／給建議</h3>
+    <div class="fbkinds">${[['bug','遇到 Bug'],['idea','我有建議'],['other','其他']].map(([k,n])=>`<button data-k="${k}" class="${k===kind?'on':''}">${n}</button>`).join('')}</div>
+    <textarea id="fbMsg" maxlength="500" rows="5" placeholder="${kind==='bug'?'發生什麼事？在哪個畫面？做了什麼之後出現的？':'想到什麼都可以說：哪裡不好玩、想要什麼新招式…'}"></textarea>
+    <div class="fbcount"><span id="fbCnt">0</span> / 500</div>
+    <input id="fbContact" maxlength="60" placeholder="想收到回覆的話，留個聯絡方式（選填）">
+    <p class="lbnote">會一起送出目前的關卡、手機型號與畫面尺寸，方便重現問題；不會送出其他個人資料。</p>
+    <div class="lbnote" id="fbNote"></div>
+    <div class="row"><button class="cta" id="fbSend">送出</button><button class="ghost" id="fbClose">取消</button></div></div>`;
+  let k=kind; const msg=$('#fbMsg');
+  ov.querySelectorAll('.fbkinds button').forEach(b=>b.onclick=()=>{ k=b.dataset.k; SFX.click(); ov.querySelectorAll('.fbkinds button').forEach(x=>x.classList.toggle('on',x===b));
+    msg.placeholder=k==='bug'?'發生什麼事？在哪個畫面？做了什麼之後出現的？':'想到什麼都可以說：哪裡不好玩、想要什麼新招式…'; });
+  msg.oninput=()=>{ $('#fbCnt').textContent=msg.value.length; };
+  $('#fbClose').onclick=()=>{ SFX.click(); ov.hidden=true; };
+  $('#fbSend').onclick=async()=>{ const text=msg.value.trim(); if(text.length<2){ $('#fbNote').textContent='再多寫幾個字吧！'; return; }
+    $('#fbSend').disabled=true; $('#fbNote').textContent='送出中…';
+    try{ const j=await (await fetch(LB_API+'/feedback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind:k,msg:text,contact:$('#fbContact').value.trim(),ctx:fbContext()})})).json();
+      if(j.ok){ SFX.gain(6); confetti(60); ov.querySelector('.panel').innerHTML=`<div class="office">收到了</div><h3>感謝你的回報！</h3><p class="lbnote">開發者會看每一則。</p><button class="cta" id="fbOk">回到遊戲</button>`; $('#fbOk').onclick=()=>{ SFX.click(); ov.hidden=true; }; }
+      else { $('#fbNote').textContent=j.error||'送出失敗，請稍後再試。'; $('#fbSend').disabled=false; }
+    }catch(e){ $('#fbNote').textContent='網路好像斷了，請稍後再試。'; $('#fbSend').disabled=false; } };
+  setTimeout(()=>msg.focus(),50);
+}
 function lbScreen(){
   const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">全台操盤手</div><h3>排行榜</h3><div class="lb" id="lbList"></div><button class="ghost" id="btnClose">關閉</button></div>`;
@@ -2249,6 +2292,7 @@ $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(
 $('#btnIntro').onclick=()=>{ SFX.click(); introScreen(); };
 if(!LOCAL.introSeen) introScreen();
 $('#btnLB').onclick=()=>{ bootAudio(); SFX.click(); lbScreen(); };
+$('#btnFb').onclick=()=>{ SFX.click(); feedbackScreen('bug'); };
 $('#btnPack').onclick=()=>{ bootAudio(); SFX.click(); packScreen(); };
 $('#btnBook').onclick=()=>{ bootAudio(); SFX.click(); bookScreen(); };
 renderMeta();

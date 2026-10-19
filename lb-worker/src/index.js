@@ -2,6 +2,8 @@
 // POST /start   領開局號碼牌
 // POST /submit  交成績（號碼牌一次性＋合理性檢查＋限流）
 // GET  /top?scope=all|week&dev=…  排行榜（每台裝置只留最佳）＋陣營大戰
+// POST /feedback  玩家回報 bug／建議（限流）
+// GET  /feedback?key=…  管理者讀取回報（ADMIN_KEY）
 const SCALE = [1873, 3911, 6427, 11213];          // 各關「內部票數 → 顯示票數」倍率（同 game/index.html PHASES）
 const MAX_INNER = 260;                             // 每關內部票數上限（模擬平均 25～55，留很大餘裕）
 const MIN_SEC_PER_STAGE = 20;                      // 一關至少要打 20 秒
@@ -111,6 +113,24 @@ async function top(url, env) {
     200);
 }
 
+async function feedback(req, env, ip) {
+  let b; try { b = await req.json(); } catch { return bad('格式錯誤'); }
+  const now = Date.now();
+  const lim = await env.DB.prepare('SELECT COUNT(*) n FROM feedback WHERE ip=? AND ts>?').bind(ip, now - 3600e3).first();
+  if (lim.n >= 5) return bad('一小時最多回報 5 次，謝謝你的熱心！', 429);
+  const kind = ['bug', 'idea', 'other'].includes(b.kind) ? b.kind : 'other';
+  const strip = (v, n) => String(v || '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '').trim().slice(0, n);
+  const msg = strip(b.msg, 500), contact = strip(b.contact, 60), ctx = strip(typeof b.ctx === 'string' ? b.ctx : JSON.stringify(b.ctx || {}), 600);
+  if (msg.length < 2) return bad('內容太短了');
+  await env.DB.prepare('INSERT INTO feedback(kind,msg,contact,ctx,ip,ts) VALUES(?,?,?,?,?,?)').bind(kind, msg, contact, ctx, ip, now).run();
+  return json({ ok: true });
+}
+async function listFeedback(url, env) {
+  if (!env.ADMIN_KEY || url.searchParams.get('key') !== env.ADMIN_KEY) return bad('沒有權限', 403);
+  const rows = await env.DB.prepare('SELECT id,kind,msg,contact,ctx,ts,done FROM feedback ORDER BY id DESC LIMIT 200').all();
+  return json({ ok: true, rows: rows.results });
+}
+
 export default {
   async fetch(req, env) {
     if (req.method === 'OPTIONS') return new Response(null, { headers: CORS });
@@ -120,6 +140,8 @@ export default {
       if (req.method === 'POST' && url.pathname === '/start') return await start(req, env, ip);
       if (req.method === 'POST' && url.pathname === '/submit') return await submit(req, env, ip);
       if (req.method === 'GET' && url.pathname === '/top') return await top(url, env);
+      if (req.method === 'POST' && url.pathname === '/feedback') return await feedback(req, env, ip);
+      if (req.method === 'GET' && url.pathname === '/feedback') return await listFeedback(url, env);
       return json({ ok: true, service: '幕後操盤手排行榜' });
     } catch (e) {
       return bad('伺服器錯誤', 500);
