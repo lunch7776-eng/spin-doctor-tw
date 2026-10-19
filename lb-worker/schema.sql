@@ -33,3 +33,9 @@ CREATE TABLE IF NOT EXISTS feedback (      -- 玩家回報：bug／建議
   done INTEGER NOT NULL DEFAULT 0
 );
 CREATE INDEX IF NOT EXISTS feedback_ts ON feedback(ts);
+-- 2026-10-19 三分鐘快打：模式、每日題號、是否列入排名（每台裝置每天第一場）、操盤加分
+ALTER TABLE runs ADD COLUMN mode TEXT NOT NULL DEFAULT 'campaign';
+ALTER TABLE runs ADD COLUMN day TEXT NOT NULL DEFAULT '';
+ALTER TABLE runs ADD COLUMN ranked INTEGER NOT NULL DEFAULT 1;
+ALTER TABLE runs ADD COLUMN bonus INTEGER NOT NULL DEFAULT 0;
+CREATE INDEX IF NOT EXISTS runs_quick ON runs(mode, day, ranked, score);

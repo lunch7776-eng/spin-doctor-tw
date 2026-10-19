@@ -72,6 +72,24 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .iend{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;gap:14px;padding:16px;background:radial-gradient(circle,rgba(5,6,14,.55),rgba(5,6,14,.9));animation:capIn .35s both}
 .iend .ilogo{font-family:var(--display);font-size:clamp(52px,15vw,104px);line-height:1;color:var(--gold);text-shadow:0 4px 0 #6b3d02,0 0 40px rgba(255,200,61,.5)}
 .iend .imis{font-size:clamp(16px,4.6vw,22px);font-weight:900;text-align:center} .iend .imis b{color:var(--gold)}
+.quickcta{display:grid;gap:2px;justify-items:center;font-size:clamp(24px,7vw,32px);padding:14px 38px;box-shadow:0 6px 0 #6b3d02,0 0 40px rgba(255,200,61,.55);animation:advpulse 1.6s infinite}
+.quickcta small{font-family:var(--body,inherit);font-size:13px;font-weight:900;letter-spacing:.15em;opacity:.8}
+.qsub{font-size:13px;color:var(--muted);margin-top:-8px}
+.ttimer{position:relative;width:100%;margin-top:6px;height:20px;border-radius:99px;background:rgba(20,26,48,.85);border:1px solid var(--line);overflow:hidden;display:grid;place-items:center}
+.ttimer i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#16e0a0,#ffc83d);transition:width .1s linear}
+.ttimer b{position:relative;font-family:var(--num);font-weight:400;font-size:15px;text-shadow:0 1px 2px #000}
+.ttimer b::after{content:' 秒';font-family:var(--body,inherit);font-size:11px;font-weight:900}
+.ttimer.hurry{border-color:var(--red);animation:advpulse .5s infinite} .ttimer.hurry i{background:linear-gradient(90deg,#ff2e4d,#ff8a3d)}
+.qbg{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#1a1430,#05060e 70%);z-index:0}
+.qbg+.panel{position:relative;z-index:1}
+.qwin{color:var(--gold)} .qlose{color:#ff8fa0}
+.lbtabs{flex-wrap:wrap}
+.qtitle{display:grid;justify-items:center} .qtitle small{font-size:12px;color:var(--muted);letter-spacing:.2em} .qtitle b{font-family:var(--display);font-size:clamp(28px,8vw,40px);color:var(--gold);text-shadow:0 0 20px rgba(255,200,61,.5)}
+.qpaper{width:min(440px,100%);background:#f3ead2;color:#1a1208;border-radius:6px;padding:8px 14px;transform:rotate(-1.5deg);box-shadow:0 10px 30px #000a}
+.qpaper span{display:block;font-size:11px;font-weight:900;letter-spacing:.3em;border-bottom:2px solid #1a1208;padding-bottom:3px;margin-bottom:4px}
+.qpaper h4{margin:0;font-family:var(--display);font-size:clamp(17px,4.8vw,22px);line-height:1.3}
+.qbonus{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;font-size:12px} .qbonus span{padding:3px 10px;border-radius:99px;background:rgba(255,200,61,.12);border:1px solid rgba(255,200,61,.5)}
+.qemo{font-size:26px;letter-spacing:4px}
 .brief{font-size:13px;padding:8px 12px;border-radius:10px;background:rgba(255,200,61,.1);border:1px dashed rgba(255,200,61,.6);line-height:1.6} .brief b{color:var(--gold)}
 .disclaimer{font-size:12px;color:var(--muted);max-width:40ch}
 .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
@@ -595,9 +613,11 @@ body.freeze *{animation-play-state:paused!important}
         <div class="kicker">2026 首都市長之戰｜藍藍路黨 vs 綠嘻嘻黨</div>
         <div class="logo">幕後<br>操盤手</div>
         <div class="tag">選舉不是比誰比較好，是比<b>誰比較會操作</b>。</div>
+        <button class="cta quickcta" id="btnQuick"><small id="qNo">今日選戰</small>⚡ 3 分鐘快打</button>
+        <div class="qsub" id="qSub">全台同一題，比誰票多</div>
         <div class="row">
           <button class="cta cont" id="btnCont" hidden></button>
-          <button class="cta" id="btnStart">開始操盤</button>
+          <button class="ghost" id="btnStart">完整選戰（4 關劇情）</button>
         </div>
         <div class="newsticker" id="newsTicker" hidden></div>
         <div class="metaline" id="metaline"></div>
@@ -642,6 +662,7 @@ body.freeze *{animation-play-state:paused!important}
             <button class="endturn" id="btnEnd">結束回合</button>
           </div>
         </div>
+        <div class="ttimer" id="ttimer" hidden><i></i><b>12</b></div>
         <div id="hand"></div>
       </div>
     </section>
@@ -940,7 +961,7 @@ const CARDS={
     fx:async A=>{ await A.hit(4); A.back(-1); }, ai:(m,o)=>o.buzz>0?6:2,
     h:['{m}反嗆：這叫圍剿救援！','被點名就回擊 {m}：圍講救賴']},
   b_harvard:{n:'哈佛英文演講',t:'boost',sk:1,c:3,img:'b_harvard',g:'英',camp:'blue',d:'聲量 +5｜40% 影片被翻出比較：反感 +2',
-    fx:async A=>{ await A.gain(5); if(Math.random()<.4){ await A.extra('英文演講影片被翻出來比較','網友剪片互比，留言破千','翻車'); A.back(2); } }, ai:()=>6},
+    fx:async A=>{ await A.gain(5); if(R()<.4){ await A.extra('英文演講影片被翻出來比較','網友剪片互比，留言破千','翻車'); A.back(2); } }, ai:()=>6},
   b_oldpost:{n:'挖出12年前舊文',t:'smear',sk:1,c:2,img:'b_oldpost',g:'挖',camp:'blue',d:'對手聲量 −5｜反感 +1',
     fx:async A=>{ await A.hit(5); A.back(1); }, ai:(m,o)=>o.buzz>0?7:2,
     h:['{o}12年前文章被翻出 本人：整篇都在講戒治','{o}舊文出土 一晚湧入50萬則留言']},
@@ -956,7 +977,7 @@ const CARDS={
     unit:{life:3,passive:'tide',tick:async A=>{ await A.gain(2,true); }}, ai:m=>m.units.length<4?7:0},
   g_chair:{n:'國中椅子技',t:'smear',sk:1,c:3,img:'g_chair',g:'椅',camp:'green',d:'對手 −6｜40%「我是打輸的那一方」：自己也 −2',
     h:['{m}再提國中椅子事件 網友：所以到底打贏沒','{m}：椅子我拿過，但我是打輸的那個'],
-    fx:async A=>{ await A.hit(6); if(Math.random()<.4){ await A.extra('本人自爆：國中拿椅子砸過人','但他補充：「我是打輸的那一方」','自爆'); await A.gain(-2); } }, ai:(m,o)=>Math.min(6,o.buzz)+1},
+    fx:async A=>{ await A.hit(6); if(R()<.4){ await A.extra('本人自爆：國中拿椅子砸過人','但他補充：「我是打輸的那一方」','自爆'); await A.gain(-2); } }, ai:(m,o)=>Math.min(6,o.buzz)+1},
   g_english:{n:'全英文開講',t:'boost',sk:1,c:2,img:'g_english',g:'英',camp:'green',d:'聲量 +3｜對手聽不懂：下回合資金 −1',
     fx:async A=>{ await A.gain(3); A.op.fundPenalty=1; SFX.bad(); floatAt(A.oel(),'聽不懂 資金 −1','#9098bd','txt'); renderSides(); }, ai:()=>5.5},
   g_anytime:{n:'隨時可辯',t:'smear',sk:1,c:2,img:'g_anytime',g:'辯',camp:'green',d:'戳破護盾和答非所問｜對手 −3',
@@ -974,7 +995,7 @@ const CARDS={
     fx:async A=>{ await A.gain(4); }, ai:()=>5},
   /* ---- 中立梗卡 ---- */
   n_cash:{n:'普發一萬',t:'event',c:3,img:'n_cash',g:'萬',d:'票數 +4｜30% 領歸領：對手也 +2 票',
-    fx:async A=>{ await A.votes(4); if(Math.random()<.3){ VOICE.play('sys_flip',3); await A.extra('領歸領，票照投！','網友：錢收了，票還是投給對面','反轉'); await api(A.op,A.me).votes(2); } }, ai:()=>6},
+    fx:async A=>{ await A.votes(4); if(R()<.3){ VOICE.play('sys_flip',3); await A.extra('領歸領，票照投！','網友：錢收了，票還是投給對面','反轉'); await api(A.op,A.me).votes(2); } }, ai:()=>6},
   n_bot:{n:'指控機器人洗版',t:'def',c:2,img:'n_bot',g:'⚙',d:'對手反感 +3',
     fx:async A=>{ A.back(3,true); }, ai:(m,o)=>o.backlash>=6?7.5:3.5},
 };
@@ -1021,6 +1042,22 @@ const ACH={crit:{n:'第一次會心一擊',r:50},combo5:{n:'五連擊',r:60},cle
   champ:{n:'當選首都市長',r:150},champ2:{n:'兩黨都當選過',r:200},half:{n:'圖鑑收集一半',r:100},full:{n:'圖鑑全收集',r:300}};
 const MODS=[{n:'媒體寒蟬',d:'所有抹黑傷害 −1',dmg:-1},{n:'大選年',d:'民調換票 ×1.5',poll:1.5},{n:'炎上季',d:'反感到 8 就炎上',fire:8},
   {n:'鐵票動員',d:'民調基本盤 +3 票',base:3},{n:'景氣低迷',d:'直接加票的卡多 +1 票',votes:1},{n:'風平浪靜',d:'沒有特殊規則'}];
+/* ===== 3 分鐘快打：每日同一題 ===== */
+const QUICK={office:'今日選戰',weeks:6,scale:4200,bonus:0,startBuzz:0,final:true,intro:'全台同一題，三分鐘定勝負'};
+const QUICK_EPOCH=Date.UTC(2026,9,19)-8*3600e3;      // 2026-10-19 00:00 台北 = 第 1 題
+const TURN_SEC=12;
+function dayKey(t=Date.now()){ const d=new Date(t+8*3600e3); return d.toISOString().slice(0,10); }
+function dayNo(t=Date.now()){ return Math.max(1,Math.floor((t-QUICK_EPOCH)/86400e3)+1); }
+function quickSetup(camp,day=dayKey()){
+  const base=hashStr('spin-'+day), rng=mulberry32(base^hashStr(camp));
+  const opp=CAMPS[camp==='blue'?'green':'blue'], pool=shuffle(CAMPS[camp].pool.slice(),rng);
+  const aces=pool.slice(0,3), core=pool.slice(3,6);
+  const extra=shuffle(NEUTRAL_POOL.filter(id=>!CARDS[id].camp),rng)[0];
+  const orng=mulberry32(base^0x51ed);                 // 對手與氣候兩陣營共用同一套
+  const oppDeck=[...PHASES[1].base,...shuffle(opp.pool.slice(),mulberry32(base^hashStr(opp.key))).slice(0,2)];
+  const mod=MODS[Math.floor(orng()*(MODS.length-1))];
+  return {day,no:dayNo(),aces,deck:[...NEUTRAL_STARTER,...core,extra],oppDeck,mod,seed:base};
+}
 let SAVE={coins:0,owned:{},shards:0,packs:0,pity:0,ach:{},decks:{},cleared:{},freePacks:2,champs:{}};
 try{ SAVE=Object.assign(SAVE,JSON.parse(localStorage.getItem('spin_save')||'{}')); }catch(e){}
 ALL_CARDS.filter(id=>RARITY[id]==='N').forEach(id=>SAVE.owned[id]=true);
@@ -1088,7 +1125,11 @@ let RUN=null, B=null, LOCAL={best:0,name:''};
 try{ LOCAL=Object.assign(LOCAL,JSON.parse(localStorage.getItem('spin_local')||'{}')); }catch(e){}
 function saveLocal(){ try{ localStorage.setItem('spin_local',JSON.stringify(LOCAL)); }catch(e){} }
 const $=s=>document.querySelector(s);
-const shuffle=a=>{ for(let i=a.length-1;i>0;i--){ const j=Math.random()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; };
+/* 遊戲邏輯用的亂數：完整選戰＝真亂數；快打模式＝每日種子（全台同一題） */
+let GRNG=Math.random; const R=()=>GRNG();
+function mulberry32(a){ return ()=>{ a|=0; a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function hashStr(str){ let h=2166136261; for(const ch of str){ h^=ch.codePointAt(0); h=Math.imul(h,16777619); } return h>>>0; }
+const shuffle=(a,rng=R)=>{ for(let i=a.length-1;i>0;i--){ const j=rng()*(i+1)|0; [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const IMGV=3;
 /* 戰鬥圖示：同一個圖示在卡面、對手威脅、反制記號上意思都一樣 */
 const ICP={atk:'<path d="M13 2 4 14h6l-1 8 9-12h-6z"/>',
@@ -1146,13 +1187,13 @@ const KW_CLS=[['聲量','buzz'],['票','vote'],['反感','back'],['炎上','back
 const kw=t=>escH(t).replace(KW_RE,m=>{ const k=(KW_CLS.find(([w])=>m.includes(w))||[,'buzz'])[1]; return `<b class="kw k-${k}">${m}</b>`; }).replace(/「([^」<]+)」/g,'「<b class="kwn">$1</b>」');
 const imgTag=(name,g)=>`<img src="img/${name}.jpg?v=${IMGV}" alt="" onerror="this.remove()"><span class="g">${g}</span>`;
 
-function newSide(id,name,img,g,deck){
-  return {id,name,img,g,buzz:0,backlash:0,votes:0,shield:0,dodge:0,atkBuff:0,fundPenalty:0,funds:0,maxFunds:0,deck:shuffle(deck.slice()),hand:[],discard:[],units:[]};
+function newSide(id,name,img,g,deck,rng=R,cap=8){
+  return {id,name,img,g,rng,cap,buzz:0,backlash:0,votes:0,shield:0,dodge:0,atkBuff:0,fundPenalty:0,funds:0,maxFunds:0,deck:shuffle(deck.slice(),rng),hand:[],discard:[],units:[]};
 }
 function draw(side,n){
   for(let i=0;i<n;i++){
-    if(!side.deck.length){ if(!side.discard.length) return; side.deck=shuffle(side.discard); side.discard=[]; }
-    if(side.hand.length>=8){ side.discard.push(side.deck.pop()); continue; }
+    if(!side.deck.length){ if(!side.discard.length) return; side.deck=shuffle(side.discard,side.rng||R); side.discard=[]; }
+    if(side.hand.length>=(side.cap||8)){ side.discard.push(side.deck.pop()); continue; }
     side.hand.push(side.deck.pop());
   }
 }
@@ -1311,7 +1352,7 @@ function extra(title,sub,stampTxt='獨家'){
     ex.innerHTML=`<div class="paper"><div class="mast"><b>號外</b><span>政壇快報｜第 ${1000+Math.random()*9000|0} 期</span></div><h2></h2><p></p><div class="stamp"></div></div>`;
     ex.querySelector('h2').textContent=title; ex.querySelector('p').textContent=sub; ex.querySelector('.stamp').textContent=stampTxt;
     let done=false; const close=()=>{ if(done) return; done=true; const p=ex.querySelector('.paper'); p.animate([{transform:'rotate(-2deg)',opacity:1},{transform:'translateY(-60px) rotate(8deg) scale(.6)',opacity:0}],{duration:260,fill:'forwards'}); setTimeout(()=>{ ex.innerHTML=''; res(); },260); };
-    ex.querySelector('.paper').addEventListener('click',close); setTimeout(close,1700);
+    ex.querySelector('.paper').addEventListener('click',close); setTimeout(close,(B&&B.quick)?1050:1700);
   });
 }
 /* Super-Robot-Wars style 21:9 skill clips; falls back to the banner cut-in */
@@ -1325,7 +1366,7 @@ async function playSkillVideo(side,id){
   const src=FX_CACHE[id]||(preloadFx([id]),FX_CACHE[id]);
   for(let i=0;i<6&&src.readyState<3;i++) await sleep(60); // ~360ms grace
   if(src.readyState<2) return false;
-  B.fxSeen=B.fxSeen||{}; const short=fxMode()==='short'||B.fxSeen[id]; B.fxSeen[id]=1;
+  B.fxSeen=B.fxSeen||{}; const short=fxMode()==='short'||B.fxSeen[id]||B.quick; B.fxSeen[id]=1;
   const camp=side.id==='me'?RUN.camp:(RUN.camp==='blue'?'green':'blue'), col=camp==='blue'?'#3f8cff':'#36d27a';
   const cin=$('#cinema'), vid=$('#cvid'); cin.style.setProperty('--cc',col); cin.hidden=false;
   vid.src=src.currentSrc||src.src; vid.poster=f.p+'?v='+FXV; vid.currentTime=short?1.2:0;
@@ -1366,15 +1407,15 @@ function api(me,op){
   const mult=()=>1+.2*Math.max(0,B.combo-1)*(me.units.some(u=>u.id==='g_tide')?2:1);
   const A={me,op,el:meEl,oel:opEl,
     async hit(n,small=false,noMult=false){
-      if(op.dodge>0){ op.dodge--; const el=opEl(); SFX.flip(); AU.tone(1400,.12,'triangle',.15,0,500); VOICE.play(['sys_ansB','sys_ansC','sys_ansD'][Math.random()*3|0],3); edgeFlash('rgba(63,224,255,.6)');
+      if(op.dodge>0){ op.dodge--; if(op===B.me) B.stats.dodged++; const el=opEl(); SFX.flip(); AU.tone(1400,.12,'triangle',.15,0,500); VOICE.play(['sys_ansB','sys_ansC','sys_ansD'][Math.random()*3|0],3); edgeFlash('rgba(63,224,255,.6)');
         floatAt(el,['答B！','答C！','答D！','我們來談別的'][Math.random()*4|0],'#3fe0ff','big');
         el.animate([{transform:'translateX(0)'},{transform:'translateX(40px) skewX(-12deg)'},{transform:'none'}],{duration:260});
         renderSides(); await sleep(small?140:300); return false; }
       let dmg=n + (me.atkBuff||0) + (B.curType==='smear'?me.units.filter(u=>CARDS[u.id].unit.passive==='sidekick').length:0);
       if(!noMult) dmg=Math.round(dmg*mult());
       if(B.mod&&B.mod.dmg) dmg=Math.max(1,dmg+B.mod.dmg);
-      const crit=!small && Math.random()<.15;
-      if(crit){ dmg*=2; if(me.id==='me') setTimeout(()=>achieve('crit'),900); }
+      const crit=!small && R()<.15;
+      if(crit){ dmg*=2; if(me.id==='me'){ B.stats.crits++; setTimeout(()=>achieve('crit'),900); } }
       let absorbed=0; if(op.shield>0){ absorbed=Math.min(op.shield,dmg); op.shield-=absorbed; dmg-=absorbed; }
       const before=op.buzz; op.buzz=Math.max(0,op.buzz-dmg);
       const el=opEl();
@@ -1441,7 +1482,7 @@ const fmtV=n=>n>=10000?(Math.round(n/1000)/10)+' 萬':Math.round(n).toLocaleStri
 const pollGain=s=>Math.round(Math.max(0,s.buzz-s.backlash)*((B.mod&&B.mod.poll)||1))+2+((B.mod&&B.mod.base)||0);
 /* 存檔接關：每關開打時存一次，下次從這一關開頭繼續 */
 const RUN_KEY='spin_run';
-function saveRun(){ try{ if(!RUN) return; const o={...RUN}; delete o.cand; o.modIdx=(RUN.mods||[]).map(m=>MODS.indexOf(m)); delete o.mods; localStorage.setItem(RUN_KEY,JSON.stringify(o)); }catch(e){} }
+function saveRun(){ try{ if(!RUN||RUN.mode==='quick') return; const o={...RUN}; delete o.cand; o.modIdx=(RUN.mods||[]).map(m=>MODS.indexOf(m)); delete o.mods; localStorage.setItem(RUN_KEY,JSON.stringify(o)); }catch(e){} }
 function loadRun(){ try{ const o=JSON.parse(localStorage.getItem(RUN_KEY)||'null'); if(!o||!CAMPS[o.camp]||!Array.isArray(o.deck)) return null; return o; }catch(e){ return null; } }
 function clearRun(){ try{ localStorage.removeItem(RUN_KEY); }catch(e){} renderContinue(); }
 function resumeRun(){ const o=loadRun(); if(!o){ renderContinue(); return; }
@@ -1452,16 +1493,20 @@ function newRun(camp){ RUN={camp,cand:CAMPS[camp],stage:0,deck:validDeck(camp).s
 let uidc=0;
 async function startBattle(){ { const pk=$('#peek'); if(pk) pk.hidden=true; } saveRun();
   const st=STAGES[RUN.stage];
-  B={week:1,turnOwner:'me',combo:0,busy:false,pendingFire:[],
-     me:newSide('me',RUN.cand.cand,RUN.cand.img,RUN.cand.g,RUN.deck),
-     op:newSide('op',st.name,st.img,st.g,st.deck)};
+  const Q=RUN.mode==='quick';
+  if(Q){ GRNG=mulberry32(RUN.quick.seed^0x9e37); } else GRNG=Math.random;
+  B={week:1,turnOwner:'me',combo:0,busy:false,pendingFire:[],quick:Q,
+     stats:{dodged:0,opFires:0,myFires:0,maxCombo:0,crits:0,smear:0,boost:0,def:0,unit:0,event:0,rounds:{},behind:false},
+     me:newSide('me',RUN.cand.cand,RUN.cand.img,RUN.cand.g,RUN.deck,Q?mulberry32(RUN.quick.seed^0x1111):R,Q?6:8),
+     op:newSide('op',st.name,st.img,st.g,st.deck,Q?mulberry32(RUN.quick.seed^0x2222):R)};
   B.op.buzz=st.startBuzz+5; B.me.buzz=4;
-  B.mod=RUN.stage===0?MODS[MODS.length-1]:RUN.mods[RUN.stage];
+  B.mod=Q?RUN.mods[0]:RUN.stage===0?MODS[MODS.length-1]:RUN.mods[RUN.stage];
   P.length=0; show('game'); MUS.mood='game'; BGM.play('battle'); preloadFx([...RUN.deck,...st.deck]);
-  draw(B.me,4); draw(B.op,4);
+  draw(B.me,Q?3:4); draw(B.op,4);
   renderAll();
+  if(Q) ticker(`今日選戰 #${RUN.quick.no}｜政治氣候：${B.mod.n}（${B.mod.d}）`);
   await myPhase(true);
-  if(RUN.stage===0 && (TUT_FORCE || !LOCAL.tutDone)){ TUT_FORCE=false; await sleep(1100); tutStart(); }
+  if((RUN.stage===0||Q) && (TUT_FORCE || !LOCAL.tutDone)){ TUT_FORCE=false; await sleep(1100); tutStart(); }
 }
 async function myPhase(first=false){
   B.turnOwner='me'; B.combo=0; comboShow();
@@ -1475,9 +1520,25 @@ async function myPhase(first=false){
   if(B.week===3){ await newsEvent(); if(B!==myB||myB.dead) return; }
   draw(B.me,first?1:2); renderAll(true); SFX.coin(4); planAI();
   await resolveFires();
-  B.busy=false; $('#btnEnd').disabled=false; updateEndGlow();
+  B.busy=false; $('#btnEnd').disabled=false; updateEndGlow(); startTurnTimer();
 }
-function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds); $('#btnEnd').classList.toggle('glow',!any); updateAdvice(); }
+function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds); $('#btnEnd').classList.toggle('glow',!any); updateAdvice();
+  if(B.quick&&!any&&B.turnOwner==='me'&&!B.busy&&!tutActive()&&!B.autoEnd){ B.autoEnd=true; const b0=B; setTimeout(()=>{ if(B===b0&&!b0.dead&&b0.turnOwner==='me'&&!b0.busy){ ticker('錢花完了，自動換對手'); endTurn(); } },700); } }
+/* 快打倒數：每回合 TURN_SEC 秒，動畫／教學／暫停時停表；歸零由軍師代打 */
+let TT=null;
+function stopTurnTimer(){ if(TT){ clearInterval(TT); TT=null; } const el=$('#ttimer'); if(el) el.hidden=true; }
+function startTurnTimer(){ if(!B||!B.quick) return; stopTurnTimer(); B.tLeft=TURN_SEC; B.autoEnd=false; const el=$('#ttimer'); el.hidden=false; let last=performance.now(), lastSec=99;
+  const b0=B; TT=setInterval(()=>{ const now=performance.now(), dt=(now-last)/1000; last=now;
+    if(B!==b0||b0.dead||b0.turnOwner!=='me'){ stopTurnTimer(); return; }
+    const pk=$('#peek'), paused=b0.busy||tutActive()||!$('#pausebox').hidden||!$('#fbbox').hidden||(pk&&!pk.hidden)||!$('#overlay').hidden;
+    if(paused) return;
+    b0.tLeft=Math.max(0,b0.tLeft-dt); const sec=Math.ceil(b0.tLeft);
+    el.querySelector('b').textContent=sec; el.querySelector('i').style.width=(b0.tLeft/TURN_SEC*100)+'%'; el.classList.toggle('hurry',b0.tLeft<=4);
+    if(sec!==lastSec&&sec<=3&&sec>0){ AU.tone(880+sec*120,.08,'square',.08); } lastSec=sec;
+    if(b0.tLeft<=0) timeUp(); },100); }
+function timeUp(){ if(!B||B.busy) return; const {order}=planAdvice(); const id=order[0]; const i=id?B.me.hand.indexOf(id):-1;
+  if(i>=0&&CARDS[id].c<=B.me.funds){ B.tLeft=2.5; ticker('時間到！軍師代打'); SFX.bad(); playerPlay(i,$('#hand').children[i]); }
+  else { stopTurnTimer(); ticker('時間到！換對手'); endTurn(); } }
 async function unitTicks(s,o){
   const A=api(s,o); B.curType='unit';
   for(const u of s.units.slice()){
@@ -1494,6 +1555,7 @@ async function playCard(side,other,idx,srcEl){
   const id=side.hand[idx], c=CARDS[id];
   side.funds-=c.c; side.hand.splice(idx,1);
   B.combo++;
+  if(side===B.me){ B.stats[c.t]=(B.stats[c.t]||0)+1; (B.stats.rounds[B.week]=B.stats.rounds[B.week]||[]).push(c.t); B.stats.maxCombo=Math.max(B.stats.maxCombo,B.combo); }
   // fly the card to centre
   const fly=document.createElement('div'); fly.innerHTML=cardHTML(id); const fc=fly.firstElementChild; fc.classList.add('flying');
   document.body.appendChild(fc);
@@ -1524,7 +1586,7 @@ async function playCard(side,other,idx,srcEl){
     side.units.push({id,uid:'u'+(uidc++),life:c.unit.life}); SFX.unit(); renderSides();
   } else {
     // headline chance for flashy smears
-    if(c.h && (c.c>=2) && Math.random()<(c.t==='smear'?.55:.3)){ await extra(fillT(c.h[Math.random()*c.h.length|0],other.name,side.name),'消息來源：據知情人士透露','獨家'); }
+    if(!B.quick && c.h && (c.c>=2) && Math.random()<(c.t==='smear'?.55:.3)){ await extra(fillT(c.h[Math.random()*c.h.length|0],other.name,side.name),'消息來源：據知情人士透露','獨家'); }
     await c.fx(A);
   }
   side.discard.push(id);
@@ -1535,6 +1597,7 @@ async function resolveFires(){
   while(B.pendingFire.length){ const s=B.pendingFire.shift(); if(s.backlash<FIRE()) continue;
     SFX.fire(); SFX.boo(3); VOICE.play('sys_fire',3); flash(.6,'#ff2e4d'); shake(.7); edgeFlash('rgba(255,60,0,.9)',900); zoomPunch(.05);
     await extra(`${s.id==='me'?(RUN.name||'你的候選人'):s.name} 全網炎上！`,'反感值爆表，聲量腰斬','炎上');
+    if(s===B.op) B.stats.opFires++; else B.stats.myFires++;
     s.buzz=Math.floor(s.buzz/2); s.backlash=Math.min(5,FIRE()-3); renderSides(); }
 }
 async function playerPlay(idx,el){
@@ -1548,11 +1611,12 @@ async function playerPlay(idx,el){
   if(tutActive() && TUT[TUT_I].wait){ $('#coach').hidden=false; TUT_I++; tutShow(); }
 }
 async function endTurn(){
-  if(!B||B.dead||B.busy||B.turnOwner!=='me') return; if(tutActive()) tutEnd(); SFX.click();
+  if(!B||B.dead||B.busy||B.turnOwner!=='me') return; if(tutActive()) tutEnd(); SFX.click(); stopTurnTimer();
   B.busy=true; $('#btnEnd').disabled=true; $('#btnEnd').classList.remove('glow'); updateAdvice();
   const myB=B; const alive=()=>B===myB&&!myB.dead;
   await opPhase(); if(!alive()) return;
   const st=STAGES[RUN.stage];
+  if(B.week===st.weeks) B.stats.behind=B.me.votes<B.op.votes;
   if(B.week%2===0 || B.week===st.weeks){ await settle(); if(!alive()) return; }
   if(B.week===st.weeks){ await electionNight(); return; }
   B.week++; renderHud();
@@ -1582,7 +1646,7 @@ async function opPhase(){
   B.intent=[]; renderIntent();
   for(let guard=0;guard<6;guard++){
     let best=-1,bs=0.9;
-    o.hand.forEach((id,i)=>{ const c=CARDS[id]; if(c.c>o.funds) return; const s=c.ai(o,B.me)+Math.random()*1.2+c.c*.3; if(s>bs){ bs=s; best=i; } });
+    o.hand.forEach((id,i)=>{ const c=CARDS[id]; if(c.c>o.funds) return; const s=c.ai(o,B.me)+R()*1.2+c.c*.3; if(s>bs){ bs=s; best=i; } });
     if(best<0) break;
     await playCard(o,B.me,best,null); if(!alive()) return;
     await sleep(260);
@@ -1592,7 +1656,7 @@ async function opPhase(){
 async function settle(){
   if(!LOCAL.tipPoll){ LOCAL.tipPoll=1; saveLocal(); setTimeout(()=>ticker('民調結算：聲量扣掉反感，換成票數'),200); }
   ticker('民調結算中…'); B.lockVotes=false; VOICE.play('sys_poll',3);
-  await extra('最新民調出爐','聲量扣掉反感，換算成選票','民調');
+  if(!B.quick) await extra('最新民調出爐','聲量扣掉反感，換算成選票','民調');
   const myB=B;
   for(const s of [B.me,B.op]){ if(B!==myB||myB.dead) return;
     const el=s.id==='me'?$('#sideMe'):$('#sideOp');
@@ -1639,7 +1703,7 @@ async function electionNight(){
   RUN.history.push({office:st.office,me:meV,op:opV,win});
   RUN.score+=meV;
   let coins=win?60+RUN.stage*25+Math.round(Math.min(40,(meV-opV)/Math.max(1,opV)*100)):30+RUN.stage*10;
-  const ck=RUN.camp+RUN.stage; let firstClear=false; if(win&&!SAVE.cleared[ck]){ SAVE.cleared[ck]=1; coins+=100; firstClear=true; }
+  const ck=RUN.camp+RUN.stage; let firstClear=false; if(!B.quick&&win&&!SAVE.cleared[ck]){ SAVE.cleared[ck]=1; coins+=100; firstClear=true; }
   SAVE.coins+=coins; RUN.coins=(RUN.coins||0)+coins; save();
   setTimeout(()=>{ if(win&&B.me.backlash===0) achieve('clean'); if(win&&meV>=opV*1.3) achieve('landslide');
     if(win&&st.final){ achieve('champ'); SAVE.champs[RUN.camp]=1; save(); if(SAVE.champs.blue&&SAVE.champs.green) achieve('champ2'); } },1500);
@@ -1648,14 +1712,14 @@ async function electionNight(){
     RUN.won.push(st.office); VOICE.play(st.final?'sys_win':'sys_lead',3); SFX.cheer(4); if(st.final) BGM.play('victory');
     SFX.fanfare(); flash(.9,'#ffc83d'); shake(.8); confetti(220); buzzHaptic([60,40,120]);
     let fw=0; const fwT=setInterval(()=>{ firework(); if(++fw>7) clearInterval(fwT); },380);
-    res.innerHTML=`<div class="panel"><div class="seal">${st.final?'當選':'領先'}</div><p></p>${coinLine}<button class="cta" id="btnNext">${RUN.stage<STAGES.length-1?'領取戰利品':'看最終成績'}</button></div>`;
+    res.innerHTML=`<div class="panel"><div class="seal">${st.final?'當選':'領先'}</div><p></p>${coinLine}<button class="cta" id="btnNext">${B.quick?'看今日成績':RUN.stage<STAGES.length-1?'領取戰利品':'看最終成績'}</button></div>`;
     res.querySelector('p').textContent=(note||'')+(st.final?` ${RUN.cand.cand}拿下 ${meV.toLocaleString()} 票，當選首都市長！`:` 民調推估 ${meV.toLocaleString()} 票，領先 ${(meV-opV).toLocaleString()} 票，聲勢大漲。`);
-    $('#btnNext').onclick=()=>{ SFX.click(); RUN.stage<STAGES.length-1?rewardScreen():runEnd(true); };
+    $('#btnNext').onclick=()=>{ SFX.click(); B.quick?quickEnd(true):RUN.stage<STAGES.length-1?rewardScreen():runEnd(true); };
   } else {
     SFX.lose(); SFX.boo(2); VOICE.play(st.final?'sys_lose':'sys_swap',3); flash(.4,'#555'); MUS.intensity=0; MUS.bpm=90;
-    res.innerHTML=`<div class="panel"><div class="seal lose">${st.final?'落選':'換將'}</div><p></p>${coinLine}<button class="cta" id="btnNext">看最終成績</button></div>`;
+    res.innerHTML=`<div class="panel"><div class="seal lose">${st.final?'落選':'換將'}</div><p></p>${coinLine}<button class="cta" id="btnNext">${B.quick?'看今日成績':'看最終成績'}</button></div>`;
     res.querySelector('p').textContent=st.final?`差 ${(opV-meV).toLocaleString()} 票。金主說下次再找別人操盤。`:`民調落後 ${(opV-meV).toLocaleString()} 票，黨中央決定換掉操盤手。`;
-    $('#btnNext').onclick=()=>{ SFX.click(); runEnd(false); };
+    $('#btnNext').onclick=()=>{ SFX.click(); B.quick?quickEnd(false):runEnd(false); };
   }
 }
 function rewardScreen(){
@@ -1736,12 +1800,12 @@ async function runEnd(champion){
 let DB=null, USER=null, UID=null, LB=[], LB_STATE='connecting';
 /* 公開版（GitHub Pages）用 Cloudflare 排行榜；在 claude.ai 開啟時沿用內建共享資料庫 */
 const LB_API='https://spin-doctor-lb.spin-doctor-tw.workers.dev';
-let LB_MODE='api', LB_SCOPE='week', LB_WAR=null, LB_PLAYERS=0;
+let LB_MODE='api', LB_SCOPE='today', LB_WAR=null, LB_PLAYERS=0;
 function devId(){ if(!LOCAL.dev){ LOCAL.dev=(crypto.randomUUID?crypto.randomUUID():'d'+Math.random().toString(36).slice(2)+Date.now().toString(36)); saveLocal(); } return LOCAL.dev; }
 async function lbTicket(){ if(LB_MODE!=='api'||!RUN) return; const run0=RUN;
   try{ const j=await (await fetch(LB_API+'/start',{method:'POST'})).json(); if(j.ok&&RUN===run0){ RUN.ticket=j.run; RUN.ticketTs=Date.now(); saveRun(); } }catch(e){} }
 async function lbFetch(){ if(LB_MODE!=='api') return;
-  try{ const j=await (await fetch(`${LB_API}/top?scope=${LB_SCOPE}&dev=${encodeURIComponent(devId())}`)).json();
+  try{ const j=await (await fetch(`${LB_API}/top?scope=${LB_SCOPE}&day=${dayKey()}&dev=${encodeURIComponent(devId())}`)).json();
     if(j.ok){ LB=j.rows; LB_WAR=j.war; LB_PLAYERS=j.players; LB_STATE='live'; } else LB_STATE='off'; }catch(e){ LB_STATE='off'; }
   renderLB(); }
 (async()=>{
@@ -1759,7 +1823,7 @@ async function lbFetch(){ if(LB_MODE!=='api') return;
 async function submitScore(name,score,office,camp){
   if(LB_MODE==='api'){
     if(!RUN.ticket){ RUN.lbErr='這一輪沒有連上排行榜（開局時網路斷線）'; return 'rej'; }
-    const body={run:RUN.ticket,dev:devId(),name,camp,score,office,history:RUN.history.map(h=>({me:h.me,op:h.op,win:h.win}))};
+    const body={run:RUN.ticket,dev:devId(),name,camp,score,office,history:RUN.history.map(h=>({me:h.me,op:h.op,win:h.win})),mode:RUN.mode==='quick'?'quick':'campaign',day:RUN.quick?RUN.quick.day:'',bonus:RUN.bonus||0};
     try{ const j=await (await fetch(LB_API+'/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
       if(j.ok){ RUN.ranks=j.ranks; RUN.lbName=j.name; await lbFetch(); return j.newBest?'ok':'kept'; }
       RUN.lbErr=j.error||'排行榜沒有收下這筆成績'; return 'rej';
@@ -1783,16 +1847,19 @@ async function shareCard(champion,office){
   g.lineWidth=12; g.strokeStyle=col; g.beginPath(); g.arc(W/2,420,236,0,Math.PI*2); g.stroke();
   g.textAlign='center'; g.fillStyle='#ffc83d'; g.font='900 64px "Noto Serif TC",serif'; g.fillText('幕後操盤手',W/2,130);
   g.fillStyle='#fff'; g.font='700 44px "Noto Sans TC",sans-serif'; g.fillText(`${RUN.cand.party}・${RUN.cand.cand}`,W/2,730);
-  g.fillStyle=champion?'#ffc83d':'#ff8fa0'; g.font='900 70px "Noto Serif TC",serif'; g.fillText(champion?'當選首都市長！':'止步：'+office,W/2,830);
+  const Qs=RUN.mode==='quick';
+  if(Qs){ g.fillStyle='#f3ead2'; g.fillRect(70,150,W-140,0); g.fillStyle='#ffc83d'; g.font='700 34px "Noto Sans TC",sans-serif'; g.fillText(`今日選戰 #${RUN.quick.no}｜稱號：${RUN.qTitle.t}`,W/2,190); }
+  g.fillStyle=champion?'#ffc83d':'#ff8fa0'; g.font='900 70px "Noto Serif TC",serif'; g.fillText(Qs?(champion?'今日當選！':'今日落選'):(champion?'當選首都市長！':'止步：'+office),W/2,830);
   g.fillStyle='#9aa2c8'; g.font='700 36px "Noto Sans TC",sans-serif'; g.fillText('總得票',W/2,920);
   g.fillStyle='#fff'; g.font='120px Anton,Impact,sans-serif'; g.fillText(RUN.score.toLocaleString(),W/2,1050);
   const rk=RUN.ranks; g.fillStyle='#16e0a0'; g.font='700 40px "Noto Sans TC",sans-serif';
-  g.fillText(rk?`總榜第 ${rk.all.rank} 名｜贏過 ${rk.all.pct}% 的操盤手`:'你能贏過我嗎？',W/2,1140);
+  const rt=Qs?(rk&&rk.today&&rk.today.ranked?`今日第 ${rk.today.rank} 名｜贏過 ${rk.today.pct}% 的操盤手`:RUN.qTitle.h.slice(0,22)):(rk&&rk.all?`總榜第 ${rk.all.rank} 名｜贏過 ${rk.all.pct}% 的操盤手`:'你能贏過我嗎？');
+  g.fillText(rt,W/2,1140);
   g.fillStyle='#ffc83d'; g.font='700 34px "Noto Sans TC",sans-serif'; g.fillText(`操盤手：${LOCAL.name||'無名操盤手'}`,W/2,1210);
   g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('spin-doctor-tw.pages.dev',W/2,1275);
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
   const file=new File([blob],'幕後操盤手戰報.png',{type:'image/png'});
-  const text=`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？`;
+  const text=RUN.mode==='quick'?quickShareText():`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？`;
   try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text,url:'https://spin-doctor-tw.pages.dev/'}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file.name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
   ticker('戰報圖已存下來，傳給朋友吧！');
@@ -1801,17 +1868,17 @@ function renderLB(){
   const el=document.getElementById('lbList'); if(!el) return;
   el.innerHTML='';
   if(LB_MODE==='api'){ const tabs=document.createElement('div'); tabs.className='lbtabs';
-    tabs.innerHTML=`<button data-s="week" class="${LB_SCOPE==='week'?'on':''}">本週榜</button><button data-s="all" class="${LB_SCOPE==='all'?'on':''}">總榜</button><span>${LB_STATE==='live'?`${LB_PLAYERS} 位操盤手`:''}</span>`;
+    tabs.innerHTML=`<button data-s="today" class="${LB_SCOPE==='today'?'on':''}">今日快打</button><button data-s="week" class="${LB_SCOPE==='week'?'on':''}">完整・本週</button><button data-s="all" class="${LB_SCOPE==='all'?'on':''}">完整・總榜</button><span>${LB_STATE==='live'?`${LB_PLAYERS} 人`:''}</span>`;
     tabs.querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(LB_SCOPE===b.dataset.s) return; LB_SCOPE=b.dataset.s; SFX.click(); LB_STATE='connecting'; renderLB(); lbFetch(); });
     el.appendChild(tabs); }
   if(LB_STATE!=='live' || !LB.length){
     const n=document.createElement('div'); n.className='lbnote'; n.style.textAlign='center';
-    n.textContent= LB_STATE==='connecting'?'排行榜連線中…' : LB_STATE==='off' ? `排行榜暫時連不上。你的個人最佳：${(LOCAL.best||0).toLocaleString()} 票` : (LB_SCOPE==='week'?'這週還沒有人上榜。打完一輪，搶下本週第一！':'還沒有人上榜。打完一輪，搶下第一名。');
+    n.textContent= LB_STATE==='connecting'?'排行榜連線中…' : LB_STATE==='off' ? `排行榜暫時連不上。你的個人最佳：${(LOCAL.best||0).toLocaleString()} 票` : (LB_SCOPE==='today'?'今天還沒有人上榜。三分鐘打一場，搶下今日第一！':LB_SCOPE==='week'?'這週還沒有人上榜。打完一輪，搶下本週第一！':'還沒有人上榜。打完一輪，搶下第一名。');
     el.appendChild(n); return;
   }
   const tot={blue:0,green:0}; if(LB_MODE==='api'&&LB_WAR){ tot.blue=LB_WAR.blue||0; tot.green=LB_WAR.green||0; } else LB.forEach(r=>{ if(r.camp in tot) tot[r.camp]+=Number(r.score)||0; });
   const sum=tot.blue+tot.green||1, war=document.createElement('div'); war.className='campwar';
-  war.innerHTML=`<div class="cwlab"><span>藍藍路黨 ${tot.blue.toLocaleString()}</span><span>綠嘻嘻黨 ${tot.green.toLocaleString()}</span></div><div class="cwbar"><i style="width:${tot.blue/sum*100}%"></i><b style="width:${tot.green/sum*100}%"></b></div><div class="lbnote">陣營總操盤分（${LB_MODE==='api'?(LB_SCOPE==='week'?'本週':'累計')+'所有對局加總':'所有上榜玩家加總'}）</div>`;
+  war.innerHTML=`<div class="cwlab"><span>藍藍路黨 ${tot.blue.toLocaleString()}</span><span>綠嘻嘻黨 ${tot.green.toLocaleString()}</span></div><div class="cwbar"><i style="width:${tot.blue/sum*100}%"></i><b style="width:${tot.green/sum*100}%"></b></div><div class="lbnote">陣營總操盤分（${LB_MODE==='api'?({today:'今日快打',week:'本週完整選戰',all:'完整選戰累計'}[LB_SCOPE])+'所有對局加總':'所有上榜玩家加總'}）</div>`;
   el.appendChild(war);
   LB.slice(0,LB_MODE==='api'?50:20).forEach((r,i)=>{ const row=document.createElement('div'); row.className='r'+((LB_MODE==='api'?r.mine:r.id===UID)?' mine':'')+(r.camp?' c-'+r.camp:'');
     row.innerHTML=`<span class="rk">${i+1}</span><span class="nm2"><span></span><small></small></span><span class="sc"></span>`;
@@ -1820,9 +1887,9 @@ function renderLB(){
     row.querySelector('.sc').textContent=(Number(r.score)||0).toLocaleString();
     el.appendChild(row); });
 }
-function campScreen(){
-  const ov=$('#overlay'); ov.hidden=false; MUS.mood='title';
-  ov.innerHTML=`<div class="panel"><div class="office">2026 首都市長之戰</div><h3>兩黨都找上門了，你要接誰的案子？</h3>
+function campScreen(mode){
+  const ov=$('#overlay'); ov.hidden=false; MUS.mood='title'; const QM=mode==='quick';
+  ov.innerHTML=`<div class="panel"><div class="office">${QM?`今日選戰 #${dayNo()}｜三分鐘快打`:'2026 首都市長之戰'}</div><h3>兩黨都找上門了，你要接誰的案子？</h3>
     <div class="camps">${['blue','green'].map(k=>{ const c=CAMPS[k]; return `<button class="camp c-${k}" data-camp="${k}"><div class="portrait">${imgTag(c.img,c.g)}</div><div class="cp">${c.party}</div><div class="cn">${c.cand}</div><div class="cpitch">${c.pitch}</div><div class="cexcl">必殺招式 ${c.pool.length} 張</div></button>`; }).join('')}</div>
     <button class="ghost" id="btnBack">返回</button></div>`;
   ov.querySelectorAll('.camp').forEach((el,i)=>{
@@ -1831,6 +1898,7 @@ function campScreen(){
     el.onclick=()=>{ const k=el.dataset.camp; SFX.vs(); flash(.6,k==='blue'?'#3f8cff':'#36d27a'); const c=center(el); burst(c.x,c.y,70,k==='blue'?['#3f8cff','#bcd6ff','#fff']:['#36d27a','#c8f5da','#fff'],9);
       const firstRun=!SAVE.decks[k]&&!LOCAL.tutDone; if(!SAVE.decks[k]){ CAMP_STARTER[k].forEach(id=>SAVE.owned[id]=true); save(); }
       // 第一次玩：先用預選牌組直接開打，組牌等打過一場再說
+      if(QM){ setTimeout(()=>aceDraft(k),350); return; }
       setTimeout(()=>{ if(firstRun){ SAVE.decks[k]=validDeck(k).slice(); save(); newRun(k); RUN.name=LOCAL.name; vsScreen(); } else deckReady(k); },350); };
   });
   $('#btnBack').onclick=()=>{ SFX.click(); ov.hidden=true; TUT_FORCE=false; show('title'); };
@@ -1838,6 +1906,88 @@ function campScreen(){
 function renderMeta(){ const m=$('#metaline'); if(!m) return; const free=SAVE.freePacks>0?`｜免費黑箱包 ${SAVE.freePacks}`:'';
   m.innerHTML=`<span>政治獻金 <b>${SAVE.coins}</b></span><span>圖鑑 <b>${ownedCount()}/${ALL_CARDS.length}</b></span><span>碎片 <b>${SAVE.shards}</b></span>${free?`<span class="free">${free.slice(1)}</span>`:''}`; }
 function miniCard(id,extra=''){ return cardHTML(id,extra+' rar-'+RARITY[id]).replace('<div class="cost">',`<div class="rtag">${RAR[RARITY[id]].n}</div><div class="cost">`); }
+/* ===== 3 分鐘快打流程 ===== */
+function renderQuickHome(){ const no=$('#qNo'), sub=$('#qSub'); if(!no) return; const d=dayKey(), rec=(LOCAL.quickDays||{})[d];
+  no.textContent=`今日選戰 #${dayNo()}`;
+  sub.innerHTML=rec?kw(`今天已出戰：${rec.score.toLocaleString()} 票${rec.rank?`，今日第 ${rec.rank} 名`:''}｜再玩一次是練習`):'全台同一題，比誰票多'; }
+function aceDraft(camp){
+  const q=quickSetup(camp); const ov=$('#overlay'); ov.hidden=false;
+  ov.innerHTML=`<div class="panel"><div class="office">今日選戰 #${q.no}｜政治氣候：${q.mod.n}</div><h3>挑一張今日王牌帶進場</h3>
+    <p class="lbnote">今天全台玩家拿到的牌都一樣。6 回合、每回合 ${TURN_SEC} 秒，時間到軍師會幫你出。</p>
+    <div class="choices">${q.aces.map(id=>`<div class="rpick">${cardHTML(id)}<div class="role t-${CARDS[id].t}">${icon(ROLE[CARDS[id].t].ic)}<b>${ROLE[CARDS[id].t].n}</b>${ROLE[CARDS[id].t].d}</div></div>`).join('')}</div>
+    <button class="ghost" id="qBack">返回</button></div>`;
+  [...ov.querySelectorAll('.choices .card')].forEach((el,i)=>{ bindTilt(el);
+    el.animate([{transform:'rotateY(180deg) scale(.3)',opacity:0},{transform:'none',opacity:1}],{duration:420,delay:i*110,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'}); setTimeout(()=>SFX.flip(),i*110);
+    el.onclick=()=>{ SFX.gain(6); VOICE.play(el.dataset.id,2); flash(.4,'#ffc83d'); newQuickRun(camp,q,el.dataset.id); ov.hidden=true; startBattle(); }; });
+  $('#qBack').onclick=()=>{ SFX.click(); campScreen('quick'); };
+}
+function newQuickRun(camp,q,ace){
+  const opp=CAMPS[camp==='blue'?'green':'blue'];
+  RUN={mode:'quick',quick:{...q,ace},camp,cand:CAMPS[camp],stage:0,deck:[...q.deck,ace],score:0,name:LOCAL.name||'',won:[],history:[],mods:[q.mod]};
+  STAGES=[Object.assign({},QUICK,{name:opp.cand,party:opp.party,img:opp.img,g:opp.g,taunt:opp.taunts[1],deck:q.oppDeck})];
+  lbTicket();
+}
+const ROUND_EMO={smear:'⚡',boost:'📣',def:'🛡',unit:'👁',event:'🎲'};
+function quickTitle(st,win,meV,opV){ const blue=RUN.camp==='blue';
+  if(win&&st.behind) return {t:'選前之夜奇蹟',h:`最後一週大逆轉！${RUN.cand.cand}翻盤，對手幕僚當場傻眼`};
+  if(st.opFires>=1) return {t:'炎上製造機',h:`${STAGES[0].name}全網炎上，${RUN.cand.cand}坐收漁翁之利`};
+  if(st.dodged>=2) return {t:blue?'答非所問之王':'黑熊護體',h:blue?`記者連問${st.dodged}題，${RUN.cand.cand}一題都沒回答到`:`對手連發${st.dodged}招，${RUN.cand.cand}全部擋下`};
+  if(st.maxCombo>=4) return {t:'連擊狂魔',h:`一回合連出${st.maxCombo}招！${RUN.cand.cand}陣營火力全開`};
+  if(win&&st.smear===0) return {t:'乾淨選舉（騙你的）',h:`${RUN.cand.cand}全程正面選戰，網友：一定有鬼`};
+  if(st.smear>=Math.max(4,(st.boost+st.def+st.unit)*1.5)) return {t:'抹黑大師',h:`黑函滿天飛！${RUN.cand.cand}陣營一週發出${st.smear}波攻擊`};
+  if(st.unit>=3) return {t:'暗樁總舵主',h:`名嘴、側翼、粉專全員到齊，${RUN.cand.cand}的暗樁比支持者還多`};
+  if(win&&meV>=opV*1.3) return {t:'壓倒性勝利',h:`${RUN.cand.cand}狂勝${(meV-opV).toLocaleString()}票，對手連夜召開檢討會`};
+  if(!win) return {t:'明天再來',h:`${RUN.cand.cand}惜敗${(opV-meV).toLocaleString()}票，操盤手：我還會回來`};
+  return {t:'穩健操盤手',h:`${RUN.cand.cand}穩穩拿下今日選戰，對手：下次見`}; }
+function quickScore(st,win){ const b={combo:Math.max(0,st.maxCombo-1)*3000,fire:st.opFires*8000,dodge:st.dodged*2000,comeback:(win&&st.behind)?15000:0,win:win?20000:0};
+  b.total=Math.min(150000,b.combo+b.fire+b.dodge+b.comeback+b.win); return b; }
+async function quickEnd(win){
+  stopTurnTimer(); GRNG=Math.random;
+  const st=B.stats, h=RUN.history[RUN.history.length-1], meV=h.me, opV=h.op;
+  const bonus=quickScore(st,win), title=quickTitle(st,win,meV,opV);
+  RUN.score=meV+bonus.total; RUN.bonus=bonus.total; RUN.qTitle=title; RUN.qWin=win;
+  RUN.emo=[1,2,3,4,5,6].map(w=>{ const r=st.rounds[w]||[]; if(!r.length) return '⏸'; const cnt={}; r.forEach(t=>cnt[t]=(cnt[t]||0)+1); return ROUND_EMO[Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]]||'🎲'; }).join('')+(st.opFires?'🔥':'')+(win?'🏆':'💀');
+  const d=RUN.quick.day; LOCAL.quickDays=LOCAL.quickDays||{}; const first=!LOCAL.quickDays[d];
+  if(first){ LOCAL.quickDays[d]={score:RUN.score,rank:0}; } if(RUN.score>LOCAL.best) LOCAL.best=RUN.score; saveLocal();
+  MUS.intensity=win?2:0;
+  const ov=$('#overlay'); ov.hidden=false;
+  ov.innerHTML=`<div class="qbg"></div><div class="panel"><div class="office">今日選戰 #${RUN.quick.no}｜${RUN.cand.party} ${RUN.cand.cand}｜<b class="${win?'qwin':'qlose'}">${win?'當選':'落選'}</b></div>
+    <div class="qtitle"><small>本局稱號</small><b></b></div>
+    <div class="qpaper"><span>幕後操盤手日報</span><h4></h4></div>
+    <div class="lbnote">得票 ${meV.toLocaleString()} ＋ 操盤加分 ${bonus.total.toLocaleString()}</div>
+    <div class="score" id="finalScore">0</div>
+    <div class="qbonus">${[['連擊',bonus.combo],['讓對手炎上',bonus.fire],['閃避',bonus.dodge],['逆轉',bonus.comeback],['勝選',bonus.win]].filter(x=>x[1]).map(([n,v])=>`<span>${n} +${v.toLocaleString()}</span>`).join('')||'<span>沒有加分，下次試試連擊或讓對手炎上</span>'}</div>
+    <div class="qemo">${RUN.emo}</div>
+    <div class="namebox"><input id="nameInput" maxlength="12" placeholder="操盤手代號" aria-label="操盤手代號"><button class="cta" id="btnSubmit" style="font-size:18px;padding:12px 26px">${first?'登上今日榜':'練習成績（不計分）'}</button></div>
+    <div class="lbnote" id="submitNote">${first?'今天第一場會列入今日排行榜。':'今天已經出戰過，這場是練習。'}</div>
+    <div class="rankline" id="rankLine" hidden></div>
+    <div class="row"><button class="cta" id="btnShare" style="font-size:18px;padding:12px 26px">分享戰報</button><button class="ghost" id="btnCopy">複製文字戰報</button></div>
+    <div class="lb" id="lbList"></div>
+    <div class="row"><button class="ghost" id="btnAgain">再玩一次（練習）</button><button class="ghost" id="btnFull">玩完整選戰</button><button class="ghost" id="btnFb2">給建議</button><button class="ghost" id="btnHome">回標題</button></div></div>`;
+  ov.querySelector('.qtitle b').textContent=title.t; ov.querySelector('.qpaper h4').textContent=title.h;
+  $('#nameInput').value=LOCAL.name||'';
+  LB_SCOPE='today'; renderLB(); lbFetch();
+  await tweenNum($('#finalScore'),0,RUN.score,1400,t=>SFX.tally(t*50|0));
+  SFX.fanfare(); confetti(win?200:60); flash(.4,'#ffc83d');
+  const submit=async()=>{ const nm=($('#nameInput').value||'').trim().slice(0,12)||'無名操盤手'; LOCAL.name=nm; saveLocal();
+    $('#btnSubmit').disabled=true; $('#submitNote').textContent='上傳中…';
+    const r=await submitScore(nm,RUN.score,title.t,RUN.camp);
+    if(r==='ok'||r==='kept'){ const t=RUN.ranks&&RUN.ranks.today; if(t){ $('#rankLine').hidden=false; $('#rankLine').innerHTML=kw(t.ranked?`今日第 ${t.rank} 名（共 ${t.total} 人），贏過 ${t.pct}% 的操盤手`:`練習成績：這分數可以排今日第 ${t.rank} 名`);
+        if(t.ranked){ LOCAL.quickDays[d]={score:RUN.score,rank:t.rank}; saveLocal(); } }
+      $('#submitNote').textContent=RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?'已登上今日榜！':'練習成績已記錄（不列入排名）。'; if(RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked){ confetti(120); SFX.gain(10); } }
+    else { $('#submitNote').textContent=r==='rej'?'排行榜沒收這筆：'+(RUN.lbErr||''):'上傳失敗，請檢查網路後再按一次。'; $('#btnSubmit').disabled=false; return; }
+    if(RUN.lbName&&RUN.lbName!==nm) $('#submitNote').textContent+=` 代號含不適當字詞，已改為「${RUN.lbName}」。`; };
+  $('#btnSubmit').onclick=()=>{ SFX.click(); submit(); };
+  if(LOCAL.name&&LB_MODE==='api') submit();
+  $('#btnShare').onclick=()=>{ SFX.click(); shareCard(win,title.t); };
+  $('#btnCopy').onclick=async()=>{ SFX.click(); const t=quickShareText(); try{ await navigator.clipboard.writeText(t); ticker('文字戰報已複製，貼到 LINE 吧！'); }catch(e){ prompt('複製這段文字：',t); } };
+  $('#btnAgain').onclick=()=>{ SFX.click(); aceDraft(RUN.camp); };
+  $('#btnFull').onclick=()=>{ SFX.click(); campScreen(); };
+  $('#btnFb2').onclick=()=>{ SFX.click(); feedbackScreen('idea'); };
+  $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); BGM.play('title'); renderQuickHome(); };
+}
+function quickShareText(){ const t=RUN.ranks&&RUN.ranks.today;
+  return `幕後操盤手 今日選戰 #${RUN.quick.no}\n${RUN.cand.cand}｜${RUN.qWin?'當選':'落選'}｜${RUN.score.toLocaleString()} 票\n${RUN.emo}\n稱號：${RUN.qTitle.t}${t&&t.ranked?`｜今日第 ${t.rank} 名`:''}\n同一題，你能贏我嗎？ https://spin-doctor-tw.pages.dev/`; }
 function deckReady(camp){
   const ov=$('#overlay'); ov.hidden=false; const deck=validDeck(camp);
   ov.innerHTML=`<div class="panel"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>牌組已經幫你配好了</h3>
@@ -1995,7 +2145,7 @@ function bookScreen(filter='all'){
   $('#bkPack').onclick=()=>{ SFX.click(); packScreen(); };
   $('#bkBack').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
 }
-function killBattle(){ if(B) B.dead=true; ['#cutin','#coach'].forEach(sel=>{ const e=$(sel); if(e) e.hidden=true; }); $('#extra').innerHTML=''; $('#overlay').hidden=true;
+function killBattle(){ if(B) B.dead=true; stopTurnTimer(); GRNG=Math.random; ['#cutin','#coach'].forEach(sel=>{ const e=$(sel); if(e) e.hidden=true; }); $('#extra').innerHTML=''; $('#overlay').hidden=true;
   document.querySelectorAll('.card.flying').forEach(e=>e.remove()); $('#edge').classList.remove('onfire'); $('#vignette').classList.remove('hot'); if(typeof TUT_I!=='undefined') TUT_I=-1; }
 function pauseMenu(){
   if(!B||B.dead) return; const pb=$('#pausebox'); pb.hidden=false; SFX.click();
@@ -2155,7 +2305,7 @@ function newsTargets(tg){ const campSide=c=>RUN.camp===c?B.me:B.op;
   return [tg==='leader'?lead:(lead===B.me?B.op:B.me)]; }
 async function newsEvent(){
   if(!NEWS.length||B.newsDone) return; B.newsDone=true;
-  const k=Math.min(10,NEWS.length), e=NEWS[NEWS.length-1-Math.floor(Math.random()*Math.random()*k)];
+  const k=Math.min(10,NEWS.length), e=NEWS[NEWS.length-1-Math.floor(R()*R()*k)];
   const ef=e.effect, label={buzz:'聲量',backlash:'反感',votes:'票數',shield:'護盾'}[ef.type];
   const who=newsTargets(ef.target).map(s=>s===B.me?RUN.cand.cand:s.name).join('、');
   await extra(e.headline,`${e.sub?e.sub+'｜':''}時事事件：${who} ${label} ${ef.value>0?'+':''}${ef.value}`,'時事');
@@ -2284,10 +2434,12 @@ function playHook(){
   $('#iSkip').onclick=()=>endIntro(false);
   $('#iGo').onclick=()=>{ SFX.click(); endIntro(true); };
 }
-function endIntro(go){ const el=$('#intro'); const v=$('#hookV'); if(v) v.pause(); el.hidden=true; el.innerHTML=''; LOCAL.introSeen=1; saveLocal(); bootAudio(); if(go){ flash(.5,'#ffc83d'); campScreen(); } }
+function endIntro(go){ const el=$('#intro'); const v=$('#hookV'); if(v) v.pause(); el.hidden=true; el.innerHTML=''; LOCAL.introSeen=1; saveLocal(); bootAudio(); if(go){ flash(.5,'#ffc83d'); campScreen('quick'); } }
 $('#btnCont').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); resumeRun(); };
 renderContinue();
 $('#btnStart').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen(); };
+$('#btnQuick').onclick=()=>{ bootAudio(); SFX.click(); flash(.5,'#ffc83d'); campScreen('quick'); };
+renderQuickHome();
 $('#btnHow').onclick=()=>{ bootAudio(); SFX.click(); TUT_FORCE=true; campScreen(); };
 $('#btnIntro').onclick=()=>{ SFX.click(); introScreen(); };
 if(!LOCAL.introSeen) introScreen();
