@@ -656,6 +656,8 @@ body.freeze *{animation-play-state:paused!important}
 </div>
 
 <script>
+/* 舊網址（GitHub Pages）自動轉到新網址，保留 ?reset 等參數 */
+if(/\.github\.io$/.test(location.hostname)){ location.replace('https://spin-doctor-tw.pages.dev/'+location.search+location.hash); }
 /* 網址加 ?reset 就清空這台裝置的存檔（收藏、獻金、教學紀錄、選戰存檔），變回全新玩家 */
 try{ if(/[?&]reset\b/.test(location.search)){ ['spin_save','spin_local','spin_run'].forEach(k=>localStorage.removeItem(k)); history.replaceState(null,'',location.pathname+location.hash); } }catch(e){}
 /* =========================================================
@@ -1777,11 +1779,11 @@ async function shareCard(champion,office){
   const rk=RUN.ranks; g.fillStyle='#16e0a0'; g.font='700 40px "Noto Sans TC",sans-serif';
   g.fillText(rk?`總榜第 ${rk.all.rank} 名｜贏過 ${rk.all.pct}% 的操盤手`:'你能贏過我嗎？',W/2,1140);
   g.fillStyle='#ffc83d'; g.font='700 34px "Noto Sans TC",sans-serif'; g.fillText(`操盤手：${LOCAL.name||'無名操盤手'}`,W/2,1210);
-  g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('lunch7776-eng.github.io/spin-doctor-tw',W/2,1275);
+  g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('spin-doctor-tw.pages.dev',W/2,1275);
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
   const file=new File([blob],'幕後操盤手戰報.png',{type:'image/png'});
   const text=`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？`;
-  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text,url:'https://lunch7776-eng.github.io/spin-doctor-tw/'}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text,url:'https://spin-doctor-tw.pages.dev/'}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
   const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file.name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
   ticker('戰報圖已存下來，傳給朋友吧！');
 }
