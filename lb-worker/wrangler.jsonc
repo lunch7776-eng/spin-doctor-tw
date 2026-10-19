@@ -1,0 +1,8 @@
+{
+  "name": "spin-doctor-lb",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "d1_databases": [
+    { "binding": "DB", "database_name": "spin-lb", "database_id": "d04dcfeb-3389-4a58-9b8d-f8cef1383bd0" }
+  ]
+}

@@ -1,0 +1,24 @@
+-- 幕後操盤手排行榜
+CREATE TABLE IF NOT EXISTS runs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  dev TEXT NOT NULL,            -- 裝置隨機編號（不需登入）
+  name TEXT NOT NULL,
+  camp TEXT NOT NULL,           -- blue / green
+  score INTEGER NOT NULL,       -- 總得票
+  stages INTEGER NOT NULL,      -- 打到第幾關（1-4）
+  champion INTEGER NOT NULL,    -- 是否當選
+  office TEXT NOT NULL,
+  dur INTEGER NOT NULL,         -- 這輪花幾秒
+  ip TEXT NOT NULL,             -- 雜湊後的 IP，只用來限流
+  ts INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS runs_score ON runs(score DESC);
+CREATE INDEX IF NOT EXISTS runs_ts ON runs(ts);
+CREATE INDEX IF NOT EXISTS runs_dev ON runs(dev);
+CREATE TABLE IF NOT EXISTS tickets (     -- 開局號碼牌：一張只能交一次成績
+  run TEXT PRIMARY KEY,
+  ts INTEGER NOT NULL,
+  used INTEGER NOT NULL DEFAULT 0,
+  ip TEXT NOT NULL DEFAULT ''
+);
+CREATE INDEX IF NOT EXISTS tickets_ip ON tickets(ip, ts);
