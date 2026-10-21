@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-20",
+  "updated": "2026-10-21",
   "events": [
     {"date": "2026-10-04", "headline": "一篇貼文一晚湧入50萬則留言", "sub": "留言區藍綠大戰，有人喊機器人", "source": "中央社 2026-10-04", "effect": {"type": "backlash", "target": "leader", "value": 2}},
     {"date": "2026-10-04", "headline": "洋流外溢！人潮從夜市燒到網路", "sub": "對手酸：這是人工洋流", "source": "鏡週刊 2026-10-04", "effect": {"type": "buzz", "target": "green", "value": 3}},
@@ -13,6 +13,8 @@
     {"date": "2026-10-19", "headline": "審伯羊開講「市長我不幹了！」", "sub": "講卍安回嗆別再認知作戰，公務員夾在中間當題材", "source": "聯合報 2026-10-19", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-19", "headline": "講卍安上節目再提「社區發毒品」", "sub": "話沒講完就被主持人插話換題，網友：這刀切得好快", "source": "自由時報 2026-10-20", "effect": {"type": "backlash", "target": "blue", "value": 2}},
     {"date": "2026-10-20", "headline": "新民調審伯羊50.3%反超17趴", "sub": "講卍安：都只是參考；網友：上個月還說差1.2呢", "source": "聯合報 2026-10-20", "effect": {"type": "votes", "target": "green", "value": 2}},
-    {"date": "2026-10-20", "headline": "藍委嗆：謝謝大罷免同款民調來催票", "sub": "翻出去年罷免預測當對照，民調戰改打民調公司", "source": "聯合報 2026-10-20", "effect": {"type": "shield", "target": "blue", "value": 2}}
+    {"date": "2026-10-20", "headline": "藍委嗆：謝謝大罷免同款民調來催票", "sub": "翻出去年罷免預測當對照，民調戰改打民調公司", "source": "聯合報 2026-10-20", "effect": {"type": "shield", "target": "blue", "value": 2}},
+    {"date": "2026-10-20", "headline": "民調換個參數 輸17趴秒變贏7趴", "sub": "網友：原來民調不是科學，是調色盤", "source": "新頭殼 2026-10-20", "effect": {"type": "buzz", "target": "both", "value": 2}},
+    {"date": "2026-10-21", "headline": "審伯羊邀公教上肥皂箱 藍藍路黨轟消費老師", "sub": "某藍委酸：教師荒吵兩年，立委才突然發現？", "source": "聯合報 2026-10-21", "effect": {"type": "backlash", "target": "green", "value": 2}}
   ]
 }
