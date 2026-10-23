@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-23",
   "events": [
     {"date": "2026-10-04", "headline": "一篇貼文一晚湧入50萬則留言", "sub": "留言區藍綠大戰，有人喊機器人", "source": "中央社 2026-10-04", "effect": {"type": "backlash", "target": "leader", "value": 2}},
     {"date": "2026-10-04", "headline": "洋流外溢！人潮從夜市燒到網路", "sub": "對手酸：這是人工洋流", "source": "鏡週刊 2026-10-04", "effect": {"type": "buzz", "target": "green", "value": 3}},
@@ -17,6 +17,9 @@
     {"date": "2026-10-20", "headline": "民調換個參數 輸17趴秒變贏7趴", "sub": "網友：原來民調不是科學，是調色盤", "source": "新頭殼 2026-10-20", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-21", "headline": "審伯羊邀公教上肥皂箱 藍藍路黨轟消費老師", "sub": "某藍委酸：教師荒吵兩年，立委才突然發現？", "source": "聯合報 2026-10-21", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-10-21", "headline": "被酸靠大字報答詢 講卍安：全程直播自己看", "sub": "網友：那就請局處首長下次別站那麼近", "source": "FTNN新聞網 2026-10-21", "effect": {"type": "shield", "target": "blue", "value": 2}},
-    {"date": "2026-10-20", "headline": "審伯羊：要當全民市長 投講卍安的也要拉", "sub": "網友：那辯論會上記得先跟對手握個手", "source": "中央社 2026-10-20", "effect": {"type": "buzz", "target": "green", "value": 2}}
+    {"date": "2026-10-20", "headline": "審伯羊：要當全民市長 投講卍安的也要拉", "sub": "網友：那辯論會上記得先跟對手握個手", "source": "中央社 2026-10-20", "effect": {"type": "buzz", "target": "green", "value": 2}},
+    {"date": "2026-10-22", "headline": "颱風來襲 講卍安宣布暫停一切競選活動", "sub": "抽水站前站好站滿，網友：防颱就是最好的競選廣告", "source": "ETtoday 2026-10-22", "effect": {"type": "shield", "target": "blue", "value": 2}},
+    {"date": "2026-10-22", "headline": "審伯羊：颱風假該和股市脫鉤？", "sub": "藍營競辦嗆：立委職權在手，問題卻丟給市府", "source": "聯合報 2026-10-22", "effect": {"type": "backlash", "target": "green", "value": 2}},
+    {"date": "2026-10-22", "headline": "又一份民調審伯羊領先3.8趴", "sub": "但看好度講卍安反勝，網友：支持你但不看好你", "source": "自由時報 2026-10-22", "effect": {"type": "votes", "target": "green", "value": 2}}
   ]
 }
