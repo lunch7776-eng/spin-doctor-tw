@@ -1,6 +1,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>幕後操盤手</title>
+<meta name="description" content="2026 首都市長之戰諷刺卡牌遊戲：三分鐘一場、全台同一題，幫藍藍路黨或綠嘻嘻黨拉票，今日陣營戰等你出手。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://spin-doctor-tw.pages.dev/">
+<meta property="og:title" content="幕後操盤手｜三分鐘選戰卡牌">
+<meta property="og:description" content="全台同一題，三分鐘一場。抹黑、造勢、問A答BCD，幫你的陣營拿下今日陣營戰！">
+<meta property="og:image" content="https://spin-doctor-tw.pages.dev/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%B3%EF%B8%8F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+TC:wght@400;700;900&family=Noto+Serif+TC:wght@900&display=swap">
@@ -72,6 +81,12 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .iend{position:absolute;inset:0;z-index:2;display:grid;place-content:center;justify-items:center;gap:14px;padding:16px;background:radial-gradient(circle,rgba(5,6,14,.55),rgba(5,6,14,.9));animation:capIn .35s both}
 .iend .ilogo{font-family:var(--display);font-size:clamp(52px,15vw,104px);line-height:1;color:var(--gold);text-shadow:0 4px 0 #6b3d02,0 0 40px rgba(255,200,61,.5)}
 .iend .imis{font-size:clamp(16px,4.6vw,22px);font-weight:900;text-align:center} .iend .imis b{color:var(--gold)}
+.campwar.home{width:min(460px,100%);padding:10px 12px;border-radius:14px;background:rgba(10,13,28,.85);border:1px solid var(--line)}
+.campwar .cwhead{font-size:12px;font-weight:900;letter-spacing:.25em;color:var(--gold);margin-bottom:4px}
+.campwar.home .row{gap:8px;margin-top:6px} .cwcall{font-size:13px;padding:6px 14px}
+.cwar{margin-top:6px;font-size:12px;font-weight:900;padding:3px 8px;border-radius:99px;background:rgba(255,255,255,.08)} .cwar.lag{background:rgba(255,46,77,.2);color:#ffb3bf}
+.qrule{font-size:13px;font-weight:900;color:#ffb3bf;margin-top:-6px} .qrule.used{color:var(--muted)}
+.qwar{font-size:14px;font-weight:900;padding:8px 12px;border-radius:10px;background:rgba(255,46,77,.1);border:1px solid rgba(255,46,77,.45)} .qwar:empty{display:none}
 .quickcta{display:grid;gap:2px;justify-items:center;font-size:clamp(24px,7vw,32px);padding:14px 38px;box-shadow:0 6px 0 #6b3d02,0 0 40px rgba(255,200,61,.55);animation:advpulse 1.6s infinite}
 .quickcta small{font-family:var(--body,inherit);font-size:13px;font-weight:900;letter-spacing:.15em;opacity:.8}
 .qsub{font-size:13px;color:var(--muted);margin-top:-8px}
@@ -360,7 +375,11 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 #coach .crow{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:8px}
 #coach .cskip{color:#5a4f40;border-color:#cbbd9f;background:transparent;font-size:13px;padding:8px 14px}
 #coach .cnext{font-size:17px;padding:10px 24px}
-#coach.waiting .cnext{display:none}
+#coach .cwait{display:none;margin-top:10px;text-align:center;font-weight:900;font-size:16px;color:#fff;background:#c4101f;border-radius:99px;padding:8px 12px;animation:advpulse 1s infinite}
+#coach.waiting .cwait{display:block}
+#coach.waiting .cnext{font-size:13px;padding:8px 14px;background:transparent;color:#5a4f40;border:1px solid #cbbd9f;box-shadow:none}
+#hand .card.tutpick::before{content:'👇';position:absolute;left:50%;top:-42px;transform:translateX(-50%);font-size:30px;z-index:8;animation:tutbob .7s ease-in-out infinite;pointer-events:none}
+@keyframes tutbob{50%{transform:translate(-50%,-8px)}}
 .metaline{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--muted)}
 .metaline b{color:var(--gold);font-family:var(--num);font-size:16px;font-weight:400}
 .metaline .free{color:var(--green);font-weight:900}
@@ -376,7 +395,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .k-atk,.k-pierce,.k-up{--kc:#ff5a6e} .k-buzz,.k-poll,.k-coin{--kc:#ffc83d} .k-vote{--kc:#47e6a0} .k-shield,.k-dodge{--kc:#3fe0ff}
 .k-back{--kc:#ff8a3d} .k-turn{--kc:#c49bff} .k-wash{--kc:#8fdcff} .k-unit{--kc:#c49bff} .k-grab,.k-draw{--kc:#f3f4ff}
 .kw{color:var(--kc);font-weight:900}
-#coach .bubble .kw{text-shadow:none} #coach .k-buzz{--kc:#a86a00} #coach .k-vote{--kc:#0b8a55} #coach .k-back{--kc:#c24a00} #coach .k-shield,#coach .k-dodge{--kc:#0a7fa0} #coach .k-atk{--kc:#c8102e} #coach .k-unit{--kc:#6a2fc0} .kwn{color:#fff;font-weight:900}
+#coach .bubble .kw{text-shadow:none} #coach .k-buzz{--kc:#a86a00} #coach .k-vote{--kc:#0b8a55} #coach .k-back{--kc:#c24a00} #coach .k-shield,#coach .k-dodge{--kc:#0a7fa0} #coach .k-atk{--kc:#c8102e} #coach .k-unit{--kc:#6a2fc0} .kwn{color:#fff;font-weight:900} #coach .kwn{color:#17110a}
 .fxc.self{opacity:.75} .fxc.self b::before{content:'自'}
 .card .fx{display:none}
 #hand .card .ds,.card.flying .ds{display:none}
@@ -615,6 +634,7 @@ body.freeze *{animation-play-state:paused!important}
         <div class="tag">選舉不是比誰比較好，是比<b>誰比較會操作</b>。</div>
         <button class="cta quickcta" id="btnQuick"><small id="qNo">今日選戰</small>⚡ 3 分鐘快打</button>
         <div class="qsub" id="qSub">全台同一題，比誰票多</div>
+        <div class="campwar home" id="homeWar" hidden></div>
         <div class="row">
           <button class="cta cont" id="btnCont" hidden></button>
           <button class="ghost" id="btnStart">完整選戰（4 關劇情）</button>
@@ -675,7 +695,7 @@ body.freeze *{animation-play-state:paused!important}
   <div id="pausebox" class="overlay" hidden></div>
   <div id="fbbox" class="overlay fbbox" hidden></div>
   <div id="viewer" class="viewer" hidden></div>
-  <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
+  <div id="coach" hidden><div class="cblock"></div><div class="hole"></div><div class="bubble"><div class="cstep"></div><h4></h4><p></p><div class="cwait">👇 直接點下面發亮的牌</div><div class="crow"><button class="ghost cskip" id="tutSkip">跳過教學</button><button class="cta cnext" id="tutNext">下一步</button></div></div></div>
   <div id="flash"></div>
   <div id="cutin" hidden></div>
   <div id="cinema" hidden><div class="cband"><video id="cvid" muted playsinline preload="auto"></video><div class="cscan"></div><div class="cedge t"></div><div class="cedge b"></div></div></div>
@@ -1803,7 +1823,7 @@ const LB_API='https://spin-doctor-lb.spin-doctor-tw.workers.dev';
 let LB_MODE='api', LB_SCOPE='today', LB_WAR=null, LB_PLAYERS=0;
 function devId(){ if(!LOCAL.dev){ LOCAL.dev=(crypto.randomUUID?crypto.randomUUID():'d'+Math.random().toString(36).slice(2)+Date.now().toString(36)); saveLocal(); } return LOCAL.dev; }
 async function lbTicket(){ if(LB_MODE!=='api'||!RUN) return; const run0=RUN;
-  try{ const j=await (await fetch(LB_API+'/start',{method:'POST'})).json(); if(j.ok&&RUN===run0){ RUN.ticket=j.run; RUN.ticketTs=Date.now(); saveRun(); } }catch(e){} }
+  try{ const j=await (await fetch(LB_API+'/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dev:devId(),mode:RUN.mode==='quick'?'quick':'campaign'})})).json(); if(j.ok&&RUN===run0){ RUN.ticket=j.run; RUN.ticketTs=Date.now(); RUN.ticketFirst=!!j.first; saveRun(); } }catch(e){} }
 async function lbFetch(){ if(LB_MODE!=='api') return;
   try{ const j=await (await fetch(`${LB_API}/top?scope=${LB_SCOPE}&day=${dayKey()}&dev=${encodeURIComponent(devId())}`)).json();
     if(j.ok){ LB=j.rows; LB_WAR=j.war; LB_PLAYERS=j.players; LB_STATE='live'; } else LB_STATE='off'; }catch(e){ LB_STATE='off'; }
@@ -1857,12 +1877,56 @@ async function shareCard(champion,office){
   g.fillText(rt,W/2,1140);
   g.fillStyle='#ffc83d'; g.font='700 34px "Noto Sans TC",sans-serif'; g.fillText(`操盤手：${LOCAL.name||'無名操盤手'}`,W/2,1210);
   g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('spin-doctor-tw.pages.dev',W/2,1275);
+  const text=RUN.mode==='quick'?quickShareText():`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？\nhttps://spin-doctor-tw.pages.dev/`;
+  await shareCanvas(cv,'幕後操盤手戰報.png',text);
+}
+async function shareCanvas(cv,fname,text){
   const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
-  const file=new File([blob],'幕後操盤手戰報.png',{type:'image/png'});
-  const text=RUN.mode==='quick'?quickShareText():`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？`;
-  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text,url:'https://spin-doctor-tw.pages.dev/'}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=file.name; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-  ticker('戰報圖已存下來，傳給朋友吧！');
+  const file=new File([blob],fname,{type:'image/png'});
+  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+  try{ await navigator.clipboard.writeText(text); }catch(e){}
+  ticker('圖片已存下來、文字已複製，傳給朋友吧！');
+}
+const loadImg=src=>new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=src; });
+function cardTile(g,img,x,y,w,h,id,rar,isNew){ const col=RAR[rar].c;
+  g.save(); g.fillStyle='#0d1124'; g.strokeStyle=col; g.lineWidth=8; g.beginPath(); g.roundRect(x,y,w,h,18); g.fill(); g.stroke(); g.clip();
+  if(img){ const s=Math.max(w/img.width,(h*.68)/img.height); g.drawImage(img,x+(w-img.width*s)/2,y,img.width*s,img.height*s); }
+  g.fillStyle='rgba(8,10,22,.92)'; g.fillRect(x,y+h*.68,w,h*.32); g.restore();
+  g.textAlign='center'; g.fillStyle='#fff'; g.font=`900 ${Math.round(w*.12)}px "Noto Sans TC",sans-serif`; g.fillText(CARDS[id].n.slice(0,7),x+w/2,y+h*.8);
+  g.fillStyle=col; g.font=`900 ${Math.round(w*.095)}px "Noto Sans TC",sans-serif`; g.fillText(RAR[rar].n+(CARDS[id].sk?'・必殺':''),x+w/2,y+h*.92);
+  if(isNew){ g.fillStyle='#ff2e4d'; g.beginPath(); g.roundRect(x+w-96,y-16,104,44,22); g.fill(); g.fillStyle='#fff'; g.font='900 26px "Noto Sans TC",sans-serif'; g.fillText('NEW',x+w-44,y+15); } }
+function shareBg(g,W,H){ const bg=g.createRadialGradient(W/2,H*.4,60,W/2,H*.5,H*.8); bg.addColorStop(0,'#2a1a3f'); bg.addColorStop(1,'#05060e'); g.fillStyle=bg; g.fillRect(0,0,W,H);
+  g.strokeStyle='rgba(255,200,61,.6)'; g.lineWidth=6; g.strokeRect(30,30,W-60,H-60); g.textAlign='center'; g.fillStyle='#ffc83d'; g.font='900 60px "Noto Serif TC",serif'; g.fillText('幕後操盤手',W/2,120); }
+/* 分享抽卡結果：5 張牌＋最稀有那張的喊話 */
+async function sharePack(res){
+  const W=1080,H=1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; const g=cv.getContext('2d');
+  try{ await document.fonts.load('900 60px "Noto Serif TC"'); }catch(e){}
+  shareBg(g,W,H); const order={SSR:3,SR:2,R:1,N:0}; const top=res.slice().sort((a,b)=>order[b.rar]-order[a.rar])[0];
+  g.fillStyle='#fff'; g.font='900 46px "Noto Sans TC",sans-serif'; g.fillText(top.rar==='SSR'?`抽到傳說卡「${CARDS[top.id].n}」！`:top.rar==='SR'?`抽到史詩卡「${CARDS[top.id].n}」`:'黑箱包開箱結果',W/2,205);
+  const imgs=await Promise.all(res.map(r=>loadImg(`img/${CARDS[r.id].img}.jpg?v=${IMGV}`)));
+  const cw=290,ch=410; const pos=[[70,260],[395,260],[720,260],[232,720],[557,720]];
+  res.forEach((r,i)=>cardTile(g,imgs[i],pos[i][0],pos[i][1],cw,ch,r.id,r.rar,r.isNew));
+  g.fillStyle='#16e0a0'; g.font='700 40px "Noto Sans TC",sans-serif'; g.fillText(`圖鑑收集 ${ownedCount()}/${ALL_CARDS.length}`,W/2,1210);
+  g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('spin-doctor-tw.pages.dev',W/2,1275);
+  await shareCanvas(cv,'幕後操盤手抽卡.png',`我在《幕後操盤手》${top.rar==='SSR'?`抽到傳說卡「${CARDS[top.id].n}」`:'開了黑箱包'}，圖鑑 ${ownedCount()}/${ALL_CARDS.length}！你抽得到嗎？\nhttps://spin-doctor-tw.pages.dev/`);
+}
+/* 分享圖鑑：已收集的卡亮、沒收集的暗 */
+async function shareBook(){
+  const W=1080,H=1350,cv=document.createElement('canvas'); cv.width=W; cv.height=H; const g=cv.getContext('2d');
+  try{ await document.fonts.load('900 60px "Noto Serif TC"'); }catch(e){}
+  shareBg(g,W,H); const n=ownedCount(), tot=ALL_CARDS.length;
+  g.fillStyle='#fff'; g.font='900 50px "Noto Sans TC",sans-serif'; g.fillText(`我的操盤圖鑑 ${n}/${tot}`,W/2,205);
+  const ids=ALL_CARDS.slice(), cols=6, cw=150, ch=150, gap=14, x0=(W-(cols*cw+(cols-1)*gap))/2, y0=250;
+  const imgs=await Promise.all(ids.map(id=>SAVE.owned[id]?loadImg(`img/${CARDS[id].img}.jpg?v=${IMGV}`):Promise.resolve(null)));
+  ids.forEach((id,i)=>{ const x=x0+(i%cols)*(cw+gap), y=y0+Math.floor(i/cols)*(ch+gap); g.save(); g.beginPath(); g.roundRect(x,y,cw,ch,14); g.fillStyle='#141a33'; g.fill(); g.clip();
+    if(imgs[i]){ const sc=Math.max(cw/imgs[i].width,ch/imgs[i].height); g.drawImage(imgs[i],x+(cw-imgs[i].width*sc)/2,y+(ch-imgs[i].height*sc)/2,imgs[i].width*sc,imgs[i].height*sc); }
+    else { g.fillStyle='#3b4470'; g.font='900 70px "Noto Serif TC",serif'; g.textAlign='center'; g.fillText('？',x+cw/2,y+ch/2+25); }
+    g.restore(); g.strokeStyle=SAVE.owned[id]?RAR[RARITY[id]].c:'#2a3150'; g.lineWidth=5; g.beginPath(); g.roundRect(x,y,cw,ch,14); g.stroke(); });
+  const ssr=ALL_CARDS.filter(id=>RARITY[id]==='SSR'&&SAVE.owned[id]).map(id=>CARDS[id].n);
+  g.textAlign='center'; g.fillStyle='#ffc83d'; g.font='700 36px "Noto Sans TC",sans-serif'; g.fillText(ssr.length?`傳說卡：${ssr.slice(0,3).join('、')}`:'還在找第一張傳說卡…',W/2,1210);
+  g.fillStyle='#9aa2c8'; g.font='700 30px "Noto Sans TC",sans-serif'; g.fillText('spin-doctor-tw.pages.dev',W/2,1275);
+  await shareCanvas(cv,'幕後操盤手圖鑑.png',`我的《幕後操盤手》圖鑑收集 ${n}/${tot}${ssr.length?`，傳說卡有「${ssr[0]}」`:''}！來比比看誰先集滿：\nhttps://spin-doctor-tw.pages.dev/`);
 }
 function renderLB(){
   const el=document.getElementById('lbList'); if(!el) return;
@@ -1890,7 +1954,7 @@ function renderLB(){
 function campScreen(mode){
   const ov=$('#overlay'); ov.hidden=false; MUS.mood='title'; const QM=mode==='quick';
   ov.innerHTML=`<div class="panel"><div class="office">${QM?`今日選戰 #${dayNo()}｜三分鐘快打`:'2026 首都市長之戰'}</div><h3>兩黨都找上門了，你要接誰的案子？</h3>
-    <div class="camps">${['blue','green'].map(k=>{ const c=CAMPS[k]; return `<button class="camp c-${k}" data-camp="${k}"><div class="portrait">${imgTag(c.img,c.g)}</div><div class="cp">${c.party}</div><div class="cn">${c.cand}</div><div class="cpitch">${c.pitch}</div><div class="cexcl">必殺招式 ${c.pool.length} 張</div></button>`; }).join('')}</div>
+    <div class="camps">${['blue','green'].map(k=>{ const c=CAMPS[k]; return `<button class="camp c-${k}" data-camp="${k}"><div class="portrait">${imgTag(c.img,c.g)}</div><div class="cp">${c.party}</div><div class="cn">${c.cand}</div><div class="cpitch">${c.pitch}</div><div class="cexcl">必殺招式 ${c.pool.length} 張</div>${QM&&warPct()?`<div class="cwar ${((k==='blue'?warPct().b:warPct().g)<50)?'lag':''}">今日 ${k==='blue'?warPct().b:warPct().g}%｜${k==='blue'?warPct().t.blueN:warPct().t.greenN} 人${((k==='blue'?warPct().b:warPct().g)<50)?'・落後中，需要你！':''}</div>`:''}</button>`; }).join('')}</div>
     <button class="ghost" id="btnBack">返回</button></div>`;
   ov.querySelectorAll('.camp').forEach((el,i)=>{
     el.animate([{transform:`translateY(80px) rotate(${i?6:-6}deg)`,opacity:0},{transform:'none',opacity:1}],{duration:500,delay:i*120,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'});
@@ -1906,14 +1970,33 @@ function campScreen(mode){
 function renderMeta(){ const m=$('#metaline'); if(!m) return; const free=SAVE.freePacks>0?`｜免費黑箱包 ${SAVE.freePacks}`:'';
   m.innerHTML=`<span>政治獻金 <b>${SAVE.coins}</b></span><span>圖鑑 <b>${ownedCount()}/${ALL_CARDS.length}</b></span><span>碎片 <b>${SAVE.shards}</b></span>${free?`<span class="free">${free.slice(1)}</span>`:''}`; }
 function miniCard(id,extra=''){ return cardHTML(id,extra+' rar-'+RARITY[id]).replace('<div class="cost">',`<div class="rtag">${RAR[RARITY[id]].n}</div><div class="cost">`); }
+/* ===== 陣營大戰：每台裝置每天第一場的票數算進陣營，拉人來玩才會贏 ===== */
+let WAR=null;
+async function warFetch(){ if(LB_MODE!=='api') return; try{ const j=await (await fetch(LB_API+'/war')).json(); if(j.ok){ WAR=j; renderWar(); } }catch(e){} }
+function warPct(){ if(!WAR) return null; const t=WAR.today, sum=(t.blue||0)+(t.green||0); return {b:sum?Math.round(t.blue/sum*100):50, g:sum?100-Math.round(t.blue/sum*100):50, t}; }
+function warCall(camp){ const p=warPct(); if(!p) return ''; const me=camp==='blue'?p.b:p.g, op=100-me, name=CAMPS[camp].party, cand=CAMPS[camp].cand;
+  if(p.t.blue+p.t.green===0) return `今天陣營戰剛開打，搶先幫${cand}拿下第一票！`;
+  if(!p.t[camp+'N']) return `${name}今天還沒有人出戰，快來幫${cand}搶下第一票！`;
+  return me<op?`${name}今天落後 ${op-me}%，快來幫${cand}拉票！`:me>op?`${name}今天領先 ${me-op}%，來守住優勢！`:`兩黨今天平手，你這一票決定勝負！`; }
+function renderWar(){ const el=$('#homeWar'); const p=warPct(); if(!el||!p) return; const t=p.t, r=WAR.record;
+  el.hidden=false;
+  el.innerHTML=`<div class="cwhead">今日陣營戰</div><div class="cwlab"><span>藍藍路黨 ${p.b}%｜${t.blueN} 人</span><span>${t.greenN} 人｜${p.g}% 綠嘻嘻黨</span></div>
+    <div class="cwbar"><i style="width:${p.b}%"></i><b style="width:${p.g}%"></b></div>
+    <div class="lbnote">近 7 天戰績：藍 ${r.blue} 勝｜綠 ${r.green} 勝｜每人每天第一場的票數算進陣營</div>
+    <div class="row"><button class="ghost cwcall" data-c="blue">幫藍營拉人</button><button class="ghost cwcall" data-c="green">幫綠營拉人</button></div>`;
+  el.querySelectorAll('.cwcall').forEach(b=>b.onclick=()=>{ SFX.click(); shareWar(b.dataset.c); }); }
+async function shareWar(camp){ const text=`【幕後操盤手 今日陣營戰】\n${warCall(camp)}\n三分鐘打一場，你的票數直接算進${CAMPS[camp].party}：\nhttps://spin-doctor-tw.pages.dev/`;
+  try{ if(navigator.share){ await navigator.share({text}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
+  try{ await navigator.clipboard.writeText(text); ticker('拉票文案已複製，貼到 LINE 群組吧！'); }catch(e){ prompt('複製這段文字：',text); } }
 /* ===== 3 分鐘快打流程 ===== */
-function renderQuickHome(){ const no=$('#qNo'), sub=$('#qSub'); if(!no) return; const d=dayKey(), rec=(LOCAL.quickDays||{})[d];
+function renderQuickHome(){ const no=$('#qNo'), sub=$('#qSub'); if(!no) return; warFetch(); const d=dayKey(), rec=(LOCAL.quickDays||{})[d];
   no.textContent=`今日選戰 #${dayNo()}`;
   sub.innerHTML=rec?kw(`今天已出戰：${rec.score.toLocaleString()} 票${rec.rank?`，今日第 ${rec.rank} 名`:''}｜再玩一次是練習`):'全台同一題，比誰票多'; }
 function aceDraft(camp){
   const q=quickSetup(camp); const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">今日選戰 #${q.no}｜政治氣候：${q.mod.n}</div><h3>挑一張今日王牌帶進場</h3>
     <p class="lbnote">今天全台玩家拿到的牌都一樣。6 回合、每回合 ${TURN_SEC} 秒，時間到軍師會幫你出。</p>
+    <p class="qrule ${(LOCAL.quickStarted||{})[q.day]?'used':''}">${(LOCAL.quickStarted||{})[q.day]?'今天的計分場已經用掉了，這場是練習。':'⚠️ 今天第一場才計分！開打後中途離開或重打，就算用掉。'}</p>
     <div class="choices">${q.aces.map(id=>`<div class="rpick">${cardHTML(id)}<div class="role t-${CARDS[id].t}">${icon(ROLE[CARDS[id].t].ic)}<b>${ROLE[CARDS[id].t].n}</b>${ROLE[CARDS[id].t].d}</div></div>`).join('')}</div>
     <button class="ghost" id="qBack">返回</button></div>`;
   [...ov.querySelectorAll('.choices .card')].forEach((el,i)=>{ bindTilt(el);
@@ -1925,6 +2008,7 @@ function newQuickRun(camp,q,ace){
   const opp=CAMPS[camp==='blue'?'green':'blue'];
   RUN={mode:'quick',quick:{...q,ace},camp,cand:CAMPS[camp],stage:0,deck:[...q.deck,ace],score:0,name:LOCAL.name||'',won:[],history:[],mods:[q.mod]};
   STAGES=[Object.assign({},QUICK,{name:opp.cand,party:opp.party,img:opp.img,g:opp.g,taunt:opp.taunts[1],deck:q.oppDeck})];
+  LOCAL.quickStarted=LOCAL.quickStarted||{}; RUN.firstOfDay=!LOCAL.quickStarted[q.day]; LOCAL.quickStarted[q.day]=1; saveLocal();
   lbTicket();
 }
 const ROUND_EMO={smear:'⚡',boost:'📣',def:'🛡',unit:'👁',event:'🎲'};
@@ -1947,7 +2031,7 @@ async function quickEnd(win){
   const bonus=quickScore(st,win), title=quickTitle(st,win,meV,opV);
   RUN.score=meV+bonus.total; RUN.bonus=bonus.total; RUN.qTitle=title; RUN.qWin=win;
   RUN.emo=[1,2,3,4,5,6].map(w=>{ const r=st.rounds[w]||[]; if(!r.length) return '⏸'; const cnt={}; r.forEach(t=>cnt[t]=(cnt[t]||0)+1); return ROUND_EMO[Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]]||'🎲'; }).join('')+(st.opFires?'🔥':'')+(win?'🏆':'💀');
-  const d=RUN.quick.day; LOCAL.quickDays=LOCAL.quickDays||{}; const first=!LOCAL.quickDays[d];
+  const d=RUN.quick.day; LOCAL.quickDays=LOCAL.quickDays||{}; const first=!LOCAL.quickDays[d]&&RUN.firstOfDay!==false;
   if(first){ LOCAL.quickDays[d]={score:RUN.score,rank:0}; } if(RUN.score>LOCAL.best) LOCAL.best=RUN.score; saveLocal();
   MUS.intensity=win?2:0;
   const ov=$('#overlay'); ov.hidden=false;
@@ -1958,6 +2042,7 @@ async function quickEnd(win){
     <div class="score" id="finalScore">0</div>
     <div class="qbonus">${[['連擊',bonus.combo],['讓對手炎上',bonus.fire],['閃避',bonus.dodge],['逆轉',bonus.comeback],['勝選',bonus.win]].filter(x=>x[1]).map(([n,v])=>`<span>${n} +${v.toLocaleString()}</span>`).join('')||'<span>沒有加分，下次試試連擊或讓對手炎上</span>'}</div>
     <div class="qemo">${RUN.emo}</div>
+    <div class="qwar" id="qWar"></div>
     <div class="namebox"><input id="nameInput" maxlength="12" placeholder="操盤手代號" aria-label="操盤手代號"><button class="cta" id="btnSubmit" style="font-size:18px;padding:12px 26px">${first?'登上今日榜':'練習成績（不計分）'}</button></div>
     <div class="lbnote" id="submitNote">${first?'今天第一場會列入今日排行榜。':'今天已經出戰過，這場是練習。'}</div>
     <div class="rankline" id="rankLine" hidden></div>
@@ -1967,12 +2052,14 @@ async function quickEnd(win){
   ov.querySelector('.qtitle b').textContent=title.t; ov.querySelector('.qpaper h4').textContent=title.h;
   $('#nameInput').value=LOCAL.name||'';
   LB_SCOPE='today'; renderLB(); lbFetch();
+  const showWar=()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${first?`你為${RUN.cand.party}貢獻了 ${RUN.score.toLocaleString()} 票。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); };
+  warFetch().then(showWar);
   await tweenNum($('#finalScore'),0,RUN.score,1400,t=>SFX.tally(t*50|0));
   SFX.fanfare(); confetti(win?200:60); flash(.4,'#ffc83d');
   const submit=async()=>{ const nm=($('#nameInput').value||'').trim().slice(0,12)||'無名操盤手'; LOCAL.name=nm; saveLocal();
     $('#btnSubmit').disabled=true; $('#submitNote').textContent='上傳中…';
     const r=await submitScore(nm,RUN.score,title.t,RUN.camp);
-    if(r==='ok'||r==='kept'){ const t=RUN.ranks&&RUN.ranks.today; if(t){ $('#rankLine').hidden=false; $('#rankLine').innerHTML=kw(t.ranked?`今日第 ${t.rank} 名（共 ${t.total} 人），贏過 ${t.pct}% 的操盤手`:`練習成績：這分數可以排今日第 ${t.rank} 名`);
+    if(r==='ok'||r==='kept'){ warFetch().then(()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?`你為${RUN.cand.party}貢獻了 ${RUN.score.toLocaleString()} 票。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); }); const t=RUN.ranks&&RUN.ranks.today; if(t){ $('#rankLine').hidden=false; $('#rankLine').innerHTML=kw(t.ranked?`今日第 ${t.rank} 名（共 ${t.total} 人）${t.pct>=30?`，贏過 ${t.pct}% 的操盤手`:'，明天同一時間再來翻盤！'}`:`練習成績：這分數可以排今日第 ${t.rank} 名`);
         if(t.ranked){ LOCAL.quickDays[d]={score:RUN.score,rank:t.rank}; saveLocal(); } }
       $('#submitNote').textContent=RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?'已登上今日榜！':'練習成績已記錄（不列入排名）。'; if(RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked){ confetti(120); SFX.gain(10); } }
     else { $('#submitNote').textContent=r==='rej'?'排行榜沒收這筆：'+(RUN.lbErr||''):'上傳失敗，請檢查網路後再按一次。'; $('#btnSubmit').disabled=false; return; }
@@ -1987,7 +2074,7 @@ async function quickEnd(win){
   $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); BGM.play('title'); renderQuickHome(); };
 }
 function quickShareText(){ const t=RUN.ranks&&RUN.ranks.today;
-  return `幕後操盤手 今日選戰 #${RUN.quick.no}\n${RUN.cand.cand}｜${RUN.qWin?'當選':'落選'}｜${RUN.score.toLocaleString()} 票\n${RUN.emo}\n稱號：${RUN.qTitle.t}${t&&t.ranked?`｜今日第 ${t.rank} 名`:''}\n同一題，你能贏我嗎？ https://spin-doctor-tw.pages.dev/`; }
+  return `幕後操盤手 今日選戰 #${RUN.quick.no}\n${RUN.cand.cand}｜${RUN.qWin?'當選':'落選'}｜${RUN.score.toLocaleString()} 票\n${RUN.emo}\n稱號：${RUN.qTitle.t}${t&&t.ranked?`｜今日第 ${t.rank} 名`:''}\n${warCall(RUN.camp)||'同一題，你能贏我嗎？'}\nhttps://spin-doctor-tw.pages.dev/`; }
 function deckReady(camp){
   const ov=$('#overlay'); ov.hidden=false; const deck=validDeck(camp);
   ov.innerHTML=`<div class="panel"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>牌組已經幫你配好了</h3>
@@ -2057,7 +2144,7 @@ async function openPack(){
   ov.innerHTML=`<div class="gacha"><div class="rays dim"></div><div class="reveal" id="gRow">${res.map((r,i)=>`<div class="slot rar-${r.rar}" data-i="${i}"><div class="flip">${miniCard(r.id,'')}<div class="cardback"><div class="bglow"></div></div></div><div class="tagz"></div></div>`).join('')}</div>
     <div class="ghint ready" id="gHint2">點卡牌翻開</div>
     <div class="row"><button class="ghost" id="gAll">全部翻開</button></div>
-    <div class="row gend" id="gEnd" hidden><button class="cta" id="pkAgain">再開一包</button><button class="ghost" id="pkBook2">看圖鑑</button><button class="ghost" id="pkBack2">返回</button></div></div>`;
+    <div class="row gend" id="gEnd" hidden><button class="cta" id="pkAgain">再開一包</button><button class="ghost gold" id="pkShare">分享抽卡結果</button><button class="ghost" id="pkBook2">看圖鑑</button><button class="ghost" id="pkBack2">返回</button></div></div>`;
   ov.querySelector('.gacha').style.setProperty('--gc',RAR[best].c);
   const slots=[...ov.querySelectorAll('.slot')];
   slots.forEach((sl,i)=>{ sl.animate([{transform:`translateY(40vh) scale(.3) rotate(${(i-2)*25}deg)`,opacity:0},{transform:'none',opacity:1}],{duration:520,delay:i*90,easing:'cubic-bezier(.2,1.5,.4,1)',fill:'backwards'}); setTimeout(()=>SFX.deal(i),i*90); });
@@ -2090,6 +2177,7 @@ async function openPack(){
       const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST; $('#pkAgain').disabled=!can;
       $('#pkAgain').textContent=SAVE.freePacks>0?`免費再開（剩 ${SAVE.freePacks}）`:`再開一包｜${PACK_COST} 獻金（持有 ${SAVE.coins}）`;
       $('#pkAgain').onclick=()=>{ SFX.click(); openPack(); };
+      $('#pkShare').onclick=()=>{ SFX.click(); sharePack(res); };
       $('#pkBook2').onclick=()=>{ SFX.click(); bookScreen(); };
       $('#pkBack2').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); }; }
   };
@@ -2137,12 +2225,13 @@ function bookScreen(filter='all'){
     <div class="tabs">${[['all','全部'],['neutral','中立'],['blue','藍藍路黨'],['green','綠嘻嘻黨']].map(([k,t])=>`<button class="ghost ${k===filter?'on':''}" data-f="${k}">${t}</button>`).join('')}</div>
     <div class="grid mini">${list.map(id=>SAVE.owned[id]?miniCard(id,''):`<div class="card locked rar-${RARITY[id]}" data-id="${id}"><div class="rtag">${RAR[RARITY[id]].n}</div><div class="in"><div class="lk sil">${imgTag(CARDS[id].img,'？')}</div><div class="nm">${escH(CARDS[id].n)}</div><div class="ty">${CARDS[id].camp?(CARDS[id].camp==='blue'?'藍藍路黨':'綠嘻嘻黨'):'中立'}</div>
       <button class="craft" data-c="${id}" ${SAVE.shards>=RAR[RARITY[id]].craft?'':'disabled'}>兌換 ${RAR[RARITY[id]].craft} 碎片</button></div></div>`).join('')}</div>
-    <div class="row"><button class="cta" id="bkPack">去抽卡</button><button class="ghost" id="bkBack">返回</button></div></div>`;
+    <div class="row"><button class="cta" id="bkPack">去抽卡</button><button class="ghost gold" id="bkShare">分享我的圖鑑</button><button class="ghost" id="bkBack">返回</button></div></div>`;
   ov.querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{ SFX.click(); bookScreen(b.dataset.f); });
   ov.querySelectorAll('.grid .card').forEach(el=>{ if(!el.classList.contains('locked')) bindTilt(el); el.onclick=()=>viewCard(el.dataset.id,list); });
   ov.querySelectorAll('[data-c]').forEach(b=>b.onclick=e=>{ e.stopPropagation(); const id=b.dataset.c, cost=RAR[RARITY[id]].craft; if(SAVE.shards<cost) return;
     SAVE.shards-=cost; SAVE.owned[id]=true; save(); VOICE.play('sys_new',2); SFX.gain(8); flash(.4,RAR[RARITY[id]].c); const c=center(b); burst(c.x,c.y,50,[RAR[RARITY[id]].c,'#fff'],9); checkCollectionAch(); renderMeta(); setTimeout(()=>bookScreen(filter),400); });
   $('#bkPack').onclick=()=>{ SFX.click(); packScreen(); };
+  $('#bkShare').onclick=()=>{ SFX.click(); shareBook(); };
   $('#bkBack').onclick=()=>{ SFX.click(); ov.hidden=true; renderMeta(); };
 }
 function killBattle(){ if(B) B.dead=true; stopTurnTimer(); GRNG=Math.random; ['#cutin','#coach'].forEach(sel=>{ const e=$(sel); if(e) e.hidden=true; }); $('#extra').innerHTML=''; $('#overlay').hidden=true;
@@ -2153,9 +2242,9 @@ function pauseMenu(){
   pb.innerHTML=`<div class="panel"><div class="office">${st.office}｜選前第 ${st.weeks-B.week+1} 週</div><h3>暫停</h3>
     <p class="lbnote">${RUN.cand.party} ${RUN.cand.cand} vs ${st.party} ${st.name}｜目前得票 ${dispVotes(B.me).toLocaleString()} : ${dispVotes(B.op).toLocaleString()}</p>
     <div class="pmenu"><button class="cta" id="pzGo">繼續操盤</button>
-    <button class="ghost" id="pzRe">重打這一關</button>
+    ${B.quick?`<button class="ghost" id="pzQuit">放棄這場${RUN.firstOfDay?'（今天的計分場會用掉）':''}</button>`:`<button class="ghost" id="pzRe">重打這一關</button>
     <button class="ghost" id="pzSave">存檔離開（下次從這一關重新開打）</button>
-    <button class="ghost" id="pzQuit">放棄整局選戰</button>
+    <button class="ghost" id="pzQuit">放棄整局選戰</button>`}
     <button class="ghost" id="pzMute">音效：${AU.muted?'關':'開'}</button>
     <button class="ghost" id="pzFx">必殺動畫：${{full:'完整',short:'精簡',off:'關閉'}[fxMode()]}</button>
     <button class="ghost" id="pzFb">回報問題／建議</button></div>
@@ -2165,9 +2254,12 @@ function pauseMenu(){
   $('#pzFb').onclick=()=>{ SFX.click(); feedbackScreen('bug'); };
   $('#pzMute').onclick=()=>{ toggleMute(); $('#pzMute').textContent='音效：'+(AU.muted?'關':'開'); };
   $('#pzFx').onclick=()=>{ const order=['full','short','off']; LOCAL.fxMode=order[(order.indexOf(fxMode())+1)%3]; saveLocal(); SFX.click(); $('#pzFx').textContent='必殺動畫：'+{full:'完整',short:'精簡',off:'關閉'}[fxMode()]; };
+  if(B.quick){ $('#pzQuit').onclick=()=>ask('放棄這場快打？今天的成績以第一場為準，這場不會計分。',()=>{ SFX.click(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); renderQuickHome(); }); }
+  else {
   $('#pzRe').onclick=()=>ask('這一關的進度會清掉，用同一副牌重新開打。',()=>{ SFX.click(); pb.hidden=true; killBattle(); startBattle(); });
   $('#pzSave').onclick=()=>{ SFX.click(); saveRun(); pb.hidden=true; killBattle(); show('title'); BGM.play('title'); renderContinue(); };
   $('#pzQuit').onclick=()=>ask('放棄整局選戰？這局不會計分，存檔也會刪掉；已經拿到的政治獻金會保留。',()=>{ SFX.click(); pb.hidden=true; killBattle(); clearRun(); show('title'); BGM.play('title'); });
+  }
 }
 /* =========================================================
    ADVISOR — explains opponent intent and recommends a play order
@@ -2378,7 +2470,7 @@ const TUT=[
 let TUT_I=-1, TUT_FORCE=false;
 function tutActive(){ return TUT_I>=0; }
 function tutStart(){ TUT_I=0; $('#coach').hidden=false; tutShow(); }
-function tutEnd(){ TUT_I=-1; $('#coach').hidden=true; $('#coach').classList.remove('waiting'); LOCAL.tutDone=1; saveLocal(); }
+function tutEnd(){ document.querySelectorAll('#hand .card.tutpick').forEach(c=>c.classList.remove('tutpick')); TUT_I=-1; $('#coach').hidden=true; $('#coach').classList.remove('waiting'); LOCAL.tutDone=1; saveLocal(); }
 function tutShow(){
   let st=TUT[TUT_I]; if(st.wait&&B&&!B.me.hand.some(id=>CARDS[id].c<=B.me.funds)){ TUT_I++; if(TUT_I>=TUT.length){ tutEnd(); return; } return tutShow(); }
   const co=$('#coach'); const el=document.querySelector(st.sel); if(!el){ tutEnd(); return; }
@@ -2388,7 +2480,9 @@ function tutShow(){
   co.querySelector('.cstep').textContent=`邊玩邊學 ${TUT_I+1} / ${TUT.length}`;
   co.querySelector('h4').textContent=st.t; co.querySelector('p').innerHTML=kw(st.d);
   co.classList.toggle('waiting',!!st.wait);
-  $('#tutNext').textContent=TUT_I===TUT.length-1?'開始操盤':'下一步';
+  $('#tutNext').textContent=st.wait?'先跳過這步':TUT_I===TUT.length-1?'開始操盤':'下一步';
+  document.querySelectorAll('#hand .card.tutpick').forEach(c=>c.classList.remove('tutpick'));
+  if(st.wait){ const cards=[...document.querySelectorAll('#hand .card')]; const pick=cards.find(c=>c.classList.contains('adv1'))||cards.find(c=>!c.classList.contains('cant')); if(pick) pick.classList.add('tutpick'); }
   const b=co.querySelector('.bubble'); const bh=b.offsetHeight||170, bw=b.offsetWidth||340;
   const below=r.bottom-app.top+pad+14, above=r.top-app.top-pad-14-bh;
   const top = (below+bh < app.height-8) ? below : Math.max(8,above);

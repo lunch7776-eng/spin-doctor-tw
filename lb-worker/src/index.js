@@ -38,10 +38,15 @@ async function start(req, env, ip) {
   const c = await env.DB.prepare('SELECT COUNT(*) n FROM tickets WHERE ip=? AND ts>?').bind(ip, now - 3600e3).first();
   if (c.n > 60) return bad('太頻繁了，稍後再試', 429);
   const run = crypto.randomUUID();
-  await env.DB.prepare('INSERT INTO tickets(run,ts,used,ip) VALUES(?,?,0,?)').bind(run, now, ip).run();
+  let b = {}; try { b = await req.json(); } catch {}
+  const dev = /^[a-z0-9-]{8,40}$/i.test(String(b.dev || '')) ? String(b.dev) : '';
+  const day = b.mode === 'quick' ? taipeiDay(now) : '';
+  let first = 0;
+  if (dev && day) { const had = await env.DB.prepare('SELECT COUNT(*) n FROM tickets WHERE dev=? AND day=?').bind(dev, day).first(); first = had.n ? 0 : 1; }
+  await env.DB.prepare('INSERT INTO tickets(run,ts,used,ip,dev,day,first) VALUES(?,?,0,?,?,?,?)').bind(run, now, ip, dev, day, first).run();
   // 順手清掉過期號碼牌
-  await env.DB.prepare('DELETE FROM tickets WHERE ts<?').bind(now - 2 * TICKET_TTL).run();
-  return json({ ok: true, run });
+  await env.DB.prepare('DELETE FROM tickets WHERE ts<?').bind(now - 3 * 86400e3).run();
+  return json({ ok: true, run, first: !!first });
 }
 
 async function submit(req, env, ip) {
@@ -102,7 +107,7 @@ async function submit(req, env, ip) {
 }
 
 async function useTicket(env, run, now, minSec) {
-  const t = await env.DB.prepare('SELECT ts,used FROM tickets WHERE run=?').bind(String(run || '')).first();
+  const t = await env.DB.prepare('SELECT ts,used,first,dev,day FROM tickets WHERE run=?').bind(String(run || '')).first();
   if (!t) return { err: '沒有開局號碼牌' };
   if (t.used) return { err: '這一輪已經交過成績' };
   if (now - t.ts > TICKET_TTL) return { err: '號碼牌過期' };
@@ -110,7 +115,7 @@ async function useTicket(env, run, now, minSec) {
   if (dur < minSec) return { err: '打得太快，不像真人' };
   const u = await env.DB.prepare('UPDATE tickets SET used=1 WHERE run=? AND used=0').bind(run).run();
   if (!u.meta.changes) return { err: '這一輪已經交過成績' };
-  return { dur };
+  return { dur, first: !!t.first, tdev: t.dev, tday: t.day };
 }
 async function submitQuick(b, env, ip, now, dev, h) {
   const today = taipeiDay(now), yday = taipeiDay(now - 86400e3), day = String(b.day || '');
@@ -124,7 +129,9 @@ async function submitQuick(b, env, ip, now, dev, h) {
   const tk = await useTicket(env, b.run, now, QUICK_MIN_SEC); if (tk.err) return bad(tk.err);
   const name = cleanName(b.name), office = String(b.office || '').slice(0, 12);
   const had = await env.DB.prepare("SELECT COUNT(*) n FROM runs WHERE dev=? AND mode='quick' AND day=? AND ranked=1").bind(dev, day).first();
-  const ranked = had.n ? 0 : 1;
+  // 只有「這台裝置今天第一張快打號碼牌」打出來的成績才列入排名（中途重打、離開再開都算用掉）
+  const legacy = !tk.tdev;   // 舊版用戶端沒送裝置編號：沿用「當天第一筆」規則
+  const ranked = (!had.n && (legacy || (tk.first && tk.tdev === dev && tk.tday === day))) ? 1 : 0;
   await env.DB.prepare('INSERT INTO runs(dev,name,camp,score,stages,champion,office,dur,ip,ts,mode,day,ranked,bonus) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)')
     .bind(dev, name, b.camp, me + bonus, 1, win ? 1 : 0, office, tk.dur, ip, now, 'quick', day, ranked, bonus).run();
   await env.DB.prepare('UPDATE runs SET name=? WHERE dev=?').bind(name, dev).run();
@@ -134,12 +141,23 @@ async function submitQuick(b, env, ip, now, dev, h) {
   const t = { rank: r.n + 1, total: tot, ranked: !!ranked, pct: tot > 1 ? Math.round((tot - r.n - 1) / (tot - 1) * 100) : 100 };
   return json({ ok: true, best: score, newBest: true, ranks: { today: t }, name });
 }
+/* 陣營大戰：今日（每台裝置當天第一場才算，拉人比刷分有用）＋近 7 天勝負 */
+async function war(env) {
+  const now = Date.now(), today = taipeiDay(now), from = taipeiDay(now - 6 * 86400e3);
+  const rows = await env.DB.prepare("SELECT day, camp, SUM(score) s, COUNT(*) n FROM runs WHERE mode='quick' AND ranked=1 AND day>=? GROUP BY day, camp").bind(from).all();
+  const days = {};
+  for (const r of rows.results) { const d = days[r.day] = days[r.day] || { day: r.day, blue: 0, green: 0, blueN: 0, greenN: 0 }; d[r.camp] = r.s; d[r.camp + 'N'] = r.n; }
+  const t = days[today] || { day: today, blue: 0, green: 0, blueN: 0, greenN: 0 };
+  const past = Object.values(days).filter(d => d.day < today).sort((a, b) => a.day < b.day ? -1 : 1);
+  const record = { blue: past.filter(d => d.blue > d.green).length, green: past.filter(d => d.green > d.blue).length };
+  return json({ ok: true, today: t, record, past: past.map(d => ({ day: d.day, winner: d.blue === d.green ? 'tie' : d.blue > d.green ? 'blue' : 'green' })) });
+}
 async function top(url, env) {
   const sp = url.searchParams.get('scope'), dev = String(url.searchParams.get('dev') || '');
   if (sp === 'today') {
     const now = Date.now(), qd = url.searchParams.get('day'), day = (qd === taipeiDay(now) || qd === taipeiDay(now - 86400e3)) ? qd : taipeiDay(now);
     const rows = await env.DB.prepare("SELECT name,camp,score,office,champion,ts,(dev=?) mine FROM runs WHERE mode='quick' AND day=? AND ranked=1 ORDER BY score DESC, ts ASC LIMIT 50").bind(dev, day).all();
-    const war = await env.DB.prepare("SELECT camp, SUM(score) s, COUNT(*) n FROM runs WHERE mode='quick' AND day=? GROUP BY camp").bind(day).all();
+    const war = await env.DB.prepare("SELECT camp, SUM(score) s, COUNT(*) n FROM runs WHERE mode='quick' AND day=? AND ranked=1 GROUP BY camp").bind(day).all();
     const players = (await env.DB.prepare("SELECT COUNT(*) n FROM runs WHERE mode='quick' AND day=? AND ranked=1").bind(day).first()).n;
     const w = { blue: 0, green: 0, blueRuns: 0, greenRuns: 0 }; for (const x of war.results) { w[x.camp] = x.s; w[x.camp + 'Runs'] = x.n; }
     return json({ ok: true, scope: 'today', day, players, war: w, rows: rows.results.map(r => ({ ...r, mine: !!r.mine })) });
@@ -185,6 +203,7 @@ export default {
       if (req.method === 'POST' && url.pathname === '/start') return await start(req, env, ip);
       if (req.method === 'POST' && url.pathname === '/submit') return await submit(req, env, ip);
       if (req.method === 'GET' && url.pathname === '/top') return await top(url, env);
+      if (req.method === 'GET' && url.pathname === '/war') return await war(env);
       if (req.method === 'POST' && url.pathname === '/feedback') return await feedback(req, env, ip);
       if (req.method === 'GET' && url.pathname === '/feedback') return await listFeedback(url, env);
       return json({ ok: true, service: '幕後操盤手排行榜' });

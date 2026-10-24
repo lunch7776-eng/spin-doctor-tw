@@ -39,3 +39,6 @@ lb-worker/.wrangler/
 .env*
 !.env.example
 lb-worker/.admin_key
+qa/node_modules/
+qa/package-lock.json
+qa/launch/*.png
