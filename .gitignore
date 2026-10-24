@@ -42,3 +42,5 @@ lb-worker/.admin_key
 qa/node_modules/
 qa/package-lock.json
 qa/launch/*.png
+video/trailer/video_capped.mp4
+video/trailer/cap/end/

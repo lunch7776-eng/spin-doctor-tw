@@ -59,6 +59,18 @@ for n,at,tp in VOICES:
     vt.append((at,at+d,n))
 for (a1,b1,n1),(a2,b2,n2) in zip(vt,vt[1:]):
     assert b1<=a2+0.001, f'語音重疊：{n1} 到 {b1:.2f}，{n2} 從 {a2:.2f}'
+# ---- 字幕：每句旁白都上大字（置中、廣告感），時間＝該句實際播放區間 ----
+CAPD=T+'/captions'; SKIP_CAP={'t_title'}   # 結尾卡本身就是「幕後操盤手」大標，不重複疊字
+cin=['-i',T+'/video_only.mp4']; cfc=[]; last='[0:v]'; ci=0
+for idx,(a0,b0,n) in enumerate(vt):
+    if n in SKIP_CAP or not os.path.exists(f'{CAPD}/{n}.png'): continue
+    nxt=vt[idx+1][0] if idx+1<len(vt) else total
+    st=max(0,a0-0.04); en=min(max(b0+0.12,a0+0.75),nxt-0.02,total)
+    cin+=['-loop','1','-t',str(total),'-i',f'{CAPD}/{n}.png']; ci+=1
+    cfc.append(f"[{ci}:v]format=rgba,fade=t=in:st={st:.2f}:d=0.08:alpha=1,fade=t=out:st={en-0.1:.2f}:d=0.1:alpha=1[c{ci}]")
+    cfc.append(f"{last}[c{ci}]overlay=(W-w)/2:(H-h)/2:enable='between(t,{st:.2f},{en:.2f})'[o{ci}]"); last=f'[o{ci}]'
+ff(cin+['-filter_complex',';'.join(cfc),'-map',last]+ENC+[T+'/video_capped.mp4'])
+print('captions',ci)
 inputs=['-ss','130','-t',str(total),'-i',AUD+'/bgm_battle.mp3']; fc=[]; vl=[]; sl=[]; k=0
 for i,(n,at,tp) in enumerate(VOICES):
     inputs+=['-i',f'{VO}/{n}_trim.wav']; k+=1
@@ -76,5 +88,5 @@ fc.append("[bgmd][sfxsc]sidechaincompress=threshold=0.1:ratio=2:attack=3:release
 fc.append("[bgmd2][voxa][sfxa]amix=inputs=3:normalize=0,alimiter=limit=0.95,loudnorm=I=-14:TP=-1.5:LRA=9[aout]")
 ff(inputs+['-filter_complex',';'.join(fc),'-map','[aout]','-t',str(total),'-ar','48000','-c:a','aac','-b:a','192k',T+'/audio.m4a'])
 print('voices',len(VOICES),'sfx cues',len(CUES))
-ff(['-i',T+'/video_only.mp4','-i',T+'/audio.m4a','-map','0:v','-map','1:a','-c:v','copy','-c:a','copy','-shortest','-movflags','+faststart',T+'/幕後操盤手_預告_20s_9x16.mp4'])
+ff(['-i',T+'/video_capped.mp4','-i',T+'/audio.m4a','-map','0:v','-map','1:a','-c:v','copy','-c:a','copy','-shortest','-movflags','+faststart',T+'/幕後操盤手_預告_20s_9x16.mp4'])
 print('segments',len(segs),'total',round(total,2),'cuts',len(cuts))
