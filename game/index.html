@@ -85,6 +85,15 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .campwar .cwhead{font-size:12px;font-weight:900;letter-spacing:.25em;color:var(--gold);margin-bottom:4px}
 .campwar.home .row{gap:8px;margin-top:6px} .cwcall{font-size:13px;padding:6px 14px}
 .cwar{margin-top:6px;font-size:12px;font-weight:900;padding:3px 8px;border-radius:99px;background:rgba(255,255,255,.08)} .cwar.lag{background:rgba(255,46,77,.2);color:#ffb3bf}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,30px);z-index:300;max-width:calc(100% - 32px);padding:10px 18px;border-radius:99px;background:#16e0a0;color:#03140d;font-weight:900;font-size:15px;box-shadow:0 8px 30px #000a;opacity:0;pointer-events:none;transition:opacity .2s,transform .25s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#sharebox{position:fixed;inset:0;z-index:250;display:grid;place-items:center;padding:16px;background:rgba(5,6,14,.86);overflow:auto}
+#sharebox[hidden]{display:none}
+#sharebox .sbpanel{width:min(420px,100%);display:grid;gap:10px;justify-items:center;background:#0e1224;border:1px solid var(--line);border-radius:16px;padding:14px}
+#sharebox .sbhead{width:100%;display:flex;justify-content:space-between;align-items:center;font-weight:900;color:var(--gold)}
+#sharebox .sbx{font:inherit;font-size:18px;color:var(--paper);background:none;border:0;cursor:pointer}
+#sharebox img{width:100%;max-height:52vh;object-fit:contain;border-radius:10px;-webkit-touch-callout:default}
+#sharebox .sbtext{width:100%;box-sizing:border-box;margin:0;white-space:pre-wrap;font:inherit;font-size:13px;color:#cfd3ea;background:rgba(255,255,255,.05);border-radius:8px;padding:8px;user-select:text;-webkit-user-select:text}
 .qrule{font-size:13px;font-weight:900;color:#ffb3bf;margin-top:-6px} .qrule.used{color:var(--muted)}
 .qwar{font-size:14px;font-weight:900;padding:8px 12px;border-radius:10px;background:rgba(255,46,77,.1);border:1px solid rgba(255,46,77,.45)} .qwar:empty{display:none}
 .quickcta{display:grid;gap:2px;justify-items:center;font-size:clamp(24px,7vw,32px);padding:14px 38px;box-shadow:0 6px 0 #6b3d02,0 0 40px rgba(255,200,61,.55);animation:advpulse 1.6s infinite}
@@ -411,6 +420,8 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .threat .th-need.ok{color:#16e0a0;background:rgba(22,224,160,.16);box-shadow:0 0 12px rgba(22,224,160,.5);animation:advpulse 1.2s infinite}
 .threat .th-need.no{color:#7a7f99;border-style:dashed}
 .threat .th-need.done{color:#3fe0ff}
+.threat .th-need.later{color:#ffc83d;border-style:dashed;background:rgba(255,200,61,.12)}
+#hand .card.ctr.later{box-shadow:0 0 0 3px #ffc83d,0 10px 24px rgba(0,0,0,.55)} #hand .card .ctag.later{background:#ffc83d}
 .ichip{font-size:12px;font-weight:900;padding:2px 9px;border-radius:99px;background:rgba(20,26,48,.9);border:1px solid var(--tc);color:var(--paper);animation:unitIn .4s both}
 .forecast{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;align-items:center;font-size:12px}
 .forecast .fl{color:var(--muted);letter-spacing:.15em;font-weight:900}
@@ -550,16 +561,16 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--gold);outline-o
 .advl.k-warn{border-color:#ff8a1f;color:#ffd7b0} .advl.k-plan{border-color:var(--violet)} .advl.k-combo{border-color:var(--gold)}
 .advorder{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:2px;font-size:12px}
 .advorder span{display:inline-flex;gap:4px;align-items:center;padding:2px 8px;border-radius:99px;background:rgba(255,200,61,.12);border:1px solid rgba(255,200,61,.4)}
-.advorder b{font-family:var(--num);font-weight:400;color:var(--gold)} .advorder i{font-style:normal;color:var(--muted)}
+.advorder b{font-family:var(--num);font-weight:400;color:#16e0a0} .advorder i{font-style:normal;color:var(--muted)}
 .advorder span{font-size:12px;padding:2px 4px 2px 7px} .advorder i{font-size:11px}
 .advorder .ot{width:30px!important;height:30px!important}
 .advorder .ot{position:relative;width:24px;height:24px;border-radius:6px;overflow:hidden;background:#0d1124;flex:none}
 .advorder .ot img{width:100%;height:100%;object-fit:cover} .advorder .ot .g{display:none}
 .advorder .oend{color:#ff8fa0;border-color:rgba(255,46,77,.5);background:rgba(255,46,77,.12)}
-#hand .card.adv{box-shadow:0 0 0 3px var(--gold),0 0 22px rgba(255,200,61,.6),0 10px 24px rgba(0,0,0,.55)}
+#hand .card.adv{box-shadow:0 0 0 3px #16e0a0,0 0 22px rgba(22,224,160,.55),0 10px 24px rgba(0,0,0,.55)}
 #hand .card.adv1{animation:advpulse 1s infinite}
 @keyframes advpulse{50%{box-shadow:0 0 0 4px #fff3c4,0 0 34px rgba(255,200,61,.9),0 10px 24px rgba(0,0,0,.55)}}
-#hand .card.adv::after{content:attr(data-step);position:absolute;right:-6px;top:-8px;z-index:4;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:16px;background:var(--gold);color:#2a1a00;box-shadow:0 2px 8px #000a}
+#hand .card.adv::after{content:'第' attr(data-step);position:absolute;right:-8px;top:-10px;z-index:4;height:24px;padding:0 7px;border-radius:7px;display:grid;place-items:center;font-size:12px;font-weight:900;background:#16e0a0;color:#03140d;border:2px solid #03140d;box-shadow:0 2px 8px #000a}
 @media (max-width:1100px){ .center{place-items:start center;padding-top:4px} }
 @media (max-width:640px){ .advisor{padding:7px 9px} .advl{font-size:11.5px} .advface{width:30px;height:30px} }
 .newsticker{display:flex;gap:10px;align-items:center;max-width:min(560px,100%);font-size:13px;padding:6px 12px;border-radius:8px;background:rgba(255,46,77,.12);border:1px solid rgba(255,46,77,.45);text-align:left}
@@ -1305,7 +1316,7 @@ const isSmear=id=>{ const a=ADV[id]||{}; return !!(a.dmg||a.fake); };
 function counterFor(id){
   const a=ADV[id]||{}, c=CARDS[id], me=B.me;
   if(a.dmg||a.fake) return (me.shield||me.dodge)?{verb:'已經有防禦',ic:'shield',done:1,match:()=>false,none:'你已經有防禦，放心進攻'}:{verb:'擋',ic:'shield',tag:'擋抹黑',match:x=>DEF_IDS.includes(x),none:'手上沒防禦牌，先衝聲量'};
-  if(c.unit) return {verb:'下回合抓',ic:'grab',tag:'留著抓',match:x=>x==='factcheck',none:'沒查核牌，暗樁會一直加分'};
+  if(c.unit) return {verb:'等他放了再抓',ic:'grab',tag:'留著抓',later:1,match:x=>x==='factcheck',none:'沒查核牌，暗樁會一直加分'};
   if(DEF_IDS.includes(id)) return {verb:'趁現在打',ic:'atk',tag:'趁現在打',match:isSmear,none:'沒抹黑牌，這回合先造勢'};
   if(id==='lastnight'||a.gain||a.pollx) return {verb:'壓他聲量',ic:'atk',tag:'壓聲量',match:isSmear,none:'沒抹黑牌，自己衝更高'};
   if(a.opBack||a.blame) return {verb:'先洗反感',ic:'wash',tag:'洗反感',match:x=>WASH_IDS.includes(x),none:'沒洗白牌，抹黑先停手'};
@@ -1320,7 +1331,7 @@ function counterTag(id){
   if(PUSH_IDS.includes(id)&&op.backlash>=fire-3) return {tag:'推炎上',ic:'back',why:`對手反感 ${op.backlash}，再推 ${fire-op.backlash} 點他就炎上、聲量腰斬。`};
   // 再看能不能反制對手準備出的牌
   for(const x of it){ const k=counterFor(x); if(k.tag&&k.match(id)){
-    const why={擋抹黑:`對手準備出「${CARDS[x].n}」抹黑你約 ${Math.round(inc.dmgSum)} 點，先出這張擋下來。`,留著抓:`對手要放暗樁「${CARDS[x].n}」，這張留到下回合把它抓掉。`,
+    const why={擋抹黑:`對手準備出「${CARDS[x].n}」抹黑你約 ${Math.round(inc.dmgSum)} 點，先出這張擋下來。`,留著抓:`對手下回合才會放暗樁「${CARDS[x].n}」，現在場上沒東西可抓，先留著，等他放了再出。`,
       趁現在打:`對手下回合要開「${CARDS[x].n}」防守，現在抹黑不會被擋。`,壓聲量:`對手準備用「${CARDS[x].n}」衝聲量，先把他打下來。`,洗反感:`對手要出「${CARDS[x].n}」讓你反感上升，先洗掉。`}[k.tag];
     return {tag:k.tag,ic:k.ic,why}; } }
   return null; }
@@ -1330,8 +1341,8 @@ function intentCounter(id){
   return k.none; }
 function applyCounterTags(){
   const cards=[...document.querySelectorAll('#hand .card')];
-  cards.forEach((el,i)=>{ el.querySelector('.ctag')?.remove(); el.classList.remove('ctr'); const ct=counterTag(B.me.hand[i]); if(!ct) return;
-    el.classList.add('ctr'); const t=document.createElement('span'); t.className='ctag'; t.title=ct.tag; t.innerHTML=icon(ct.ic); el.appendChild(t); }); }
+  cards.forEach((el,i)=>{ el.querySelector('.ctag')?.remove(); el.classList.remove('ctr','later'); const ct=counterTag(B.me.hand[i]); if(!ct) return;
+    el.classList.add('ctr'); if(ct.tag==='留著抓') el.classList.add('later'); const t=document.createElement('span'); t.className='ctag'+(ct.tag==='留著抓'?' later':''); t.title=ct.tag; t.innerHTML=icon(ct.ic); el.appendChild(t); }); }
 function bindTilt(el){
   el.addEventListener('pointerenter',()=>SFX.hover());
   el.addEventListener('pointermove',e=>{ const r=el.getBoundingClientRect(); const x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
@@ -1547,13 +1558,13 @@ function updateEndGlow(){ const any=B.me.hand.some(id=>CARDS[id].c<=B.me.funds);
 /* 快打倒數：每回合 TURN_SEC 秒，動畫／教學／暫停時停表；歸零由軍師代打 */
 let TT=null;
 function stopTurnTimer(){ if(TT){ clearInterval(TT); TT=null; } const el=$('#ttimer'); if(el) el.hidden=true; }
-function startTurnTimer(){ if(!B||!B.quick) return; stopTurnTimer(); B.tLeft=TURN_SEC; B.autoEnd=false; const el=$('#ttimer'); el.hidden=false; let last=performance.now(), lastSec=99;
+function startTurnTimer(){ if(!B||!B.quick) return; stopTurnTimer(); B.tSec=Object.keys(LOCAL.quickDays||{}).length?TURN_SEC:20; B.tLeft=B.tSec; B.autoEnd=false; const el=$('#ttimer'); el.hidden=false; let last=performance.now(), lastSec=99;
   const b0=B; TT=setInterval(()=>{ const now=performance.now(), dt=(now-last)/1000; last=now;
     if(B!==b0||b0.dead||b0.turnOwner!=='me'){ stopTurnTimer(); return; }
     const pk=$('#peek'), paused=b0.busy||tutActive()||!$('#pausebox').hidden||!$('#fbbox').hidden||(pk&&!pk.hidden)||!$('#overlay').hidden;
     if(paused) return;
     b0.tLeft=Math.max(0,b0.tLeft-dt); const sec=Math.ceil(b0.tLeft);
-    el.querySelector('b').textContent=sec; el.querySelector('i').style.width=(b0.tLeft/TURN_SEC*100)+'%'; el.classList.toggle('hurry',b0.tLeft<=4);
+    el.querySelector('b').textContent=sec; el.querySelector('i').style.width=(b0.tLeft/b0.tSec*100)+'%'; el.classList.toggle('hurry',b0.tLeft<=4);
     if(sec!==lastSec&&sec<=3&&sec>0){ AU.tone(880+sec*120,.08,'square',.08); } lastSec=sec;
     if(b0.tLeft<=0) timeUp(); },100); }
 function timeUp(){ if(!B||B.busy) return; const {order}=planAdvice(); const id=order[0]; const i=id?B.me.hand.indexOf(id):-1;
@@ -1649,7 +1660,7 @@ function planAI(){
   B.intent=plan; renderIntent(); }
 function renderIntent(){ const el=$('#intent'); if(!el) return; if(!B||!B.intent||!B.intent.length||B.turnOwner!=='me'){ el.innerHTML=''; return; }
   el.innerHTML='<span class="il">對手<br>下一步</span>'+B.intent.map((id,i)=>{ const k=counterFor(id), ok=B.me.hand.some(k.match), c=CARDS[id];
-    return `<button class="threat t-${c.t}" data-i="${i}"><span class="th-art">${imgTag(c.img,c.g)}</span><span class="th-fx">${fxHTML(id,2)}</span><span class="th-to">${icon('to')}</span><span class="th-need ${k.done?'done':ok?'ok':'no'}">${icon(k.ic)}</span></button>`; }).join('');
+    return `<button class="threat t-${c.t}" data-i="${i}"><span class="th-art">${imgTag(c.img,c.g)}</span><span class="th-fx">${fxHTML(id,2)}</span><span class="th-to">${icon('to')}</span><span class="th-need ${k.done?'done':ok?(k.later?'later':'ok'):'no'}">${icon(k.ic)}</span></button>`; }).join('');
   el.querySelectorAll('.threat').forEach(t=>t.onclick=()=>{ const id=B.intent[+t.dataset.i]; SFX.click(); ticker(`對手「${CARDS[id].n}」→ ${intentCounter(id)}`); });
   applyCounterTags(); }
 async function opPhase(){
@@ -1880,13 +1891,32 @@ async function shareCard(champion,office){
   const text=RUN.mode==='quick'?quickShareText():`我幫${RUN.cand.cand}操盤，拿下 ${RUN.score.toLocaleString()} 票！你能贏我嗎？\nhttps://spin-doctor-tw.pages.dev/`;
   await shareCanvas(cv,'幕後操盤手戰報.png',text);
 }
+/* 最上層的提示：分享／複製結果一定看得到 */
+function toast(msg){ let t=$('#toast'); if(!t){ t=document.createElement('div'); t.id='toast'; document.body.appendChild(t); }
+  t.textContent=msg; t.classList.remove('on'); void t.offsetWidth; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+async function copyText(text,okMsg='已複製！打開 LINE 貼上就好'){ try{ await navigator.clipboard.writeText(text); toast(okMsg); return true; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=text; ta.style.cssText='position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); let ok=false; try{ ok=document.execCommand('copy'); }catch(_){} ta.remove(); toast(ok?okMsg:'沒辦法自動複製，請長按文字自己複製'); return ok; } }
+/* 分享預覽：先產圖、再讓玩家點「分享出去」（手機的分享面板一定要在點擊當下叫出來） */
 async function shareCanvas(cv,fname,text){
-  const blob=await new Promise(r=>cv.toBlob(r,'image/png'));
+  toast('戰報產生中…');
+  const blob=await new Promise(r=>cv.toBlob(r,'image/png')); const url=URL.createObjectURL(blob);
   const file=new File([blob],fname,{type:'image/png'});
-  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
-  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),4000);
-  try{ await navigator.clipboard.writeText(text); }catch(e){}
-  ticker('圖片已存下來、文字已複製，傳給朋友吧！');
+  const canFile=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+  let m=$('#sharebox'); if(!m){ m=document.createElement('div'); m.id='sharebox'; document.body.appendChild(m); }
+  m.innerHTML=`<div class="sbpanel"><div class="sbhead">分享預覽<button class="sbx" aria-label="關閉">✕</button></div>
+    <img src="${url}" alt="分享圖片">
+    <p class="lbnote">手機可以直接長按圖片儲存或轉傳</p>
+    <pre class="sbtext"></pre>
+    <div class="row"><button class="cta" id="sbShare">${canFile||navigator.share?'分享出去':'下載圖片'}</button><button class="ghost" id="sbCopy">複製文字</button></div></div>`;
+  m.querySelector('.sbtext').textContent=text; m.hidden=false; toast('戰報做好了！');
+  const close=()=>{ m.hidden=true; setTimeout(()=>URL.revokeObjectURL(url),1000); };
+  m.querySelector('.sbx').onclick=close; m.onclick=e=>{ if(e.target===m) close(); };
+  $('#sbCopy').onclick=()=>{ SFX.click(); copyText(text); };
+  $('#sbShare').onclick=async()=>{ SFX.click();
+    try{ if(canFile){ await navigator.share({files:[file],text}); toast('分享成功！'); return; }
+         if(navigator.share){ await navigator.share({text}); toast('分享成功！'); return; } }
+    catch(e){ if(e&&e.name==='AbortError'){ toast('已取消分享'); return; } }
+    const a=document.createElement('a'); a.href=url; a.download=fname; a.click(); await copyText(text,'圖片已下載、文字已複製，貼到 LINE 吧！'); };
 }
 const loadImg=src=>new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=src; });
 function cardTile(g,img,x,y,w,h,id,rar,isNew){ const col=RAR[rar].c;
@@ -1977,21 +2007,24 @@ function warPct(){ if(!WAR) return null; const t=WAR.today, sum=(t.blue||0)+(t.g
 function warCall(camp){ const p=warPct(); if(!p) return ''; const me=camp==='blue'?p.b:p.g, op=100-me, name=CAMPS[camp].party, cand=CAMPS[camp].cand;
   if(p.t.blue+p.t.green===0) return `今天陣營戰剛開打，搶先幫${cand}拿下第一票！`;
   if(!p.t[camp+'N']) return `${name}今天還沒有人出戰，快來幫${cand}搶下第一票！`;
-  return me<op?`${name}今天落後 ${op-me}%，快來幫${cand}拉票！`:me>op?`${name}今天領先 ${me-op}%，來守住優勢！`:`兩黨今天平手，你這一票決定勝負！`; }
+  const t=p.t, mine=t[camp]||0, theirs=t[camp==='blue'?'green':'blue']||0, nMine=t[camp+'N']||0, gap=Math.abs(theirs-mine);
+  const avg=(t.blue+t.green)/Math.max(1,t.blueN+t.greenN), need=Math.max(1,Math.ceil(gap/Math.max(1,avg)));
+  return me<op?`${name}落後 ${gap.toLocaleString()} 分，大約再 ${need} 人出戰就能追上！每天 24:00 結算，快來幫${cand}拉票！`
+    :me>op?`${name}領先 ${gap.toLocaleString()} 分，對手再 ${need} 人就會追上，快找人來守住！`:`兩黨今天平手，你這一場決定勝負！`; }
 function renderWar(){ const el=$('#homeWar'); const p=warPct(); if(!el||!p) return; const t=p.t, r=WAR.record;
   el.hidden=false;
   el.innerHTML=`<div class="cwhead">今日陣營戰</div><div class="cwlab"><span>藍藍路黨 ${p.b}%｜${t.blueN} 人</span><span>${t.greenN} 人｜${p.g}% 綠嘻嘻黨</span></div>
     <div class="cwbar"><i style="width:${p.b}%"></i><b style="width:${p.g}%"></b></div>
-    <div class="lbnote">近 7 天戰績：藍 ${r.blue} 勝｜綠 ${r.green} 勝｜每人每天第一場的票數算進陣營</div>
+    <div class="lbnote">近 7 天戰績：藍 ${r.blue} 勝｜綠 ${r.green} 勝｜每人每天第一場的總分算進陣營，每天 24:00 結算</div>
     <div class="row"><button class="ghost cwcall" data-c="blue">幫藍營拉人</button><button class="ghost cwcall" data-c="green">幫綠營拉人</button></div>`;
   el.querySelectorAll('.cwcall').forEach(b=>b.onclick=()=>{ SFX.click(); shareWar(b.dataset.c); }); }
-async function shareWar(camp){ const text=`【幕後操盤手 今日陣營戰】\n${warCall(camp)}\n三分鐘打一場，你的票數直接算進${CAMPS[camp].party}：\nhttps://spin-doctor-tw.pages.dev/`;
-  try{ if(navigator.share){ await navigator.share({text}); return; } }catch(e){ if(e&&e.name==='AbortError') return; }
-  try{ await navigator.clipboard.writeText(text); ticker('拉票文案已複製，貼到 LINE 群組吧！'); }catch(e){ prompt('複製這段文字：',text); } }
+async function shareWar(camp){ const text=`【幕後操盤手 今日陣營戰】\n${warCall(camp)}\n三分鐘打一場，你每天第一場的總分直接算進${CAMPS[camp].party}：\nhttps://spin-doctor-tw.pages.dev/`;
+  try{ if(navigator.share){ await navigator.share({text}); toast('拉票文案送出！'); return; } }catch(e){ if(e&&e.name==='AbortError'){ toast('已取消'); return; } }
+  copyText(text,'拉票文案已複製！貼到 LINE 群組吧'); }
 /* ===== 3 分鐘快打流程 ===== */
 function renderQuickHome(){ const no=$('#qNo'), sub=$('#qSub'); if(!no) return; warFetch(); const d=dayKey(), rec=(LOCAL.quickDays||{})[d];
   no.textContent=`今日選戰 #${dayNo()}`;
-  sub.innerHTML=rec?kw(`今天已出戰：${rec.score.toLocaleString()} 票${rec.rank?`，今日第 ${rec.rank} 名`:''}｜再玩一次是練習`):'全台同一題，比誰票多'; }
+  sub.innerHTML=rec?kw(`今天的計分場：${rec.score.toLocaleString()} 分${rec.rank?`，今日第 ${rec.rank} 名`:''}｜再玩是練習`):'全台同一題，比誰票多'; }
 function aceDraft(camp){
   const q=quickSetup(camp); const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="panel"><div class="office">今日選戰 #${q.no}｜政治氣候：${q.mod.n}</div><h3>挑一張今日王牌帶進場</h3>
@@ -2031,14 +2064,14 @@ async function quickEnd(win){
   const bonus=quickScore(st,win), title=quickTitle(st,win,meV,opV);
   RUN.score=meV+bonus.total; RUN.bonus=bonus.total; RUN.qTitle=title; RUN.qWin=win;
   RUN.emo=[1,2,3,4,5,6].map(w=>{ const r=st.rounds[w]||[]; if(!r.length) return '⏸'; const cnt={}; r.forEach(t=>cnt[t]=(cnt[t]||0)+1); return ROUND_EMO[Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0]]||'🎲'; }).join('')+(st.opFires?'🔥':'')+(win?'🏆':'💀');
-  const d=RUN.quick.day; LOCAL.quickDays=LOCAL.quickDays||{}; const first=!LOCAL.quickDays[d]&&RUN.firstOfDay!==false;
+  const d=RUN.quick.day; LOCAL.quickDays=LOCAL.quickDays||{}; const first=RUN.firstOfDay!==false&&RUN.ticketFirst!==false&&!LOCAL.quickDays[d];
   if(first){ LOCAL.quickDays[d]={score:RUN.score,rank:0}; } if(RUN.score>LOCAL.best) LOCAL.best=RUN.score; saveLocal();
   MUS.intensity=win?2:0;
   const ov=$('#overlay'); ov.hidden=false;
   ov.innerHTML=`<div class="qbg"></div><div class="panel"><div class="office">今日選戰 #${RUN.quick.no}｜${RUN.cand.party} ${RUN.cand.cand}｜<b class="${win?'qwin':'qlose'}">${win?'當選':'落選'}</b></div>
     <div class="qtitle"><small>本局稱號</small><b></b></div>
     <div class="qpaper"><span>幕後操盤手日報</span><h4></h4></div>
-    <div class="lbnote">得票 ${meV.toLocaleString()} ＋ 操盤加分 ${bonus.total.toLocaleString()}</div>
+    <div class="lbnote">總分＝開票得票 ${meV.toLocaleString()} ＋ 操盤加分 ${bonus.total.toLocaleString()}</div>
     <div class="score" id="finalScore">0</div>
     <div class="qbonus">${[['連擊',bonus.combo],['讓對手炎上',bonus.fire],['閃避',bonus.dodge],['逆轉',bonus.comeback],['勝選',bonus.win]].filter(x=>x[1]).map(([n,v])=>`<span>${n} +${v.toLocaleString()}</span>`).join('')||'<span>沒有加分，下次試試連擊或讓對手炎上</span>'}</div>
     <div class="qemo">${RUN.emo}</div>
@@ -2052,14 +2085,14 @@ async function quickEnd(win){
   ov.querySelector('.qtitle b').textContent=title.t; ov.querySelector('.qpaper h4').textContent=title.h;
   $('#nameInput').value=LOCAL.name||'';
   LB_SCOPE='today'; renderLB(); lbFetch();
-  const showWar=()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${first?`你為${RUN.cand.party}貢獻了 ${RUN.score.toLocaleString()} 票。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); };
+  const showWar=()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${first?`這場的總分 ${RUN.score.toLocaleString()} 分會算進${RUN.cand.party}。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); };
   warFetch().then(showWar);
   await tweenNum($('#finalScore'),0,RUN.score,1400,t=>SFX.tally(t*50|0));
   SFX.fanfare(); confetti(win?200:60); flash(.4,'#ffc83d');
   const submit=async()=>{ const nm=($('#nameInput').value||'').trim().slice(0,12)||'無名操盤手'; LOCAL.name=nm; saveLocal();
     $('#btnSubmit').disabled=true; $('#submitNote').textContent='上傳中…';
     const r=await submitScore(nm,RUN.score,title.t,RUN.camp);
-    if(r==='ok'||r==='kept'){ warFetch().then(()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?`你為${RUN.cand.party}貢獻了 ${RUN.score.toLocaleString()} 票。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); }); const t=RUN.ranks&&RUN.ranks.today; if(t){ $('#rankLine').hidden=false; $('#rankLine').innerHTML=kw(t.ranked?`今日第 ${t.rank} 名（共 ${t.total} 人）${t.pct>=30?`，贏過 ${t.pct}% 的操盤手`:'，明天同一時間再來翻盤！'}`:`練習成績：這分數可以排今日第 ${t.rank} 名`);
+    if(r==='ok'||r==='kept'){ warFetch().then(()=>{ const w=$('#qWar'); if(w&&WAR) w.innerHTML=kw(`${RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?`這場的總分 ${RUN.score.toLocaleString()} 分已算進${RUN.cand.party}。`:'練習場不算進陣營戰。'}${warCall(RUN.camp)}`); }); const t=RUN.ranks&&RUN.ranks.today; if(t){ $('#rankLine').hidden=false; $('#rankLine').innerHTML=kw(t.ranked?`今日第 ${t.rank} 名（共 ${t.total} 人）${t.pct>=30?`，贏過 ${t.pct}% 的操盤手`:'，明天同一時間再來翻盤！'}`:`練習成績：這分數可以排今日第 ${t.rank} 名`);
         if(t.ranked){ LOCAL.quickDays[d]={score:RUN.score,rank:t.rank}; saveLocal(); } }
       $('#submitNote').textContent=RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked?'已登上今日榜！':'練習成績已記錄（不列入排名）。'; if(RUN.ranks&&RUN.ranks.today&&RUN.ranks.today.ranked){ confetti(120); SFX.gain(10); } }
     else { $('#submitNote').textContent=r==='rej'?'排行榜沒收這筆：'+(RUN.lbErr||''):'上傳失敗，請檢查網路後再按一次。'; $('#btnSubmit').disabled=false; return; }
@@ -2067,14 +2100,14 @@ async function quickEnd(win){
   $('#btnSubmit').onclick=()=>{ SFX.click(); submit(); };
   if(LOCAL.name&&LB_MODE==='api') submit();
   $('#btnShare').onclick=()=>{ SFX.click(); shareCard(win,title.t); };
-  $('#btnCopy').onclick=async()=>{ SFX.click(); const t=quickShareText(); try{ await navigator.clipboard.writeText(t); ticker('文字戰報已複製，貼到 LINE 吧！'); }catch(e){ prompt('複製這段文字：',t); } };
+  $('#btnCopy').onclick=()=>{ SFX.click(); copyText(quickShareText(),'文字戰報已複製！打開 LINE 貼上就好'); };
   $('#btnAgain').onclick=()=>{ SFX.click(); aceDraft(RUN.camp); };
   $('#btnFull').onclick=()=>{ SFX.click(); campScreen(); };
   $('#btnFb2').onclick=()=>{ SFX.click(); feedbackScreen('idea'); };
   $('#btnHome').onclick=()=>{ SFX.click(); ov.hidden=true; show('title'); BGM.play('title'); renderQuickHome(); };
 }
 function quickShareText(){ const t=RUN.ranks&&RUN.ranks.today;
-  return `幕後操盤手 今日選戰 #${RUN.quick.no}\n${RUN.cand.cand}｜${RUN.qWin?'當選':'落選'}｜${RUN.score.toLocaleString()} 票\n${RUN.emo}\n稱號：${RUN.qTitle.t}${t&&t.ranked?`｜今日第 ${t.rank} 名`:''}\n${warCall(RUN.camp)||'同一題，你能贏我嗎？'}\nhttps://spin-doctor-tw.pages.dev/`; }
+  return `幕後操盤手 今日選戰 #${RUN.quick.no}\n${RUN.cand.cand}｜${RUN.qWin?'當選':'落選'}｜${RUN.score.toLocaleString()} 分\n${RUN.emo}\n稱號：${RUN.qTitle.t}${t&&t.ranked?`｜今日第 ${t.rank} 名`:''}\n${warCall(RUN.camp)||'同一題，你能贏我嗎？'}\nhttps://spin-doctor-tw.pages.dev/`; }
 function deckReady(camp){
   const ov=$('#overlay'); ov.hidden=false; const deck=validDeck(camp);
   ov.innerHTML=`<div class="panel"><div class="office">${CAMPS[camp].party}・${CAMPS[camp].cand}</div><h3>牌組已經幫你配好了</h3>
@@ -2112,7 +2145,7 @@ function packScreen(){
   const can=SAVE.freePacks>0||SAVE.coins>=PACK_COST;
   ov.innerHTML=`<div class="panel"><div class="office">黑箱包</div><h3>開包抽卡</h3>
     <div class="pack" id="packArt"><div class="packglow"></div><img src="img/back.jpg?v=3" alt=""></div>
-    <p class="lbnote">一包 5 張｜第 5 張保底稀有以上｜連續 6 包沒出傳說必出（目前 ${SAVE.pity}/6）｜還沒收集的卡機率 ×8｜重複卡自動轉碎片</p>
+    <p class="lbnote">新卡用在「完整選戰」的牌組（3 分鐘快打大家用同一副牌，比的是技術）｜一包 5 張｜第 5 張保底稀有以上｜連續 6 包沒出傳說必出（目前 ${SAVE.pity}/6）｜還沒收集的卡機率 ×8｜重複卡自動轉碎片</p>
     <div class="metaline">${$('#metaline')?$('#metaline').innerHTML:''}</div>
     <div class="row"><button class="cta" id="pkOpen" ${can?'':'disabled'}>${SAVE.freePacks>0?`免費開包（剩 ${SAVE.freePacks}）`:`開一包｜${PACK_COST} 獻金`}</button></div>
     ${can?'':'<p class="lbnote">獻金不夠：打選戰賺獻金，勝選、首次通關、成就都會給。</p>'}
@@ -2461,11 +2494,11 @@ function howScreen(){
    ========================================================= */
 const TUT=[
   {sel:'#intent',t:'對手下一步',d:'對手下回合要出的牌。箭頭右邊＝你該怎麼應對：盾＝用防禦擋、放大鏡＝抓暗樁、閃電＝趁機抹黑他、喇叭＝擋不了，自己衝聲量。亮綠色＝你手上有這種牌；灰色虛線＝沒有。'},
-  {sel:'#hand',t:'出第一張牌',d:'直接點一張亮著的牌出招！不知道選哪張，就點右上角有金色「1」的那張（軍師建議）。想先看清楚效果，長按卡牌。',wait:true},
+  {sel:'#hand',t:'出第一張牌',d:'直接點一張亮著的牌出招！不知道選哪張，就點右上角綠色標籤寫「第1」的那張（軍師建議）。左上角金色圓圈是費用。想先看清楚效果，長按卡牌。',wait:true},
   {sel:'#sideMe',t:'聲量和反感',d:'聲量＝人氣，越高越好。抹黑別人會讓自己反感上升，反感會扣票，到 10 會炎上、聲量腰斬。'},
   {sel:'#forecast',t:'會換成多少票',d:'每兩週民調結算一次，你的聲量扣掉反感，換成這裡顯示的票數。投票日得票多的人贏。'},
   {sel:'#hand',t:'連擊',d:'錢還夠就再出一張，同一回合連續出牌會連擊，效果越疊越強。',wait:true},
-  {sel:'#btnEnd',t:'結束回合',d:'錢花完就按結束回合，換對手出招。之後照手牌上的金色編號 1→2→3 出，就不會亂。'},
+  {sel:'#btnEnd',t:'結束回合',d:'錢還沒花完可以繼續出；不想出了就按結束回合（快打模式錢花完會自動換手）。之後照手牌上的綠色「第1→第2→第3」出，就不會亂。'},
 ];
 let TUT_I=-1, TUT_FORCE=false;
 function tutActive(){ return TUT_I>=0; }
