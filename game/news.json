@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-24",
+  "updated": "2026-10-25",
   "events": [
     {"date": "2026-10-04", "headline": "一篇貼文一晚湧入50萬則留言", "sub": "留言區藍綠大戰，有人喊機器人", "source": "中央社 2026-10-04", "effect": {"type": "backlash", "target": "leader", "value": 2}},
     {"date": "2026-10-04", "headline": "洋流外溢！人潮從夜市燒到網路", "sub": "對手酸：這是人工洋流", "source": "鏡週刊 2026-10-04", "effect": {"type": "buzz", "target": "green", "value": 3}},
@@ -22,6 +22,8 @@
     {"date": "2026-10-22", "headline": "審伯羊：颱風假該和股市脫鉤？", "sub": "藍營競辦嗆：立委職權在手，問題卻丟給市府", "source": "聯合報 2026-10-22", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-10-22", "headline": "又一份民調審伯羊領先3.8趴", "sub": "但看好度講卍安反勝，網友：支持你但不看好你", "source": "自由時報 2026-10-22", "effect": {"type": "votes", "target": "green", "value": 2}},
     {"date": "2026-10-23", "headline": "颱風假再放一天 網友狂刷「帥哥萬安」", "sub": "臉書一小時破萬讚，按讚速度比民調還快", "source": "聯合報 2026-10-23", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-10-23", "headline": "被酸放政治颱風假 講卍安：別事事扯選舉", "sub": "學者研究：選舉年首長放假機率多31%", "source": "自由時報 2026-10-23", "effect": {"type": "backlash", "target": "blue", "value": 2}}
+    {"date": "2026-10-23", "headline": "被酸放政治颱風假 講卍安：別事事扯選舉", "sub": "學者研究：選舉年首長放假機率多31%", "source": "自由時報 2026-10-23", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-10-24", "headline": "講卍安穿裝搬樹枝 被酸救災變作秀", "sub": "網友吵翻：到底是勘災還是拍照體驗營？", "source": "ETtoday 2026-10-25", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-10-25", "headline": "審伯羊替對手緩頰：救災不分藍綠", "sub": "風度給完順手補刀：砍樹決策過程要公開", "source": "ETtoday 2026-10-25", "effect": {"type": "buzz", "target": "green", "value": 2}}
   ]
 }
