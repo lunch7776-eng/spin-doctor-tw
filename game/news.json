@@ -27,6 +27,8 @@
     {"date": "2026-10-25", "headline": "審伯羊替對手緩頰：救災不分藍綠", "sub": "風度給完順手補刀：砍樹決策過程要公開", "source": "ETtoday 2026-10-25", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-10-27", "headline": "抽籤出爐 審伯羊有靠3、講卍安5告讚", "sub": "號碼還沒投，諧音梗先開打，網友：比誰口號好記", "source": "華視新聞 2026-10-27", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-27", "headline": "同一天兩份民調 講卍安領7.5、審伯羊領4", "sub": "看哪家媒體就決定誰贏，網友：薛丁格的選情", "source": "ETtoday、聯合報 2026-10-27", "effect": {"type": "votes", "target": "both", "value": 2}},
-    {"date": "2026-10-27", "headline": "對手洋流吹一個月 講卍安狂掃內湖夜市", "sub": "一邊造浪一邊掃街，網友：選戰拚到宵夜場了", "source": "Yahoo新聞 2026-10-27", "effect": {"type": "buzz", "target": "blue", "value": 2}}
+    {"date": "2026-10-27", "headline": "對手洋流吹一個月 講卍安狂掃內湖夜市", "sub": "一邊造浪一邊掃街，網友：選戰拚到宵夜場了", "source": "Yahoo新聞 2026-10-27", "effect": {"type": "buzz", "target": "blue", "value": 2}},
+    {"date": "2026-10-27", "headline": "被酸沒答案 講卍安：我聽不懂他在講什麼", "sub": "網友：辯論還沒開打，雙方先比誰比較聽不懂", "source": "NOWnews 2026-10-27", "effect": {"type": "shield", "target": "blue", "value": 2}},
+    {"date": "2026-10-28", "headline": "講卍安推「市民也上台」 撞款肥皂箱", "sub": "審伯羊大方：點子沒專利，歡迎跟進", "source": "NOWnews 2026-10-28", "effect": {"type": "buzz", "target": "both", "value": 2}}
   ]
 }
