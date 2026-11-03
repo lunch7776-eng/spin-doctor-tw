@@ -1,9 +1,6 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "events": [
-    {"date": "2026-10-18", "headline": "被酸連任才開園長會議 講卍安：下次就去", "sub": "對手狂嗆設條件，市長急澄清沒綁連任，網友：先補簽到", "source": "中央社 2026-10-18", "effect": {"type": "shield", "target": "blue", "value": 2}},
-    {"date": "2026-10-18", "headline": "松機遷桃園？講卍安：機捷進城才36分", "sub": "審伯羊驚：聽起來沒替代方案，又補一句我不幫他想", "source": "聯合報 2026-10-18", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-10-19", "headline": "審伯羊開講「市長我不幹了！」", "sub": "講卍安回嗆別再認知作戰，公務員夾在中間當題材", "source": "聯合報 2026-10-19", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-19", "headline": "講卍安上節目再提「社區發毒品」", "sub": "話沒講完就被主持人插話換題，網友：這刀切得好快", "source": "自由時報 2026-10-20", "effect": {"type": "backlash", "target": "blue", "value": 2}},
     {"date": "2026-10-20", "headline": "新民調審伯羊50.3%反超17趴", "sub": "講卍安：都只是參考；網友：上個月還說差1.2呢", "source": "聯合報 2026-10-20", "effect": {"type": "votes", "target": "green", "value": 2}},
     {"date": "2026-10-20", "headline": "藍委嗆：謝謝大罷免同款民調來催票", "sub": "翻出去年罷免預測當對照，民調戰改打民調公司", "source": "聯合報 2026-10-20", "effect": {"type": "shield", "target": "blue", "value": 2}},
@@ -30,6 +27,9 @@
     {"date": "2026-10-30", "headline": "毒駕最重可判死 審伯羊表決缺席", "sub": "講卍安競辦翻舊帳：是不是還放不下不要死刑？", "source": "聯合報 2026-10-30", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-10-31", "headline": "首場辯論 講卍安嗆審伯羊「已讀亂回」", "sub": "審伯羊：一直被問A答B，心情很沮喪", "source": "世界日報 2026-11-01", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-31", "headline": "辯論審伯羊勝7趴 投票講卍安仍領4趴", "sub": "差距從28趴一路縮到4趴，藍營笑不太出來", "source": "自由時報 2026-11-01", "effect": {"type": "votes", "target": "blue", "value": 2}},
-    {"date": "2026-11-01", "headline": "辯論被疑洩題 藍綠難得同聲：照慣例", "sub": "雙方都說前一天拿到題目，網友：原來是開卷考", "source": "知新聞 2026-11-01", "effect": {"type": "shield", "target": "both", "value": 2}}
+    {"date": "2026-11-01", "headline": "辯論被疑洩題 藍綠難得同聲：照慣例", "sub": "雙方都說前一天拿到題目，網友：原來是開卷考", "source": "知新聞 2026-11-01", "effect": {"type": "shield", "target": "both", "value": 2}},
+    {"date": "2026-10-31", "headline": "審伯羊扮動漫勇者車掃 加燈條求看清臉", "sub": "本人自評「比較帥」，網友：防彈玻璃擋不住帥氣", "source": "聯合新聞網 2026-10-31", "effect": {"type": "buzz", "target": "green", "value": 2}},
+    {"date": "2026-11-02", "headline": "辯論後民調 講卍安領審伯羊11.3趴", "sub": "辯論輸了票沒輸？網友：民調雲比辯論還會說話", "source": "ETtoday、中時新聞網 2026-11-02", "effect": {"type": "votes", "target": "blue", "value": 2}},
+    {"date": "2026-11-02", "headline": "被問放任側翼 審伯羊：我不玩兩面手法", "sub": "請支持者別洗一星、別出征，網友：先管好留言區", "source": "ETtoday 2026-11-02", "effect": {"type": "shield", "target": "green", "value": 2}}
   ]
 }
