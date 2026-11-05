@@ -1,8 +1,6 @@
 {
-  "updated": "2026-11-04",
+  "updated": "2026-11-05",
   "events": [
-    {"date": "2026-10-20", "headline": "民調換個參數 輸17趴秒變贏7趴", "sub": "網友：原來民調不是科學，是調色盤", "source": "新頭殼 2026-10-20", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-10-21", "headline": "審伯羊邀公教上肥皂箱 藍藍路黨轟消費老師", "sub": "某藍委酸：教師荒吵兩年，立委才突然發現？", "source": "聯合報 2026-10-21", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-10-21", "headline": "被酸靠大字報答詢 講卍安：全程直播自己看", "sub": "網友：那就請局處首長下次別站那麼近", "source": "FTNN新聞網 2026-10-21", "effect": {"type": "shield", "target": "blue", "value": 2}},
     {"date": "2026-10-20", "headline": "審伯羊：要當全民市長 投講卍安的也要拉", "sub": "網友：那辯論會上記得先跟對手握個手", "source": "中央社 2026-10-20", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-10-22", "headline": "颱風來襲 講卍安宣布暫停一切競選活動", "sub": "抽水站前站好站滿，網友：防颱就是最好的競選廣告", "source": "ETtoday 2026-10-22", "effect": {"type": "shield", "target": "blue", "value": 2}},
@@ -30,6 +28,8 @@
     {"date": "2026-11-02", "headline": "被問放任側翼 審伯羊：我不玩兩面手法", "sub": "請支持者別洗一星、別出征，網友：先管好留言區", "source": "ETtoday 2026-11-02", "effect": {"type": "shield", "target": "green", "value": 2}},
     {"date": "2026-11-03", "headline": "講卍安陣營要發《萬安警報》 撞款對手文宣", "sub": "首期主打輝達總部，網諷：不可思議的學人精", "source": "民視新聞 2026-11-03", "effect": {"type": "backlash", "target": "blue", "value": 2}},
     {"date": "2026-11-03", "headline": "名嘴表情對比圖瘋傳 訪審伯羊笑到停不下來", "sub": "網友：一邊生無可戀一邊興致盎然，表情就是答案", "source": "三立新聞 2026-11-03", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-03", "headline": "二辯有譜 講卍安：很有自信非常願意", "sub": "十家媒體搶著辦，網友：先把形式喬好再說", "source": "中時新聞網 2026-11-04", "effect": {"type": "shield", "target": "blue", "value": 2}}
+    {"date": "2026-11-03", "headline": "二辯有譜 講卍安：很有自信非常願意", "sub": "十家媒體搶著辦，網友：先把形式喬好再說", "source": "中時新聞網 2026-11-04", "effect": {"type": "shield", "target": "blue", "value": 2}},
+    {"date": "2026-11-04", "headline": "ET民調講卍安仍領8.8趴 差距比上回縮水", "sub": "審伯羊：從落後三成追到這，投票率夠高就有機會", "source": "ETtoday、壹蘋新聞網 2026-11-04", "effect": {"type": "votes", "target": "trailer", "value": 2}},
+    {"date": "2026-11-04", "headline": "夜市掃兩小時再轉進白營競總 講卍安藍白合走好走滿", "sub": "網友：一晚跑兩攤，友軍行程比自己的還認真", "source": "壹蘋新聞網 2026-11-05", "effect": {"type": "buzz", "target": "blue", "value": 2}}
   ]
 }
