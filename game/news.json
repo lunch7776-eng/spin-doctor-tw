@@ -1,8 +1,6 @@
 {
-  "updated": "2026-11-06",
+  "updated": "2026-11-08",
   "events": [
-    {"date": "2026-10-22", "headline": "颱風來襲 講卍安宣布暫停一切競選活動", "sub": "抽水站前站好站滿，網友：防颱就是最好的競選廣告", "source": "ETtoday 2026-10-22", "effect": {"type": "shield", "target": "blue", "value": 2}},
-    {"date": "2026-10-22", "headline": "審伯羊：颱風假該和股市脫鉤？", "sub": "藍營競辦嗆：立委職權在手，問題卻丟給市府", "source": "聯合報 2026-10-22", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-10-22", "headline": "又一份民調審伯羊領先3.8趴", "sub": "但看好度講卍安反勝，網友：支持你但不看好你", "source": "自由時報 2026-10-22", "effect": {"type": "votes", "target": "green", "value": 2}},
     {"date": "2026-10-23", "headline": "颱風假再放一天 網友狂刷「帥哥萬安」", "sub": "臉書一小時破萬讚，按讚速度比民調還快", "source": "聯合報 2026-10-23", "effect": {"type": "buzz", "target": "blue", "value": 2}},
     {"date": "2026-10-23", "headline": "被酸放政治颱風假 講卍安：別事事扯選舉", "sub": "學者研究：選舉年首長放假機率多31%", "source": "自由時報 2026-10-23", "effect": {"type": "backlash", "target": "blue", "value": 2}},
@@ -30,6 +28,8 @@
     {"date": "2026-11-04", "headline": "ET民調講卍安仍領8.8趴 差距比上回縮水", "sub": "審伯羊：從落後三成追到這，投票率夠高就有機會", "source": "ETtoday、壹蘋新聞網 2026-11-04", "effect": {"type": "votes", "target": "trailer", "value": 2}},
     {"date": "2026-11-04", "headline": "夜市掃兩小時再轉進白營競總 講卍安藍白合走好走滿", "sub": "網友：一晚跑兩攤，友軍行程比自己的還認真", "source": "壹蘋新聞網 2026-11-05", "effect": {"type": "buzz", "target": "blue", "value": 2}},
     {"date": "2026-11-05", "headline": "審伯羊登門拜訪藍營老議長 講卍安競總：我們早約了", "sub": "老議長來者不拒 兩邊都約一輪 到底誰破誰的圈", "source": "ETtoday 2026-11-05", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-06", "headline": "講卍安小編把南機場夜市搬到萬華 光復北路也變南", "sub": "對手大方緩頰：弄錯沒關係 趕緊更正就好", "source": "ETtoday 2026-11-06", "effect": {"type": "backlash", "target": "blue", "value": 2}}
+    {"date": "2026-11-06", "headline": "講卍安小編把南機場夜市搬到萬華 光復北路也變南", "sub": "對手大方緩頰：弄錯沒關係 趕緊更正就好", "source": "ETtoday 2026-11-06", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-11-06", "headline": "審伯羊評對手「未到邪靈程度」 但不是菩薩會做的事", "sub": "最後再補一句令人尊敬，網友：誇獎和補刀一次到位", "source": "中央社／世界日報 2026-11-06", "effect": {"type": "backlash", "target": "green", "value": 2}},
+    {"date": "2026-11-07", "headline": "挺綠水餃店控文宣被撕 講卍安：不好意思、反對出征", "sub": "網友：選戰打進水餃店，連餡料都要分藍綠", "source": "新頭殼 2026-11-07", "effect": {"type": "shield", "target": "blue", "value": 2}}
   ]
 }
