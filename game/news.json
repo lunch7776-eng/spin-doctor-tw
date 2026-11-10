@@ -1,8 +1,6 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "events": [
-    {"date": "2026-10-23", "headline": "被酸放政治颱風假 講卍安：別事事扯選舉", "sub": "學者研究：選舉年首長放假機率多31%", "source": "自由時報 2026-10-23", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-10-24", "headline": "講卍安穿裝搬樹枝 被酸救災變作秀", "sub": "網友吵翻：到底是勘災還是拍照體驗營？", "source": "ETtoday 2026-10-25", "effect": {"type": "backlash", "target": "blue", "value": 2}},
     {"date": "2026-10-25", "headline": "審伯羊替對手緩頰：救災不分藍綠", "sub": "風度給完順手補刀：砍樹決策過程要公開", "source": "ETtoday 2026-10-25", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-10-27", "headline": "抽籤出爐 審伯羊有靠3、講卍安5告讚", "sub": "號碼還沒投，諧音梗先開打，網友：比誰口號好記", "source": "華視新聞 2026-10-27", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-27", "headline": "同一天兩份民調 講卍安領7.5、審伯羊領4", "sub": "看哪家媒體就決定誰贏，網友：薛丁格的選情", "source": "ETtoday、聯合報 2026-10-27", "effect": {"type": "votes", "target": "both", "value": 2}},
@@ -30,6 +28,8 @@
     {"date": "2026-11-06", "headline": "審伯羊評對手「未到邪靈程度」 但不是菩薩會做的事", "sub": "最後再補一句令人尊敬，網友：誇獎和補刀一次到位", "source": "中央社／世界日報 2026-11-06", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-11-07", "headline": "挺綠水餃店控文宣被撕 講卍安：不好意思、反對出征", "sub": "網友：選戰打進水餃店，連餡料都要分藍綠", "source": "新頭殼 2026-11-07", "effect": {"type": "shield", "target": "blue", "value": 2}},
     {"date": "2026-11-07", "headline": "審伯羊港湖大車掃 大湖公園被洋流灌爆", "sub": "空拍一看全是人頭，名嘴急喊對手至少也辦一場大的", "source": "自由時報 2026-11-07", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-08", "headline": "水餃店風波再回應 講卍安反問：其他店怎麼不會", "sub": "臉書被罵檢討受害者，對手酸：稿子是誰寫的？", "source": "中時新聞網 2026-11-08", "effect": {"type": "backlash", "target": "blue", "value": 2}}
+    {"date": "2026-11-08", "headline": "水餃店風波再回應 講卍安反問：其他店怎麼不會", "sub": "臉書被罵檢討受害者，對手酸：稿子是誰寫的？", "source": "中時新聞網 2026-11-08", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-11-09", "headline": "講卍安叫審伯羊去立院推文化幣 審：我們在選台北市長", "sub": "審營主打北市加碼到30歲 反酸對手沒搞懂中央政策", "source": "壹蘋新聞網 2026-11-09", "effect": {"type": "shield", "target": "green", "value": 2}},
+    {"date": "2026-11-10", "headline": "講卍安12日請假衝陸戰 清晨公園晚上捷運站", "sub": "14日安心向前行大遊行 對手週六洋流祭接招", "source": "聯合報 2026-11-10", "effect": {"type": "buzz", "target": "blue", "value": 2}}
   ]
 }
