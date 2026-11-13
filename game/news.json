@@ -1,8 +1,6 @@
 {
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "events": [
-    {"date": "2026-10-27", "headline": "對手洋流吹一個月 講卍安狂掃內湖夜市", "sub": "一邊造浪一邊掃街，網友：選戰拚到宵夜場了", "source": "Yahoo新聞 2026-10-27", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-10-27", "headline": "被酸沒答案 講卍安：我聽不懂他在講什麼", "sub": "網友：辯論還沒開打，雙方先比誰比較聽不懂", "source": "NOWnews 2026-10-27", "effect": {"type": "shield", "target": "blue", "value": 2}},
     {"date": "2026-10-28", "headline": "講卍安推「市民也上台」 撞款肥皂箱", "sub": "審伯羊大方：點子沒專利，歡迎跟進", "source": "NOWnews 2026-10-28", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-29", "headline": "車掃認領一小時灌爆7萬筆 審伯羊：改登入", "sub": "境外駭客沒得逞 網友：認領路段比搶演唱會票還難", "source": "三立新聞 2026-10-29", "effect": {"type": "shield", "target": "green", "value": 2}},
     {"date": "2026-10-29", "headline": "黨主席親口認證「還沒贏」 綠營搶當追趕者", "sub": "民調領先還喊落後 網友：哀兵牌比民調還準時出", "source": "自由時報 2026-10-29", "effect": {"type": "buzz", "target": "trailer", "value": 2}},
@@ -30,6 +28,8 @@
     {"date": "2026-11-10", "headline": "講卍安12日請假衝陸戰 清晨公園晚上捷運站", "sub": "14日安心向前行大遊行 對手週六洋流祭接招", "source": "聯合報 2026-11-10", "effect": {"type": "buzz", "target": "blue", "value": 2}},
     {"date": "2026-11-10", "headline": "兒虐六都第一？審伯羊：沒數據只能用猜的", "sub": "講卍安要他道歉 他反嗆：該道歉的是現任市長", "source": "中央廣播電臺 2026-11-10", "effect": {"type": "backlash", "target": "green", "value": 2}},
     {"date": "2026-11-11", "headline": "講卍安請假衝刺 審伯羊同日跟進：亦步亦趨", "sub": "還自曝藍營組織完全動起來，網友：這是在催票還是報敵情", "source": "ETtoday、東森新聞 2026-11-11", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-11-11", "headline": "某立委暗指審伯羊爆粗口 審：被放大了", "sub": "還笑稱對方有別的事忙也不錯，網友：嘴砲戰正式開打", "source": "東森新聞 2026-11-11", "effect": {"type": "backlash", "target": "green", "value": 2}}
+    {"date": "2026-11-11", "headline": "某立委暗指審伯羊爆粗口 審：被放大了", "sub": "還笑稱對方有別的事忙也不錯，網友：嘴砲戰正式開打", "source": "東森新聞 2026-11-11", "effect": {"type": "backlash", "target": "green", "value": 2}},
+    {"date": "2026-11-10", "headline": "講卍安掃延三夜市 路過洋流攤商沒打招呼", "sub": "競總主委：拜訪說侵門踏戶，不拜訪說沒氣度", "source": "中時新聞網 2026-11-11", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-11-12", "headline": "講卍安公館掃街 幕僚先廣播：請講好話", "sub": "在場民眾：人氣還是略輸審伯羊那場", "source": "ETtoday 2026-11-12", "effect": {"type": "buzz", "target": "green", "value": 2}}
   ]
 }
