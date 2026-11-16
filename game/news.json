@@ -1,8 +1,6 @@
 {
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "events": [
-    {"date": "2026-10-30", "headline": "毒駕最重可判死 審伯羊表決缺席", "sub": "講卍安競辦翻舊帳：是不是還放不下不要死刑？", "source": "聯合報 2026-10-30", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-10-31", "headline": "首場辯論 講卍安嗆審伯羊「已讀亂回」", "sub": "審伯羊：一直被問A答B，心情很沮喪", "source": "世界日報 2026-11-01", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-10-31", "headline": "辯論審伯羊勝7趴 投票講卍安仍領4趴", "sub": "差距從28趴一路縮到4趴，藍營笑不太出來", "source": "自由時報 2026-11-01", "effect": {"type": "votes", "target": "blue", "value": 2}},
     {"date": "2026-11-01", "headline": "辯論被疑洩題 藍綠難得同聲：照慣例", "sub": "雙方都說前一天拿到題目，網友：原來是開卷考", "source": "知新聞 2026-11-01", "effect": {"type": "shield", "target": "both", "value": 2}},
     {"date": "2026-10-31", "headline": "審伯羊扮動漫勇者車掃 加燈條求看清臉", "sub": "本人自評「比較帥」，網友：防彈玻璃擋不住帥氣", "source": "聯合新聞網 2026-10-31", "effect": {"type": "buzz", "target": "green", "value": 2}},
@@ -30,6 +28,8 @@
     {"date": "2026-11-13", "headline": "立法院長合體講卍安催遊行 全程沒喊口號", "sub": "審伯羊神解讀：可能單純嘴巴有點乾，我人不在現場", "source": "ETtoday 2026-11-13", "effect": {"type": "buzz", "target": "blue", "value": 2}},
     {"date": "2026-11-14", "headline": "首場政見會 審伯羊搬出火影 講卍安搬出105人", "sub": "一邊鳴人一邊都更審查員 網友：這是動漫展還是人力銀行", "source": "華視新聞 2026-11-14", "effect": {"type": "buzz", "target": "both", "value": 2}},
     {"date": "2026-11-14", "headline": "迎洋流包船全取消 支持者喊施壓 市府：守法無關顏色", "sub": "水路造勢還沒出港就擱淺 小水滴只好改走陸路", "source": "中時新聞網 2026-11-14", "effect": {"type": "buzz", "target": "green", "value": -2}},
-    {"date": "2026-11-15", "headline": "講卍安怒批造謠抹黑 審伯羊秒認領：我就是受害者", "sub": "記者都問下一題了 審還笑說：等等我還沒答完", "source": "新頭殼 2026-11-15", "effect": {"type": "shield", "target": "green", "value": 2}}
+    {"date": "2026-11-15", "headline": "講卍安怒批造謠抹黑 審伯羊秒認領：我就是受害者", "sub": "記者都問下一題了 審還笑說：等等我還沒答完", "source": "新頭殼 2026-11-15", "effect": {"type": "shield", "target": "green", "value": 2}},
+    {"date": "2026-11-15", "headline": "綠營智庫民調 審伯羊反超講卍安4.1趴", "sub": "審伯羊：能不能變成選票才重要 戒慎恐懼中", "source": "新頭殼、ETtoday 2026-11-15", "effect": {"type": "votes", "target": "trailer", "value": 2}},
+    {"date": "2026-11-15", "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散", "sub": "網紅喊他是全台唯一希望 動線失控寸步難行", "source": "自由時報、NOWnews 2026-11-15", "effect": {"type": "buzz", "target": "blue", "value": 2}}
   ]
 }
