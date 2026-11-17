@@ -1,9 +1,6 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "events": [
-    {"date": "2026-10-31", "headline": "辯論審伯羊勝7趴 投票講卍安仍領4趴", "sub": "差距從28趴一路縮到4趴，藍營笑不太出來", "source": "自由時報 2026-11-01", "effect": {"type": "votes", "target": "blue", "value": 2}},
-    {"date": "2026-11-01", "headline": "辯論被疑洩題 藍綠難得同聲：照慣例", "sub": "雙方都說前一天拿到題目，網友：原來是開卷考", "source": "知新聞 2026-11-01", "effect": {"type": "shield", "target": "both", "value": 2}},
-    {"date": "2026-10-31", "headline": "審伯羊扮動漫勇者車掃 加燈條求看清臉", "sub": "本人自評「比較帥」，網友：防彈玻璃擋不住帥氣", "source": "聯合新聞網 2026-10-31", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-11-02", "headline": "辯論後民調 講卍安領審伯羊11.3趴", "sub": "辯論輸了票沒輸？網友：民調雲比辯論還會說話", "source": "ETtoday、中時新聞網 2026-11-02", "effect": {"type": "votes", "target": "blue", "value": 2}},
     {"date": "2026-11-02", "headline": "被問放任側翼 審伯羊：我不玩兩面手法", "sub": "請支持者別洗一星、別出征，網友：先管好留言區", "source": "ETtoday 2026-11-02", "effect": {"type": "shield", "target": "green", "value": 2}},
     {"date": "2026-11-03", "headline": "講卍安陣營要發《萬安警報》 撞款對手文宣", "sub": "首期主打輝達總部，網諷：不可思議的學人精", "source": "民視新聞 2026-11-03", "effect": {"type": "backlash", "target": "blue", "value": 2}},
@@ -30,6 +27,9 @@
     {"date": "2026-11-14", "headline": "迎洋流包船全取消 支持者喊施壓 市府：守法無關顏色", "sub": "水路造勢還沒出港就擱淺 小水滴只好改走陸路", "source": "中時新聞網 2026-11-14", "effect": {"type": "buzz", "target": "green", "value": -2}},
     {"date": "2026-11-15", "headline": "講卍安怒批造謠抹黑 審伯羊秒認領：我就是受害者", "sub": "記者都問下一題了 審還笑說：等等我還沒答完", "source": "新頭殼 2026-11-15", "effect": {"type": "shield", "target": "green", "value": 2}},
     {"date": "2026-11-15", "headline": "綠營智庫民調 審伯羊反超講卍安4.1趴", "sub": "審伯羊：能不能變成選票才重要 戒慎恐懼中", "source": "新頭殼、ETtoday 2026-11-15", "effect": {"type": "votes", "target": "trailer", "value": 2}},
-    {"date": "2026-11-15", "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散", "sub": "網紅喊他是全台唯一希望 動線失控寸步難行", "source": "自由時報、NOWnews 2026-11-15", "effect": {"type": "buzz", "target": "blue", "value": 2}}
+    {"date": "2026-11-15", "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散", "sub": "網紅喊他是全台唯一希望 動線失控寸步難行", "source": "自由時報、NOWnews 2026-11-15", "effect": {"type": "buzz", "target": "blue", "value": 2}},
+    {"date": "2026-11-15", "headline": "大洋流最終場 500架無人機升空 審伯羊看到眼眶紅", "sub": "本人說事前完全不知內容 小水滴排成燈塔全場驚呼", "source": "華視新聞 2026-11-16", "effect": {"type": "buzz", "target": "green", "value": 2}},
+    {"date": "2026-11-16", "headline": "翡翠水庫種光電？講卍安堅決反對 審伯羊：沒這計畫", "sub": "一邊被酸不敢表態 一邊被問公文根本沒強制", "source": "自由時報、ETtoday 2026-11-16", "effect": {"type": "backlash", "target": "both", "value": 2}},
+    {"date": "2026-11-16", "headline": "五大封關民調二比三 講卍安審伯羊各贏各的", "sub": "從領先6趴到落後14趴都有 網友：挑喜歡的信", "source": "ETtoday 2026-11-16", "effect": {"type": "buzz", "target": "both", "value": 2}}
   ]
 }
