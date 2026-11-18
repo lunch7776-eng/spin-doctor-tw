@@ -1,9 +1,6 @@
 {
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "events": [
-    {"date": "2026-11-02", "headline": "辯論後民調 講卍安領審伯羊11.3趴", "sub": "辯論輸了票沒輸？網友：民調雲比辯論還會說話", "source": "ETtoday、中時新聞網 2026-11-02", "effect": {"type": "votes", "target": "blue", "value": 2}},
-    {"date": "2026-11-02", "headline": "被問放任側翼 審伯羊：我不玩兩面手法", "sub": "請支持者別洗一星、別出征，網友：先管好留言區", "source": "ETtoday 2026-11-02", "effect": {"type": "shield", "target": "green", "value": 2}},
-    {"date": "2026-11-03", "headline": "講卍安陣營要發《萬安警報》 撞款對手文宣", "sub": "首期主打輝達總部，網諷：不可思議的學人精", "source": "民視新聞 2026-11-03", "effect": {"type": "backlash", "target": "blue", "value": 2}},
     {"date": "2026-11-03", "headline": "名嘴表情對比圖瘋傳 訪審伯羊笑到停不下來", "sub": "網友：一邊生無可戀一邊興致盎然，表情就是答案", "source": "三立新聞 2026-11-03", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-11-03", "headline": "二辯有譜 講卍安：很有自信非常願意", "sub": "十家媒體搶著辦，網友：先把形式喬好再說", "source": "中時新聞網 2026-11-04", "effect": {"type": "shield", "target": "blue", "value": 2}},
     {"date": "2026-11-04", "headline": "ET民調講卍安仍領8.8趴 差距比上回縮水", "sub": "審伯羊：從落後三成追到這，投票率夠高就有機會", "source": "ETtoday、壹蘋新聞網 2026-11-04", "effect": {"type": "votes", "target": "trailer", "value": 2}},
@@ -30,6 +27,9 @@
     {"date": "2026-11-15", "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散", "sub": "網紅喊他是全台唯一希望 動線失控寸步難行", "source": "自由時報、NOWnews 2026-11-15", "effect": {"type": "buzz", "target": "blue", "value": 2}},
     {"date": "2026-11-15", "headline": "大洋流最終場 500架無人機升空 審伯羊看到眼眶紅", "sub": "本人說事前完全不知內容 小水滴排成燈塔全場驚呼", "source": "華視新聞 2026-11-16", "effect": {"type": "buzz", "target": "green", "value": 2}},
     {"date": "2026-11-16", "headline": "翡翠水庫種光電？講卍安堅決反對 審伯羊：沒這計畫", "sub": "一邊被酸不敢表態 一邊被問公文根本沒強制", "source": "自由時報、ETtoday 2026-11-16", "effect": {"type": "backlash", "target": "both", "value": 2}},
-    {"date": "2026-11-16", "headline": "五大封關民調二比三 講卍安審伯羊各贏各的", "sub": "從領先6趴到落後14趴都有 網友：挑喜歡的信", "source": "ETtoday 2026-11-16", "effect": {"type": "buzz", "target": "both", "value": 2}}
+    {"date": "2026-11-16", "headline": "五大封關民調二比三 講卍安審伯羊各贏各的", "sub": "從領先6趴到落後14趴都有 網友：挑喜歡的信", "source": "ETtoday 2026-11-16", "effect": {"type": "buzz", "target": "both", "value": 2}},
+    {"date": "2026-11-17", "headline": "選舉公報找不到松機遷建 審伯羊：可能太臨時來不及放", "sub": "講卍安反問對手陪伴都更也沒列 公報變大家來找碴", "source": "自由時報、ETtoday 2026-11-17", "effect": {"type": "backlash", "target": "blue", "value": 2}},
+    {"date": "2026-11-17", "headline": "黨主席贈水滴寶劍 講卍安問：捍衛市民還是黨的利益", "sub": "光電板戰火延燒到兵器 審伯羊先前只說尊重經濟部", "source": "聯合報 2026-11-17", "effect": {"type": "backlash", "target": "green", "value": 2}},
+    {"date": "2026-11-17", "headline": "TVBS封關民調 講卍安46比44險領審伯羊", "sub": "五月還領28趴如今剩2趴 模型推估只贏三萬票", "source": "台視新聞 2026-11-17", "effect": {"type": "votes", "target": "blue", "value": 2}}
   ]
 }
