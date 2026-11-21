@@ -1,35 +1,335 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "events": [
-    {"date": "2026-11-06", "headline": "講卍安小編把南機場夜市搬到萬華 光復北路也變南", "sub": "對手大方緩頰：弄錯沒關係 趕緊更正就好", "source": "ETtoday 2026-11-06", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-11-06", "headline": "審伯羊評對手「未到邪靈程度」 但不是菩薩會做的事", "sub": "最後再補一句令人尊敬，網友：誇獎和補刀一次到位", "source": "中央社／世界日報 2026-11-06", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-11-07", "headline": "挺綠水餃店控文宣被撕 講卍安：不好意思、反對出征", "sub": "網友：選戰打進水餃店，連餡料都要分藍綠", "source": "新頭殼 2026-11-07", "effect": {"type": "shield", "target": "blue", "value": 2}},
-    {"date": "2026-11-07", "headline": "審伯羊港湖大車掃 大湖公園被洋流灌爆", "sub": "空拍一看全是人頭，名嘴急喊對手至少也辦一場大的", "source": "自由時報 2026-11-07", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-08", "headline": "水餃店風波再回應 講卍安反問：其他店怎麼不會", "sub": "臉書被罵檢討受害者，對手酸：稿子是誰寫的？", "source": "中時新聞網 2026-11-08", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-11-09", "headline": "講卍安叫審伯羊去立院推文化幣 審：我們在選台北市長", "sub": "審營主打北市加碼到30歲 反酸對手沒搞懂中央政策", "source": "壹蘋新聞網 2026-11-09", "effect": {"type": "shield", "target": "green", "value": 2}},
-    {"date": "2026-11-10", "headline": "講卍安12日請假衝陸戰 清晨公園晚上捷運站", "sub": "14日安心向前行大遊行 對手週六洋流祭接招", "source": "聯合報 2026-11-10", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-11-10", "headline": "兒虐六都第一？審伯羊：沒數據只能用猜的", "sub": "講卍安要他道歉 他反嗆：該道歉的是現任市長", "source": "中央廣播電臺 2026-11-10", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-11-11", "headline": "講卍安請假衝刺 審伯羊同日跟進：亦步亦趨", "sub": "還自曝藍營組織完全動起來，網友：這是在催票還是報敵情", "source": "ETtoday、東森新聞 2026-11-11", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-11-11", "headline": "某立委暗指審伯羊爆粗口 審：被放大了", "sub": "還笑稱對方有別的事忙也不錯，網友：嘴砲戰正式開打", "source": "東森新聞 2026-11-11", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-11-10", "headline": "講卍安掃延三夜市 路過洋流攤商沒打招呼", "sub": "競總主委：拜訪說侵門踏戶，不拜訪說沒氣度", "source": "中時新聞網 2026-11-11", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-11-12", "headline": "講卍安公館掃街 幕僚先廣播：請講好話", "sub": "在場民眾：人氣還是略輸審伯羊那場", "source": "ETtoday 2026-11-12", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-12", "headline": "某前議員：挺講卍安的才是正常人", "sub": "還把對手支持者叫小水滴 審伯羊：支持者不該被分類", "source": "ETtoday 2026-11-13", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-11-13", "headline": "立法院長合體講卍安催遊行 全程沒喊口號", "sub": "審伯羊神解讀：可能單純嘴巴有點乾，我人不在現場", "source": "ETtoday 2026-11-13", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-11-14", "headline": "首場政見會 審伯羊搬出火影 講卍安搬出105人", "sub": "一邊鳴人一邊都更審查員 網友：這是動漫展還是人力銀行", "source": "華視新聞 2026-11-14", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-11-14", "headline": "迎洋流包船全取消 支持者喊施壓 市府：守法無關顏色", "sub": "水路造勢還沒出港就擱淺 小水滴只好改走陸路", "source": "中時新聞網 2026-11-14", "effect": {"type": "buzz", "target": "green", "value": -2}},
-    {"date": "2026-11-15", "headline": "講卍安怒批造謠抹黑 審伯羊秒認領：我就是受害者", "sub": "記者都問下一題了 審還笑說：等等我還沒答完", "source": "新頭殼 2026-11-15", "effect": {"type": "shield", "target": "green", "value": 2}},
-    {"date": "2026-11-15", "headline": "綠營智庫民調 審伯羊反超講卍安4.1趴", "sub": "審伯羊：能不能變成選票才重要 戒慎恐懼中", "source": "新頭殼、ETtoday 2026-11-15", "effect": {"type": "votes", "target": "trailer", "value": 2}},
-    {"date": "2026-11-15", "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散", "sub": "網紅喊他是全台唯一希望 動線失控寸步難行", "source": "自由時報、NOWnews 2026-11-15", "effect": {"type": "buzz", "target": "blue", "value": 2}},
-    {"date": "2026-11-15", "headline": "大洋流最終場 500架無人機升空 審伯羊看到眼眶紅", "sub": "本人說事前完全不知內容 小水滴排成燈塔全場驚呼", "source": "華視新聞 2026-11-16", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-16", "headline": "翡翠水庫種光電？講卍安堅決反對 審伯羊：沒這計畫", "sub": "一邊被酸不敢表態 一邊被問公文根本沒強制", "source": "自由時報、ETtoday 2026-11-16", "effect": {"type": "backlash", "target": "both", "value": 2}},
-    {"date": "2026-11-16", "headline": "五大封關民調二比三 講卍安審伯羊各贏各的", "sub": "從領先6趴到落後14趴都有 網友：挑喜歡的信", "source": "ETtoday 2026-11-16", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-11-17", "headline": "選舉公報找不到松機遷建 審伯羊：可能太臨時來不及放", "sub": "講卍安反問對手陪伴都更也沒列 公報變大家來找碴", "source": "自由時報、ETtoday 2026-11-17", "effect": {"type": "backlash", "target": "blue", "value": 2}},
-    {"date": "2026-11-17", "headline": "黨主席贈水滴寶劍 講卍安問：捍衛市民還是黨的利益", "sub": "光電板戰火延燒到兵器 審伯羊先前只說尊重經濟部", "source": "聯合報 2026-11-17", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-11-17", "headline": "TVBS封關民調 講卍安46比44險領審伯羊", "sub": "五月還領28趴如今剩2趴 模型推估只贏三萬票", "source": "台視新聞 2026-11-17", "effect": {"type": "votes", "target": "blue", "value": 2}},
-    {"date": "2026-11-18", "headline": "同場切蛋糕手疊手 審伯羊台下開起粉絲簽名會", "sub": "講卍安台上致詞他台下簽名 會後說寒暄內容不太記得", "source": "新頭殼、自由時報 2026-11-18", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-18", "headline": "選前之夜叫光榮台北 審伯羊：所以現在不光榮", "sub": "再補一句中文邏輯各有不同我們都尊重 國文課開打", "source": "聯合報 2026-11-18", "effect": {"type": "buzz", "target": "both", "value": 2}},
-    {"date": "2026-11-19", "headline": "審伯羊有安心特質嗎 講卍安秒答：就是沒有看到", "sub": "再送三連發：不查證、用猜的、立場反覆 國文課從光榮上到安心", "source": "FTNN新聞網 2026-11-19", "effect": {"type": "backlash", "target": "green", "value": 2}},
-    {"date": "2026-11-19", "headline": "審伯羊將赴白營前立委座談 被解讀搶小草票", "sub": "講卍安酸：過去怎麼對白營前主席 小草都看在眼裡", "source": "中時新聞網 2026-11-19", "effect": {"type": "buzz", "target": "green", "value": 2}},
-    {"date": "2026-11-19", "headline": "講卍安跨河到中和合體車掃 喊399公車吃到飽", "sub": "選前九天跑去隔壁市拜票 網友：雙北連線連到忘了選哪邊", "source": "公視新聞 2026-11-19", "effect": {"type": "buzz", "target": "blue", "value": 2}}
+    {
+      "date": "2026-11-07",
+      "headline": "挺綠水餃店控文宣被撕 講卍安：不好意思、反對出征",
+      "sub": "網友：選戰打進水餃店，連餡料都要分藍綠",
+      "source": "新頭殼 2026-11-07",
+      "effect": {
+        "type": "shield",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-07",
+      "headline": "審伯羊港湖大車掃 大湖公園被洋流灌爆",
+      "sub": "空拍一看全是人頭，名嘴急喊對手至少也辦一場大的",
+      "source": "自由時報 2026-11-07",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-08",
+      "headline": "水餃店風波再回應 講卍安反問：其他店怎麼不會",
+      "sub": "臉書被罵檢討受害者，對手酸：稿子是誰寫的？",
+      "source": "中時新聞網 2026-11-08",
+      "effect": {
+        "type": "backlash",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-09",
+      "headline": "講卍安叫審伯羊去立院推文化幣 審：我們在選台北市長",
+      "sub": "審營主打北市加碼到30歲 反酸對手沒搞懂中央政策",
+      "source": "壹蘋新聞網 2026-11-09",
+      "effect": {
+        "type": "shield",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "headline": "講卍安12日請假衝陸戰 清晨公園晚上捷運站",
+      "sub": "14日安心向前行大遊行 對手週六洋流祭接招",
+      "source": "聯合報 2026-11-10",
+      "effect": {
+        "type": "buzz",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "headline": "兒虐六都第一？審伯羊：沒數據只能用猜的",
+      "sub": "講卍安要他道歉 他反嗆：該道歉的是現任市長",
+      "source": "中央廣播電臺 2026-11-10",
+      "effect": {
+        "type": "backlash",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "headline": "講卍安請假衝刺 審伯羊同日跟進：亦步亦趨",
+      "sub": "還自曝藍營組織完全動起來，網友：這是在催票還是報敵情",
+      "source": "ETtoday、東森新聞 2026-11-11",
+      "effect": {
+        "type": "buzz",
+        "target": "both",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "headline": "某立委暗指審伯羊爆粗口 審：被放大了",
+      "sub": "還笑稱對方有別的事忙也不錯，網友：嘴砲戰正式開打",
+      "source": "東森新聞 2026-11-11",
+      "effect": {
+        "type": "backlash",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "headline": "講卍安掃延三夜市 路過洋流攤商沒打招呼",
+      "sub": "競總主委：拜訪說侵門踏戶，不拜訪說沒氣度",
+      "source": "中時新聞網 2026-11-11",
+      "effect": {
+        "type": "backlash",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-12",
+      "headline": "講卍安公館掃街 幕僚先廣播：請講好話",
+      "sub": "在場民眾：人氣還是略輸審伯羊那場",
+      "source": "ETtoday 2026-11-12",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-12",
+      "headline": "某前議員：挺講卍安的才是正常人",
+      "sub": "還把對手支持者叫小水滴 審伯羊：支持者不該被分類",
+      "source": "ETtoday 2026-11-13",
+      "effect": {
+        "type": "backlash",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-13",
+      "headline": "立法院長合體講卍安催遊行 全程沒喊口號",
+      "sub": "審伯羊神解讀：可能單純嘴巴有點乾，我人不在現場",
+      "source": "ETtoday 2026-11-13",
+      "effect": {
+        "type": "buzz",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-14",
+      "headline": "首場政見會 審伯羊搬出火影 講卍安搬出105人",
+      "sub": "一邊鳴人一邊都更審查員 網友：這是動漫展還是人力銀行",
+      "source": "華視新聞 2026-11-14",
+      "effect": {
+        "type": "buzz",
+        "target": "both",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-14",
+      "headline": "迎洋流包船全取消 支持者喊施壓 市府：守法無關顏色",
+      "sub": "水路造勢還沒出港就擱淺 小水滴只好改走陸路",
+      "source": "中時新聞網 2026-11-14",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": -2
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "headline": "講卍安怒批造謠抹黑 審伯羊秒認領：我就是受害者",
+      "sub": "記者都問下一題了 審還笑說：等等我還沒答完",
+      "source": "新頭殼 2026-11-15",
+      "effect": {
+        "type": "shield",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "headline": "綠營智庫民調 審伯羊反超講卍安4.1趴",
+      "sub": "審伯羊：能不能變成選票才重要 戒慎恐懼中",
+      "source": "新頭殼、ETtoday 2026-11-15",
+      "effect": {
+        "type": "votes",
+        "target": "trailer",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "headline": "講卍安合體白營主席、健身網紅 夜市擠到被沖散",
+      "sub": "網紅喊他是全台唯一希望 動線失控寸步難行",
+      "source": "自由時報、NOWnews 2026-11-15",
+      "effect": {
+        "type": "buzz",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "headline": "大洋流最終場 500架無人機升空 審伯羊看到眼眶紅",
+      "sub": "本人說事前完全不知內容 小水滴排成燈塔全場驚呼",
+      "source": "華視新聞 2026-11-16",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-16",
+      "headline": "翡翠水庫種光電？講卍安堅決反對 審伯羊：沒這計畫",
+      "sub": "一邊被酸不敢表態 一邊被問公文根本沒強制",
+      "source": "自由時報、ETtoday 2026-11-16",
+      "effect": {
+        "type": "backlash",
+        "target": "both",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-16",
+      "headline": "五大封關民調二比三 講卍安審伯羊各贏各的",
+      "sub": "從領先6趴到落後14趴都有 網友：挑喜歡的信",
+      "source": "ETtoday 2026-11-16",
+      "effect": {
+        "type": "buzz",
+        "target": "both",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "headline": "選舉公報找不到松機遷建 審伯羊：可能太臨時來不及放",
+      "sub": "講卍安反問對手陪伴都更也沒列 公報變大家來找碴",
+      "source": "自由時報、ETtoday 2026-11-17",
+      "effect": {
+        "type": "backlash",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "headline": "黨主席贈水滴寶劍 講卍安問：捍衛市民還是黨的利益",
+      "sub": "光電板戰火延燒到兵器 審伯羊先前只說尊重經濟部",
+      "source": "聯合報 2026-11-17",
+      "effect": {
+        "type": "backlash",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "headline": "TVBS封關民調 講卍安46比44險領審伯羊",
+      "sub": "五月還領28趴如今剩2趴 模型推估只贏三萬票",
+      "source": "台視新聞 2026-11-17",
+      "effect": {
+        "type": "votes",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "headline": "同場切蛋糕手疊手 審伯羊台下開起粉絲簽名會",
+      "sub": "講卍安台上致詞他台下簽名 會後說寒暄內容不太記得",
+      "source": "新頭殼、自由時報 2026-11-18",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "headline": "選前之夜叫光榮台北 審伯羊：所以現在不光榮",
+      "sub": "再補一句中文邏輯各有不同我們都尊重 國文課開打",
+      "source": "聯合報 2026-11-18",
+      "effect": {
+        "type": "buzz",
+        "target": "both",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "headline": "審伯羊有安心特質嗎 講卍安秒答：就是沒有看到",
+      "sub": "再送三連發：不查證、用猜的、立場反覆 國文課從光榮上到安心",
+      "source": "FTNN新聞網 2026-11-19",
+      "effect": {
+        "type": "backlash",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "headline": "審伯羊將赴白營前立委座談 被解讀搶小草票",
+      "sub": "講卍安酸：過去怎麼對白營前主席 小草都看在眼裡",
+      "source": "中時新聞網 2026-11-19",
+      "effect": {
+        "type": "buzz",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "headline": "講卍安跨河到中和合體車掃 喊399公車吃到飽",
+      "sub": "選前九天跑去隔壁市拜票 網友：雙北連線連到忘了選哪邊",
+      "source": "公視新聞 2026-11-19",
+      "effect": {
+        "type": "buzz",
+        "target": "blue",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-20",
+      "headline": "某前黨主席酸審伯羊只會順起來 講卍安附和",
+      "sub": "選前一週，隊友補刀比對手還快，願景藍圖還沒到貨",
+      "source": "自由時報 2026-11-20",
+      "effect": {
+        "type": "backlash",
+        "target": "green",
+        "value": 2
+      }
+    },
+    {
+      "date": "2026-11-20",
+      "headline": "審伯羊木柵參香 民眾嗨喊講卍安的市長",
+      "sub": "神明面前不能說謊，但可以先喊錯人",
+      "source": "自由時報 2026-11-20",
+      "effect": {
+        "type": "buzz",
+        "target": "both",
+        "value": 2
+      }
+    }
   ]
 }
